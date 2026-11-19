@@ -1,0 +1,102 @@
+{
+  "id": "deep-ocean",
+  "title": "The Ocean's Hidden World",
+  "cat": "自然",
+  "level": "B1",
+  "minutes": 3,
+  "desc": "深海又黑又冷，却住着会自己发光的鱼。",
+  "vocab": [
+    {
+      "w": "surface",
+      "ph": "/ˈsɜːfɪs/",
+      "pos": "n.",
+      "zh": "表面；水面",
+      "en": "the top layer of something",
+      "ex": "Most of the ocean is far below the surface.",
+      "exZh": "海洋的大部分远在水面之下。"
+    },
+    {
+      "w": "pressure",
+      "ph": "/ˈpreʃər/",
+      "pos": "n.",
+      "zh": "压力；压强",
+      "en": "the force that presses on something",
+      "ex": "Down there, the pressure is so great that it would crush a car.",
+      "exZh": "在那里，压力大到足以压扁一辆汽车。"
+    },
+    {
+      "w": "creature",
+      "ph": "/ˈkriːtʃər/",
+      "pos": "n.",
+      "zh": "生物；动物",
+      "en": "a living thing, an animal",
+      "ex": "Many creatures live there happily.",
+      "exZh": "许多生物在那里快乐地生活。"
+    },
+    {
+      "w": "explore",
+      "ph": "/ɪkˈsplɔːr/",
+      "pos": "v.",
+      "zh": "探索；勘探",
+      "en": "to travel through a place to learn about it",
+      "ex": "Scientists are only beginning to explore this hidden world.",
+      "exZh": "科学家们才刚刚开始探索这个隐藏的世界。"
+    },
+    {
+      "w": "glow",
+      "ph": "/ɡləʊ/",
+      "pos": "n.",
+      "zh": "发光；微光",
+      "en": "a soft light",
+      "ex": "Their glow helps them find food in the dark.",
+      "exZh": "它们的光帮助它们在黑暗中寻找食物。"
+    },
+    {
+      "w": "survive",
+      "ph": "/səˈvaɪv/",
+      "pos": "v.",
+      "zh": "生存；存活",
+      "en": "to stay alive in a difficult situation",
+      "ex": "Other creatures survive by eating food that falls from above.",
+      "exZh": "另一些生物靠吃从上方落下的食物生存。"
+    }
+  ],
+  "paras": [
+    {
+      "en": [
+        "Most of the ocean is dark, cold, and far below the surface that we see from a boat.",
+        "Down there, the pressure is so great that it would crush a car, yet many creatures live there happily.",
+        "Scientists are only beginning to explore this hidden world."
+      ],
+      "zh": [
+        "海洋的大部分是黑暗、寒冷的，远在我们从船上看到的水面之下。",
+        "在那里，压力大到足以压扁一辆汽车，然而许多生物却在那里快乐地生活。",
+        "科学家们才刚刚开始探索这个隐藏的世界。"
+      ]
+    },
+    {
+      "en": [
+        "Some fish make their own light, and their glow helps them find food and talk to each other in the dark.",
+        "Other creatures survive by eating food that falls slowly from the bright water above.",
+        "Nothing is wasted down there, because food is hard to find."
+      ],
+      "zh": [
+        "有些鱼会自己发光，它们的光帮助它们在黑暗中寻找食物、彼此交流。",
+        "另一些生物靠吃从上方明亮水域缓缓落下的食物生存。",
+        "在那里什么都不会被浪费，因为食物很难找到。"
+      ]
+    },
+    {
+      "en": [
+        "New machines now let us explore deeper than ever before, without hurting the animals we meet.",
+        "Every trip brings back pictures of creatures that no one has seen before.",
+        "The deep ocean reminds us that our planet still has places left to discover."
+      ],
+      "zh": [
+        "新的机器现在让我们能探索到比以往更深的地方，同时不伤害遇到的动物。",
+        "每一次下潜都会带回以前从未有人见过的生物的照片。",
+        "深海提醒我们，我们的星球上仍然有待发现的地方。"
+      ]
+    }
+  ]
+}

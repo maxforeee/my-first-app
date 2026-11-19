@@ -1,0 +1,102 @@
+{
+  "id": "why-sleep",
+  "title": "Why Sleep Matters",
+  "cat": "健康",
+  "level": "B2",
+  "minutes": 4,
+  "desc": "睡个好觉，比熬夜学习更能帮你记住东西。",
+  "vocab": [
+    {
+      "w": "memory",
+      "ph": "/ˈmeməri/",
+      "pos": "n.",
+      "zh": "记忆；记忆力",
+      "en": "the ability to remember things",
+      "ex": "Sleep moves what you learned into long-term memory.",
+      "exZh": "睡眠会把学到的东西转入长期记忆。"
+    },
+    {
+      "w": "focus",
+      "ph": "/ˈfəʊkəs/",
+      "pos": "n.",
+      "zh": "专注；注意力",
+      "en": "attention on one thing",
+      "ex": "A lack of sleep changes your mood and your focus.",
+      "exZh": "缺乏睡眠会改变你的情绪和专注力。"
+    },
+    {
+      "w": "lack",
+      "ph": "/læk/",
+      "pos": "n.",
+      "zh": "缺乏；不足",
+      "en": "the state of not having enough of something",
+      "ex": "A lack of sleep also changes your mood.",
+      "exZh": "缺乏睡眠还会改变你的情绪。"
+    },
+    {
+      "w": "repair",
+      "ph": "/rɪˈpeər/",
+      "pos": "v.",
+      "zh": "修复；修补",
+      "en": "to fix something that is damaged",
+      "ex": "Your body uses sleep to repair itself.",
+      "exZh": "你的身体利用睡眠来修复自己。"
+    },
+    {
+      "w": "routine",
+      "ph": "/ruːˈtiːn/",
+      "pos": "n.",
+      "zh": "日常习惯；惯例",
+      "en": "things you do regularly",
+      "ex": "A simple routine can help: go to bed at the same time.",
+      "exZh": "一个简单的日常习惯就能帮上忙：在同一时间上床睡觉。"
+    },
+    {
+      "w": "mood",
+      "ph": "/muːd/",
+      "pos": "n.",
+      "zh": "情绪；心情",
+      "en": "how you feel at a particular time",
+      "ex": "Small problems feel bigger when your mood is low.",
+      "exZh": "情绪低落时，小问题会显得更大。"
+    }
+  ],
+  "paras": [
+    {
+      "en": [
+        "Sleep is not a waste of time; it is when your brain does some of its most important work.",
+        "During sleep, your brain moves the things you learned during the day into long-term memory.",
+        "That is why a good night of sleep can help you remember more than a long night of studying."
+      ],
+      "zh": [
+        "睡眠不是浪费时间；那是你大脑做一些最重要工作的时候。",
+        "睡眠时，你的大脑会把白天学到的东西转入长期记忆。",
+        "这就是为什么睡个好觉比熬夜学习更能帮你记住东西。"
+      ]
+    },
+    {
+      "en": [
+        "A lack of sleep also changes your mood and your focus the next day.",
+        "Small problems feel bigger, and it is harder to pay attention in class or at work.",
+        "Your body uses sleep to repair itself, from your muscles to your skin."
+      ],
+      "zh": [
+        "缺乏睡眠还会改变你第二天的情绪和专注力。",
+        "小问题会显得更大，在课堂或工作中也更难集中注意力。",
+        "你的身体利用睡眠来修复自己，从肌肉到皮肤都是如此。"
+      ]
+    },
+    {
+      "en": [
+        "A simple routine can help: go to bed at the same time, keep your room dark, and put your phone away an hour before sleep.",
+        "It may feel hard at first, but after a week your body will start to expect sleep at that hour.",
+        "Good sleep is not a luxury; it is part of staying healthy."
+      ],
+      "zh": [
+        "一个简单的日常习惯就能帮上忙：在同一时间上床睡觉，保持房间黑暗，睡前一小时把手机放下。",
+        "刚开始可能觉得难，但一周之后，你的身体就会开始在那个时间期待睡眠。",
+        "好的睡眠不是奢侈品，而是保持健康的一部分。"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "id": "ai-learning",
+  "title": "How AI Is Changing the Way We Learn",
+  "cat": "科技",
+  "level": "B2",
+  "minutes": 4,
+  "desc": "AI 导师怎么根据你的水平调整课程？读一读未来的课堂。",
+  "vocab": [
+    {
+      "w": "tutor",
+      "ph": "/ˈtuːtər/",
+      "pos": "n.",
+      "zh": "导师；家庭教师",
+      "en": "a teacher who teaches one person or a small group",
+      "ex": "An AI tutor can change the lesson to fit your level.",
+      "exZh": "一位 AI 导师可以根据你的水平调整课程。"
+    },
+    {
+      "w": "concept",
+      "ph": "/ˈkɒnsept/",
+      "pos": "n.",
+      "zh": "概念；观念",
+      "en": "an idea or a principle",
+      "ex": "If you understand a concept quickly, it moves on.",
+      "exZh": "如果你很快理解了一个概念，它就会继续往前。"
+    },
+    {
+      "w": "algorithm",
+      "ph": "/ˈælɡərɪðəm/",
+      "pos": "n.",
+      "zh": "算法",
+      "en": "a set of rules a computer follows to solve a problem",
+      "ex": "Behind this tutor is an algorithm that looks for patterns.",
+      "exZh": "这位导师的背后是一种算法。"
+    },
+    {
+      "w": "personalised",
+      "ph": "/ˈpɜːsənəlaɪzd/",
+      "pos": "adj.",
+      "zh": "个性化的；量身定制的",
+      "en": "made to fit one person",
+      "ex": "The system builds a personalised path through the subject.",
+      "exZh": "这个系统会为你打造一条个性化的学习路径。"
+    },
+    {
+      "w": "feedback",
+      "ph": "/ˈfiːdbæk/",
+      "pos": "n.",
+      "zh": "反馈；意见",
+      "en": "advice about how well you did something",
+      "ex": "Teachers can spend more time giving feedback.",
+      "exZh": "老师可以花更多时间给出反馈。"
+    },
+    {
+      "w": "adapt",
+      "ph": "/əˈdæpt/",
+      "pos": "v.",
+      "zh": "适应；调整",
+      "en": "to change in order to fit a new situation",
+      "ex": "Humans and machines learn to adapt to each other.",
+      "exZh": "人和机器学会彼此适应。"
+    }
+  ],
+  "paras": [
+    {
+      "en": [
+        "For many students, learning a new subject used to mean sitting in a crowded classroom and listening to the same lesson as everyone else.",
+        "Today, an AI tutor can watch how you answer questions and change the next lesson to fit your level.",
+        "If you understand a concept quickly, it moves on; if you struggle, it slows down and explains it in a different way."
+      ],
+      "zh": [
+        "对许多学生来说，学习一门新科目过去意味着坐在拥挤的教室里，和所有人听同一节课。",
+        "如今，一位 AI 导师可以观察你如何回答问题，并调整下一课以适应你的水平。",
+        "如果你很快理解了一个概念，它就会继续往前；如果你遇到困难，它会放慢速度，用另一种方式讲解。"
+      ]
+    },
+    {
+      "en": [
+        "Behind this tutor is an algorithm that looks for patterns in your mistakes.",
+        "It notices, for example, that you often mix up two similar words, and then it gives you more practice with exactly those words.",
+        "Over time, the system builds a personalised path through the subject, one that no textbook could offer."
+      ],
+      "zh": [
+        "这位导师的背后是一种算法，它会在你的错误中寻找规律。",
+        "比如，它会注意到你常常混淆两个相似的词，然后就针对这些词给你更多练习。",
+        "随着时间的推移，这个系统会为你打造一条个性化的学习路径，这是任何教科书都无法提供的。"
+      ]
+    },
+    {
+      "en": [
+        "Teachers are not being replaced, but their work is changing.",
+        "Instead of repeating the same lesson, they can spend more time giving feedback and helping students who need it most.",
+        "The best classrooms of the future may be those where humans and machines learn to adapt to each other."
+      ],
+      "zh": [
+        "老师并没有被取代，但他们的工作正在改变。",
+        "他们不再需要重复同一节课，而是可以花更多时间给出反馈，帮助最需要帮助的学生。",
+        "未来的好课堂，也许是人和机器学会彼此适应的课堂。"
+      ]
+    }
+  ]
+}

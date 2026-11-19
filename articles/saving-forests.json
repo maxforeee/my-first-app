@@ -1,0 +1,102 @@
+{
+  "id": "saving-forests",
+  "title": "Saving Our Forests",
+  "cat": "环境",
+  "level": "B2",
+  "minutes": 4,
+  "desc": "每一棵树，都是对未来的一个小小承诺。",
+  "vocab": [
+    {
+      "w": "forest",
+      "ph": "/ˈfɒrɪst/",
+      "pos": "n.",
+      "zh": "森林",
+      "en": "a large area of land covered with trees",
+      "ex": "Forests cover about a third of the land on Earth.",
+      "exZh": "森林覆盖了地球上约三分之一的陆地。"
+    },
+    {
+      "w": "oxygen",
+      "ph": "/ˈɒksɪdʒən/",
+      "pos": "n.",
+      "zh": "氧气",
+      "en": "the gas in the air that we need to breathe",
+      "ex": "Forests give us the oxygen we breathe.",
+      "exZh": "森林为我们提供呼吸所需的氧气。"
+    },
+    {
+      "w": "disappear",
+      "ph": "/ˌdɪsəˈpɪər/",
+      "pos": "v.",
+      "zh": "消失；不见",
+      "en": "to stop existing or to be no longer seen",
+      "ex": "When a forest disappears, those animals lose their home.",
+      "exZh": "当一片森林消失，那些动物就失去了家园。"
+    },
+    {
+      "w": "climate",
+      "ph": "/ˈklaɪmət/",
+      "pos": "n.",
+      "zh": "气候",
+      "en": "the usual weather of a place",
+      "ex": "Trees help control the climate by taking in carbon dioxide.",
+      "exZh": "树木通过吸收二氧化碳来调节气候。"
+    },
+    {
+      "w": "protect",
+      "ph": "/prəˈtekt/",
+      "pos": "v.",
+      "zh": "保护",
+      "en": "to keep someone or something safe",
+      "ex": "Many countries are now trying to protect the forests they still have.",
+      "exZh": "许多国家现在都在努力保护它们仅存的森林。"
+    },
+    {
+      "w": "plant",
+      "ph": "/plɑːnt/",
+      "pos": "v.",
+      "zh": "种植；栽种",
+      "en": "to put a plant into the ground to grow",
+      "ex": "One person can plant a tree and care for it.",
+      "exZh": "一个人也可以种一棵树并照料它。"
+    }
+  ],
+  "paras": [
+    {
+      "en": [
+        "Forests cover about a third of the land on Earth, and they give us the oxygen we breathe.",
+        "They are also home to more than half of the world's land animals and plants.",
+        "When a forest disappears, those animals lose their home, and we lose a part of our planet's life."
+      ],
+      "zh": [
+        "森林覆盖了地球上约三分之一的陆地，为我们提供呼吸所需的氧气。",
+        "它们还是世界上超过一半陆地动植物的家园。",
+        "当一片森林消失，那些动物就失去了家园，我们也失去地球生命的一部分。"
+      ]
+    },
+    {
+      "en": [
+        "Trees help control the climate by taking in carbon dioxide, the gas that warms our planet.",
+        "Cutting down too many trees makes the air warmer and the rain less regular.",
+        "That is why many countries are now trying to protect the forests they still have."
+      ],
+      "zh": [
+        "树木通过吸收二氧化碳来调节气候，这种气体会使我们的星球变暖。",
+        "砍伐太多树木会让空气变暖、降雨变得不规律。",
+        "这就是为什么许多国家现在都在努力保护它们仅存的森林。"
+      ]
+    },
+    {
+      "en": [
+        "Protecting a forest is not only the work of governments; one person can plant a tree and care for it.",
+        "Schools and towns are planting trees together, and children learn why the forest matters.",
+        "Every tree we plant is a small promise to the future."
+      ],
+      "zh": [
+        "保护森林不只是政府的工作；一个人也可以种一棵树并照料它。",
+        "学校和城镇正在一起种树，孩子们也从中了解森林为什么重要。",
+        "我们种下的每一棵树，都是对未来的一个小小承诺。"
+      ]
+    }
+  ]
+}

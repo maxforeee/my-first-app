@@ -1,0 +1,102 @@
+{
+  "id": "kyoto-walk",
+  "title": "A Walk Through Kyoto",
+  "cat": "旅行",
+  "level": "B1",
+  "minutes": 3,
+  "desc": "竹林、老街和小餐馆，慢慢走一遍京都。",
+  "vocab": [
+    {
+      "w": "temple",
+      "ph": "/ˈtempl/",
+      "pos": "n.",
+      "zh": "寺庙；庙宇",
+      "en": "a building where people worship",
+      "ex": "Kyoto is famous for its temples and its quiet streets.",
+      "exZh": "京都是以寺庙和安静街道而闻名的城市。"
+    },
+    {
+      "w": "narrow",
+      "ph": "/ˈnærəʊ/",
+      "pos": "adj.",
+      "zh": "狭窄的",
+      "en": "small in width",
+      "ex": "You can walk down a narrow lane and hear only your own steps.",
+      "exZh": "你可以沿着一条狭窄的小巷漫步。"
+    },
+    {
+      "w": "peaceful",
+      "ph": "/ˈpiːsfl/",
+      "pos": "adj.",
+      "zh": "宁静的；平和的",
+      "en": "quiet and calm",
+      "ex": "The city feels peaceful, even when many visitors are there.",
+      "exZh": "即使有许多游客，这座城市依然让人感到宁静。"
+    },
+    {
+      "w": "bamboo",
+      "ph": "/bæmˈbuː/",
+      "pos": "n.",
+      "zh": "竹子",
+      "en": "a tall plant with hard stems",
+      "ex": "A bamboo forest rises high above the path.",
+      "exZh": "一片竹林高高耸立在小路之上。"
+    },
+    {
+      "w": "tradition",
+      "ph": "/trəˈdɪʃn/",
+      "pos": "n.",
+      "zh": "传统；习俗",
+      "en": "a custom passed down over time",
+      "ex": "It is a good place to enjoy a tradition that is more than a thousand years old.",
+      "exZh": "这是一个感受一项一千多年历史的传统的好地方。"
+    },
+    {
+      "w": "taste",
+      "ph": "/teɪst/",
+      "pos": "v.",
+      "zh": "品尝；尝",
+      "en": "to try food by eating a little of it",
+      "ex": "You can taste food that Kyoto has cooked for centuries.",
+      "exZh": "你可以品尝京都烹制了几个世纪的食物。"
+    }
+  ],
+  "paras": [
+    {
+      "en": [
+        "Kyoto is an old city in Japan, famous for its temples and its quiet streets.",
+        "In the morning, you can walk down a narrow lane and hear only your own steps.",
+        "The city feels peaceful, even when many visitors are there."
+      ],
+      "zh": [
+        "京都是日本的一座古城，以寺庙和安静的街道而闻名。",
+        "早晨，你可以沿着一条狭窄的小巷漫步，只听见自己的脚步声。",
+        "即使有许多游客，这座城市依然让人感到宁静。"
+      ]
+    },
+    {
+      "en": [
+        "In the west of the city, a bamboo forest rises high above the path, and the green light feels like another world.",
+        "People come here to take photos, but many just stand and listen to the wind in the bamboo.",
+        "It is a good place to slow down and enjoy a tradition that is more than a thousand years old."
+      ],
+      "zh": [
+        "在城市的西边，一片竹林高高耸立在小路之上，绿色的光线仿佛是另一个世界。",
+        "人们来这里拍照，但许多人只是站着，聆听竹林中的风声。",
+        "这是一个放慢脚步的好地方，去感受一项一千多年历史的传统。"
+      ]
+    },
+    {
+      "en": [
+        "In the evening, small restaurants open their doors, and you can taste food that Kyoto has cooked for centuries.",
+        "The food is simple, but every dish is made with care.",
+        "When you leave Kyoto, you take its quiet streets with you, at least in your memory."
+      ],
+      "zh": [
+        "傍晚，小餐馆打开店门，你可以品尝京都烹制了几个世纪的食物。",
+        "食物很简单，但每一道菜都做得很用心。",
+        "当你离开京都，你会把它的安静街道带走，至少留在记忆里。"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "id": "old-lighthouse",
+  "title": "The Old Lighthouse",
+  "cat": "故事",
+  "level": "C1",
+  "minutes": 4,
+  "desc": "暴风雨之夜，一束光和一个彻夜未眠的人。",
+  "vocab": [
+    {
+      "w": "lighthouse",
+      "ph": "/ˈlaɪthaʊs/",
+      "pos": "n.",
+      "zh": "灯塔",
+      "en": "a tall tower with a light to guide ships",
+      "ex": "An old lighthouse stood alone against the sea.",
+      "exZh": "一座古老的灯塔独自矗立在海边。"
+    },
+    {
+      "w": "keeper",
+      "ph": "/ˈkiːpər/",
+      "pos": "n.",
+      "zh": "看守人；管理员",
+      "en": "a person who looks after a place",
+      "ex": "Every night, its keeper climbed the narrow stairs.",
+      "exZh": "每天夜里，看守人都会爬上狭窄的楼梯。"
+    },
+    {
+      "w": "beam",
+      "ph": "/biːm/",
+      "pos": "n.",
+      "zh": "光束；光线",
+      "en": "a line of light",
+      "ex": "The beam of light moved slowly across the dark water.",
+      "exZh": "光束缓缓扫过黑暗的水面。"
+    },
+    {
+      "w": "storm",
+      "ph": "/stɔːm/",
+      "pos": "n.",
+      "zh": "暴风雨；风暴",
+      "en": "very bad weather with strong wind and rain",
+      "ex": "One winter night, a terrible storm came.",
+      "exZh": "一个冬夜，一场可怕的暴风雨来了。"
+    },
+    {
+      "w": "lonely",
+      "ph": "/ˈləʊnli/",
+      "pos": "adj.",
+      "zh": "孤独的",
+      "en": "sad because you are alone",
+      "ex": "He was cold, tired, and very lonely.",
+      "exZh": "他又冷又累，非常孤独。"
+    },
+    {
+      "w": "guide",
+      "ph": "/ɡaɪd/",
+      "pos": "v.",
+      "zh": "引导；带领",
+      "en": "to show someone the way",
+      "ex": "The ships would have no one to guide them home.",
+      "exZh": "船只就没有人引导它们回家了。"
+    }
+  ],
+  "paras": [
+    {
+      "en": [
+        "On a small island far from the town, an old lighthouse stood alone against the sea.",
+        "Every night, its keeper climbed the narrow stairs and lit the great lamp at the top.",
+        "The beam of light moved slowly across the dark water, warning ships away from the rocks."
+      ],
+      "zh": [
+        "在远离城镇的一座小岛上，一座古老的灯塔独自矗立在海边。",
+        "每天夜里，看守人都会爬上狭窄的楼梯，点亮顶端的大灯。",
+        "光束缓缓扫过黑暗的水面，提醒船只远离礁石。"
+      ]
+    },
+    {
+      "en": [
+        "One winter night, a terrible storm came, and the wind shook the whole tower.",
+        "The keeper stayed at his post, although he was cold, tired, and very lonely.",
+        "He knew that if the light went out, the ships would have no one to guide them home."
+      ],
+      "zh": [
+        "一个冬夜，一场可怕的暴风雨来了，狂风摇撼着整座塔。",
+        "看守人坚守在岗位上，尽管他又冷又累，非常孤独。",
+        "他知道，如果灯灭了，船只就没有人引导它们回家了。"
+      ]
+    },
+    {
+      "en": [
+        "At dawn, the storm passed, and three ships were safe in the harbour, thanks to that one small light.",
+        "The keeper never told anyone what he had done that night.",
+        "But every sailor who saw the lighthouse knew that someone had stayed awake for them."
+      ],
+      "zh": [
+        "黎明时分，暴风雨过去了，三艘船安全地停在港口，多亏了那一小束光。",
+        "看守人从未向任何人提起那晚他所做的事。",
+        "但每一个看到灯塔的水手都知道，有人为他们彻夜未眠。"
+      ]
+    }
+  ]
+}
