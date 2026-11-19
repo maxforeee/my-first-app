@@ -142,6 +142,9 @@
     border-bottom: 2px solid #f59e0b; border-radius: 4px; padding: 0 2px; cursor: pointer;
   }
   .kw.active-kw { background: #fde68a; box-shadow: 0 0 0 1.5px #f59e0b; }
+  .sent { touch-action: manipulation; } /* 双击不触发手机缩放 */
+  .w { cursor: pointer; border-radius: 3px; }
+  .w:active { background: rgba(0,122,255,.10); }
   .zh-label { font-size: 11px; color: var(--sub); font-weight: 700; letter-spacing: 1px; margin: 8px 0 4px; }
   .zh-para { font-size: 14.5px; line-height: 1.9; color: #374151; }
   .zh-para .sent { border-radius: 6px; padding: 1px 2px; cursor: pointer; }
@@ -157,13 +160,41 @@
   }
   .vcard:hover { border-color: var(--accent); }
   .vcard.active { background: var(--vocab-hl); border-color: #f59e0b; box-shadow: 0 0 0 1.5px #f59e0b; }
-  .vcard .w { font-size: 16px; font-weight: 700; }
-  .vcard .w .ph { font-size: 12px; color: var(--sub); font-weight: 400; margin-left: 6px; }
+  .vcard .vword {
+    background: none; border: none; padding: 0; text-align: left;
+    font-size: 16px; font-weight: 700; color: var(--text);
+  }
+  .vcard .vword .ph { font-size: 12px; color: var(--sub); font-weight: 400; margin-left: 6px; }
+  .vcard .vword .vspk { font-size: 14px; margin-left: 6px; }
+  .vcard .vword:active { opacity: .55; }
   .vcard .pos { display: inline-block; font-size: 11px; font-weight: 700; color: var(--accent); background: var(--accent-soft); border-radius: 99px; padding: 2px 8px; margin-top: 6px; }
   .vcard .zh { font-size: 14px; margin-top: 6px; line-height: 1.6; }
   .vcard .en-def { font-size: 12.5px; color: var(--sub); margin-top: 4px; line-height: 1.6; }
   .vcard .ex { font-size: 13px; margin-top: 8px; line-height: 1.6; font-style: italic; color: #374151; }
   .vcard .ex-zh { font-size: 12.5px; color: var(--sub); line-height: 1.6; }
+  /* ---------- 单词小浮窗：浮在单词附近，不是整页弹窗 ---------- */
+  .word-pop {
+    position: fixed; z-index: 60;
+    width: min(320px, calc(100vw - 24px));
+    max-height: 46vh; overflow-y: auto;
+    background: #fff; border: 1px solid var(--border); border-radius: 14px;
+    box-shadow: 0 10px 32px rgba(15, 23, 42, .22);
+    padding: 12px 14px;
+  }
+  .wp-head { display: flex; align-items: flex-start; gap: 8px; }
+  .wp-title { flex: 1; font-size: 17px; font-weight: 700; line-height: 1.4; word-break: break-word; }
+  .wp-ph { font-size: 13px; color: var(--sub); font-weight: 400; margin-left: 6px; }
+  .wp-speak { border: none; background: var(--accent-soft); border-radius: 99px; padding: 4px 9px; font-size: 15px; line-height: 1; vertical-align: middle; margin-left: 6px; }
+  .wp-speak:active { background: #cfe2ff; }
+  .wp-close { border: none; background: none; font-size: 22px; line-height: 1; color: var(--sub); padding: 2px 4px; }
+  .wp-body { margin-top: 8px; font-size: 14px; line-height: 1.7; }
+  .wp-zh { font-weight: 700; color: var(--kw); margin-bottom: 6px; }
+  .wp-mean { margin-bottom: 6px; }
+  .wp-pos { display: inline-block; font-size: 11px; font-weight: 700; color: var(--accent); background: var(--accent-soft); border-radius: 99px; padding: 1px 8px; margin-right: 4px; }
+  .wp-ex { font-size: 13px; color: var(--sub); font-style: italic; margin-top: 2px; }
+  .wp-loading, .wp-none { color: var(--sub); font-size: 13.5px; }
+  .wp-foot { margin-top: 10px; border-top: 1px solid var(--border); padding-top: 10px; }
+  .wp-foot button { border: none; background: none; color: var(--accent); font-size: 13.5px; font-weight: 700; padding: 0; }
   footer { padding: 20px; text-align: center; font-size: 12px; color: var(--sub); }
 </style>
 </head>
@@ -182,7 +213,7 @@
 <main class="wrap" id="homeView">
   <div class="home-head">
     <h2>英语阅读</h2>
-    <p>点开一篇文章，左边读原文，右边看重点词；每段下面都有中文翻译，点一句英文，高亮的译句会跟着亮起来。</p>
+    <p>点开一篇文章读原文，每段下面都有中文翻译；单击单词浮起小卡片查意思，双击一句英文，高亮的译句会跟着亮起来。</p>
   </div>
   <div class="search"><input id="searchInput" type="search" placeholder="搜文章标题、分类…"></div>
   <div class="chips" id="chips"></div>
@@ -201,8 +232,8 @@
     <button class="ctl" id="fontUp">A＋</button>
   </div>
   <div class="article" id="articleWrap">
-    <h2 class="pane-title">文章内容 · 点一句，高亮译句</h2>
-    <div class="hint">点英文里的一句话，它和下面译文里对应的那句会一起变黄；点译文里的一句也一样。点文章里的重点词，下面那个条会展开并跳到对应的词卡。</div>
+    <h2 class="pane-title">文章内容 · 双击一句，高亮译句</h2>
+    <div class="hint">单击单词：浮起小卡片查意思，点 🔊 发音；双击一句话：它和译文里对应的那句一起变黄。点重点词：小卡片里有“在下方词条里看”，能跳到对应的词卡。</div>
     <div id="articleBody"></div>
   </div>
 
@@ -219,6 +250,17 @@
     <div class="sheet-list" id="sheetList"><div id="vocabBody"></div></div>
   </div>
 </main>
+
+<!-- 单词小浮窗：单击单词弹出，不是整页弹窗，不挡住内容 -->
+<div id="wordPop" class="word-pop hidden" aria-live="polite">
+  <div class="wp-head">
+    <div class="wp-title"><span id="wpWord"></span><span id="wpPh" class="wp-ph"></span>
+      <button id="wpSpeak" class="wp-speak" type="button" title="点一下发音">🔊</button></div>
+    <button id="wpClose" class="wp-close" type="button" title="关闭">×</button>
+  </div>
+  <div id="wpBody" class="wp-body"></div>
+  <div id="wpFoot" class="wp-foot hidden"><button id="wpToCard" type="button">在下方词条里看 ↓</button></div>
+</div>
 
 <footer>英语阅读 · 工具箱 · 部署在 Abasthan</footer>
 
@@ -310,18 +352,42 @@ function renderHome() {
 }
 
 /* ---------- 阅读页：渲染 ---------- */
-function markKeywords(sentence, vocab) {
-  var html = esc(sentence);
-  var sorted = vocab.map(function (v, i) { return { w: v.w, i: i }; })
-    .sort(function (a, b) { return b.w.length - a.w.length; });
-  sorted.forEach(function (item) {
-    /* 允许复数 / 三单词尾：creatures、temples、disappears 都能标出来 */
-    var re = new RegExp('\\b(' + item.w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')(s|es)?\\b', 'i');
-    html = html.replace(re, '<span class="kw" data-v="' + item.i + '">$1$2</span>');
+/* 每个英文单词都包一层 <span class="w">，单击能查词；重点词再加 .kw，
+   复数 / 三单照样认得出来（creatures→creature、temples→temple、disappears→disappear） */
+function normWord(w) {
+  w = w.toLowerCase();
+  if (w.slice(-2) === "'s") w = w.slice(0, -2);
+  return w;
+}
+function buildVocabMap(vocab) {
+  var map = {};
+  vocab.forEach(function (v, i) {
+    var base = v.w.toLowerCase();
+    map[base] = i;
+    if (/s$/.test(base) && base.length > 3) map[base.slice(0, -1)] = i;
+    if (/es$/.test(base) && base.length > 4) map[base.slice(0, -2)] = i;
   });
-  return html;
+  return map;
+}
+function vocabIndex(vmap, key) {
+  if (vmap[key] !== undefined) return vmap[key];
+  if (key.length > 3 && key.slice(-1) === 's') {
+    if (vmap[key.slice(0, -1)] !== undefined) return vmap[key.slice(0, -1)];
+    if (key.slice(-2) === 'es' && vmap[key.slice(0, -2)] !== undefined) return vmap[key.slice(0, -2)];
+  }
+  return undefined;
+}
+function markWords(text, vmap) {
+  return text.split(/([A-Za-z]+(?:'[A-Za-z]+)?)/g).map(function (seg) {
+    if (!/^[A-Za-z]+(?:'[A-Za-z]+)?$/.test(seg)) return esc(seg);
+    var key = normWord(seg);
+    var vi = vocabIndex(vmap, key);
+    if (vi !== undefined) return '<span class="w kw" data-w="' + key + '" data-v="' + vi + '">' + esc(seg) + '</span>';
+    return '<span class="w" data-w="' + key + '">' + esc(seg) + '</span>';
+  }).join('');
 }
 function openArticle(id) {
+  hideWordPop();
   current = null;
   for (var k = 0; k < ARTICLES.length; k++) if (ARTICLES[k].id === id) current = ARTICLES[k];
   if (!current) return;
@@ -332,12 +398,13 @@ function openArticle(id) {
   readView.classList.remove('hidden');
   window.scrollTo(0, 0);
 
+  current._vmap = buildVocabMap(current.vocab);
   var body = '';
   current.paras.forEach(function (p, pi) {
     body += '<div class="para-block" data-p="' + pi + '">';
     body += '<p class="en-para" style="font-size:' + fontSize + 'px">' +
       p.en.map(function (s, si) {
-        return '<span class="sent" data-p="' + pi + '" data-s="' + si + '">' + markKeywords(s, current.vocab) + '</span>';
+        return '<span class="sent" data-p="' + pi + '" data-s="' + si + '">' + markWords(s, current._vmap) + '</span>';
       }).join(' ') + '</p>';
     body += '<div class="zh-label">译文</div><p class="zh-para">' +
       p.zh.map(function (s, si) {
@@ -347,8 +414,8 @@ function openArticle(id) {
   $('articleBody').innerHTML = body;
 
   $('vocabBody').innerHTML = current.vocab.map(function (v, i) {
-    return '<div class="vcard" data-v="' + i + '"><div class="w">' + esc(v.w) +
-      '<span class="ph">' + esc(v.ph) + '</span></div>' +
+    return '<div class="vcard" data-v="' + i + '"><button class="vword" type="button" data-w="' + esc(v.w) + '" title="点一下发音">' + esc(v.w) +
+      '<span class="ph">' + esc(v.ph) + '</span><span class="vspk">🔊</span></button>' +
       '<span class="pos">' + esc(v.pos) + '</span>' +
       '<div class="zh">' + esc(v.zh) + '</div>' +
       '<div class="en-def">' + esc(v.en) + '</div>' +
@@ -461,23 +528,31 @@ function highlightSentence(p, s, scrollToZh) {
     }
   }
 }
+/* 单击单词 → 300ms 后浮起小卡片查意思；双击句子 → 整句选中高亮。
+   双击会先触发两次 click，dblclick 一到就把那个 300ms 的定时器取消，
+   所以双击不会先弹出卡片再高亮。 */
+var clickTimer = null;
 $('articleBody').addEventListener('click', function (e) {
-  var kw = e.target.closest('.kw');
-  if (kw) {
-    var vi = +kw.getAttribute('data-v');
-    var card = $('vocabBody').querySelector('.vcard[data-v="' + vi + '"]');
-    if (card) {
-      setSheetState(1); /* 点重点词就把底下的条展开 */
-      $('vocabBody').querySelectorAll('.vcard').forEach(function (c) { c.classList.remove('active'); });
-      card.classList.add('active');
-      sheetList.scrollTo({ top: cardTopInList(card) - 8, behavior: 'smooth' });
-    }
+  var w = e.target.closest('.w');
+  if (w) {
+    var word = w.getAttribute('data-w');
+    var vi = w.getAttribute('data-v');
+    clearTimeout(clickTimer);
+    clickTimer = setTimeout(function () { showWordPop(word, w, vi === null ? null : +vi); }, 300);
     return;
   }
+  hideWordPop();
+});
+$('articleBody').addEventListener('dblclick', function (e) {
   var sent = e.target.closest('.sent');
-  if (sent) highlightSentence(sent.getAttribute('data-p'), sent.getAttribute('data-s'), true);
+  if (!sent) return;
+  clearTimeout(clickTimer);
+  hideWordPop();
+  highlightSentence(sent.getAttribute('data-p'), sent.getAttribute('data-s'), true);
 });
 $('vocabBody').addEventListener('click', function (e) {
+  var vw = e.target.closest('.vword');
+  if (vw) { playWord(vw.getAttribute('data-w')); return; } /* 只点英文单词本身才发音 */
   var card = e.target.closest('.vcard');
   if (!card) return;
   var vi = +card.getAttribute('data-v');
@@ -488,8 +563,190 @@ $('vocabBody').addEventListener('click', function (e) {
   window.scrollTo({ top: Math.max(0, docTop(kw) - 140), behavior: 'smooth' });
 });
 
+/* ---------- 单词小浮窗 + 发音 ----------
+   解释从网上查：Free Dictionary API（免费、不用 key、允许网页直接调）
+   给音标、释义和真人发音音频；中文意思再试谷歌翻译和 MyMemory，
+   哪个先回来就先显示，查不到就只显示英文释义。
+   重点词不用查网，直接用文章自带的解释，快。
+   小浮窗不是整页弹窗：点别处、滚页面、切文章就自动收起来；位置有空往哪跳，
+   下面够就放单词下面，不够放上面，都不够就贴着能看到的边放，绝不盖住被点的单词。 */
+var wordPop = $('wordPop'), popKey = null, popWord = null, popVocabIdx = null, popAnchor = null;
+var dictCache = {};   /* word -> Promise<entry|null> */
+var zhCache = {};     /* word -> Promise<string|null> */
+var curAudio = null;
+
+function singularForm(w) {
+  if (w.length > 4 && w.slice(-3) === 'ies') return w.slice(0, -3) + 'y';
+  if (w.length > 3 && w.slice(-2) === 'es') {
+    var stem = w.slice(0, -2);
+    /* 只有词尾是 s/x/z/ch/sh 时，复数才是加 es（watches→watch、dishes→dish）；
+       creatures 这类是加 s，去掉 es 会变成 creatur 这种错词 */
+    if (/[sxz]$/.test(stem) || /(ch|sh)$/.test(stem)) return stem;
+  }
+  if (w.length > 3 && w.slice(-1) === 's') return w.slice(0, -1);
+  return w;
+}
+function getDict(word) {
+  if (!dictCache[word]) {
+    var tries = [word];
+    var s = singularForm(word);
+    if (s !== word) tries.push(s);
+    dictCache[word] = (async function () {
+      for (var i = 0; i < tries.length; i++) {
+        try {
+          var r = await fetch('https://api.dictionaryapi.dev/api/v2/entries/en/' + encodeURIComponent(tries[i]));
+          if (!r.ok) continue;
+          var d = await r.json();
+          if (!d || !d.length) continue;
+          var e = d[0];
+          var audio = null;
+          (e.phonetics || []).forEach(function (p) {
+            if (p.audio && (!audio || /-us\./.test(p.audio))) audio = p.audio;
+          });
+          var defs = [];
+          (e.meanings || []).slice(0, 2).forEach(function (m) {
+            (m.definitions || []).slice(0, 2).forEach(function (x) {
+              defs.push({ pos: m.partOfSpeech || '', def: x.definition || '', ex: x.example || '' });
+            });
+          });
+          return { word: e.word || tries[i], phonetic: e.phonetic || '', audio: audio, defs: defs };
+        } catch (err) { /* 换下一个拼法试 */ }
+      }
+      return null;
+    })();
+  }
+  return dictCache[word];
+}
+async function getZh(word) {
+  if (zhCache[word]) return zhCache[word];
+  zhCache[word] = (async function () {
+    try {
+      var r = await fetch('https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=zh-CN&dt=t&q=' + encodeURIComponent(word));
+      if (r.ok) {
+        var d = await r.json();
+        var t = d && d[0] && d[0][0] && d[0][0][0];
+        if (t && t !== word) return t;
+      }
+    } catch (err) {}
+    try {
+      var r2 = await fetch('https://api.mymemory.translated.net/get?q=' + encodeURIComponent(word) + '&langpair=en%7Czh-CN');
+      if (r2.ok) {
+        var d2 = await r2.json();
+        var t2 = d2 && d2.responseData && d2.responseData.translatedText;
+        if (t2 && t2.indexOf('MYMEMORY') !== 0 && t2 !== word) return t2;
+      }
+    } catch (err) {}
+    return null;
+  })();
+  return zhCache[word];
+}
+function stopSpeak() {
+  if (curAudio) { try { curAudio.pause(); } catch (e) {} curAudio = null; }
+  try { speechSynthesis.cancel(); } catch (e) {}
+}
+async function playWord(word) {
+  stopSpeak();
+  var e = null;
+  try { e = await getDict(word); } catch (err) {}
+  if (e && e.audio) {
+    curAudio = new Audio(e.audio);
+    curAudio.play().catch(function () { curAudio = null; speakFallback(word); });
+    curAudio.onended = function () { curAudio = null; };
+    return;
+  }
+  speakFallback(word);
+}
+function speakFallback(word) {
+  try {
+    var u = new SpeechSynthesisUtterance(word);
+    u.lang = 'en-US'; u.rate = 0.9;
+    speechSynthesis.speak(u);
+  } catch (err) {}
+}
+function hideWordPop() {
+  wordPop.classList.add('hidden');
+  popKey = null; popWord = null; popVocabIdx = null; popAnchor = null;
+}
+function positionWordPop() {
+  if (!popAnchor || wordPop.classList.contains('hidden')) return;
+  var r = popAnchor.getBoundingClientRect();
+  var pw = wordPop.offsetWidth, ph = wordPop.offsetHeight;
+  var sheetH = sheetState === 0 ? 58 : sheet.offsetHeight;
+  var availBottom = window.innerHeight - sheetH - 8;
+  var top;
+  if (r.bottom + 8 + ph <= availBottom) top = r.bottom + 8;        /* 下面够，放下面 */
+  else if (r.top - 8 - ph >= 8) top = r.top - 8 - ph;              /* 上面够，放上面 */
+  else top = Math.max(8, availBottom - ph);                         /* 都不够，贴着能看到的边 */
+  var left = Math.max(8, Math.min(window.innerWidth - pw - 8, r.left));
+  wordPop.style.top = top + 'px';
+  wordPop.style.left = left + 'px';
+}
+async function showWordPop(word, anchorEl, vocabIdx) {
+  popKey = word; popAnchor = anchorEl; popVocabIdx = vocabIdx;
+  var v = vocabIdx !== null && current ? current.vocab[vocabIdx] : null;
+  popWord = v ? v.w.toLowerCase() : word;
+  if (sheetState !== 0) setSheetState(0); /* 底下的条先收起来，别挡住小浮窗 */
+  $('wpWord').textContent = v ? v.w : word;
+  $('wpPh').textContent = v ? v.ph : '';
+  $('wpFoot').classList.toggle('hidden', !v);
+  wordPop.classList.remove('hidden');
+  if (v) {
+    $('wpBody').innerHTML =
+      '<div class="wp-zh">' + esc(v.zh) + '</div>' +
+      '<div class="wp-mean"><span class="wp-pos">' + esc(v.pos) + '</span> ' + esc(v.en) + '</div>' +
+      (v.ex ? '<div class="wp-ex">“' + esc(v.ex) + '”<br>' + esc(v.exZh) + '</div>' : '');
+    positionWordPop();
+    getDict(v.w.toLowerCase()).then(function (e) { if (e && e.phonetic) $('wpPh').textContent = e.phonetic; });
+  } else {
+    $('wpBody').innerHTML = '<div class="wp-loading">正在网上查 ' + esc(word) + '…</div>';
+    positionWordPop();
+    var e = await getDict(word);
+    if (popKey !== word) return; /* 用户已经点了别的词 */
+    if (!e) {
+      $('wpBody').innerHTML = '<div class="wp-none">网上没查到这个词，换个词试试。</div>';
+    } else {
+      $('wpPh').textContent = e.phonetic || '';
+      var html = e.defs.map(function (d) {
+        return '<div class="wp-mean"><span class="wp-pos">' + esc(d.pos) + '</span> ' + esc(d.def) +
+          (d.ex ? '<div class="wp-ex">“' + esc(d.ex) + '”</div>' : '') + '</div>';
+      }).join('') || '<div class="wp-none">这次没拿到释义。</div>';
+      $('wpBody').innerHTML = '<div class="wp-zh" id="wpZh">中文意思查取中…</div>' + html;
+      positionWordPop();
+      var zh = await getZh(word);
+      if (popKey !== word) return;
+      var zhEl = $('wpZh');
+      if (zhEl) zhEl.textContent = zh || '中文意思这次没查到';
+    }
+    positionWordPop();
+  }
+}
+$('wpClose').addEventListener('click', function (e) { e.stopPropagation(); hideWordPop(); });
+$('wpSpeak').addEventListener('click', function (e) {
+  e.stopPropagation();
+  if (popWord) playWord(popWord);
+});
+$('wpToCard').addEventListener('click', function (e) {
+  e.stopPropagation();
+  if (popVocabIdx === null || !current) return;
+  var vi = popVocabIdx;
+  hideWordPop();
+  var card = $('vocabBody').querySelector('.vcard[data-v="' + vi + '"]');
+  if (!card) return;
+  setSheetState(1);
+  $('vocabBody').querySelectorAll('.vcard').forEach(function (c) { c.classList.remove('active'); });
+  card.classList.add('active');
+  sheetList.scrollTo({ top: cardTopInList(card) - 8, behavior: 'smooth' });
+});
+document.addEventListener('click', function (e) {
+  if (wordPop.classList.contains('hidden')) return;
+  if (e.target.closest('#wordPop') || e.target.closest('.w') || e.target.closest('.vword')) return;
+  hideWordPop();
+});
+window.addEventListener('scroll', function () { hideWordPop(); }, { passive: true });
+
 /* ---------- 控件 ---------- */
 $('backBtn').addEventListener('click', function () {
+  hideWordPop();
   current = null;
   readView.classList.add('hidden');
   homeView.classList.remove('hidden');
