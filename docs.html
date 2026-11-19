@@ -76,6 +76,7 @@
     background: var(--accent); color: #fff;
     display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: 700;
   }
+  .back-link { display: inline-flex; align-items: center; gap: 2px; flex: none; min-height: 44px; padding: 0 8px 0 2px; font-size: 15px; font-weight: 600; color: var(--muted); text-decoration: none; }
   .search {
     flex: 1; min-width: 0; height: 40px;
     display: flex; align-items: center; gap: 8px;
@@ -366,6 +367,7 @@
 <!-- ============ 工作台首页 ============ -->
 <div id="view-home">
   <header class="topbar">
+    <a class="back-link" href="index.html">‹ 工具箱</a>
     <div class="brand"><span class="brand-mark">文</span>文档工作台</div>
     <div class="spacer"></div>
     <button id="btnNew" class="btn btn-primary">＋ 新建</button>
@@ -405,6 +407,7 @@
     <button id="btnBackHome" class="icon-btn" aria-label="返回工作台">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m14 6-6 6 6 6"/></svg>
     </button>
+    <a class="btn btn-ghost btn-sm" href="index.html">‹ 工具箱</a>
     <input id="titleInput" class="title-input" value="未命名" aria-label="文件名">
     <span id="fmtBadge" class="badge fmt-md">MD</span>
     <span id="saveState" class="save-state">已保存到此浏览器</span>
