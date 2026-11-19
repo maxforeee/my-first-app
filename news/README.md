@@ -20,6 +20,11 @@
    写完文件后跑 `python3 scripts/tag_phrases.py news/YYYY-MM-DD.json news/latest.json`，
    用仓库根目录的 `phrases.json` 词典（77 条短语，动词变形也认）扫正文，把短语写进每篇的 `phrases` 里，
    页面上就会划线、点开能看短语词条。
+   再跑 `PYTHONDONTWRITEBYTECODE=1 python3 scripts/discover_phrases.py news/YYYY-MM-DD.json`，
+   从当天新闻里筛候选短语、去 Free Dictionary API / Wiktionary 查证，查到的新短语审一遍
+   （意思要跟新闻里的用法对得上，假的不要，比如字面意思的 "in the dark"、"set in 2022" 里的 set + 时间），
+   写好中文意思后追加进 `phrases.json`，再用 tag 脚本把全部文章和新闻重新扫一遍——这样词库每天都在长大，
+   新短语在旧文章里出现也会被划上。
 3. 写成 `news/YYYY-MM-DD.json`，同时覆盖 `news/latest.json`，推到 GitHub。
 4. 部署是自动的——Abasthan 后台 Auto Deploy 开关是开着的，推完约 1 分钟自动上线，不用手动部署（2026-11-19 查证：11:50 的推送 1 分钟内已自动部署成功，线上已能看到新内容）。
 

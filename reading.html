@@ -290,7 +290,7 @@
     <button class="ctl on" id="syncToggle">同步：开</button>
     <button class="ctl" id="fontDown">A−</button>
     <button class="ctl" id="fontUp">A＋</button>
-    <span class="ctl-hint">点击查看单词翻译，双击查看整句；点划线的短语，看短语意思</span>
+    <span class="ctl-hint">点击查看单词翻译，双击查看整句；点划线的短语，看短语意思；朗读时双击某句，从那句开始读</span>
   </div>
   <div class="article" id="articleWrap">
     <h2 class="pane-title">文章内容 · 双击一句，高亮译句</h2>
@@ -761,6 +761,7 @@ function highlightSentence(p, s, scrollToZh) {
   }
 }
 /* 单击单词 → 300ms 后浮起小卡片查意思；双击句子 → 整句选中高亮。
+   没在朗读时双击就是只高亮；正在朗读时双击那句，就从那句开始重新读。
    双击会先触发两次 click，dblclick 一到就把那个 300ms 的定时器取消，
    所以双击不会先弹出卡片再高亮。 */
 var clickTimer = null;
@@ -786,7 +787,17 @@ $('articleBody').addEventListener('dblclick', function (e) {
   if (!sent) return;
   clearTimeout(clickTimer);
   hideWordPop();
-  highlightSentence(sent.getAttribute('data-p'), sent.getAttribute('data-s'), true);
+  var p = sent.getAttribute('data-p'), s = sent.getAttribute('data-s');
+  highlightSentence(p, s, true);
+  /* 正在朗读时双击一句：从这句开始重新读（先作废正在读的那句，再从这句起读） */
+  if (ttsPlaying) {
+    var ni = ttsIndexOf(p, s);
+    if (ni >= 0) {
+      ttsToken++;
+      if (ttsSupported()) { try { speechSynthesis.cancel(); } catch (err) {} }
+      speakSentence(ni);
+    }
+  }
 });
 $('vocabBody').addEventListener('click', function (e) {
   var vw = e.target.closest('.vword');
@@ -1028,6 +1039,13 @@ function buildTtsList() {
   current.paras.forEach(function (p, pi) {
     p.en.forEach(function (s, si) { ttsList.push({ p: pi, s: si, text: s }); });
   });
+}
+function ttsIndexOf(p, s) {
+  p = +p; s = +s;
+  for (var i = 0; i < ttsList.length; i++) {
+    if (ttsList[i].p === p && ttsList[i].s === s) return i;
+  }
+  return -1;
 }
 function ttsUi() {
   $('playBtn').textContent = ttsPlaying ? '⏸' : '▶';
