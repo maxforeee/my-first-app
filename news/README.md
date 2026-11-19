@@ -6,7 +6,8 @@
 - `latest.json`：最新一天的副本，网页加载不到日期列表时用它兜底。
 - `sources.json`：RSS 源列表（目前 BBC News + The Guardian），换源改这里。
 - 每篇新闻的字段和 `articles/` 里的文章一样（`id/title/cat/level/minutes/desc/vocab/paras`），
-  另加 `source`（如 BBC News）、`sourceUrl`（原文链接）、`published`（日期）。
+  另加 `source`（如 BBC News）、`sourceUrl`（原文链接）、`published`（日期），
+  以及 `phrases`（脚本用 `phrases.json` 词典从正文里扫出来的短语，每条带中文意思、英文解释、例句）。
   `cat` 固定是“新闻”，`level` 目前都是 B2，`id` 是 `news-YYYYMMDD-关键词`。
 
 ## 每天怎么刷新
@@ -16,6 +17,9 @@
 1. 拉 `sources.json` 里的 RSS，取最新条目，跳过视频类（链接含 `/videos/` 的）。
 2. 抓每篇的全文（Jina Reader `https://r.jina.ai/<原文链接>`，匿名额度不够时用直接抓 BBC 页面取 `<p>` 的办法），
    每篇截取 9 句（3 段×3 句），逐句翻成中文，每篇配 6 个重点词（词必须在正文中出现）。
+   写完文件后跑 `python3 scripts/tag_phrases.py news/YYYY-MM-DD.json news/latest.json`，
+   用仓库根目录的 `phrases.json` 词典（77 条短语，动词变形也认）扫正文，把短语写进每篇的 `phrases` 里，
+   页面上就会划线、点开能看短语词条。
 3. 写成 `news/YYYY-MM-DD.json`，同时覆盖 `news/latest.json`，推到 GitHub。
 4. 部署是自动的——Abasthan 后台 Auto Deploy 开关是开着的，推完约 1 分钟自动上线，不用手动部署（2026-11-19 查证：11:50 的推送 1 分钟内已自动部署成功，线上已能看到新内容）。
 

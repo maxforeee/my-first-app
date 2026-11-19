@@ -167,6 +167,12 @@
     border-bottom: 2px solid #f59e0b; border-radius: 4px; padding: 0 2px; cursor: pointer;
   }
   .kw.active-kw { background: #fde68a; box-shadow: 0 0 0 1.5px #f59e0b; }
+  .ph {
+    color: #0e7490; font-weight: 700; background: #ecfeff;
+    text-decoration: underline; text-decoration-color: #0891b2; text-underline-offset: 3px;
+    border-radius: 4px; padding: 0 2px; cursor: pointer;
+  }
+  .ph.active-ph { background: #a5f3fc; box-shadow: 0 0 0 1.5px #0891b2; }
   .sent { touch-action: manipulation; } /* 双击不触发手机缩放 */
   .w { cursor: pointer; border-radius: 3px; }
   .w:active { background: rgba(0,122,255,.10); }
@@ -284,7 +290,7 @@
     <button class="ctl on" id="syncToggle">同步：开</button>
     <button class="ctl" id="fontDown">A−</button>
     <button class="ctl" id="fontUp">A＋</button>
-    <span class="ctl-hint">点击查看单词翻译，双击查看整句</span>
+    <span class="ctl-hint">点击查看单词翻译，双击查看整句；点划线的短语，看短语意思</span>
   </div>
   <div class="article" id="articleWrap">
     <h2 class="pane-title">文章内容 · 双击一句，高亮译句</h2>
@@ -527,14 +533,70 @@ function vocabIndex(vmap, key) {
   }
   return undefined;
 }
-function markWords(text, vmap) {
-  return text.split(/([A-Za-z]+(?:'[A-Za-z]+)?)/g).map(function (seg) {
-    if (!/^[A-Za-z]+(?:'[A-Za-z]+)?$/.test(seg)) return esc(seg);
-    var key = normWord(seg);
-    var vi = vocabIndex(vmap, key);
-    if (vi !== undefined) return '<span class="w kw" data-w="' + key + '" data-v="' + vi + '">' + esc(seg) + '</span>';
-    return '<span class="w" data-w="' + key + '">' + esc(seg) + '</span>';
-  }).join('');
+/* 短语：文章 JSON 里自带 phrases[]（脚本事先用 phrases.json 词典扫出来的），
+   每条有 surf（这篇文章里实际出现的样子，如 ["started to", "start to"]）。
+   渲染时先按最长的 surf 划出短语，短语里的词不再标重点词，短语优先。 */
+function buildPhraseMap(phrases) {
+  if (!phrases) return [];
+  return phrases.map(function (ph, i) {
+    return { pi: i, toks: ph.surf.map(function (s) { return s.split(' '); }) };
+  });
+}
+function markWords(text, vmap, pmap) {
+  var segs = text.split(/([A-Za-z]+(?:'[A-Za-z]+)?)/g);
+  var isWord = function (seg) { return /^[A-Za-z]+(?:'[A-Za-z]+)?$/.test(seg); };
+  var wordPos = [];
+  segs.forEach(function (seg, i) { if (isWord(seg)) wordPos.push(i); });
+  var matchAt = {};
+  if (pmap && pmap.length) {
+    var used = {};
+    wordPos.forEach(function (wi, k) {
+      if (used[k]) return;
+      var best = null;
+      pmap.forEach(function (ph) {
+        ph.toks.forEach(function (toks) {
+          if (best && toks.length <= best.toks.length) return;
+          if (k + toks.length > wordPos.length) return;
+          for (var j = 0; j < toks.length; j++) {
+            if (normWord(segs[wordPos[k + j]]) !== toks[j]) return;
+            if (j < toks.length - 1) {
+              var sep = segs.slice(wordPos[k + j] + 1, wordPos[k + j + 1]).join('');
+              if (!/^\s*$/.test(sep)) return;
+            }
+          }
+          best = { toks: toks, pi: ph.pi, len: toks.length };
+        });
+      });
+      if (best) {
+        matchAt[wi] = { end: wordPos[k + best.len - 1], pi: best.pi };
+        for (var m = 0; m < best.len; m++) used[k + m] = true;
+      }
+    });
+  }
+  var out = '', i = 0;
+  while (i < segs.length) {
+    var mt = matchAt[i];
+    if (mt) {
+      out += '<span class="ph" data-p="' + mt.pi + '">';
+      for (var s = i; s <= mt.end; s++) {
+        out += isWord(segs[s])
+          ? '<span class="w" data-w="' + normWord(segs[s]) + '">' + esc(segs[s]) + '</span>'
+          : esc(segs[s]);
+      }
+      out += '</span>';
+      i = mt.end + 1;
+    } else {
+      var seg = segs[i];
+      if (isWord(seg)) {
+        var key = normWord(seg);
+        var vi = vocabIndex(vmap, key);
+        if (vi !== undefined) out += '<span class="w kw" data-w="' + key + '" data-v="' + vi + '">' + esc(seg) + '</span>';
+        else out += '<span class="w" data-w="' + key + '">' + esc(seg) + '</span>';
+      } else out += esc(seg);
+      i++;
+    }
+  }
+  return out;
 }
 function openArticle(id, kind, date) {
   hideWordPop();
@@ -568,12 +630,13 @@ function renderArticle() {
   window.scrollTo(0, 0);
 
   current._vmap = buildVocabMap(current.vocab);
+  current._pmap = buildPhraseMap(current.phrases);
   var body = '';
   current.paras.forEach(function (p, pi) {
     body += '<div class="para-block" data-p="' + pi + '">';
     body += '<p class="en-para" style="font-size:' + fontSize + 'px">' +
       p.en.map(function (s, si) {
-        return '<span class="sent" data-p="' + pi + '" data-s="' + si + '">' + markWords(s, current._vmap) + '</span>';
+        return '<span class="sent" data-p="' + pi + '" data-s="' + si + '">' + markWords(s, current._vmap, current._pmap) + '</span>';
       }).join(' ') + '</p>';
     body += '<div class="zh-label">译文</div><p class="zh-para">' +
       p.zh.map(function (s, si) {
@@ -702,6 +765,12 @@ function highlightSentence(p, s, scrollToZh) {
    所以双击不会先弹出卡片再高亮。 */
 var clickTimer = null;
 $('articleBody').addEventListener('click', function (e) {
+  var ph = e.target.closest('.ph');
+  if (ph) {
+    clearTimeout(clickTimer);
+    clickTimer = setTimeout(function () { showPhrasePop(+ph.getAttribute('data-p'), ph); }, 300);
+    return;
+  }
   var w = e.target.closest('.w');
   if (w) {
     var word = w.getAttribute('data-w');
@@ -836,6 +905,7 @@ function speakFallback(word) {
 function hideWordPop() {
   wordPop.classList.add('hidden');
   popKey = null; popWord = null; popVocabIdx = null; popAnchor = null;
+  document.querySelectorAll('.ph.active-ph').forEach(function (el) { el.classList.remove('active-ph'); });
 }
 function positionWordPop() {
   if (!popAnchor || wordPop.classList.contains('hidden')) return;
@@ -850,6 +920,27 @@ function positionWordPop() {
   var left = Math.max(8, Math.min(window.innerWidth - pw - 8, r.left));
   wordPop.style.top = top + 'px';
   wordPop.style.left = left + 'px';
+}
+/* ---------- 短语小浮窗：点划线的短语，弹短语词条，跟单词小卡片一个样子 ----------
+   词条直接用文章自带的那条（脚本事先从 phrases.json 词典里找出来的），不用查网；
+   点 🔊 读整个短语；下面没有“在下方词条里看”，因为短语不在底下的重点词条里。 */
+function showPhrasePop(pi, anchorEl) {
+  var ph = current && current.phrases ? current.phrases[pi] : null;
+  if (!ph) return;
+  popKey = 'ph:' + ph.p; popAnchor = anchorEl; popVocabIdx = null;
+  popWord = ph.p;
+  if (sheet.offsetHeight > SHEET_MIN + 1) { sheetOpenH = sheet.offsetHeight; collapseSheet(); }
+  $('wpWord').textContent = ph.p;
+  $('wpPh').textContent = '';
+  $('wpFoot').classList.add('hidden');
+  wordPop.classList.remove('hidden');
+  $('wpBody').innerHTML =
+    '<div class="wp-zh">' + esc(ph.zh) + '</div>' +
+    '<div class="wp-mean">' + esc(ph.en) + '</div>' +
+    (ph.ex ? '<div class="wp-ex">“' + esc(ph.ex) + '”<br>' + esc(ph.exZh) + '</div>' : '');
+  document.querySelectorAll('.ph.active-ph').forEach(function (el) { el.classList.remove('active-ph'); });
+  anchorEl.classList.add('active-ph');
+  positionWordPop();
 }
 async function showWordPop(word, anchorEl, vocabIdx) {
   popKey = word; popAnchor = anchorEl; popVocabIdx = vocabIdx;

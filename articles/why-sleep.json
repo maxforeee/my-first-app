@@ -98,5 +98,37 @@
         "好的睡眠不是奢侈品，而是保持健康的一部分。"
       ]
     }
+  ],
+  "phrases": [
+    {
+      "p": "at the same time",
+      "surf": [
+        "at the same time"
+      ],
+      "zh": "同时",
+      "en": "At the same instant.",
+      "ex": "Their departures were at the same time.",
+      "exZh": ""
+    },
+    {
+      "p": "at first",
+      "surf": [
+        "at first"
+      ],
+      "zh": "起初",
+      "en": "Initially; at the start; originally.",
+      "ex": "If at first you don't succeed, try, try again.",
+      "exZh": ""
+    },
+    {
+      "p": "start to do",
+      "surf": [
+        "start to expect"
+      ],
+      "zh": "开始做某事",
+      "en": "to begin to do something",
+      "ex": "It started to rain.",
+      "exZh": "开始下雨了。"
+    }
   ]
 }

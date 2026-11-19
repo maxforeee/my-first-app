@@ -98,5 +98,47 @@
         "未来的好课堂，也许是人和机器学会彼此适应的课堂。"
       ]
     }
+  ],
+  "phrases": [
+    {
+      "p": "used to do",
+      "surf": [
+        "used to mean"
+      ],
+      "zh": "过去常常做某事",
+      "en": "to do something regularly in the past, but not now",
+      "ex": "I used to play football when I was young.",
+      "exZh": "我小时候常踢足球。"
+    },
+    {
+      "p": "look for",
+      "surf": [
+        "looks for"
+      ],
+      "zh": "寻找",
+      "en": "To search for; to seek.",
+      "ex": "He spent his life looking for the truth.",
+      "exZh": ""
+    },
+    {
+      "p": "for example",
+      "surf": [
+        "for example"
+      ],
+      "zh": "例如",
+      "en": "As an example.",
+      "ex": "For example, I like apples and bananas.",
+      "exZh": "例如，我喜欢苹果和香蕉。"
+    },
+    {
+      "p": "learn to do",
+      "surf": [
+        "learn to adapt"
+      ],
+      "zh": "学会做某事",
+      "en": "to gain the skill to do something",
+      "ex": "Children learn to read at school.",
+      "exZh": "孩子们在学校学会阅读。"
+    }
   ]
 }
