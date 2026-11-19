@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>英语阅读 · 工具箱</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #eef3fb;
+    --card: #ffffff;
+    --panel: #e3efff;
+    --panel-2: #dbe9ff;
+    --text: #1c1c1e;
+    --sub: #6b7280;
+    --accent: #007aff;
+    --accent-soft: #e5f0ff;
+    --border: #dbe4f0;
+    --kw: #b45309;
+    --kw-bg: #fef3c7;
+    --sent-hl: #fff1a8;
+    --sent-hl-border: #f59e0b;
+    --vocab-hl: #fff7cc;
+  }
+  body {
+    font-family: -apple-system, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  button { font-family: inherit; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+  .hidden { display: none !important; }
+
+  /* ---------- top bar ---------- */
+  .topbar {
+    position: sticky; top: 0; z-index: 20;
+    background: rgba(238,243,251,.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 16px 8px;
+  }
+  .topbar .row { display: flex; align-items: center; gap: 12px; max-width: 1080px; margin: 0 auto; }
+  .topbar .back { font-size: 15px; font-weight: 600; white-space: nowrap; }
+  .topbar h1 { font-size: 18px; font-weight: 700; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .topbar .meta { font-size: 12px; color: var(--sub); white-space: nowrap; }
+  .progress { height: 4px; background: #d7e3f5; border-radius: 99px; margin-top: 10px; overflow: hidden; max-width: 1080px; margin-left: auto; margin-right: auto; }
+  .progress i { display: block; height: 100%; width: 0; background: var(--accent); border-radius: 99px; transition: width .15s linear; }
+
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 16px; }
+
+  /* ---------- home ---------- */
+  .home-head h2 { font-size: 26px; font-weight: 700; }
+  .home-head p { margin-top: 6px; font-size: 14px; color: var(--sub); line-height: 1.6; }
+  .search { margin-top: 14px; display: flex; gap: 8px; }
+  .search input {
+    flex: 1; border: 1px solid var(--border); border-radius: 12px; padding: 11px 14px;
+    font-size: 15px; font-family: inherit; background: #fff; color: var(--text); outline: none;
+  }
+  .search input:focus { border-color: var(--accent); }
+  .chips { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+  .chip {
+    border: 1px solid var(--border); background: #fff; color: var(--text);
+    border-radius: 99px; padding: 7px 14px; font-size: 13px; font-weight: 600;
+  }
+  .chip.on { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
+  @media (min-width: 700px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+  .acard {
+    background: var(--card); border: 1px solid var(--border); border-radius: 18px;
+    padding: 16px; text-align: left; display: flex; flex-direction: column; gap: 8px;
+    transition: transform .12s ease, box-shadow .12s ease;
+  }
+  .acard:active { transform: scale(.97); }
+  .acard .badges { display: flex; gap: 6px; flex-wrap: wrap; }
+  .badge { font-size: 11px; font-weight: 700; border-radius: 99px; padding: 3px 9px; background: var(--accent-soft); color: var(--accent); }
+  .badge.lv-b1 { background: #dcfce7; color: #15803d; }
+  .badge.lv-b2 { background: #dbeafe; color: #1d4ed8; }
+  .badge.lv-c1 { background: #ede9fe; color: #6d28d9; }
+  .acard h3 { font-size: 16px; line-height: 1.4; font-weight: 700; }
+  .acard .desc { font-size: 13px; color: var(--sub); line-height: 1.6; flex: 1; }
+  .acard .foot { font-size: 12px; color: var(--sub); }
+  .acard .go { font-size: 13px; color: var(--accent); font-weight: 700; }
+  .empty { padding: 32px 0; text-align: center; color: var(--sub); font-size: 14px; }
+
+  /* ---------- reading: two panes ---------- */
+  .controls { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-bottom: 12px; }
+  .controls .spacer { flex: 1; }
+  .ctl {
+    border: 1px solid var(--border); background: #fff; border-radius: 99px;
+    padding: 7px 13px; font-size: 13px; font-weight: 600; color: var(--text);
+  }
+  .ctl.on { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .reader { display: flex; gap: 12px; align-items: stretch; }
+  .pane {
+    background: var(--panel); border: 1px dashed #9db8e8; border-radius: 18px;
+    overflow-y: auto; overscroll-behavior: contain;
+    height: calc(100vh - 150px); min-height: 420px;
+    padding: 18px 18px 32px;
+    scrollbar-width: thin;
+  }
+  .pane.left { flex: 1 1 62%; }
+  .pane.right { flex: 1 1 38%; background: var(--panel-2); }
+  .pane h2.pane-title { font-size: 13px; color: var(--sub); font-weight: 700; letter-spacing: 1px; margin-bottom: 12px; }
+  @media (max-width: 760px) {
+    .reader { flex-direction: column; }
+    .pane { height: 52vh; min-height: 320px; }
+    .pane.right { height: 38vh; min-height: 240px; }
+  }
+
+  /* article text */
+  .para-block { margin-bottom: 20px; }
+  .en-para { font-size: 17px; line-height: 1.9; font-family: Georgia, "Times New Roman", serif; }
+  .en-para .sent {
+    border-radius: 6px; padding: 1px 2px; cursor: pointer;
+    transition: background .15s ease;
+  }
+  .en-para .sent:hover { background: #dbeafe; }
+  .en-para .sent.active, .zh-para .sent.active {
+    background: var(--sent-hl);
+    box-shadow: 0 0 0 1.5px var(--sent-hl-border);
+  }
+  .kw {
+    color: var(--kw); font-weight: 700; background: var(--kw-bg);
+    border-bottom: 2px solid #f59e0b; border-radius: 4px; padding: 0 2px; cursor: pointer;
+  }
+  .kw.active-kw { background: #fde68a; box-shadow: 0 0 0 1.5px #f59e0b; }
+  .zh-label { font-size: 11px; color: var(--sub); font-weight: 700; letter-spacing: 1px; margin: 8px 0 4px; }
+  .zh-para { font-size: 14.5px; line-height: 1.9; color: #374151; }
+  .zh-para .sent { border-radius: 6px; padding: 1px 2px; cursor: pointer; }
+  .zh-para .sent:hover { background: #e0e7ff; }
+  .no-trans .zh-label, .no-trans .zh-para { display: none; }
+  .hint { font-size: 12.5px; color: var(--sub); line-height: 1.7; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 10px 12px; margin-bottom: 14px; }
+
+  /* vocab cards */
+  .vcard {
+    background: #fff; border: 1px solid var(--border); border-radius: 14px;
+    padding: 13px 14px; margin-bottom: 10px; cursor: pointer;
+    transition: box-shadow .15s ease, border-color .15s ease;
+  }
+  .vcard:hover { border-color: var(--accent); }
+  .vcard.active { background: var(--vocab-hl); border-color: #f59e0b; box-shadow: 0 0 0 1.5px #f59e0b; }
+  .vcard .w { font-size: 16px; font-weight: 700; }
+  .vcard .w .ph { font-size: 12px; color: var(--sub); font-weight: 400; margin-left: 6px; }
+  .vcard .pos { display: inline-block; font-size: 11px; font-weight: 700; color: var(--accent); background: var(--accent-soft); border-radius: 99px; padding: 2px 8px; margin-top: 6px; }
+  .vcard .zh { font-size: 14px; margin-top: 6px; line-height: 1.6; }
+  .vcard .en-def { font-size: 12.5px; color: var(--sub); margin-top: 4px; line-height: 1.6; }
+  .vcard .ex { font-size: 13px; margin-top: 8px; line-height: 1.6; font-style: italic; color: #374151; }
+  .vcard .ex-zh { font-size: 12.5px; color: var(--sub); line-height: 1.6; }
+  footer { padding: 20px; text-align: center; font-size: 12px; color: var(--sub); }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="row">
+    <a class="back" href="index.html">‹ 工具箱</a>
+    <h1 id="topTitle">英语阅读</h1>
+    <span class="meta" id="topMeta"></span>
+  </div>
+  <div class="progress hidden" id="progressBar"><i id="progressFill"></i></div>
+</div>
+
+<!-- home -->
+<main class="wrap" id="homeView">
+  <div class="home-head">
+    <h2>英语阅读</h2>
+    <p>点开一篇文章，左边读原文，右边看重点词；每段下面都有中文翻译，点一句英文，高亮的译句会跟着亮起来。</p>
+  </div>
+  <div class="search"><input id="searchInput" type="search" placeholder="搜文章标题、分类…"></div>
+  <div class="chips" id="chips"></div>
+  <div class="grid" id="articleGrid"></div>
+  <div class="empty hidden" id="emptyMsg">没有找到这篇文章，换个词试试。</div>
+</main>
+
+<!-- reading -->
+<main class="wrap hidden" id="readView">
+  <div class="controls">
+    <button class="ctl" id="backBtn">‹ 返回列表</button>
+    <span class="spacer"></span>
+    <button class="ctl" id="transToggle">译文：开</button>
+    <button class="ctl on" id="syncToggle">同步：开</button>
+    <button class="ctl" id="fontDown">A−</button>
+    <button class="ctl" id="fontUp">A＋</button>
+  </div>
+  <div class="reader">
+    <section class="pane left" id="leftPane" aria-label="文章内容">
+      <h2 class="pane-title">文章内容 · 点一句，高亮译句</h2>
+      <div class="hint">点英文里的一句话，它和下面译文里对应的那句会一起变黄；点译文里的一句也一样。重点词点了会跳到右边的词卡。</div>
+      <div id="articleBody"></div>
+    </section>
+    <aside class="pane right" id="rightPane" aria-label="重点词翻译">
+      <h2 class="pane-title">重点词翻译 · 滚文章，右边跟着走</h2>
+      <div id="vocabBody"></div>
+    </aside>
+  </div>
+</main>
+
+<footer>英语阅读 · 工具箱 · 部署在 Abasthan</footer>
+
+<script>
+'use strict';
+/* 数据：每篇文章 3 段，每段 3 句，英文句与中文译句一一对应（按段、按句对齐）。
+   vocab 里每个词都在正文里出现过，顺序就是它在文章里第一次出现的顺序。 */
+var ARTICLES = [
+{
+  id: 'ai-learning', title: 'How AI Is Changing the Way We Learn',
+  cat: '科技', level: 'B2', minutes: 4, desc: 'AI 导师怎么根据你的水平调整课程？读一读未来的课堂。',
+  vocab: [
+    {w:'tutor', ph:'/ˈtuːtər/', pos:'n.', zh:'导师；家庭教师', en:'a teacher who teaches one person or a small group', ex:'An AI tutor can change the lesson to fit your level.', exZh:'一位 AI 导师可以根据你的水平调整课程。'},
+    {w:'concept', ph:'/ˈkɒnsept/', pos:'n.', zh:'概念；观念', en:'an idea or a principle', ex:'If you understand a concept quickly, it moves on.', exZh:'如果你很快理解了一个概念，它就会继续往前。'},
+    {w:'algorithm', ph:'/ˈælɡərɪðəm/', pos:'n.', zh:'算法', en:'a set of rules a computer follows to solve a problem', ex:'Behind this tutor is an algorithm that looks for patterns.', exZh:'这位导师的背后是一种算法。'},
+    {w:'personalised', ph:'/ˈpɜːsənəlaɪzd/', pos:'adj.', zh:'个性化的；量身定制的', en:'made to fit one person', ex:'The system builds a personalised path through the subject.', exZh:'这个系统会为你打造一条个性化的学习路径。'},
+    {w:'feedback', ph:'/ˈfiːdbæk/', pos:'n.', zh:'反馈；意见', en:'advice about how well you did something', ex:'Teachers can spend more time giving feedback.', exZh:'老师可以花更多时间给出反馈。'},
+    {w:'adapt', ph:'/əˈdæpt/', pos:'v.', zh:'适应；调整', en:'to change in order to fit a new situation', ex:'Humans and machines learn to adapt to each other.', exZh:'人和机器学会彼此适应。'}
+  ],
+  paras: [
+    {en:["For many students, learning a new subject used to mean sitting in a crowded classroom and listening to the same lesson as everyone else.","Today, an AI tutor can watch how you answer questions and change the next lesson to fit your level.","If you understand a concept quickly, it moves on; if you struggle, it slows down and explains it in a different way."],
+     zh:["对许多学生来说，学习一门新科目过去意味着坐在拥挤的教室里，和所有人听同一节课。","如今，一位 AI 导师可以观察你如何回答问题，并调整下一课以适应你的水平。","如果你很快理解了一个概念，它就会继续往前；如果你遇到困难，它会放慢速度，用另一种方式讲解。"]},
+    {en:["Behind this tutor is an algorithm that looks for patterns in your mistakes.","It notices, for example, that you often mix up two similar words, and then it gives you more practice with exactly those words.","Over time, the system builds a personalised path through the subject, one that no textbook could offer."],
+     zh:["这位导师的背后是一种算法，它会在你的错误中寻找规律。","比如，它会注意到你常常混淆两个相似的词，然后就针对这些词给你更多练习。","随着时间的推移，这个系统会为你打造一条个性化的学习路径，这是任何教科书都无法提供的。"]},
+    {en:["Teachers are not being replaced, but their work is changing.","Instead of repeating the same lesson, they can spend more time giving feedback and helping students who need it most.","The best classrooms of the future may be those where humans and machines learn to adapt to each other."],
+     zh:["老师并没有被取代，但他们的工作正在改变。","他们不再需要重复同一节课，而是可以花更多时间给出反馈，帮助最需要帮助的学生。","未来的好课堂，也许是人和机器学会彼此适应的课堂。"]}
+  ]
+},
+{
+  id: 'deep-ocean', title: "The Ocean's Hidden World",
+  cat: '自然', level: 'B1', minutes: 3, desc: '深海又黑又冷，却住着会自己发光的鱼。',
+  vocab: [
+    {w:'surface', ph:'/ˈsɜːfɪs/', pos:'n.', zh:'表面；水面', en:'the top layer of something', ex:'Most of the ocean is far below the surface.', exZh:'海洋的大部分远在水面之下。'},
+    {w:'pressure', ph:'/ˈpreʃər/', pos:'n.', zh:'压力；压强', en:'the force that presses on something', ex:'Down there, the pressure is so great that it would crush a car.', exZh:'在那里，压力大到足以压扁一辆汽车。'},
+    {w:'creature', ph:'/ˈkriːtʃər/', pos:'n.', zh:'生物；动物', en:'a living thing, an animal', ex:'Many creatures live there happily.', exZh:'许多生物在那里快乐地生活。'},
+    {w:'explore', ph:'/ɪkˈsplɔːr/', pos:'v.', zh:'探索；勘探', en:'to travel through a place to learn about it', ex:'Scientists are only beginning to explore this hidden world.', exZh:'科学家们才刚刚开始探索这个隐藏的世界。'},
+    {w:'glow', ph:'/ɡləʊ/', pos:'n.', zh:'发光；微光', en:'a soft light', ex:'Their glow helps them find food in the dark.', exZh:'它们的光帮助它们在黑暗中寻找食物。'},
+    {w:'survive', ph:'/səˈvaɪv/', pos:'v.', zh:'生存；存活', en:'to stay alive in a difficult situation', ex:'Other creatures survive by eating food that falls from above.', exZh:'另一些生物靠吃从上方落下的食物生存。'}
+  ],
+  paras: [
+    {en:["Most of the ocean is dark, cold, and far below the surface that we see from a boat.","Down there, the pressure is so great that it would crush a car, yet many creatures live there happily.","Scientists are only beginning to explore this hidden world."],
+     zh:["海洋的大部分是黑暗、寒冷的，远在我们从船上看到的水面之下。","在那里，压力大到足以压扁一辆汽车，然而许多生物却在那里快乐地生活。","科学家们才刚刚开始探索这个隐藏的世界。"]},
+    {en:["Some fish make their own light, and their glow helps them find food and talk to each other in the dark.","Other creatures survive by eating food that falls slowly from the bright water above.","Nothing is wasted down there, because food is hard to find."],
+     zh:["有些鱼会自己发光，它们的光帮助它们在黑暗中寻找食物、彼此交流。","另一些生物靠吃从上方明亮水域缓缓落下的食物生存。","在那里什么都不会被浪费，因为食物很难找到。"]},
+    {en:["New machines now let us explore deeper than ever before, without hurting the animals we meet.","Every trip brings back pictures of creatures that no one has seen before.","The deep ocean reminds us that our planet still has places left to discover."],
+     zh:["新的机器现在让我们能探索到比以往更深的地方，同时不伤害遇到的动物。","每一次下潜都会带回以前从未有人见过的生物的照片。","深海提醒我们，我们的星球上仍然有待发现的地方。"]}
+  ]
+},
+{
+  id: 'kyoto-walk', title: 'A Walk Through Kyoto',
+  cat: '旅行', level: 'B1', minutes: 3, desc: '竹林、老街和小餐馆，慢慢走一遍京都。',
+  vocab: [
+    {w:'temple', ph:'/ˈtempl/', pos:'n.', zh:'寺庙；庙宇', en:'a building where people worship', ex:'Kyoto is famous for its temples and its quiet streets.', exZh:'京都是以寺庙和安静街道而闻名的城市。'},
+    {w:'narrow', ph:'/ˈnærəʊ/', pos:'adj.', zh:'狭窄的', en:'small in width', ex:'You can walk down a narrow lane and hear only your own steps.', exZh:'你可以沿着一条狭窄的小巷漫步。'},
+    {w:'peaceful', ph:'/ˈpiːsfl/', pos:'adj.', zh:'宁静的；平和的', en:'quiet and calm', ex:'The city feels peaceful, even when many visitors are there.', exZh:'即使有许多游客，这座城市依然让人感到宁静。'},
+    {w:'bamboo', ph:'/bæmˈbuː/', pos:'n.', zh:'竹子', en:'a tall plant with hard stems', ex:'A bamboo forest rises high above the path.', exZh:'一片竹林高高耸立在小路之上。'},
+    {w:'tradition', ph:'/trəˈdɪʃn/', pos:'n.', zh:'传统；习俗', en:'a custom passed down over time', ex:'It is a good place to enjoy a tradition that is more than a thousand years old.', exZh:'这是一个感受一项一千多年历史的传统的好地方。'},
+    {w:'taste', ph:'/teɪst/', pos:'v.', zh:'品尝；尝', en:'to try food by eating a little of it', ex:'You can taste food that Kyoto has cooked for centuries.', exZh:'你可以品尝京都烹制了几个世纪的食物。'}
+  ],
+  paras: [
+    {en:["Kyoto is an old city in Japan, famous for its temples and its quiet streets.","In the morning, you can walk down a narrow lane and hear only your own steps.","The city feels peaceful, even when many visitors are there."],
+     zh:["京都是日本的一座古城，以寺庙和安静的街道而闻名。","早晨，你可以沿着一条狭窄的小巷漫步，只听见自己的脚步声。","即使有许多游客，这座城市依然让人感到宁静。"]},
+    {en:["In the west of the city, a bamboo forest rises high above the path, and the green light feels like another world.","People come here to take photos, but many just stand and listen to the wind in the bamboo.","It is a good place to slow down and enjoy a tradition that is more than a thousand years old."],
+     zh:["在城市的西边，一片竹林高高耸立在小路之上，绿色的光线仿佛是另一个世界。","人们来这里拍照，但许多人只是站着，聆听竹林中的风声。","这是一个放慢脚步的好地方，去感受一项一千多年历史的传统。"]},
+    {en:["In the evening, small restaurants open their doors, and you can taste food that Kyoto has cooked for centuries.","The food is simple, but every dish is made with care.","When you leave Kyoto, you take its quiet streets with you, at least in your memory."],
+     zh:["傍晚，小餐馆打开店门，你可以品尝京都烹制了几个世纪的食物。","食物很简单，但每一道菜都做得很用心。","当你离开京都，你会把它的安静街道带走，至少留在记忆里。"]}
+  ]
+},
+{
+  id: 'why-sleep', title: 'Why Sleep Matters',
+  cat: '健康', level: 'B2', minutes: 4, desc: '睡个好觉，比熬夜学习更能帮你记住东西。',
+  vocab: [
+    {w:'memory', ph:'/ˈmeməri/', pos:'n.', zh:'记忆；记忆力', en:'the ability to remember things', ex:'Sleep moves what you learned into long-term memory.', exZh:'睡眠会把学到的东西转入长期记忆。'},
+    {w:'focus', ph:'/ˈfəʊkəs/', pos:'n.', zh:'专注；注意力', en:'attention on one thing', ex:'A lack of sleep changes your mood and your focus.', exZh:'缺乏睡眠会改变你的情绪和专注力。'},
+    {w:'lack', ph:'/læk/', pos:'n.', zh:'缺乏；不足', en:'the state of not having enough of something', ex:'A lack of sleep also changes your mood.', exZh:'缺乏睡眠还会改变你的情绪。'},
+    {w:'repair', ph:'/rɪˈpeər/', pos:'v.', zh:'修复；修补', en:'to fix something that is damaged', ex:'Your body uses sleep to repair itself.', exZh:'你的身体利用睡眠来修复自己。'},
+    {w:'routine', ph:'/ruːˈtiːn/', pos:'n.', zh:'日常习惯；惯例', en:'things you do regularly', ex:'A simple routine can help: go to bed at the same time.', exZh:'一个简单的日常习惯就能帮上忙：在同一时间上床睡觉。'},
+    {w:'mood', ph:'/muːd/', pos:'n.', zh:'情绪；心情', en:'how you feel at a particular time', ex:'Small problems feel bigger when your mood is low.', exZh:'情绪低落时，小问题会显得更大。'}
+  ],
+  paras: [
+    {en:["Sleep is not a waste of time; it is when your brain does some of its most important work.","During sleep, your brain moves the things you learned during the day into long-term memory.","That is why a good night of sleep can help you remember more than a long night of studying."],
+     zh:["睡眠不是浪费时间；那是你大脑做一些最重要工作的时候。","睡眠时，你的大脑会把白天学到的东西转入长期记忆。","这就是为什么睡个好觉比熬夜学习更能帮你记住东西。"]},
+    {en:["A lack of sleep also changes your mood and your focus the next day.","Small problems feel bigger, and it is harder to pay attention in class or at work.","Your body uses sleep to repair itself, from your muscles to your skin."],
+     zh:["缺乏睡眠还会改变你第二天的情绪和专注力。","小问题会显得更大，在课堂或工作中也更难集中注意力。","你的身体利用睡眠来修复自己，从肌肉到皮肤都是如此。"]},
+    {en:["A simple routine can help: go to bed at the same time, keep your room dark, and put your phone away an hour before sleep.","It may feel hard at first, but after a week your body will start to expect sleep at that hour.","Good sleep is not a luxury; it is part of staying healthy."],
+     zh:["一个简单的日常习惯就能帮上忙：在同一时间上床睡觉，保持房间黑暗，睡前一小时把手机放下。","刚开始可能觉得难，但一周之后，你的身体就会开始在那个时间期待睡眠。","好的睡眠不是奢侈品，而是保持健康的一部分。"]}
+  ]
+},
+{
+  id: 'saving-forests', title: 'Saving Our Forests',
+  cat: '环境', level: 'B2', minutes: 4, desc: '每一棵树，都是对未来的一个小小承诺。',
+  vocab: [
+    {w:'forest', ph:'/ˈfɒrɪst/', pos:'n.', zh:'森林', en:'a large area of land covered with trees', ex:'Forests cover about a third of the land on Earth.', exZh:'森林覆盖了地球上约三分之一的陆地。'},
+    {w:'oxygen', ph:'/ˈɒksɪdʒən/', pos:'n.', zh:'氧气', en:'the gas in the air that we need to breathe', ex:'Forests give us the oxygen we breathe.', exZh:'森林为我们提供呼吸所需的氧气。'},
+    {w:'disappear', ph:'/ˌdɪsəˈpɪər/', pos:'v.', zh:'消失；不见', en:'to stop existing or to be no longer seen', ex:'When a forest disappears, those animals lose their home.', exZh:'当一片森林消失，那些动物就失去了家园。'},
+    {w:'climate', ph:'/ˈklaɪmət/', pos:'n.', zh:'气候', en:'the usual weather of a place', ex:'Trees help control the climate by taking in carbon dioxide.', exZh:'树木通过吸收二氧化碳来调节气候。'},
+    {w:'protect', ph:'/prəˈtekt/', pos:'v.', zh:'保护', en:'to keep someone or something safe', ex:'Many countries are now trying to protect the forests they still have.', exZh:'许多国家现在都在努力保护它们仅存的森林。'},
+    {w:'plant', ph:'/plɑːnt/', pos:'v.', zh:'种植；栽种', en:'to put a plant into the ground to grow', ex:'One person can plant a tree and care for it.', exZh:'一个人也可以种一棵树并照料它。'}
+  ],
+  paras: [
+    {en:["Forests cover about a third of the land on Earth, and they give us the oxygen we breathe.","They are also home to more than half of the world's land animals and plants.","When a forest disappears, those animals lose their home, and we lose a part of our planet's life."],
+     zh:["森林覆盖了地球上约三分之一的陆地，为我们提供呼吸所需的氧气。","它们还是世界上超过一半陆地动植物的家园。","当一片森林消失，那些动物就失去了家园，我们也失去地球生命的一部分。"]},
+    {en:["Trees help control the climate by taking in carbon dioxide, the gas that warms our planet.","Cutting down too many trees makes the air warmer and the rain less regular.","That is why many countries are now trying to protect the forests they still have."],
+     zh:["树木通过吸收二氧化碳来调节气候，这种气体会使我们的星球变暖。","砍伐太多树木会让空气变暖、降雨变得不规律。","这就是为什么许多国家现在都在努力保护它们仅存的森林。"]},
+    {en:["Protecting a forest is not only the work of governments; one person can plant a tree and care for it.","Schools and towns are planting trees together, and children learn why the forest matters.","Every tree we plant is a small promise to the future."],
+     zh:["保护森林不只是政府的工作；一个人也可以种一棵树并照料它。","学校和城镇正在一起种树，孩子们也从中了解森林为什么重要。","我们种下的每一棵树，都是对未来的一个小小承诺。"]}
+  ]
+},
+{
+  id: 'old-lighthouse', title: 'The Old Lighthouse',
+  cat: '故事', level: 'C1', minutes: 4, desc: '暴风雨之夜，一束光和一个彻夜未眠的人。',
+  vocab: [
+    {w:'lighthouse', ph:'/ˈlaɪthaʊs/', pos:'n.', zh:'灯塔', en:'a tall tower with a light to guide ships', ex:'An old lighthouse stood alone against the sea.', exZh:'一座古老的灯塔独自矗立在海边。'},
+    {w:'keeper', ph:'/ˈkiːpər/', pos:'n.', zh:'看守人；管理员', en:'a person who looks after a place', ex:'Every night, its keeper climbed the narrow stairs.', exZh:'每天夜里，看守人都会爬上狭窄的楼梯。'},
+    {w:'beam', ph:'/biːm/', pos:'n.', zh:'光束；光线', en:'a line of light', ex:'The beam of light moved slowly across the dark water.', exZh:'光束缓缓扫过黑暗的水面。'},
+    {w:'storm', ph:'/stɔːm/', pos:'n.', zh:'暴风雨；风暴', en:'very bad weather with strong wind and rain', ex:'One winter night, a terrible storm came.', exZh:'一个冬夜，一场可怕的暴风雨来了。'},
+    {w:'lonely', ph:'/ˈləʊnli/', pos:'adj.', zh:'孤独的', en:'sad because you are alone', ex:'He was cold, tired, and very lonely.', exZh:'他又冷又累，非常孤独。'},
+    {w:'guide', ph:'/ɡaɪd/', pos:'v.', zh:'引导；带领', en:'to show someone the way', ex:'The ships would have no one to guide them home.', exZh:'船只就没有人引导它们回家了。'}
+  ],
+  paras: [
+    {en:["On a small island far from the town, an old lighthouse stood alone against the sea.","Every night, its keeper climbed the narrow stairs and lit the great lamp at the top.","The beam of light moved slowly across the dark water, warning ships away from the rocks."],
+     zh:["在远离城镇的一座小岛上，一座古老的灯塔独自矗立在海边。","每天夜里，看守人都会爬上狭窄的楼梯，点亮顶端的大灯。","光束缓缓扫过黑暗的水面，提醒船只远离礁石。"]},
+    {en:["One winter night, a terrible storm came, and the wind shook the whole tower.","The keeper stayed at his post, although he was cold, tired, and very lonely.","He knew that if the light went out, the ships would have no one to guide them home."],
+     zh:["一个冬夜，一场可怕的暴风雨来了，狂风摇撼着整座塔。","看守人坚守在岗位上，尽管他又冷又累，非常孤独。","他知道，如果灯灭了，船只就没有人引导它们回家了。"]},
+    {en:["At dawn, the storm passed, and three ships were safe in the harbour, thanks to that one small light.","The keeper never told anyone what he had done that night.","But every sailor who saw the lighthouse knew that someone had stayed awake for them."],
+     zh:["黎明时分，暴风雨过去了，三艘船安全地停在港口，多亏了那一小束光。","看守人从未向任何人提起那晚他所做的事。","但每一个看到灯塔的水手都知道，有人为他们彻夜未眠。"]}
+  ]
+}
+];
+
+var $ = function (id) { return document.getElementById(id); };
+var homeView = $('homeView'), readView = $('readView');
+var leftPane = $('leftPane'), rightPane = $('rightPane');
+var current = null, syncOn = true, syncing = false, fontSize = 17;
+var anchors = []; /* [{left, right}] 按词的位置锚定 */
+
+function esc(s) {
+  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+function wordCount(a) {
+  var n = 0;
+  a.paras.forEach(function (p) { p.en.forEach(function (s) { n += s.split(/\s+/).length; }); });
+  return n;
+}
+
+/* ---------- 首页 ---------- */
+var levelFilter = '全部';
+var LEVELS = ['全部', 'B1', 'B2', 'C1'];
+function renderChips() {
+  $('chips').innerHTML = LEVELS.map(function (lv) {
+    return '<button class="chip' + (lv === levelFilter ? ' on' : '') + '" data-lv="' + lv + '">' + lv + '</button>';
+  }).join('');
+  $('chips').querySelectorAll('.chip').forEach(function (b) {
+    b.addEventListener('click', function () { levelFilter = b.getAttribute('data-lv'); renderChips(); renderHome(); });
+  });
+}
+function renderHome() {
+  var q = ($('searchInput').value || '').trim().toLowerCase();
+  var list = ARTICLES.filter(function (a) {
+    var okLv = levelFilter === '全部' || a.level === levelFilter;
+    var okQ = !q || (a.title + a.cat + a.desc).toLowerCase().indexOf(q) !== -1;
+    return okLv && okQ;
+  });
+  $('articleGrid').innerHTML = list.map(function (a) {
+    return '<button class="acard" data-id="' + a.id + '">' +
+      '<span class="badges"><span class="badge lv-' + a.level.toLowerCase() + '">' + a.level + '</span>' +
+      '<span class="badge">' + a.cat + '</span></span>' +
+      '<h3>' + esc(a.title) + '</h3>' +
+      '<span class="desc">' + esc(a.desc) + '</span>' +
+      '<span class="foot">' + wordCount(a) + ' 词 · 约 ' + a.minutes + ' 分钟 · ' + a.vocab.length + ' 个重点词</span>' +
+      '<span class="go">开始读 →</span></button>';
+  }).join('');
+  $('emptyMsg').classList.toggle('hidden', list.length > 0);
+  $('articleGrid').querySelectorAll('.acard').forEach(function (c) {
+    c.addEventListener('click', function () { openArticle(c.getAttribute('data-id')); });
+  });
+}
+
+/* ---------- 阅读页：渲染 ---------- */
+function markKeywords(sentence, vocab) {
+  var html = esc(sentence);
+  var sorted = vocab.map(function (v, i) { return { w: v.w, i: i }; })
+    .sort(function (a, b) { return b.w.length - a.w.length; });
+  sorted.forEach(function (item) {
+    /* 允许复数 / 三单词尾：creatures、temples、disappears 都能标出来 */
+    var re = new RegExp('\\b(' + item.w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')(s|es)?\\b', 'i');
+    html = html.replace(re, '<span class="kw" data-v="' + item.i + '">$1$2</span>');
+  });
+  return html;
+}
+function openArticle(id) {
+  current = null;
+  for (var k = 0; k < ARTICLES.length; k++) if (ARTICLES[k].id === id) current = ARTICLES[k];
+  if (!current) return;
+  $('topTitle').textContent = current.title;
+  $('topMeta').textContent = current.level + ' · ' + current.cat;
+  $('progressBar').classList.remove('hidden');
+  homeView.classList.add('hidden');
+  readView.classList.remove('hidden');
+  window.scrollTo(0, 0);
+
+  var body = '';
+  current.paras.forEach(function (p, pi) {
+    body += '<div class="para-block" data-p="' + pi + '">';
+    body += '<p class="en-para" style="font-size:' + fontSize + 'px">' +
+      p.en.map(function (s, si) {
+        return '<span class="sent" data-p="' + pi + '" data-s="' + si + '">' + markKeywords(s, current.vocab) + '</span>';
+      }).join(' ') + '</p>';
+    body += '<div class="zh-label">译文</div><p class="zh-para">' +
+      p.zh.map(function (s, si) {
+        return '<span class="sent" data-p="' + pi + '" data-s="' + si + '">' + esc(s) + '</span>';
+      }).join('') + '</p></div>';
+  });
+  $('articleBody').innerHTML = body;
+
+  $('vocabBody').innerHTML = current.vocab.map(function (v, i) {
+    return '<div class="vcard" data-v="' + i + '"><div class="w">' + esc(v.w) +
+      '<span class="ph">' + esc(v.ph) + '</span></div>' +
+      '<span class="pos">' + esc(v.pos) + '</span>' +
+      '<div class="zh">' + esc(v.zh) + '</div>' +
+      '<div class="en-def">' + esc(v.en) + '</div>' +
+      '<div class="ex">“' + esc(v.ex) + '”</div>' +
+      '<div class="ex-zh">' + esc(v.exZh) + '</div></div>';
+  }).join('');
+
+  leftPane.scrollTop = 0; rightPane.scrollTop = 0;
+  updateProgress();
+  requestAnimationFrame(buildAnchors);
+}
+
+/* ---------- 同步滚动：按词语位置锚定，分段插值 ---------- */
+function buildAnchors() {
+  anchors = [{ left: 0, right: 0 }];
+  if (!current) return;
+  var cards = $('vocabBody').querySelectorAll('.vcard');
+  current.vocab.forEach(function (v, i) {
+    var kw = $('articleBody').querySelector('.kw[data-v="' + i + '"]');
+    var card = cards[i];
+    if (!kw || !card) return;
+    anchors.push({ left: kw.offsetTop, right: card.offsetTop });
+  });
+  anchors.push({ left: leftPane.scrollHeight - leftPane.clientHeight, right: rightPane.scrollHeight - rightPane.clientHeight });
+  anchors.sort(function (a, b) { return a.left - b.left || a.right - b.right; });
+}
+function syncRight() {
+  if (!syncOn || syncing || !current || anchors.length < 2) return;
+  var x = leftPane.scrollTop;
+  var maxL = leftPane.scrollHeight - leftPane.clientHeight;
+  var maxR = rightPane.scrollHeight - rightPane.clientHeight;
+  if (maxL <= 0 || maxR <= 0) { rightPane.scrollTop = 0; return; }
+  x = Math.max(0, Math.min(maxL, x));
+  var target = maxR;
+  for (var i = 0; i < anchors.length - 1; i++) {
+    var a = anchors[i], b = anchors[i + 1];
+    if (x >= a.left && x <= b.left) {
+      if (b.left === a.left) { target = b.right; }
+      else { target = a.right + (x - a.left) * (b.right - a.right) / (b.left - a.left); }
+      break;
+    }
+  }
+  syncing = true;
+  rightPane.scrollTop = Math.max(0, Math.min(maxR, target));
+  syncing = false;
+  highlightActiveVocab(x);
+}
+function highlightActiveVocab(x) {
+  var active = 0;
+  for (var i = 0; i < anchors.length; i++) if (anchors[i].left <= x + 40) active = i;
+  var idx = Math.max(0, active - 1); /* anchors[0] 是起点，减一才是词卡序号 */
+  var cards = $('vocabBody').querySelectorAll('.vcard');
+  cards.forEach(function (c, i) { c.classList.toggle('active', i === idx); });
+  $('articleBody').querySelectorAll('.kw').forEach(function (k) {
+    k.classList.toggle('active-kw', +k.getAttribute('data-v') === idx);
+  });
+}
+function updateProgress() {
+  var max = leftPane.scrollHeight - leftPane.clientHeight;
+  var p = max > 0 ? (leftPane.scrollTop / max) * 100 : 0;
+  $('progressFill').style.width = p + '%';
+}
+var rafPending = false;
+leftPane.addEventListener('scroll', function () {
+  updateProgress();
+  if (!rafPending) {
+    rafPending = true;
+    requestAnimationFrame(function () { rafPending = false; syncRight(); });
+  }
+});
+window.addEventListener('resize', function () { if (current) buildAnchors(); });
+
+/* ---------- 点句同步高亮：英文句与译文句成对亮 ---------- */
+function highlightSentence(p, s, scrollToZh) {
+  document.querySelectorAll('#articleBody .sent').forEach(function (el) { el.classList.remove('active'); });
+  var pair = document.querySelectorAll('#articleBody .sent[data-p="' + p + '"][data-s="' + s + '"]');
+  pair.forEach(function (el) { el.classList.add('active'); });
+  if (scrollToZh && pair.length > 1) {
+    var zhEl = null;
+    pair.forEach(function (el) { if (el.closest('.zh-para')) zhEl = el; });
+    if (zhEl) {
+      var r = zhEl.getBoundingClientRect(), pr = leftPane.getBoundingClientRect();
+      if (r.bottom > pr.bottom || r.top < pr.top) zhEl.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    }
+  }
+}
+$('articleBody').addEventListener('click', function (e) {
+  var kw = e.target.closest('.kw');
+  if (kw) {
+    var vi = +kw.getAttribute('data-v');
+    var card = $('vocabBody').querySelector('.vcard[data-v="' + vi + '"]');
+    if (card) {
+      $('vocabBody').querySelectorAll('.vcard').forEach(function (c) { c.classList.remove('active'); });
+      card.classList.add('active');
+      card.scrollIntoView({ block: 'start', behavior: 'smooth' });
+    }
+    return;
+  }
+  var sent = e.target.closest('.sent');
+  if (sent) highlightSentence(sent.getAttribute('data-p'), sent.getAttribute('data-s'), true);
+});
+$('vocabBody').addEventListener('click', function (e) {
+  var card = e.target.closest('.vcard');
+  if (!card) return;
+  var vi = +card.getAttribute('data-v');
+  var kw = $('articleBody').querySelector('.kw[data-v="' + vi + '"]');
+  if (!kw) return;
+  $('articleBody').querySelectorAll('.kw').forEach(function (k) { k.classList.remove('active-kw'); });
+  kw.classList.add('active-kw');
+  var top = kw.offsetTop - 20;
+  leftPane.scrollTo({ top: top, behavior: 'smooth' });
+});
+
+/* ---------- 控件 ---------- */
+$('backBtn').addEventListener('click', function () {
+  current = null;
+  readView.classList.add('hidden');
+  homeView.classList.remove('hidden');
+  $('topTitle').textContent = '英语阅读';
+  $('topMeta').textContent = '';
+  $('progressBar').classList.add('hidden');
+});
+$('transToggle').addEventListener('click', function () {
+  var off = $('articleBody').classList.toggle('no-trans');
+  this.textContent = off ? '译文：关' : '译文：开';
+  this.classList.toggle('on', !off);
+  requestAnimationFrame(buildAnchors);
+});
+$('syncToggle').addEventListener('click', function () {
+  syncOn = !syncOn;
+  this.textContent = syncOn ? '同步：开' : '同步：关';
+  this.classList.toggle('on', syncOn);
+  if (syncOn) syncRight();
+});
+$('fontDown').addEventListener('click', function () {
+  fontSize = Math.max(14, fontSize - 1);
+  document.querySelectorAll('.en-para').forEach(function (p) { p.style.fontSize = fontSize + 'px'; });
+  requestAnimationFrame(buildAnchors);
+});
+$('fontUp').addEventListener('click', function () {
+  fontSize = Math.min(22, fontSize + 1);
+  document.querySelectorAll('.en-para').forEach(function (p) { p.style.fontSize = fontSize + 'px'; });
+  requestAnimationFrame(buildAnchors);
+});
+$('searchInput').addEventListener('input', renderHome);
+
+renderChips();
+renderHome();
+</script>
+</body>
+</html>
