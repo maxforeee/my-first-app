@@ -47,6 +47,24 @@
   .progress { height: 4px; background: #d7e3f5; border-radius: 99px; margin-top: 10px; overflow: hidden; max-width: 1080px; margin-left: auto; margin-right: auto; }
   .progress i { display: block; height: 100%; width: 0; background: var(--accent); border-radius: 99px; transition: width .15s linear; }
 
+  /* ---------- 悬浮朗读条 ---------- */
+  .player {
+    display: flex; align-items: center; gap: 10px;
+    max-width: 1080px; margin: 10px auto 2px;
+    background: #fff; border: 1px solid var(--border); border-radius: 12px;
+    padding: 6px 10px;
+  }
+  .pbtn {
+    flex: none; width: 36px; height: 36px; border-radius: 50%;
+    border: none; background: var(--accent); color: #fff; font-size: 15px; line-height: 1;
+  }
+  .pbtn:active { opacity: .75; }
+  .pbtn-txt { width: auto; height: 30px; border-radius: 99px; padding: 0 12px; font-size: 13px; font-weight: 700; background: var(--accent-soft); color: var(--accent); }
+  .pinfo { flex: 1; min-width: 0; }
+  .ptext { font-size: 13px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .pbar { height: 4px; background: #e5e9f2; border-radius: 99px; margin-top: 5px; overflow: hidden; }
+  .pbar i { display: block; height: 100%; width: 0; background: var(--accent); border-radius: 99px; transition: width .3s ease; }
+
   .wrap { max-width: 1080px; margin: 0 auto; padding: 16px; }
 
   /* ---------- home ---------- */
@@ -207,6 +225,15 @@
     <span class="meta" id="topMeta"></span>
   </div>
   <div class="progress hidden" id="progressBar"><i id="progressFill"></i></div>
+  <!-- 悬浮朗读条：只在阅读页出现，跟着顶栏走，手机自带语音，免费不用服务器 -->
+  <div class="player hidden" id="playerBar">
+    <button class="pbtn" id="playBtn" type="button" title="朗读全文">▶</button>
+    <div class="pinfo">
+      <div class="ptext" id="playText">点 ▶ 朗读全文</div>
+      <div class="pbar"><i id="playFill"></i></div>
+    </div>
+    <button class="pbtn pbtn-txt" id="speedBtn" type="button" title="点一下换语速">1x</button>
+  </div>
 </div>
 
 <!-- home -->
@@ -394,6 +421,8 @@ function openArticle(id) {
   $('topTitle').textContent = current.title;
   $('topMeta').textContent = current.level + ' · ' + current.cat;
   $('progressBar').classList.remove('hidden');
+  if (ttsSupported()) $('playerBar').classList.remove('hidden');
+  ttsReset();
   homeView.classList.add('hidden');
   readView.classList.remove('hidden');
   window.scrollTo(0, 0);
@@ -646,6 +675,7 @@ function stopSpeak() {
 }
 async function playWord(word) {
   stopSpeak();
+  if (ttsPlaying) ttsPause(); /* 单词发音和全文朗读别叠在一起，先把朗读停在当前句 */
   var e = null;
   try { e = await getDict(word); } catch (err) {}
   if (e && e.audio) {
@@ -744,9 +774,118 @@ document.addEventListener('click', function (e) {
 });
 window.addEventListener('scroll', function () { hideWordPop(); }, { passive: true });
 
+/* ---------- 悬浮朗读：手机自带语音，免费，不用服务器 ----------
+   一句一句读，读到哪句高亮哪句，读的那句不在屏幕里就滚进来；
+   语速 0.5x–2x 点一下换一档。暂停不停在半句里：直接停在当前句，
+   再点就从这句接着读（不用系统那个时灵时不灵的 pause/resume）。 */
+var SPEEDS = [0.5, 0.75, 1, 1.25, 1.5, 2];
+var ttsSpeed = 1, ttsPlaying = false, ttsIdx = 0, ttsList = [], ttsToken = 0;
+function ttsSupported() { return 'speechSynthesis' in window; }
+function pickVoice() {
+  try {
+    var vs = speechSynthesis.getVoices().filter(function (v) { return (v.lang || '').toLowerCase().indexOf('en') === 0; });
+    if (!vs.length) return null;
+    var g = vs.filter(function (v) { return /google/i.test(v.name) && v.lang.toLowerCase().indexOf('en-us') === 0; });
+    if (g.length) return g[0];
+    var us = vs.filter(function (v) { return v.lang.toLowerCase().indexOf('en-us') === 0; });
+    return us.length ? us[0] : vs[0];
+  } catch (e) { return null; }
+}
+function buildTtsList() {
+  ttsList = [];
+  if (!current) return;
+  current.paras.forEach(function (p, pi) {
+    p.en.forEach(function (s, si) { ttsList.push({ p: pi, s: si, text: s }); });
+  });
+}
+function ttsUi() {
+  $('playBtn').textContent = ttsPlaying ? '⏸' : '▶';
+  $('speedBtn').textContent = ttsSpeed + 'x';
+  var total = ttsList.length;
+  if (!total) { $('playText').textContent = '点 ▶ 朗读全文'; $('playFill').style.width = '0'; return; }
+  if (!ttsPlaying && ttsIdx === 0) { $('playText').textContent = '点 ▶ 朗读全文 · 共 ' + total + ' 句'; $('playFill').style.width = '0'; return; }
+  if (!ttsPlaying) { $('playText').textContent = '已暂停 · 第 ' + (ttsIdx + 1) + '/' + total + ' 句，点 ▶ 继续'; $('playFill').style.width = (ttsIdx / total * 100) + '%'; return; }
+  $('playText').textContent = '正在读第 ' + Math.min(ttsIdx + 1, total) + '/' + total + ' 句';
+  $('playFill').style.width = (ttsIdx / total * 100) + '%';
+}
+function ensureSentenceVisible(p, s) {
+  var el = document.querySelector('#articleBody .en-para .sent[data-p="' + p + '"][data-s="' + s + '"]');
+  if (!el) return;
+  var r = el.getBoundingClientRect();
+  var sheetH = sheetState === 0 ? 58 : sheet.offsetHeight;
+  var topLim = 120, botLim = window.innerHeight - sheetH - 16;
+  if (r.top >= topLim && r.bottom <= botLim) return;
+  var target = window.scrollY + r.top - Math.max(topLim, (botLim - topLim) * 0.35);
+  window.scrollTo({ top: Math.max(0, target), behavior: 'smooth' });
+}
+function speakSentence(i) {
+  if (!ttsPlaying) return;
+  if (i >= ttsList.length) { ttsFinish(); return; }
+  ttsIdx = i;
+  var item = ttsList[i];
+  highlightSentence(item.p, item.s, false);
+  ensureSentenceVisible(item.p, item.s);
+  ttsUi();
+  var token = ++ttsToken;
+  var u = new SpeechSynthesisUtterance(item.text);
+  u.lang = 'en-US';
+  u.rate = ttsSpeed;
+  var v = pickVoice();
+  if (v) u.voice = v;
+  u.onend = function () { if (token === ttsToken && ttsPlaying) speakSentence(i + 1); };
+  u.onerror = function () { if (token === ttsToken && ttsPlaying) speakSentence(i + 1); };
+  try { speechSynthesis.speak(u); } catch (e) { if (token === ttsToken && ttsPlaying) speakSentence(i + 1); }
+}
+function ttsPlay() {
+  if (!ttsSupported()) { $('playText').textContent = '这台设备不支持朗读'; return; }
+  if (!current) return;
+  if (ttsPlaying) { ttsPause(); return; }
+  if (!ttsList.length || ttsIdx >= ttsList.length) { buildTtsList(); ttsIdx = 0; }
+  ttsPlaying = true;
+  ttsUi();
+  speakSentence(ttsIdx);
+}
+function ttsPause() {
+  ttsPlaying = false;
+  ttsToken++; /* 让正在读的那句的 onend 失效，别读完又跳下一句 */
+  if (ttsSupported()) { try { speechSynthesis.cancel(); } catch (e) {} }
+  ttsUi();
+}
+function ttsFinish() {
+  ttsPlaying = false;
+  ttsIdx = 0;
+  ttsToken++;
+  if (ttsSupported()) { try { speechSynthesis.cancel(); } catch (e) {} }
+  document.querySelectorAll('#articleBody .sent').forEach(function (el) { el.classList.remove('active'); });
+  $('playBtn').textContent = '▶';
+  $('playText').textContent = '读完了 · 点 ▶ 再读一遍';
+  $('playFill').style.width = '100%';
+}
+function ttsReset() {
+  ttsPlaying = false;
+  ttsIdx = 0;
+  ttsToken++;
+  if (ttsSupported()) { try { speechSynthesis.cancel(); } catch (e) {} }
+  buildTtsList();
+  ttsUi();
+}
+$('playBtn').addEventListener('click', ttsPlay);
+$('speedBtn').addEventListener('click', function () {
+  var i = SPEEDS.indexOf(ttsSpeed);
+  ttsSpeed = SPEEDS[(i + 1) % SPEEDS.length];
+  if (ttsPlaying) {
+    ttsToken++;
+    try { speechSynthesis.cancel(); } catch (e) {}
+    speakSentence(ttsIdx); /* 当前这句用新语速重读 */
+  }
+  ttsUi();
+});
+
 /* ---------- 控件 ---------- */
 $('backBtn').addEventListener('click', function () {
   hideWordPop();
+  ttsReset();
+  $('playerBar').classList.add('hidden');
   current = null;
   readView.classList.add('hidden');
   homeView.classList.remove('hidden');
