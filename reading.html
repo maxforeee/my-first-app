@@ -126,8 +126,7 @@
     transition: height .25s ease;
     display: flex; flex-direction: column;
   }
-  .sheet.half { height: 46vh; }
-  .sheet.full { height: 80vh; }
+  .sheet.dragging { transition: none; } /* 拖的时候高度跟手走，不能有过渡动画拖后腿 */
   .sheet-handle { flex: none; cursor: grab; touch-action: none; padding: 8px 16px 6px; user-select: none; }
   .sheet-handle:active { cursor: grabbing; }
   .sheet-handle .grip { width: 44px; height: 5px; border-radius: 99px; background: #cbd5e1; margin: 0 auto 8px; }
@@ -331,8 +330,9 @@ async function loadArticles() {
 var $ = function (id) { return document.getElementById(id); };
 var homeView = $('homeView'), readView = $('readView');
 var sheet = $('sheet'), sheetList = $('sheetList');
-var SHEET_STATES = ['', 'half', 'full'];
-var sheetState = 0; /* 0 收起成一条，1 半开，2 全开 */
+var SHEET_MIN = 58;   /* 收起成一条时的高度 */
+var SHEET_MAX_VH = 92; /* 最高拉到 92% 屏高 */
+var sheetOpenH = null; /* 上次打开时的高度（px），没拖过默认 46% 屏高 */
 var current = null, syncOn = true, syncing = false, fontSize = 17;
 var anchors = []; /* [{left, right}] 按词的位置锚定 */
 
@@ -452,9 +452,9 @@ function openArticle(id) {
       '<div class="ex-zh">' + esc(v.exZh) + '</div></div>';
   }).join('');
 
-  sheetState = 0;
+  sheetOpenH = null;
   sheet.className = 'sheet';
-  $('sheetToggle').textContent = '展开 ▲';
+  setSheetHeight(SHEET_MIN);
   sheetList.scrollTop = 0;
   setSheetNow(-1);
   window.scrollTo(0, 0);
@@ -701,7 +701,7 @@ function positionWordPop() {
   if (!popAnchor || wordPop.classList.contains('hidden')) return;
   var r = popAnchor.getBoundingClientRect();
   var pw = wordPop.offsetWidth, ph = wordPop.offsetHeight;
-  var sheetH = sheetState === 0 ? 58 : sheet.offsetHeight;
+  var sheetH = sheet.offsetHeight;
   var availBottom = window.innerHeight - sheetH - 8;
   var top;
   if (r.bottom + 8 + ph <= availBottom) top = r.bottom + 8;        /* 下面够，放下面 */
@@ -715,7 +715,7 @@ async function showWordPop(word, anchorEl, vocabIdx) {
   popKey = word; popAnchor = anchorEl; popVocabIdx = vocabIdx;
   var v = vocabIdx !== null && current ? current.vocab[vocabIdx] : null;
   popWord = v ? v.w.toLowerCase() : word;
-  if (sheetState !== 0) setSheetState(0); /* 底下的条先收起来，别挡住小浮窗 */
+  if (sheet.offsetHeight > SHEET_MIN + 1) { sheetOpenH = sheet.offsetHeight; collapseSheet(); } /* 底下的条先收起来，别挡住小浮窗；记住刚才的高度，展开能回到原处 */
   $('wpWord').textContent = v ? v.w : word;
   $('wpPh').textContent = v ? v.ph : '';
   $('wpFoot').classList.toggle('hidden', !v);
@@ -762,7 +762,7 @@ $('wpToCard').addEventListener('click', function (e) {
   hideWordPop();
   var card = $('vocabBody').querySelector('.vcard[data-v="' + vi + '"]');
   if (!card) return;
-  setSheetState(1);
+  expandSheet();
   $('vocabBody').querySelectorAll('.vcard').forEach(function (c) { c.classList.remove('active'); });
   card.classList.add('active');
   sheetList.scrollTo({ top: cardTopInList(card) - 8, behavior: 'smooth' });
@@ -812,7 +812,7 @@ function ensureSentenceVisible(p, s) {
   var el = document.querySelector('#articleBody .en-para .sent[data-p="' + p + '"][data-s="' + s + '"]');
   if (!el) return;
   var r = el.getBoundingClientRect();
-  var sheetH = sheetState === 0 ? 58 : sheet.offsetHeight;
+  var sheetH = sheet.offsetHeight;
   var topLim = 120, botLim = window.innerHeight - sheetH - 16;
   if (r.top >= topLim && r.bottom <= botLim) return;
   var target = window.scrollY + r.top - Math.max(topLim, (botLim - topLim) * 0.35);
@@ -915,38 +915,60 @@ $('fontUp').addEventListener('click', function () {
   document.querySelectorAll('.en-para').forEach(function (p) { p.style.fontSize = fontSize + 'px'; });
   requestAnimationFrame(buildAnchors);
 });
-/* ---------- 底部条：点横条展开 / 收起，也能上下拖 ---------- */
-function setSheetState(n) {
-  sheetState = n;
-  sheet.className = 'sheet' + (SHEET_STATES[n] ? ' ' + SHEET_STATES[n] : '');
-  $('sheetToggle').textContent = n === 0 ? '展开 ▲' : (n === 1 ? '再展开 ▲▲' : '收起 ▼');
+/* ---------- 底部条：自由拖动，任意高度，没档位 ----------
+   按住横条往上拉就变高、往下拉就变矮，松手停在哪就是哪；
+   点一下横条（没拖动）就在“收起成一条”和“上次打开的高度”之间切换。 */
+function setSheetHeight(px) {
+  var max = window.innerHeight * SHEET_MAX_VH / 100;
+  px = Math.max(SHEET_MIN, Math.min(max, px));
+  sheet.style.height = px + 'px';
+  $('sheetToggle').textContent = px <= SHEET_MIN + 1 ? '展开 ▲' : '收起 ▼';
+  return px;
+}
+function collapseSheet() { setSheetHeight(SHEET_MIN); }
+function expandSheet() { setSheetHeight(sheetOpenH || window.innerHeight * 0.46); }
+function toggleSheet() {
+  if (sheet.offsetHeight <= SHEET_MIN + 1) expandSheet();
+  else { sheetOpenH = sheet.offsetHeight; collapseSheet(); }
 }
 var justDragged = false;
 $('sheetToggle').addEventListener('click', function (e) {
   e.stopPropagation();
-  setSheetState((sheetState + 1) % 3);
+  toggleSheet();
 });
-/* 点横条就是展开 / 收起两态切换，不再三态循环 */
 $('sheetHandle').addEventListener('click', function () {
   if (justDragged) return;
-  setSheetState(sheetState === 0 ? 1 : 0);
+  toggleSheet();
 });
 (function () {
-  /* 用 Pointer Events：手指和鼠标拖动都管用（之前只听 touch，桌面浏览器拖不动） */
-  var startY = null, moved = 0;
+  /* 用 Pointer Events：手指和鼠标拖动都管用；
+     拖动时高度实时跟手走（去掉过渡动画），松手就停在当前位置，不回弹、不归档 */
+  var startY = null, startH = 0, moved = 0;
   var h = $('sheetHandle');
   h.addEventListener('pointerdown', function (e) {
-    startY = e.clientY; moved = 0;
+    startY = e.clientY; startH = sheet.offsetHeight; moved = 0;
+    sheet.classList.add('dragging');
     try { h.setPointerCapture(e.pointerId); } catch (err) {}
   });
-  h.addEventListener('pointermove', function (e) { if (startY !== null) moved = e.clientY - startY; });
-  h.addEventListener('pointerup', function () {
+  h.addEventListener('pointermove', function (e) {
     if (startY === null) return;
-    if (moved < -50) { justDragged = true; setTimeout(function () { justDragged = false; }, 350); setSheetState(Math.min(2, sheetState + 1)); }
-    else if (moved > 50) { justDragged = true; setTimeout(function () { justDragged = false; }, 350); setSheetState(Math.max(0, sheetState - 1)); }
-    startY = null;
+    moved = e.clientY - startY;
+    setSheetHeight(startH - moved); /* 往上拉（Y 变小）就变高 */
   });
-  h.addEventListener('pointercancel', function () { startY = null; });
+  function endDrag() {
+    if (startY === null) return;
+    startY = null;
+    sheet.classList.remove('dragging');
+    if (Math.abs(moved) > 8) {
+      justDragged = true; /* 刚拖完，别把松手那一下当成点横条 */
+      setTimeout(function () { justDragged = false; }, 350);
+      if (sheet.offsetHeight > SHEET_MIN + 1) sheetOpenH = sheet.offsetHeight;
+      buildAnchors(); /* 条高变了，词卡列表的最大滚动量也变了，锚点要重算 */
+      syncRight();
+    }
+  }
+  h.addEventListener('pointerup', endDrag);
+  h.addEventListener('pointercancel', endDrag);
 })();
 
 $('searchInput').addEventListener('input', renderHome);
