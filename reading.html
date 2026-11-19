@@ -83,7 +83,7 @@
   .acard .go { font-size: 13px; color: var(--accent); font-weight: 700; }
   .empty { padding: 32px 0; text-align: center; color: var(--sub); font-size: 14px; }
 
-  /* ---------- reading: two panes ---------- */
+  /* ---------- 阅读页：文章单栏，跟页面一起滚（手机上划得动） ---------- */
   .controls { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-bottom: 12px; }
   .controls .spacer { flex: 1; }
   .ctl {
@@ -91,21 +91,38 @@
     padding: 7px 13px; font-size: 13px; font-weight: 600; color: var(--text);
   }
   .ctl.on { background: var(--accent); color: #fff; border-color: var(--accent); }
-  .reader { display: flex; gap: 12px; align-items: stretch; }
-  .pane {
+  .article {
     background: var(--panel); border: 1px dashed #9db8e8; border-radius: 18px;
-    overflow-y: auto; overscroll-behavior: contain;
-    height: calc(100vh - 150px); min-height: 420px;
-    padding: 18px 18px 32px;
-    scrollbar-width: thin;
+    padding: 18px 18px 140px;
   }
-  .pane.left { flex: 1 1 62%; }
-  .pane.right { flex: 1 1 38%; background: var(--panel-2); }
-  .pane h2.pane-title { font-size: 13px; color: var(--sub); font-weight: 700; letter-spacing: 1px; margin-bottom: 12px; }
-  @media (max-width: 760px) {
-    .reader { flex-direction: column; }
-    .pane { height: 52vh; min-height: 320px; }
-    .pane.right { height: 38vh; min-height: 240px; }
+  .pane-title { font-size: 13px; color: var(--sub); font-weight: 700; letter-spacing: 1px; margin-bottom: 12px; }
+
+  /* ---------- 底部悬浮重点词条 ---------- */
+  .sheet {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
+    max-width: 1080px; margin: 0 auto;
+    background: #fff; border: 1px solid var(--border); border-bottom: none;
+    border-radius: 18px 18px 0 0;
+    box-shadow: 0 -6px 24px rgba(0,0,0,.14);
+    height: 58px; overflow: hidden;
+    transition: height .25s ease;
+    display: flex; flex-direction: column;
+  }
+  .sheet.half { height: 46vh; }
+  .sheet.full { height: 80vh; }
+  .sheet-handle { flex: none; cursor: grab; touch-action: none; padding: 8px 16px 6px; user-select: none; }
+  .sheet-handle:active { cursor: grabbing; }
+  .sheet-handle .grip { width: 44px; height: 5px; border-radius: 99px; background: #cbd5e1; margin: 0 auto 8px; }
+  .sheet-head { display: flex; align-items: center; gap: 8px; }
+  .sheet-title { font-size: 14px; font-weight: 700; white-space: nowrap; }
+  .sheet-now {
+    flex: 1; font-size: 13px; color: var(--sub);
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .sheet-now b { color: var(--kw); }
+  .sheet-list {
+    flex: 1; overflow-y: auto; overscroll-behavior: contain;
+    padding: 4px 16px 24px; -webkit-overflow-scrolling: touch;
   }
 
   /* article text */
@@ -183,16 +200,23 @@
     <button class="ctl" id="fontDown">A−</button>
     <button class="ctl" id="fontUp">A＋</button>
   </div>
-  <div class="reader">
-    <section class="pane left" id="leftPane" aria-label="文章内容">
-      <h2 class="pane-title">文章内容 · 点一句，高亮译句</h2>
-      <div class="hint">点英文里的一句话，它和下面译文里对应的那句会一起变黄；点译文里的一句也一样。重点词点了会跳到右边的词卡。</div>
-      <div id="articleBody"></div>
-    </section>
-    <aside class="pane right" id="rightPane" aria-label="重点词翻译">
-      <h2 class="pane-title">重点词翻译 · 滚文章，右边跟着走</h2>
-      <div id="vocabBody"></div>
-    </aside>
+  <div class="article" id="articleWrap">
+    <h2 class="pane-title">文章内容 · 点一句，高亮译句</h2>
+    <div class="hint">点英文里的一句话，它和下面译文里对应的那句会一起变黄；点译文里的一句也一样。点文章里的重点词，下面那个条会展开并跳到对应的词卡。</div>
+    <div id="articleBody"></div>
+  </div>
+
+  <!-- 重点词翻译：悬浮在底部的条，点横条展开 / 收起，也能上下拖 -->
+  <div class="sheet" id="sheet" aria-label="重点词翻译">
+    <div class="sheet-handle" id="sheetHandle">
+      <div class="grip"></div>
+      <div class="sheet-head">
+        <span class="sheet-title">重点词翻译</span>
+        <span class="sheet-now" id="sheetNow"></span>
+        <button class="ctl" id="sheetToggle" type="button">展开 ▲</button>
+      </div>
+    </div>
+    <div class="sheet-list" id="sheetList"><div id="vocabBody"></div></div>
   </div>
 </main>
 
@@ -327,7 +351,9 @@ var ARTICLES = [
 
 var $ = function (id) { return document.getElementById(id); };
 var homeView = $('homeView'), readView = $('readView');
-var leftPane = $('leftPane'), rightPane = $('rightPane');
+var sheet = $('sheet'), sheetList = $('sheetList');
+var SHEET_STATES = ['', 'half', 'full'];
+var sheetState = 0; /* 0 收起成一条，1 半开，2 全开 */
 var current = null, syncOn = true, syncing = false, fontSize = 17;
 var anchors = []; /* [{left, right}] 按词的位置锚定 */
 
@@ -420,31 +446,49 @@ function openArticle(id) {
       '<div class="ex-zh">' + esc(v.exZh) + '</div></div>';
   }).join('');
 
-  leftPane.scrollTop = 0; rightPane.scrollTop = 0;
+  sheetState = 0;
+  sheet.className = 'sheet';
+  $('sheetToggle').textContent = '展开 ▲';
+  sheetList.scrollTop = 0;
+  setSheetNow(-1);
+  window.scrollTo(0, 0);
   updateProgress();
   requestAnimationFrame(buildAnchors);
 }
 
-/* ---------- 同步滚动：按词语位置锚定，分段插值 ---------- */
+/* ---------- 同步滚动：按词语位置锚定，分段插值 ----------
+   左边是整页滚动（window），右边是底部条里的词卡列表。
+   每个重点词在文章里的位置，对应它词卡在列表里的位置；
+   某一行重点词多，那一段词卡就滚得快，行滚出顶部时，对应词卡也正好滚出条顶。 */
+function docTop(el) { return el.getBoundingClientRect().top + window.scrollY; }
+function cardTopInList(card) {
+  return card.getBoundingClientRect().top - sheetList.getBoundingClientRect().top + sheetList.scrollTop;
+}
 function buildAnchors() {
   anchors = [{ left: 0, right: 0 }];
   if (!current) return;
   var cards = $('vocabBody').querySelectorAll('.vcard');
+  var topOffset = 140; /* 词滚到顶部栏下方时，对应词卡滚到条顶 */
   current.vocab.forEach(function (v, i) {
     var kw = $('articleBody').querySelector('.kw[data-v="' + i + '"]');
     var card = cards[i];
     if (!kw || !card) return;
-    anchors.push({ left: kw.offsetTop, right: card.offsetTop });
+    anchors.push({ left: Math.max(0, docTop(kw) - topOffset), right: cardTopInList(card) });
   });
-  anchors.push({ left: leftPane.scrollHeight - leftPane.clientHeight, right: rightPane.scrollHeight - rightPane.clientHeight });
+  anchors.push({ left: maxPageScroll(), right: maxListScroll() });
   anchors.sort(function (a, b) { return a.left - b.left || a.right - b.right; });
+}
+function maxPageScroll() {
+  return Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+}
+function maxListScroll() {
+  return Math.max(0, sheetList.scrollHeight - sheetList.clientHeight);
 }
 function syncRight() {
   if (!syncOn || syncing || !current || anchors.length < 2) return;
-  var x = leftPane.scrollTop;
-  var maxL = leftPane.scrollHeight - leftPane.clientHeight;
-  var maxR = rightPane.scrollHeight - rightPane.clientHeight;
-  if (maxL <= 0 || maxR <= 0) { rightPane.scrollTop = 0; return; }
+  var x = window.scrollY;
+  var maxL = maxPageScroll(), maxR = maxListScroll();
+  if (maxL <= 0 || maxR <= 0) { sheetList.scrollTop = 0; return; }
   x = Math.max(0, Math.min(maxL, x));
   var target = maxR;
   for (var i = 0; i < anchors.length - 1; i++) {
@@ -456,9 +500,16 @@ function syncRight() {
     }
   }
   syncing = true;
-  rightPane.scrollTop = Math.max(0, Math.min(maxR, target));
+  sheetList.scrollTop = Math.max(0, Math.min(maxR, target));
   syncing = false;
   highlightActiveVocab(x);
+}
+function setSheetNow(idx) {
+  var el = $('sheetNow');
+  if (!current) { el.textContent = ''; return; }
+  if (idx < 0) { el.innerHTML = '共 ' + current.vocab.length + ' 个重点词 · 点横条展开'; return; }
+  var v = current.vocab[idx];
+  el.innerHTML = '当前：<b>' + esc(v.w) + '</b> · ' + esc(v.zh);
 }
 function highlightActiveVocab(x) {
   var active = 0;
@@ -469,20 +520,21 @@ function highlightActiveVocab(x) {
   $('articleBody').querySelectorAll('.kw').forEach(function (k) {
     k.classList.toggle('active-kw', +k.getAttribute('data-v') === idx);
   });
+  setSheetNow(idx);
 }
 function updateProgress() {
-  var max = leftPane.scrollHeight - leftPane.clientHeight;
-  var p = max > 0 ? (leftPane.scrollTop / max) * 100 : 0;
+  var max = maxPageScroll();
+  var p = max > 0 ? (window.scrollY / max) * 100 : 0;
   $('progressFill').style.width = p + '%';
 }
 var rafPending = false;
-leftPane.addEventListener('scroll', function () {
+window.addEventListener('scroll', function () {
   updateProgress();
   if (!rafPending) {
     rafPending = true;
     requestAnimationFrame(function () { rafPending = false; syncRight(); });
   }
-});
+}, { passive: true });
 window.addEventListener('resize', function () { if (current) buildAnchors(); });
 
 /* ---------- 点句同步高亮：英文句与译文句成对亮 ---------- */
@@ -494,8 +546,8 @@ function highlightSentence(p, s, scrollToZh) {
     var zhEl = null;
     pair.forEach(function (el) { if (el.closest('.zh-para')) zhEl = el; });
     if (zhEl) {
-      var r = zhEl.getBoundingClientRect(), pr = leftPane.getBoundingClientRect();
-      if (r.bottom > pr.bottom || r.top < pr.top) zhEl.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+      var r = zhEl.getBoundingClientRect();
+      if (r.bottom > window.innerHeight - 70 || r.top < 110) zhEl.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
     }
   }
 }
@@ -505,9 +557,10 @@ $('articleBody').addEventListener('click', function (e) {
     var vi = +kw.getAttribute('data-v');
     var card = $('vocabBody').querySelector('.vcard[data-v="' + vi + '"]');
     if (card) {
+      setSheetState(1); /* 点重点词就把底下的条展开 */
       $('vocabBody').querySelectorAll('.vcard').forEach(function (c) { c.classList.remove('active'); });
       card.classList.add('active');
-      card.scrollIntoView({ block: 'start', behavior: 'smooth' });
+      sheetList.scrollTo({ top: cardTopInList(card) - 8, behavior: 'smooth' });
     }
     return;
   }
@@ -522,8 +575,7 @@ $('vocabBody').addEventListener('click', function (e) {
   if (!kw) return;
   $('articleBody').querySelectorAll('.kw').forEach(function (k) { k.classList.remove('active-kw'); });
   kw.classList.add('active-kw');
-  var top = kw.offsetTop - 20;
-  leftPane.scrollTo({ top: top, behavior: 'smooth' });
+  window.scrollTo({ top: Math.max(0, docTop(kw) - 140), behavior: 'smooth' });
 });
 
 /* ---------- 控件 ---------- */
@@ -557,6 +609,34 @@ $('fontUp').addEventListener('click', function () {
   document.querySelectorAll('.en-para').forEach(function (p) { p.style.fontSize = fontSize + 'px'; });
   requestAnimationFrame(buildAnchors);
 });
+/* ---------- 底部条：点横条展开 / 收起，也能上下拖 ---------- */
+function setSheetState(n) {
+  sheetState = n;
+  sheet.className = 'sheet' + (SHEET_STATES[n] ? ' ' + SHEET_STATES[n] : '');
+  $('sheetToggle').textContent = n === 0 ? '展开 ▲' : (n === 1 ? '再展开 ▲▲' : '收起 ▼');
+}
+var justDragged = false;
+$('sheetToggle').addEventListener('click', function (e) {
+  e.stopPropagation();
+  setSheetState((sheetState + 1) % 3);
+});
+$('sheetHandle').addEventListener('click', function () {
+  if (justDragged) return;
+  setSheetState((sheetState + 1) % 3);
+});
+(function () {
+  var startY = null, moved = 0;
+  var h = $('sheetHandle');
+  h.addEventListener('touchstart', function (e) { startY = e.touches[0].clientY; moved = 0; }, { passive: true });
+  h.addEventListener('touchmove', function (e) { if (startY !== null) moved = e.touches[0].clientY - startY; }, { passive: true });
+  h.addEventListener('touchend', function () {
+    if (startY === null) return;
+    if (moved < -50) { justDragged = true; setTimeout(function () { justDragged = false; }, 350); setSheetState(Math.min(2, sheetState + 1)); }
+    else if (moved > 50) { justDragged = true; setTimeout(function () { justDragged = false; }, 350); setSheetState(Math.max(0, sheetState - 1)); }
+    startY = null;
+  });
+})();
+
 $('searchInput').addEventListener('input', renderHome);
 
 renderChips();
