@@ -111,6 +111,16 @@
       "exZh": "我小时候常踢足球。"
     },
     {
+      "p": "slow down",
+      "surf": [
+        "slows down"
+      ],
+      "zh": "放慢；减速",
+      "en": "To go more slowly.",
+      "ex": "When approaching a bend in the road, slow down.",
+      "exZh": "接近弯道时减速。"
+    },
+    {
       "p": "look for",
       "surf": [
         "looks for"
@@ -129,6 +139,26 @@
       "en": "As an example.",
       "ex": "For example, I like apples and bananas.",
       "exZh": "例如，我喜欢苹果和香蕉。"
+    },
+    {
+      "p": "mix up",
+      "surf": [
+        "mix up"
+      ],
+      "zh": "混淆；弄混",
+      "en": "To confuse two things.",
+      "ex": "He often mixes up two similar words.",
+      "exZh": "他常常混淆两个相似的词。"
+    },
+    {
+      "p": "instead of",
+      "surf": [
+        "instead of"
+      ],
+      "zh": "而不是",
+      "en": "In place of; rather than.",
+      "ex": "He walked to school instead of taking the car.",
+      "exZh": "他走路去上学，而不是坐车。"
     },
     {
       "p": "learn to do",

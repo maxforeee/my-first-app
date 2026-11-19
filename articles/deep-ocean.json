@@ -99,5 +99,16 @@
       ]
     }
   ],
-  "phrases": []
+  "phrases": [
+    {
+      "p": "bring back",
+      "surf": [
+        "brings back"
+      ],
+      "zh": "带回来；使恢复",
+      "en": "To fetch something back; to return with something.",
+      "ex": "Could you bring me back some chocolate?",
+      "exZh": "你能给我带回一些巧克力吗？"
+    }
+  ]
 }

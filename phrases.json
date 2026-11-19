@@ -1,6 +1,6 @@
 {
-  "version": 1,
-  "note": "Short-phrase dictionary for the reading tool. English definitions/examples checked against Free Dictionary API and Wiktionary (25 of 77 are dictionary headwords); verb patterns like 'forget to do' are grammar constructions, not dictionary entries, so their glosses are standard textbook meanings.",
+  "version": 2,
+  "note": "Short-phrase dictionary for the reading tool. English definitions/examples checked against Free Dictionary API and Wiktionary; verb patterns like 'forget to do' are grammar constructions, not dictionary entries, so their glosses are standard textbook meanings. Grows over time: scripts/discover_phrases.py screens article text for new dictionary-listed phrases; reviewed entries are appended here.",
   "items": [
     {
       "p": "forget to do",
@@ -1435,6 +1435,438 @@
       "en": "to prepare for something",
       "ex": "Get ready for school!",
       "exZh": "准备好去上学！"
+    },
+    {
+      "en": "In front of; before.",
+      "ex": "A hill loomed ahead of them.",
+      "exZh": "一座小山出现在他们面前。",
+      "forms": {},
+      "p": "ahead of",
+      "pat": [
+        "ahead",
+        "of"
+      ],
+      "zh": "在……之前；领先于"
+    },
+    {
+      "en": "To be true; to be the situation.",
+      "ex": "If that is the case, we need a new plan.",
+      "exZh": "如果情况是这样，我们需要一个新计划。",
+      "forms": {
+        "be": [
+          "be",
+          "am",
+          "is",
+          "are",
+          "was",
+          "were",
+          "been",
+          "being"
+        ]
+      },
+      "p": "be the case",
+      "pat": [
+        "be",
+        "the",
+        "case"
+      ],
+      "zh": "情况是这样；事实如此"
+    },
+    {
+      "en": "To easily go past a limit or target.",
+      "ex": "I've just blown past my calorie limit for the day.",
+      "exZh": "我今天的卡路里摄入一下子就超标了。",
+      "forms": {
+        "blow": [
+          "blow",
+          "blows",
+          "blew",
+          "blown"
+        ]
+      },
+      "p": "blow past",
+      "pat": [
+        "blow",
+        "past"
+      ],
+      "zh": "轻易超过；一下子超过"
+    },
+    {
+      "en": "To cause something to fall; to defeat or remove from power.",
+      "ex": "The rebel forces are trying to bring down the president.",
+      "exZh": "反叛军正试图推翻总统。",
+      "forms": {
+        "bring": [
+          "bring",
+          "brings",
+          "brought"
+        ]
+      },
+      "p": "bring down",
+      "pat": [
+        "bring",
+        "down"
+      ],
+      "zh": "使倒下；推翻；击落"
+    },
+    {
+      "en": "To fetch something back; to return with something.",
+      "ex": "Could you bring me back some chocolate?",
+      "exZh": "你能给我带回一些巧克力吗？",
+      "forms": {
+        "bring": [
+          "bring",
+          "brings",
+          "brought"
+        ]
+      },
+      "p": "bring back",
+      "pat": [
+        "bring",
+        "back"
+      ],
+      "zh": "带回来；使恢复"
+    },
+    {
+      "en": "When a future event has happened.",
+      "ex": "I'll be an old man by the time you finish!",
+      "exZh": "等你做完，我都成老头子了！",
+      "forms": {},
+      "p": "by the time",
+      "pat": [
+        "by",
+        "the",
+        "time"
+      ],
+      "zh": "到……的时候"
+    },
+    {
+      "en": "To look after someone; to like something.",
+      "ex": "I cared for my ailing mother for five years.",
+      "exZh": "我照顾了生病的母亲五年。",
+      "forms": {
+        "care": [
+          "care",
+          "cares",
+          "cared"
+        ]
+      },
+      "p": "care for",
+      "pat": [
+        "care",
+        "for"
+      ],
+      "zh": "照顾；喜欢"
+    },
+    {
+      "en": "To bring down by cutting; to reduce.",
+      "ex": "They want to cut down several trees to make room for the parking lot.",
+      "exZh": "他们想砍掉几棵树来建停车场。",
+      "forms": {
+        "cut": [
+          "cut",
+          "cuts",
+          "cut"
+        ]
+      },
+      "p": "cut down",
+      "pat": [
+        "cut",
+        "down"
+      ],
+      "zh": "砍倒；削减"
+    },
+    {
+      "en": "A long way from; not at all.",
+      "ex": "Don't leave now: our task is far from complete!",
+      "exZh": "现在别走：我们的任务还远没有完成！",
+      "forms": {},
+      "p": "far from",
+      "pat": [
+        "far",
+        "from"
+      ],
+      "zh": "离……很远；远非"
+    },
+    {
+      "en": "To want to do something; to seem like.",
+      "ex": "I didn't feel like working yesterday, so I called in sick.",
+      "exZh": "我昨天不想工作，所以请了病假。",
+      "forms": {
+        "feel": [
+          "feel",
+          "feels",
+          "felt"
+        ]
+      },
+      "p": "feel like",
+      "pat": [
+        "feel",
+        "like"
+      ],
+      "zh": "想要；感觉像是"
+    },
+    {
+      "en": "To leave a place; (of a light or fire) to stop burning.",
+      "ex": "Please go out through the back door.",
+      "exZh": "请从后门出去。",
+      "forms": {
+        "go": [
+          "go",
+          "goes",
+          "went",
+          "gone"
+        ]
+      },
+      "p": "go out",
+      "pat": [
+        "go",
+        "out"
+      ],
+      "zh": "出去；熄灭"
+    },
+    {
+      "en": "To move upwards; to increase.",
+      "ex": "There are new offices going up in town.",
+      "exZh": "镇上正在建新的办公楼。",
+      "forms": {
+        "go": [
+          "go",
+          "goes",
+          "went",
+          "gone"
+        ]
+      },
+      "p": "go up",
+      "pat": [
+        "go",
+        "up"
+      ],
+      "zh": "上升；上涨"
+    },
+    {
+      "en": "As a means of achieving something; to.",
+      "ex": "In order to be fit, you've gotta train hard every day.",
+      "exZh": "为了保持健康，你必须每天刻苦训练。",
+      "forms": {},
+      "p": "in order to",
+      "pat": [
+        "in",
+        "order",
+        "to"
+      ],
+      "zh": "为了"
+    },
+    {
+      "en": "In development; in the process of being made.",
+      "ex": "You're witnessing a great reference work in the making.",
+      "exZh": "你正在见证一部伟大的参考著作的诞生。",
+      "forms": {},
+      "p": "in the making",
+      "pat": [
+        "in",
+        "the",
+        "making"
+      ],
+      "zh": "在筹备中；正在形成"
+    },
+    {
+      "en": "In place of; rather than.",
+      "ex": "He walked to school instead of taking the car.",
+      "exZh": "他走路去上学，而不是坐车。",
+      "forms": {},
+      "p": "instead of",
+      "pat": [
+        "instead",
+        "of"
+      ],
+      "zh": "而不是"
+    },
+    {
+      "en": "A type of; slightly, somewhat.",
+      "ex": "I'm getting kind of tired. Could we finish tomorrow?",
+      "exZh": "我有点累了，明天再做完行吗？",
+      "forms": {},
+      "p": "kind of",
+      "pat": [
+        "kind",
+        "of"
+      ],
+      "zh": "一种；有点"
+    },
+    {
+      "en": "To confuse two things.",
+      "ex": "He often mixes up two similar words.",
+      "exZh": "他常常混淆两个相似的词。",
+      "forms": {
+        "mix": [
+          "mix",
+          "mixes",
+          "mixed"
+        ]
+      },
+      "p": "mix up",
+      "pat": [
+        "mix",
+        "up"
+      ],
+      "zh": "混淆；弄混"
+    },
+    {
+      "en": "To use something in a playful or experimental way.",
+      "ex": "The children like to play with the new toy.",
+      "exZh": "孩子们喜欢玩这个新玩具。",
+      "forms": {
+        "play": [
+          "play",
+          "plays",
+          "played"
+        ]
+      },
+      "p": "play with",
+      "pat": [
+        "play",
+        "with"
+      ],
+      "zh": "玩弄；摆弄；试着用"
+    },
+    {
+      "en": "To put a lot of money or effort into something.",
+      "ex": "They poured a lot of money into the project.",
+      "exZh": "他们往这个项目里投了很多钱。",
+      "forms": {
+        "pour": [
+          "pour",
+          "pours",
+          "poured"
+        ]
+      },
+      "p": "pour into",
+      "pat": [
+        "pour",
+        "into"
+      ],
+      "zh": "大量投入（金钱、精力）"
+    },
+    {
+      "en": "To offer something for sale; to place something up.",
+      "ex": "The painting was put up for auction.",
+      "exZh": "这幅画被拿出来拍卖。",
+      "forms": {
+        "put": [
+          "put",
+          "puts",
+          "put"
+        ]
+      },
+      "p": "put up",
+      "pat": [
+        "put",
+        "up"
+      ],
+      "zh": "拿出来（拍卖）；张贴；举起"
+    },
+    {
+      "en": "To bring about; to lead to.",
+      "ex": "The protests resulted in widespread unrest.",
+      "exZh": "抗议导致了广泛的动乱。",
+      "forms": {
+        "result": [
+          "result",
+          "results",
+          "resulted"
+        ]
+      },
+      "p": "result in",
+      "pat": [
+        "result",
+        "in"
+      ],
+      "zh": "导致"
+    },
+    {
+      "en": "To explain something in detail; to start a journey.",
+      "ex": "This contract sets out all the terms of the agreement.",
+      "exZh": "这份合同详细列出了协议的所有条款。",
+      "forms": {
+        "set": [
+          "set",
+          "sets",
+          "set"
+        ]
+      },
+      "p": "set out",
+      "pat": [
+        "set",
+        "out"
+      ],
+      "zh": "详细说明；出发"
+    },
+    {
+      "en": "To go more slowly.",
+      "ex": "When approaching a bend in the road, slow down.",
+      "exZh": "接近弯道时减速。",
+      "forms": {
+        "slow": [
+          "slow",
+          "slows",
+          "slowed"
+        ]
+      },
+      "p": "slow down",
+      "pat": [
+        "slow",
+        "down"
+      ],
+      "zh": "放慢；减速"
+    },
+    {
+      "en": "To result; to end up being.",
+      "ex": "I had hoped our first meeting would turn out better.",
+      "exZh": "我本希望我们的第一次见面能更好一些。",
+      "forms": {
+        "turn": [
+          "turn",
+          "turns",
+          "turned"
+        ]
+      },
+      "p": "turn out",
+      "pat": [
+        "turn",
+        "out"
+      ],
+      "zh": "结果是；原来是"
+    },
+    {
+      "en": "Higher than a previous value; increased from.",
+      "ex": "The unemployment rate is 4.2%, up from 3.8% last quarter.",
+      "exZh": "失业率是 4.2%，高于上季度的 3.8%。",
+      "forms": {},
+      "p": "up from",
+      "pat": [
+        "up",
+        "from"
+      ],
+      "zh": "比……高；从……上升"
+    },
+    {
+      "en": "To walk along or down something.",
+      "ex": "You can walk down a narrow lane and hear only your own steps.",
+      "exZh": "你可以沿着一条小巷走下去，只听见自己的脚步声。",
+      "forms": {
+        "walk": [
+          "walk",
+          "walks",
+          "walked"
+        ]
+      },
+      "p": "walk down",
+      "pat": [
+        "walk",
+        "down"
+      ],
+      "zh": "沿着……走下去"
     }
   ]
 }

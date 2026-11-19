@@ -99,5 +99,16 @@
       ]
     }
   ],
-  "phrases": []
+  "phrases": [
+    {
+      "p": "care for",
+      "surf": [
+        "care for"
+      ],
+      "zh": "照顾；喜欢",
+      "en": "To look after someone; to like something.",
+      "ex": "I cared for my ailing mother for five years.",
+      "exZh": "我照顾了生病的母亲五年。"
+    }
+  ]
 }

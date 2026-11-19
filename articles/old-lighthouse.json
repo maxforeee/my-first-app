@@ -99,5 +99,26 @@
       ]
     }
   ],
-  "phrases": []
+  "phrases": [
+    {
+      "p": "far from",
+      "surf": [
+        "far from"
+      ],
+      "zh": "离……很远；远非",
+      "en": "A long way from; not at all.",
+      "ex": "Don't leave now: our task is far from complete!",
+      "exZh": "现在别走：我们的任务还远没有完成！"
+    },
+    {
+      "p": "go out",
+      "surf": [
+        "went out"
+      ],
+      "zh": "出去；熄灭",
+      "en": "To leave a place; (of a light or fire) to stop burning.",
+      "ex": "Please go out through the back door.",
+      "exZh": "请从后门出去。"
+    }
+  ]
 }

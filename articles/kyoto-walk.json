@@ -99,5 +99,36 @@
       ]
     }
   ],
-  "phrases": []
+  "phrases": [
+    {
+      "p": "walk down",
+      "surf": [
+        "walk down"
+      ],
+      "zh": "沿着……走下去",
+      "en": "To walk along or down something.",
+      "ex": "You can walk down a narrow lane and hear only your own steps.",
+      "exZh": "你可以沿着一条小巷走下去，只听见自己的脚步声。"
+    },
+    {
+      "p": "feel like",
+      "surf": [
+        "feels like"
+      ],
+      "zh": "想要；感觉像是",
+      "en": "To want to do something; to seem like.",
+      "ex": "I didn't feel like working yesterday, so I called in sick.",
+      "exZh": "我昨天不想工作，所以请了病假。"
+    },
+    {
+      "p": "slow down",
+      "surf": [
+        "slow down"
+      ],
+      "zh": "放慢；减速",
+      "en": "To go more slowly.",
+      "ex": "When approaching a bend in the road, slow down.",
+      "exZh": "接近弯道时减速。"
+    }
+  ]
 }

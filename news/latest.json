@@ -115,6 +115,56 @@
           "en": "to begin doing something",
           "ex": "She started learning the piano at six.",
           "exZh": "她六岁开始学钢琴。"
+        },
+        {
+          "p": "pour into",
+          "surf": [
+            "poured into"
+          ],
+          "zh": "大量投入（金钱、精力）",
+          "en": "To put a lot of money or effort into something.",
+          "ex": "They poured a lot of money into the project.",
+          "exZh": "他们往这个项目里投了很多钱。"
+        },
+        {
+          "p": "ahead of",
+          "surf": [
+            "ahead of"
+          ],
+          "zh": "在……之前；领先于",
+          "en": "In front of; before.",
+          "ex": "A hill loomed ahead of them.",
+          "exZh": "一座小山出现在他们面前。"
+        },
+        {
+          "p": "turn out",
+          "surf": [
+            "turns out"
+          ],
+          "zh": "结果是；原来是",
+          "en": "To result; to end up being.",
+          "ex": "I had hoped our first meeting would turn out better.",
+          "exZh": "我本希望我们的第一次见面能更好一些。"
+        },
+        {
+          "p": "be the case",
+          "surf": [
+            "be the case"
+          ],
+          "zh": "情况是这样；事实如此",
+          "en": "To be true; to be the situation.",
+          "ex": "If that is the case, we need a new plan.",
+          "exZh": "如果情况是这样，我们需要一个新计划。"
+        },
+        {
+          "p": "blow past",
+          "surf": [
+            "blow past"
+          ],
+          "zh": "轻易超过；一下子超过",
+          "en": "To easily go past a limit or target.",
+          "ex": "I've just blown past my calorie limit for the day.",
+          "exZh": "我今天的卡路里摄入一下子就超标了。"
         }
       ]
     },
@@ -222,7 +272,28 @@
           "zh": "租金；地租"
         }
       ],
-      "phrases": []
+      "phrases": [
+        {
+          "p": "set out",
+          "surf": [
+            "set out"
+          ],
+          "zh": "详细说明；出发",
+          "en": "To explain something in detail; to start a journey.",
+          "ex": "This contract sets out all the terms of the agreement.",
+          "exZh": "这份合同详细列出了协议的所有条款。"
+        },
+        {
+          "p": "go up",
+          "surf": [
+            "go up"
+          ],
+          "zh": "上升；上涨",
+          "en": "To move upwards; to increase.",
+          "ex": "There are new offices going up in town.",
+          "exZh": "镇上正在建新的办公楼。"
+        }
+      ]
     },
     {
       "cat": "新闻",
@@ -328,7 +399,18 @@
           "zh": "解决；化解"
         }
       ],
-      "phrases": []
+      "phrases": [
+        {
+          "p": "put up",
+          "surf": [
+            "put up"
+          ],
+          "zh": "拿出来（拍卖）；张贴；举起",
+          "en": "To offer something for sale; to place something up.",
+          "ex": "The painting was put up for auction.",
+          "exZh": "这幅画被拿出来拍卖。"
+        }
+      ]
     },
     {
       "cat": "新闻",
@@ -434,7 +516,28 @@
           "zh": "前所未有的"
         }
       ],
-      "phrases": []
+      "phrases": [
+        {
+          "p": "in the making",
+          "surf": [
+            "in the making"
+          ],
+          "zh": "在筹备中；正在形成",
+          "en": "In development; in the process of being made.",
+          "ex": "You're witnessing a great reference work in the making.",
+          "exZh": "你正在见证一部伟大的参考著作的诞生。"
+        },
+        {
+          "p": "bring down",
+          "surf": [
+            "brought down"
+          ],
+          "zh": "使倒下；推翻；击落",
+          "en": "To cause something to fall; to defeat or remove from power.",
+          "ex": "The rebel forces are trying to bring down the president.",
+          "exZh": "反叛军正试图推翻总统。"
+        }
+      ]
     },
     {
       "cat": "新闻",
@@ -542,6 +645,26 @@
       ],
       "phrases": [
         {
+          "p": "play with",
+          "surf": [
+            "play with"
+          ],
+          "zh": "玩弄；摆弄；试着用",
+          "en": "To use something in a playful or experimental way.",
+          "ex": "The children like to play with the new toy.",
+          "exZh": "孩子们喜欢玩这个新玩具。"
+        },
+        {
+          "p": "in order to",
+          "surf": [
+            "in order to"
+          ],
+          "zh": "为了",
+          "en": "As a means of achieving something; to.",
+          "ex": "In order to be fit, you've gotta train hard every day.",
+          "exZh": "为了保持健康，你必须每天刻苦训练。"
+        },
+        {
           "p": "come from",
           "surf": [
             "comes from"
@@ -550,6 +673,26 @@
           "en": "To have as one's birthplace or nationality.",
           "ex": "Where do you come from?",
           "exZh": "你来自哪里？"
+        },
+        {
+          "p": "by the time",
+          "surf": [
+            "by the time"
+          ],
+          "zh": "到……的时候",
+          "en": "When a future event has happened.",
+          "ex": "I'll be an old man by the time you finish!",
+          "exZh": "等你做完，我都成老头子了！"
+        },
+        {
+          "p": "kind of",
+          "surf": [
+            "kind of"
+          ],
+          "zh": "一种；有点",
+          "en": "A type of; slightly, somewhat.",
+          "ex": "I'm getting kind of tired. Could we finish tomorrow?",
+          "exZh": "我有点累了，明天再做完行吗？"
         },
         {
           "p": "like doing",
