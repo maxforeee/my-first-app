@@ -1,0 +1,27 @@
+# 新闻栏目（每天刷新）
+
+## 文件
+
+- `YYYY-MM-DD.json`：某一天的新闻，`{ "date": "YYYY-MM-DD", "items": [...] }`，每天 5–7 篇。
+- `latest.json`：最新一天的副本，网页加载不到日期列表时用它兜底。
+- `sources.json`：RSS 源列表（目前 BBC News + The Guardian），换源改这里。
+- 每篇新闻的字段和 `articles/` 里的文章一样（`id/title/cat/level/minutes/desc/vocab/paras`），
+  另加 `source`（如 BBC News）、`sourceUrl`（原文链接）、`published`（日期）。
+  `cat` 固定是“新闻”，`level` 目前都是 B2，`id` 是 `news-YYYYMMDD-关键词`。
+
+## 每天怎么刷新
+
+每天 08:00（Asia/Shanghai）有一条定时任务跑一次：
+
+1. 拉 `sources.json` 里的 RSS，取最新条目，跳过视频类（链接含 `/videos/` 的）。
+2. 抓每篇的全文（Jina Reader `https://r.jina.ai/<原文链接>`，匿名额度不够时用直接抓 BBC 页面取 `<p>` 的办法），
+   每篇截取 9 句（3 段×3 句），逐句翻成中文，每篇配 6 个重点词（词必须在正文中出现）。
+3. 写成 `news/YYYY-MM-DD.json`，同时覆盖 `news/latest.json`，推到 GitHub。
+4. 部署不自动做——新闻要上线得去 Abasthan 后台手动部署一次（用户定的规矩）。
+
+## 网页怎么读
+
+`reading.html` 里的 `loadNews()`：先问 GitHub API 要 `news/` 的文件列表，
+取日期最大的 `YYYY-MM-DD.json`；问不到就用 `latest.json`。
+新闻和文章共用同一个阅读页（查词、发音、朗读、重点词条都一样）。
+往日新闻不在当天列表里，但阅读历史里点开时会按日期去仓库里取那一天的文件。

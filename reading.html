@@ -100,6 +100,13 @@
   .acard .foot { font-size: 12px; color: var(--sub); }
   .acard .go { font-size: 13px; color: var(--accent); font-weight: 700; }
   .empty { padding: 32px 0; text-align: center; color: var(--sub); font-size: 14px; }
+  /* ---------- 栏目切换（文章 / 新闻）与阅读历史 ---------- */
+  .tabs { display: flex; gap: 0; margin-top: 14px; background: #e5e9f2; border-radius: 99px; padding: 4px; }
+  .tab { flex: 1; border: none; background: transparent; border-radius: 99px; padding: 9px 0; font-size: 15px; font-weight: 700; color: var(--sub); font-family: inherit; }
+  .tab.on { background: #fff; color: var(--text); box-shadow: 0 1px 4px rgba(0,0,0,.12); }
+  .tab-date { font-size: 12px; color: var(--sub); font-weight: 600; margin-left: 4px; }
+  .hist-btn { margin-top: 12px; border: 1px solid var(--border); background: #fff; border-radius: 99px; padding: 8px 16px; font-size: 14px; font-weight: 700; color: var(--text); font-family: inherit; }
+  .hist-time { font-size: 12px; color: var(--sub); }
 
   /* ---------- 阅读页：文章单栏，跟页面一起滚（手机上划得动） ---------- */
   .controls { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-bottom: 12px; }
@@ -240,11 +247,31 @@
   <div class="home-head">
     <h2>英语阅读</h2>
     <p>点开一篇文章读原文，每段下面都有中文翻译；单击单词浮起小卡片查意思，双击一句英文，高亮的译句会跟着亮起来。</p>
+    <button class="hist-btn" id="histBtn" type="button">🕘 阅读历史</button>
   </div>
   <div class="search"><input id="searchInput" type="search" placeholder="搜文章标题、分类…"></div>
+  <div class="tabs" id="tabs">
+    <button class="tab on" data-tab="article" type="button">文章</button>
+    <button class="tab" data-tab="news" type="button">新闻<span class="tab-date" id="newsTabDate"></span></button>
+  </div>
   <div class="chips" id="chips"></div>
   <div class="grid" id="articleGrid"></div>
   <div class="empty hidden" id="emptyMsg">没有找到这篇文章，换个词试试。</div>
+</main>
+
+<!-- history -->
+<main class="wrap hidden" id="histView">
+  <div class="controls">
+    <button class="ctl" id="histBackBtn">‹ 返回</button>
+    <span class="spacer"></span>
+    <button class="ctl" id="histClearBtn">清空历史</button>
+  </div>
+  <div class="home-head">
+    <h2>阅读历史</h2>
+    <p>读过的文章都记在这里，存在这台手机的浏览器里，点一下可以重新打开。换手机或换浏览器就看不到，清掉浏览器数据历史就没了。</p>
+  </div>
+  <div class="grid" id="histList"></div>
+  <div class="empty hidden" id="histEmpty">还没读过文章，点开一篇读读吧。</div>
 </main>
 
 <!-- reading -->
@@ -327,8 +354,68 @@ async function loadArticles() {
   ARTICLES = out;
 }
 
+/* ---------- 新闻：读 news/ 下最新一天的 JSON ----------
+   先问 GitHub API 要文件列表，取日期最大的 YYYY-MM-DD.json；
+   问不到就用 latest.json（每天刷新时一起覆盖的副本）。 */
+let NEWS = [];
+let NEWS_DATE = '';
+const NEWS_DIR = 'news';
+const GH_NEWS_API = 'https://api.github.com/repos/maxforeee/my-first-app/contents/news';
+async function loadNews() {
+  let day = null;
+  try {
+    const r = await fetch(GH_NEWS_API, { headers: { 'Accept': 'application/vnd.github+json' } });
+    if (!r.ok) throw new Error('GitHub news list ' + r.status);
+    const list = await r.json();
+    const days = list.filter(function (f) {
+      return f.type === 'file' && /^\d{4}-\d{2}-\d{2}\.json$/.test(f.name);
+    }).map(function (f) { return f.name; }).sort();
+    if (days.length) day = days[days.length - 1];
+  } catch (e) { day = null; }
+  let data = null;
+  if (day) {
+    try { const r = await fetch(NEWS_DIR + '/' + day, { cache: 'no-store' }); if (r.ok) data = await r.json(); } catch (e) {}
+  }
+  if (!data) {
+    try { const r = await fetch(NEWS_DIR + '/latest.json', { cache: 'no-store' }); if (r.ok) data = await r.json(); } catch (e) {}
+  }
+  if (data && data.items) {
+    NEWS_DATE = data.date || '';
+    NEWS = data.items.map(function (a) { a.kind = 'news'; a.cat = '新闻'; a.date = NEWS_DATE; return a; });
+  }
+}
+
+/* ---------- 阅读历史：存在这台手机浏览器本地（localStorage），不走服务器 ----------
+   不用 Cookie：Cookie 只有 4KB、每次请求都会发给服务器；localStorage 有 5MB、只留在这台设备上。
+   同一台手机、同一个浏览器打开，历史都在；换手机或换浏览器就看不到；清掉浏览器数据历史就没了。 */
+var HIST_KEY = 'reading_history_v1';
+var HIST_MAX = 50;
+function getHistory() {
+  try { var h = JSON.parse(localStorage.getItem(HIST_KEY) || '[]'); return Array.isArray(h) ? h : []; }
+  catch (e) { return []; }
+}
+function recordHistory(a) {
+  if (!a) return;
+  try {
+    var h = getHistory().filter(function (x) { return x.id !== a.id; });
+    h.unshift({ id: a.id, kind: a.kind || 'article', title: a.title, cat: a.cat, level: a.level, date: a.date || null, readAt: Date.now() });
+    localStorage.setItem(HIST_KEY, JSON.stringify(h.slice(0, HIST_MAX)));
+  } catch (e) { /* 隐私模式等存不下就跳过，不影响阅读 */ }
+}
+function fmtReadAt(ts) {
+  var d = new Date(ts), now = new Date();
+  function p(n) { return (n < 10 ? '0' : '') + n; }
+  var day = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+  var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  var diff = Math.round((today - day) / 86400000);
+  var hm = p(d.getHours()) + ':' + p(d.getMinutes());
+  if (diff === 0) return '今天 ' + hm;
+  if (diff === 1) return '昨天 ' + hm;
+  return (d.getMonth() + 1) + '月' + d.getDate() + '日 ' + hm;
+}
+
 var $ = function (id) { return document.getElementById(id); };
-var homeView = $('homeView'), readView = $('readView');
+var homeView = $('homeView'), readView = $('readView'), histView = $('histView');
 var sheet = $('sheet'), sheetList = $('sheetList');
 var SHEET_MIN = 58;   /* 收起成一条时的高度 */
 var SHEET_MAX_VH = 92; /* 最高拉到 92% 屏高 */
@@ -356,26 +443,60 @@ function renderChips() {
     b.addEventListener('click', function () { levelFilter = b.getAttribute('data-lv'); renderChips(); renderHome(); });
   });
 }
+var currentTab = 'article'; /* 文章：自己创建的 6 篇；新闻：每天刷新的 5–7 篇 */
 function renderHome() {
   var q = ($('searchInput').value || '').trim().toLowerCase();
-  var list = ARTICLES.filter(function (a) {
+  var pool = currentTab === 'news' ? NEWS : ARTICLES;
+  var list = pool.filter(function (a) {
     var okLv = levelFilter === '全部' || a.level === levelFilter;
     var okQ = !q || (a.title + a.cat + a.desc).toLowerCase().indexOf(q) !== -1;
     return okLv && okQ;
   });
   $('articleGrid').innerHTML = list.map(function (a) {
+    var foot = currentTab === 'news'
+      ? (a.source || '新闻') + ' · ' + (a.date || '') + ' · ' + wordCount(a) + ' 词 · 约 ' + a.minutes + ' 分钟'
+      : wordCount(a) + ' 词 · 约 ' + a.minutes + ' 分钟 · ' + a.vocab.length + ' 个重点词';
     return '<button class="acard" data-id="' + a.id + '">' +
       '<span class="badges"><span class="badge lv-' + a.level.toLowerCase() + '">' + a.level + '</span>' +
       '<span class="badge">' + a.cat + '</span></span>' +
       '<h3>' + esc(a.title) + '</h3>' +
       '<span class="desc">' + esc(a.desc) + '</span>' +
-      '<span class="foot">' + wordCount(a) + ' 词 · 约 ' + a.minutes + ' 分钟 · ' + a.vocab.length + ' 个重点词</span>' +
+      '<span class="foot">' + foot + '</span>' +
       '<span class="go">开始读 →</span></button>';
   }).join('');
+  $('emptyMsg').textContent = (currentTab === 'news' && !NEWS.length) ? '今天的新闻还没来，稍后再刷新试试。' : '没有找到这篇文章，换个词试试。';
   $('emptyMsg').classList.toggle('hidden', list.length > 0);
   $('articleGrid').querySelectorAll('.acard').forEach(function (c) {
     c.addEventListener('click', function () { openArticle(c.getAttribute('data-id')); });
   });
+}
+
+/* ---------- 阅读历史页 ---------- */
+function renderHistory() {
+  var h = getHistory();
+  $('histList').innerHTML = h.map(function (x) {
+    return '<button class="acard" data-id="' + x.id + '" data-kind="' + x.kind + '" data-date="' + (x.date || '') + '">' +
+      '<span class="badges"><span class="badge lv-' + (x.level || 'b2').toLowerCase() + '">' + x.level + '</span>' +
+      '<span class="badge">' + x.cat + '</span></span>' +
+      '<h3>' + esc(x.title) + '</h3>' +
+      '<span class="hist-time">读于 ' + fmtReadAt(x.readAt) + (x.date ? ' · 新闻 ' + x.date : '') + '</span>' +
+      '<span class="go">重新打开 →</span></button>';
+  }).join('');
+  $('histEmpty').classList.toggle('hidden', h.length > 0);
+  $('histList').querySelectorAll('.acard').forEach(function (c) {
+    c.addEventListener('click', function () { openArticle(c.getAttribute('data-id'), c.getAttribute('data-kind'), c.getAttribute('data-date') || null); });
+  });
+}
+function showHistory() {
+  homeView.classList.add('hidden');
+  readView.classList.add('hidden');
+  histView.classList.remove('hidden');
+  $('topTitle').textContent = '阅读历史';
+  $('topMeta').textContent = '';
+  $('playerBar').classList.add('hidden');
+  $('progressBar').classList.add('hidden');
+  window.scrollTo(0, 0);
+  renderHistory();
 }
 
 /* ---------- 阅读页：渲染 ---------- */
@@ -413,17 +534,34 @@ function markWords(text, vmap) {
     return '<span class="w" data-w="' + key + '">' + esc(seg) + '</span>';
   }).join('');
 }
-function openArticle(id) {
+function openArticle(id, kind, date) {
   hideWordPop();
   current = null;
   for (var k = 0; k < ARTICLES.length; k++) if (ARTICLES[k].id === id) current = ARTICLES[k];
+  if (!current) for (var k = 0; k < NEWS.length; k++) if (NEWS[k].id === id) current = NEWS[k];
+  if (!current && kind === 'news' && date) {
+    /* 历史里点开的往日新闻：当天列表里已经没有了，按日期去仓库里取那一天的文件 */
+    return fetch(NEWS_DIR + '/' + date + '.json', { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : null; }).then(function (data) {
+      if (!data || !data.items) { alert('这篇新闻已经下线了。'); return; }
+      for (var k = 0; k < data.items.length; k++) if (data.items[k].id === id) {
+        var a = data.items[k]; a.kind = 'news'; a.cat = '新闻'; a.date = date;
+        NEWS.push(a); current = a; recordHistory(current); renderArticle(); return;
+      }
+      alert('这篇新闻已经下线了。');
+    }).catch(function () { alert('这篇新闻已经下线了。'); });
+  }
   if (!current) return;
+  recordHistory(current);
+  renderArticle();
+}
+function renderArticle() {
   $('topTitle').textContent = current.title;
   $('topMeta').textContent = current.level + ' · ' + current.cat;
   $('progressBar').classList.remove('hidden');
   if (ttsSupported()) $('playerBar').classList.remove('hidden');
   ttsReset();
   homeView.classList.add('hidden');
+  histView.classList.add('hidden');
   readView.classList.remove('hidden');
   window.scrollTo(0, 0);
 
@@ -888,6 +1026,7 @@ $('backBtn').addEventListener('click', function () {
   $('playerBar').classList.add('hidden');
   current = null;
   readView.classList.add('hidden');
+  histView.classList.add('hidden');
   homeView.classList.remove('hidden');
   $('topTitle').textContent = '英语阅读';
   $('topMeta').textContent = '';
@@ -973,9 +1112,33 @@ $('sheetHandle').addEventListener('click', function () {
 
 $('searchInput').addEventListener('input', renderHome);
 
+/* 栏目切换：文章 / 新闻 */
+document.querySelectorAll('#tabs .tab').forEach(function (b) {
+  b.addEventListener('click', function () {
+    currentTab = b.getAttribute('data-tab');
+    document.querySelectorAll('#tabs .tab').forEach(function (x) { x.classList.toggle('on', x === b); });
+    renderHome();
+  });
+});
+
+/* 阅读历史：首页的按钮、历史页的返回和清空 */
+$('histBtn').addEventListener('click', showHistory);
+$('histBackBtn').addEventListener('click', function () {
+  histView.classList.add('hidden');
+  homeView.classList.remove('hidden');
+  $('topTitle').textContent = '英语阅读';
+  window.scrollTo(0, 0);
+});
+$('histClearBtn').addEventListener('click', function () {
+  if (!confirm('确定要清空全部阅读历史吗？')) return;
+  try { localStorage.removeItem(HIST_KEY); } catch (e) {}
+  renderHistory();
+});
+
 renderChips();
 $('articleGrid').innerHTML = '<div class="empty">正在加载文章…</div>';
-loadArticles().then(function () {
+Promise.all([loadArticles(), loadNews()]).then(function () {
+  if (NEWS_DATE) $('newsTabDate').textContent = NEWS_DATE.slice(5); /* 新闻栏上显示今天的日期，如 11-19 */
   renderHome();
   if (!ARTICLES.length) $('articleGrid').innerHTML = '<div class="empty">文章没加载出来，检查一下网络再刷新试试。</div>';
 });

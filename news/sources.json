@@ -1,0 +1,1 @@
+{"dailyCount":6,"feeds":[{"name":"BBC News","type":"rss","url":"https://feeds.bbci.co.uk/news/rss.xml"},{"name":"The Guardian","type":"rss","url":"https://www.theguardian.com/world/rss"}],"note":"每天 08:00 刷新：取 RSS 最新条目，跳过视频类（链接含 /videos/ 的），抓全文后每篇截取 9 句（3 段×3 句），逐句翻成中文，每篇配 6 个重点词（词必须在正文中出现，复数/三单照规则认）。VOA Learning English 没有可用的文章 RSS，暂不用。"}
