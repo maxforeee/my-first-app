@@ -1,0 +1,2602 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>文档工作台</title>
+<meta name="theme-color" content="#f4f4f2">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #f4f4f2;
+    --surface: #ffffff;
+    --ink: #1f1e1c;
+    --muted: #6f6d68;
+    --faint: #a3a099;
+    --accent: #2563eb;
+    --accent-soft: #e8effd;
+    --accent-ink: #1d4ed8;
+    --border: #e3e1dc;
+    --danger: #dc2626;
+    --danger-soft: #fdecec;
+    --ok: #15803d;
+    --r: 12px;
+    --topbar-h: 56px;
+  }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    font-family: -apple-system, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.6;
+    min-height: 100dvh;
+  }
+  button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+  input, textarea, select { font: inherit; color: inherit; }
+  a { color: inherit; }
+  [hidden] { display: none !important; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
+
+  /* ---------- 通用按钮 ---------- */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+    min-height: 44px; padding: 0 16px; border-radius: 10px;
+    font-size: 15px; font-weight: 600; white-space: nowrap;
+    transition: background .18s ease, transform .12s ease;
+  }
+  .btn:active { transform: scale(.97); }
+  .btn-primary { background: var(--accent); color: #fff; }
+  .btn-primary:active { background: var(--accent-ink); }
+  .btn-ghost { background: var(--surface); border: 1px solid var(--border); }
+  .btn-ghost:active { background: #f0efec; }
+  .btn-danger { background: var(--danger-soft); color: var(--danger); }
+  .btn-sm { min-height: 36px; padding: 0 12px; font-size: 14px; border-radius: 8px; }
+  .icon-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 44px; height: 44px; border-radius: 10px; flex: none;
+  }
+  .icon-btn:active { background: #eceae6; }
+  .icon-btn svg { width: 21px; height: 21px; }
+  .icon-btn[disabled] { opacity: .35; }
+
+  /* ---------- 顶栏 ---------- */
+  .topbar {
+    position: sticky; top: 0; z-index: 40;
+    height: var(--topbar-h);
+    display: flex; align-items: center; gap: 8px;
+    padding: 0 12px;
+    background: rgba(244, 244, 242, .92);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  .brand { display: flex; align-items: center; gap: 9px; font-size: 17px; font-weight: 700; letter-spacing: .3px; }
+  .brand-mark {
+    width: 32px; height: 32px; border-radius: 9px; flex: none;
+    background: var(--accent); color: #fff;
+    display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: 700;
+  }
+  .search {
+    flex: 1; min-width: 0; height: 40px;
+    display: flex; align-items: center; gap: 8px;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; padding: 0 12px;
+  }
+  .search svg { width: 17px; height: 17px; color: var(--faint); flex: none; }
+  .search input { flex: 1; min-width: 0; border: 0; outline: none; background: none; font-size: 15px; }
+  .topbar .spacer { flex: 1; }
+
+  /* ---------- 工作台布局 ---------- */
+  .shell { max-width: 1060px; margin: 0 auto; padding: 16px 16px 40px; }
+  .nav-row { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; }
+  .nav-row::-webkit-scrollbar { display: none; }
+  .chip {
+    flex: none; min-height: 40px; padding: 0 14px; border-radius: 999px;
+    background: var(--surface); border: 1px solid var(--border);
+    font-size: 14px; font-weight: 600; color: var(--muted);
+  }
+  .chip.on { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .section-head { display: flex; align-items: baseline; gap: 8px; margin: 18px 2px 10px; }
+  .section-head h2 { font-size: 17px; font-weight: 700; }
+  .section-head span { font-size: 13px; color: var(--muted); }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .doc-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--r);
+    padding: 14px; text-align: left; display: flex; flex-direction: column; gap: 8px;
+    transition: transform .12s ease, box-shadow .18s ease; position: relative;
+  }
+  .doc-card:active { transform: scale(.98); }
+  .doc-ico {
+    width: 44px; height: 44px; border-radius: 11px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700;
+  }
+  .fmt-md { background: #eef2ff; color: #3730a3; }
+  .fmt-docx { background: #e8effd; color: #1d4ed8; }
+  .fmt-pptx { background: #fdeee3; color: #c2410c; }
+  .fmt-xlsx { background: #e6f4ea; color: #15803d; }
+  .doc-name { font-size: 15px; font-weight: 600; line-height: 1.4; word-break: break-all;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .doc-meta { font-size: 12px; color: var(--muted); }
+  .doc-menu { position: absolute; top: 8px; right: 8px; width: 36px; height: 36px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center; color: var(--muted); }
+  .doc-menu:active { background: #f0efec; }
+  .empty { text-align: center; padding: 56px 20px; color: var(--muted); }
+  .empty .big { font-size: 44px; margin-bottom: 12px; }
+  .empty h3 { font-size: 17px; color: var(--ink); margin-bottom: 6px; }
+  .empty p { font-size: 14px; margin-bottom: 18px; }
+  .note-bar {
+    margin-top: 20px; padding: 12px 14px; border-radius: var(--r);
+    background: var(--accent-soft); color: #1e40af; font-size: 13px; line-height: 1.55;
+  }
+
+  /* ---------- 编辑器 ---------- */
+  .ed-topbar {
+    position: sticky; top: 0; z-index: 40; min-height: var(--topbar-h);
+    display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+    padding: 6px 10px;
+    background: rgba(244, 244, 242, .94);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  .title-input {
+    flex: 1 1 120px; min-width: 0; height: 40px; padding: 0 10px;
+    border: 1px solid transparent; border-radius: 8px; background: transparent;
+    font-size: 16px; font-weight: 600;
+  }
+  .title-input:hover { border-color: var(--border); background: var(--surface); }
+  .title-input:focus { outline: none; border-color: var(--accent); background: var(--surface); }
+  .badge {
+    flex: none; font-size: 12px; font-weight: 700; padding: 3px 8px; border-radius: 6px;
+  }
+  .save-state { flex: none; font-size: 12px; color: var(--muted); white-space: nowrap; }
+  .save-state.ok { color: var(--ok); }
+  .ed-body { max-width: 1060px; margin: 0 auto; padding: 14px 14px 48px; }
+  .tabs { display: flex; gap: 6px; margin-bottom: 12px; }
+  .tab {
+    flex: 1; min-height: 44px; border-radius: 10px; font-size: 15px; font-weight: 600;
+    background: var(--surface); border: 1px solid var(--border); color: var(--muted);
+  }
+  .tab.on { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .toolbar { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
+  .tool-btn {
+    min-height: 40px; padding: 0 12px; border-radius: 8px; font-size: 14px; font-weight: 600;
+    background: var(--surface); border: 1px solid var(--border);
+  }
+  .tool-btn:active { background: #f0efec; }
+  .md-wrap { display: block; }
+  .md-edit {
+    width: 100%; min-height: 52vh; padding: 16px; resize: vertical;
+    border: 1px solid var(--border); border-radius: var(--r); background: var(--surface);
+    font-size: 16px; line-height: 1.7; outline: none;
+  }
+  .md-edit:focus { border-color: var(--accent); }
+  .md-preview {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--r);
+    padding: 18px; min-height: 52vh;
+  }
+  .outline { margin-bottom: 12px; }
+  .outline summary { cursor: pointer; font-size: 14px; font-weight: 600; color: var(--muted); padding: 6px 0; }
+  .outline a { display: block; padding: 5px 0 5px 10px; font-size: 14px; color: var(--muted);
+    text-decoration: none; border-left: 2px solid var(--border); }
+  .outline a:active { color: var(--accent); border-color: var(--accent); }
+
+  /* 文档块编辑器 */
+  .block { display: flex; gap: 8px; align-items: flex-start; margin-bottom: 10px; }
+  .block-type {
+    flex: none; width: 76px; height: 44px; border: 1px solid var(--border); border-radius: 9px;
+    background: var(--surface); font-size: 13px; font-weight: 600; padding: 0 4px;
+  }
+  .block-text {
+    flex: 1; min-width: 0; min-height: 44px; padding: 10px 12px; resize: none;
+    border: 1px solid var(--border); border-radius: 9px; background: var(--surface);
+    font-size: 16px; line-height: 1.6; outline: none;
+  }
+  .block-text:focus { border-color: var(--accent); }
+  .block-ops { flex: none; display: flex; flex-direction: column; gap: 2px; }
+  .block-ops button { width: 32px; height: 21px; font-size: 12px; color: var(--muted); border-radius: 6px; }
+  .block-ops button:active { background: #eceae6; color: var(--ink); }
+  .add-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 4px; }
+  .doc-preview {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--r);
+    padding: 22px 18px; min-height: 40vh;
+  }
+  .doc-preview h1 { font-size: 24px; margin: .4em 0; }
+  .doc-preview h2 { font-size: 19px; margin: .6em 0 .3em; }
+  .doc-preview p { margin: .5em 0; }
+  .doc-preview li { margin-left: 1.2em; }
+  .doc-preview blockquote { border-left: 3px solid var(--accent); padding-left: 12px; color: var(--muted); margin: .6em 0; }
+
+  /* 幻灯片 */
+  .slide-layout { display: flex; flex-direction: column; gap: 12px; }
+  .slide-list { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; }
+  .slide-list::-webkit-scrollbar { display: none; }
+  .slide-thumb {
+    flex: none; width: 132px; border: 1px solid var(--border); border-radius: 10px;
+    background: var(--surface); padding: 10px; text-align: left;
+  }
+  .slide-thumb.on { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+  .slide-thumb .n { font-size: 11px; color: var(--faint); font-weight: 700; }
+  .slide-thumb .t { font-size: 13px; font-weight: 600; line-height: 1.35; margin-top: 4px;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .slide-stage {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--r);
+    padding: 16px;
+  }
+  .slide-stage label { display: block; font-size: 13px; font-weight: 600; color: var(--muted); margin: 10px 0 6px; }
+  .slide-stage label:first-child { margin-top: 0; }
+  .slide-title-in {
+    width: 100%; min-height: 48px; padding: 10px 12px; border: 1px solid var(--border);
+    border-radius: 9px; background: #fff; font-size: 18px; font-weight: 700; outline: none;
+  }
+  .slide-points-in {
+    width: 100%; min-height: 180px; padding: 12px; resize: vertical;
+    border: 1px solid var(--border); border-radius: 9px; background: #fff;
+    font-size: 16px; line-height: 1.7; outline: none;
+  }
+  .slide-title-in:focus, .slide-points-in:focus { border-color: var(--accent); }
+  .slide-preview {
+    background: #1f2937; border-radius: var(--r); color: #fff;
+    aspect-ratio: 16 / 9; padding: 7% 8%; overflow: hidden;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .slide-preview h3 { font-size: clamp(18px, 4.6vw, 30px); line-height: 1.25; margin-bottom: .5em; }
+  .slide-preview li { font-size: clamp(13px, 3.2vw, 19px); line-height: 1.55; margin-left: 1.1em; }
+
+  /* 表格 */
+  .sheet-tabs { display: flex; gap: 6px; overflow-x: auto; margin-bottom: 10px; scrollbar-width: none; }
+  .sheet-tabs::-webkit-scrollbar { display: none; }
+  .sheet-tab {
+    flex: none; min-height: 40px; padding: 0 14px; border-radius: 9px 9px 0 0;
+    font-size: 14px; font-weight: 600; background: var(--surface);
+    border: 1px solid var(--border); border-bottom: 0; color: var(--muted);
+  }
+  .sheet-tab.on { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .grid-scroll { overflow: auto; border: 1px solid var(--border); border-radius: var(--r); background: var(--surface); }
+  table.grid-table { border-collapse: collapse; min-width: 100%; }
+  .grid-table th, .grid-table td { border: 1px solid var(--border); min-width: 96px; }
+  .grid-table th {
+    background: #f7f6f3; font-size: 12px; color: var(--muted); font-weight: 600;
+    padding: 6px 4px; text-align: center; position: sticky; top: 0;
+  }
+  .grid-table th.row-h { position: sticky; left: 0; z-index: 1; min-width: 36px; width: 36px; }
+  .grid-table td input {
+    width: 100%; border: 0; outline: none; background: none; padding: 9px 8px; font-size: 15px;
+  }
+  .grid-table td input:focus { background: var(--accent-soft); }
+  .grid-table td.sel { background: var(--accent-soft); }
+
+  /* ---------- 预览浮层 ---------- */
+  .overlay {
+    position: fixed; inset: 0; z-index: 80; background: var(--bg);
+    display: flex; flex-direction: column;
+  }
+  .overlay-bar {
+    flex: none; min-height: var(--topbar-h); display: flex; align-items: center; gap: 8px;
+    padding: 6px 12px; border-bottom: 1px solid var(--border); background: var(--surface);
+  }
+  .overlay-bar .t { flex: 1; min-width: 0; font-size: 15px; font-weight: 600;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .overlay-body { flex: 1; overflow: auto; padding: 16px; }
+  .overlay-body .paper {
+    max-width: 760px; margin: 0 auto; background: var(--surface);
+    border: 1px solid var(--border); border-radius: var(--r); padding: 24px 20px;
+  }
+  .overlay-body .paper.dark { background: #1f2937; border-color: #1f2937; }
+
+  /* ---------- 弹窗 / 菜单 / 提示 ---------- */
+  .backdrop { position: fixed; inset: 0; z-index: 90; background: rgba(0, 0, 0, .35); }
+  .modal {
+    position: fixed; z-index: 91; left: 0; right: 0; bottom: 0;
+    background: var(--surface); border-radius: 18px 18px 0 0; padding: 18px 18px calc(20px + env(safe-area-inset-bottom));
+    max-height: 86dvh; overflow: auto;
+    animation: sheet-in .2s ease;
+  }
+  @keyframes sheet-in { from { transform: translateY(24px); opacity: .6; } to { transform: none; opacity: 1; } }
+  .modal h3 { font-size: 18px; margin-bottom: 4px; }
+  .modal .sub { font-size: 14px; color: var(--muted); margin-bottom: 14px; }
+  .modal .row { display: flex; gap: 10px; margin-top: 16px; }
+  .modal .row .btn { flex: 1; }
+  .fmt-pick { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .fmt-card {
+    border: 1px solid var(--border); border-radius: var(--r); padding: 14px; text-align: left;
+  }
+  .fmt-card:active { border-color: var(--accent); background: var(--accent-soft); }
+  .fmt-card .fi { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center;
+    justify-content: center; font-size: 12px; font-weight: 700; margin-bottom: 8px; }
+  .fmt-card b { display: block; font-size: 15px; }
+  .fmt-card span { font-size: 12px; color: var(--muted); line-height: 1.45; display: block; margin-top: 2px; }
+  .menu {
+    position: fixed; z-index: 95; min-width: 220px; max-width: calc(100vw - 24px);
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+    box-shadow: 0 10px 32px rgba(0, 0, 0, .16); padding: 6px;
+    animation: fade-in .16s ease;
+  }
+  @keyframes fade-in { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+  .menu button {
+    display: flex; width: 100%; align-items: center; gap: 10px; min-height: 44px;
+    padding: 0 12px; border-radius: 8px; font-size: 15px; text-align: left;
+  }
+  .menu button:active { background: #f0efec; }
+  .menu button.danger { color: var(--danger); }
+  .menu button:disabled { opacity: .4; }
+  .menu .sep { height: 1px; background: var(--border); margin: 5px 8px; }
+  .menu .hint { font-size: 12px; color: var(--faint); padding: 6px 12px 4px; }
+  #toast {
+    position: fixed; left: 50%; bottom: calc(28px + env(safe-area-inset-bottom)); z-index: 120;
+    transform: translate(-50%, 16px); background: #1f1e1c; color: #fff;
+    padding: 11px 18px; border-radius: 999px; font-size: 14px; font-weight: 600;
+    opacity: 0; pointer-events: none; transition: opacity .2s ease, transform .2s ease;
+    max-width: calc(100vw - 32px); text-align: center;
+  }
+  #toast.show { opacity: 1; transform: translate(-50%, 0); }
+  .kbd-hint { font-size: 12px; color: var(--faint); margin-top: 8px; }
+
+  @media (min-width: 1024px) {
+    .grid { grid-template-columns: repeat(3, 1fr); }
+    .shell { display: flex; gap: 24px; padding-top: 24px; }
+    .shell .side { flex: none; width: 200px; }
+    .nav-row { flex-direction: column; overflow: visible; }
+    .chip { text-align: left; border-radius: 10px; }
+    .shell main { flex: 1; min-width: 0; }
+    .section-head { margin-top: 0; }
+    .md-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: start; }
+    .md-edit, .md-preview { min-height: 62vh; }
+    .slide-layout { flex-direction: row; align-items: start; }
+    .slide-list { flex-direction: column; overflow: visible; flex: none; width: 170px; }
+    .slide-thumb { width: 100%; }
+    .slide-layout .col { flex: 1; min-width: 0; }
+    .modal { left: 50%; right: auto; bottom: auto; top: 50%; transform: translate(-50%, -50%);
+      width: 440px; border-radius: 16px; animation: fade-in .16s ease; }
+  }
+  @media print {
+    body { background: #fff; }
+    .topbar, .ed-topbar, .overlay-bar, .tabs, .toolbar, .backdrop, .modal, #toast, .menu { display: none !important; }
+    .overlay { position: static; }
+    .overlay-body { padding: 0; }
+    .overlay-body .paper { border: 0; max-width: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ 工作台首页 ============ -->
+<div id="view-home">
+  <header class="topbar">
+    <div class="brand"><span class="brand-mark">文</span>文档工作台</div>
+    <div class="spacer"></div>
+    <button id="btnNew" class="btn btn-primary">＋ 新建</button>
+    <button id="btnImport" class="btn btn-ghost">导入</button>
+  </header>
+  <div class="shell">
+    <div class="side">
+      <div class="nav-row" id="filterRow">
+        <button class="chip on" data-filter="all">全部</button>
+        <button class="chip" data-filter="md">Markdown</button>
+        <button class="chip" data-filter="docx">Word</button>
+        <button class="chip" data-filter="pptx">演示</button>
+        <button class="chip" data-filter="xlsx">表格</button>
+      </div>
+    </div>
+    <main>
+      <div class="search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="searchInput" type="search" placeholder="搜索文档…" aria-label="搜索文档">
+      </div>
+      <div class="section-head"><h2>最近文档</h2><span id="docCount"></span></div>
+      <div class="grid" id="docGrid"></div>
+      <div class="empty" id="emptyHome" hidden>
+        <div class="big">📄</div>
+        <h3>还没有文档</h3>
+        <p>新建一个，或导入现有的 .md / .csv 文件开始。</p>
+        <button class="btn btn-primary" id="btnEmptyNew">新建文档</button>
+      </div>
+      <div class="note-bar">文档只保存在这个浏览器里，不跨设备同步。换手机、换浏览器或清理浏览数据后草稿会丢失，记得点「导出」备份到本地。</div>
+    </main>
+  </div>
+</div>
+
+<!-- ============ 编辑器 ============ -->
+<div id="view-editor" hidden>
+  <div class="ed-topbar">
+    <button id="btnBackHome" class="icon-btn" aria-label="返回工作台">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m14 6-6 6 6 6"/></svg>
+    </button>
+    <input id="titleInput" class="title-input" value="未命名" aria-label="文件名">
+    <span id="fmtBadge" class="badge fmt-md">MD</span>
+    <span id="saveState" class="save-state">已保存到此浏览器</span>
+    <button id="btnUndo" class="icon-btn" aria-label="撤销">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5 3 10l5 5"/><path d="M3 10h11a6 6 0 0 1 0 12h-3"/></svg>
+    </button>
+    <button id="btnRedo" class="icon-btn" aria-label="重做">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 5 5 5-5 5"/><path d="M21 10H10a6 6 0 0 0 0 12h3"/></svg>
+    </button>
+    <button id="btnPreview" class="btn btn-ghost btn-sm">预览</button>
+    <button id="btnProcess" class="btn btn-ghost btn-sm">处理 ▾</button>
+    <button id="btnExport" class="btn btn-primary btn-sm">导出</button>
+  </div>
+
+  <div class="ed-body">
+    <div class="tabs" id="edTabs">
+      <button class="tab on" data-tab="edit">编辑</button>
+      <button class="tab" data-tab="preview">预览</button>
+    </div>
+
+    <!-- MD -->
+    <section id="ed-md" hidden>
+      <div class="toolbar" id="mdToolbar">
+        <button class="tool-btn" data-ins="**粗体**">粗体</button>
+        <button class="tool-btn" data-ins="# ">标题 1</button>
+        <button class="tool-btn" data-ins="## ">标题 2</button>
+        <button class="tool-btn" data-ins="- ">列表</button>
+        <button class="tool-btn" data-ins="> ">引用</button>
+        <button class="tool-btn" data-ins="| A | B |\n| --- | --- |\n|  |  |">表格</button>
+      </div>
+      <details class="outline"><summary>大纲</summary><div id="mdOutline"></div></details>
+      <div class="md-wrap">
+        <textarea id="mdEdit" class="md-edit" placeholder="在这里写 Markdown，右边实时预览…" spellcheck="false"></textarea>
+        <div id="mdPreview" class="md-preview"></div>
+      </div>
+    </section>
+
+    <!-- DOCX -->
+    <section id="ed-docx" hidden>
+      <div id="blockList"></div>
+      <div class="add-row">
+        <button class="btn btn-ghost btn-sm" data-add="h1">＋ 标题 1</button>
+        <button class="btn btn-ghost btn-sm" data-add="h2">＋ 标题 2</button>
+        <button class="btn btn-ghost btn-sm" data-add="p">＋ 正文</button>
+        <button class="btn btn-ghost btn-sm" data-add="li">＋ 列表项</button>
+        <button class="btn btn-ghost btn-sm" data-add="quote">＋ 引用</button>
+      </div>
+      <div class="section-head"><h2>预览</h2></div>
+      <div id="docxPreview" class="doc-preview"></div>
+    </section>
+
+    <!-- PPTX -->
+    <section id="ed-pptx" hidden>
+      <div class="slide-layout">
+        <div class="slide-list" id="slideList"></div>
+        <div class="col">
+          <div class="slide-stage">
+            <label for="slideTitle">标题</label>
+            <input id="slideTitle" class="slide-title-in" placeholder="幻灯片标题">
+            <label for="slidePoints">要点（一行一条）</label>
+            <textarea id="slidePoints" class="slide-points-in" placeholder="每行写一个要点"></textarea>
+            <div class="toolbar" style="margin-top:12px">
+              <button class="tool-btn" id="btnSlidePrev">← 上一页</button>
+              <button class="tool-btn" id="btnSlideNext">下一页 →</button>
+              <button class="tool-btn" id="btnSlideAdd">＋ 新幻灯片</button>
+              <button class="tool-btn" id="btnSlideDup">复制本页</button>
+              <button class="tool-btn" id="btnSlideDel">删除本页</button>
+            </div>
+          </div>
+          <div class="section-head"><h2>本页预览</h2></div>
+          <div id="slidePreview" class="slide-preview"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- XLSX -->
+    <section id="ed-xlsx" hidden>
+      <div class="sheet-tabs" id="sheetTabs"></div>
+      <div class="toolbar">
+        <button class="tool-btn" id="btnRowAdd">＋ 行</button>
+        <button class="tool-btn" id="btnColAdd">＋ 列</button>
+        <button class="tool-btn" id="btnRowDel">删行</button>
+        <button class="tool-btn" id="btnColDel">删列</button>
+        <button class="tool-btn" id="btnSheetAdd">＋ 工作表</button>
+        <button class="tool-btn" id="btnSheetDel">删工作表</button>
+      </div>
+      <div class="grid-scroll"><table class="grid-table" id="gridTable"></table></div>
+      <p class="kbd-hint">点单元格直接改；选中单元格后「删行 / 删列」删的是它所在的行或列。表格可以导出 .xlsx，也可以导出 .csv。</p>
+    </section>
+  </div>
+</div>
+
+<!-- ============ 预览浮层 ============ -->
+<div id="previewOverlay" class="overlay" hidden>
+  <div class="overlay-bar">
+    <button id="btnPreviewBack" class="icon-btn" aria-label="返回编辑">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m14 6-6 6 6 6"/></svg>
+    </button>
+    <div class="t" id="previewTitle"></div>
+    <button id="btnPreviewExport" class="btn btn-primary btn-sm">导出</button>
+  </div>
+  <div class="overlay-body"><div class="paper" id="previewBody"></div></div>
+</div>
+
+<!-- ============ 弹窗 ============ -->
+<div id="backdrop" class="backdrop" hidden></div>
+
+<div id="newModal" class="modal" hidden role="dialog" aria-label="新建文档">
+  <h3>新建文档</h3>
+  <p class="sub">先选一种格式。内容存在这个浏览器里，随时可以导出备份。</p>
+  <div class="fmt-pick">
+    <button class="fmt-card" data-fmt="md"><span class="fi fmt-md">MD</span><b>Markdown</b><span>写文章、笔记，实时预览，可导出 .md / HTML</span></button>
+    <button class="fmt-card" data-fmt="docx"><span class="fi fmt-docx">W</span><b>Word 文档</b><span>简单文档：标题、段落、列表，导出 .docx</span></button>
+    <button class="fmt-card" data-fmt="pptx"><span class="fi fmt-pptx">P</span><b>演示文稿</b><span>每页一个标题加几个要点，导出 .pptx</span></button>
+    <button class="fmt-card" data-fmt="xlsx"><span class="fi fmt-xlsx">X</span><b>表格</b><span>多工作表网格编辑，导出 .xlsx / .csv</span></button>
+  </div>
+  <div class="row"><button class="btn btn-ghost" id="btnNewCancel">取消</button></div>
+</div>
+
+<div id="importModal" class="modal" hidden role="dialog" aria-label="导入文件">
+  <h3>导入文件</h3>
+  <p class="sub">导入的是副本，原文件不会被改动。支持 .md / .txt / .csv；.docx / .pptx / .xlsx 暂不支持导入编辑，可以新建一个再导出。</p>
+  <input type="file" id="importInput" accept=".md,.markdown,.txt,.csv" hidden>
+  <div class="row">
+    <button class="btn btn-primary" id="btnPickImport">选择文件</button>
+    <button class="btn btn-ghost" id="btnImportCancel">取消</button>
+  </div>
+</div>
+
+<div id="confirmModal" class="modal" hidden role="dialog" aria-label="确认操作">
+  <h3 id="confirmTitle">确定删除？</h3>
+  <p class="sub" id="confirmText"></p>
+  <div class="row">
+    <button class="btn btn-ghost" id="btnConfirmCancel">取消</button>
+    <button class="btn btn-danger" id="btnConfirmOk">删除</button>
+  </div>
+</div>
+
+<div id="menu" class="menu" hidden></div>
+<div id="toast"></div>
+
+<style>
+  /* MD 编辑/预览模式切换：手机默认只显示一边，桌面编辑态左右同显 */
+  #ed-md.mode-preview #mdEdit { display: none; }
+  #ed-md.mode-edit #mdPreview { display: none; }
+  @media (min-width: 1024px) {
+    #ed-md.mode-edit #mdPreview { display: block; }
+  }
+  /* 预览态下隐藏各格式的编辑区 */
+  #ed-docx.mode-preview #blockList, #ed-docx.mode-preview .add-row { display: none; }
+  #ed-pptx.mode-preview .slide-stage { display: none; }
+  #ed-xlsx.mode-preview .toolbar { display: none; }
+  #ed-xlsx.mode-preview #gridTable input { pointer-events: none; }
+</style>
+<script>
+(function () {
+  'use strict';
+
+  /* ================= 小工具 ================= */
+  const $ = (sel, root) => (root || document).querySelector(sel);
+  const $$ = (sel, root) => Array.prototype.slice.call((root || document).querySelectorAll(sel));
+
+  const store = {
+    get(key, def) {
+      try {
+        const raw = window.localStorage.getItem(key);
+        return raw == null ? def : JSON.parse(raw);
+      } catch (e) { return def; }
+    },
+    set(key, val) {
+      try { window.localStorage.setItem(key, JSON.stringify(val)); } catch (e) {}
+    }
+  };
+
+  function hash(str) {
+    let h = 5381;
+    for (let i = 0; i < str.length; i++) h = ((h << 5) + h + str.charCodeAt(i)) | 0;
+    return (h >>> 0).toString(36);
+  }
+
+  function isCJKChar(ch) {
+    return !!ch && /[\u2e80-\u9fff\u3000-\u303f\uf900-\ufaff\uff00-\uffef]/.test(ch);
+  }
+
+  /* ================= Markdown 解析（GFM 常用子集） ================= */
+  const MD = (function () {
+    function esc(s) {
+      return String(s)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    function stripInline(s) {
+      return String(s)
+        .replace(/!\[([^\]]*)\]\([^)]*\)/g, '$1')
+        .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1')
+        .replace(/`([^`]*)`/g, '$1')
+        .replace(/<[^>]+>/g, '')
+        .replace(/(\*\*|__|~~|\*|_)/g, '')
+        .replace(/\\([\\`*_{}\[\]()#+\-.!~|>])/g, '$1')
+        .trim();
+    }
+
+    function inline(raw) {
+      let s = String(raw);
+      const stash = [];
+      const keep = (html) => {
+        stash.push(html);
+        return '\u0000' + (stash.length - 1) + '\u0000';
+      };
+      s = s.replace(/(`+)([^`]|[^`][\s\S]*?[^`])\1(?!`)/g, function (m, ticks, code) {
+        let c = code.replace(/\n/g, ' ');
+        if (c.length > 2 && c.charAt(0) === ' ' && c.charAt(c.length - 1) === ' ' && c.trim()) {
+          c = c.slice(1, -1);
+        }
+        return keep('<code>' + esc(c) + '</code>');
+      });
+      s = s.replace(/\\([\\`*_{}\[\]()#+\-.!~|>])/g, function (m, ch) {
+        return keep(esc(ch));
+      });
+      s = s.replace(/!\[([^\]]*)\]\(\s*<?([^\s)>]+)>?(?:\s+["']([^"']*)["'])?\s*\)/g,
+        function (m, alt, src, title) {
+          let html = '<img src="' + esc(src) + '" alt="' + esc(stripInline(alt)) + '"';
+          if (title) html += ' title="' + esc(title) + '"';
+          return keep(html + '>');
+        });
+      s = s.replace(/\[([^\]]+)\]\(\s*<?([^\s)>]+)>?(?:\s+["']([^"']*)["'])?\s*\)/g,
+        function (m, label, href, title) {
+          let html = '<a href="' + esc(href) + '"';
+          if (title) html += ' title="' + esc(title) + '"';
+          return keep(html + '>' + inline(label) + '</a>');
+        });
+      s = s.replace(/<(https?:\/\/[^\s<>]+)>/g, function (m, url) {
+        return keep('<a href="' + esc(url) + '">' + esc(url) + '</a>');
+      });
+      s = s.replace(/<\/?[a-zA-Z][\w-]*(?:\s+[^<>]*?)?\s*\/?>/g, function (m) {
+        return keep(m);
+      });
+      s = esc(s);
+      s = s.replace(/\*\*\*([^*]+)\*\*\*/g, '<strong><em>$1</em></strong>');
+      s = s.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+      s = s.replace(/(^|[^\w])__([^_]+)__(?!\w)/g, '$1<strong>$2</strong>');
+      s = s.replace(/~~([^~]+)~~/g, '<del>$1</del>');
+      s = s.replace(/(^|[^\w*])\*([^*\n]+)\*/g, '$1<em>$2</em>');
+      s = s.replace(/(^|[^\w])_([^_\n]+)_(?!\w)/g, '$1<em>$2</em>');
+      s = s.replace(/(^|[\s(（])((?:https?:\/\/|www\.)[^\s<)）]+)/g, function (m, pre, url) {
+        let trail = '';
+        const tail = url.match(/[.,;:!?，。；：！？、]+$/);
+        if (tail) { trail = tail[0]; url = url.slice(0, -trail.length); }
+        const href = url.indexOf('http') === 0 ? url : 'https://' + url;
+        return pre + '<a href="' + esc(href) + '">' + esc(url) + '</a>' + trail;
+      });
+      s = s.replace(/ {2,}\n/g, '<br>\n').replace(/\\\n/g, '<br>\n');
+      const parts = s.split('\n');
+      let joined = parts[0];
+      for (let k = 1; k < parts.length; k++) {
+        const prev = joined.charAt(joined.length - 1);
+        const next = parts[k].charAt(0);
+        joined += (isCJKChar(prev) && isCJKChar(next)) ? parts[k] : ' ' + parts[k];
+      }
+      return joined.replace(/\u0000(\d+)\u0000/g, function (m, idx) {
+        return stash[Number(idx)] != null ? stash[Number(idx)] : '';
+      });
+    }
+
+    function splitCells(line) {
+      const cells = [];
+      let cur = '';
+      let escaped = false;
+      for (let k = 0; k < line.length; k++) {
+        const ch = line.charAt(k);
+        if (escaped) { cur += ch; escaped = false; continue; }
+        if (ch === '\\') { cur += ch; escaped = true; continue; }
+        if (ch === '|') { cells.push(cur.trim()); cur = ''; continue; }
+        cur += ch;
+      }
+      cells.push(cur.trim());
+      if (cells.length && cells[0] === '') cells.shift();
+      if (cells.length && cells[cells.length - 1] === '') cells.pop();
+      return cells;
+    }
+
+    function isTableDelimiter(line) {
+      const t = String(line).trim();
+      if (!t || t.indexOf('-') < 0) return false;
+      const cells = splitCells(t);
+      if (!cells.length) return false;
+      return cells.every(function (c) {
+        return /^:?-{2,}:?$/.test(c.replace(/\s+/g, ''));
+      });
+    }
+
+    function isBlockStart(line, next) {
+      if (!line || !line.trim()) return true;
+      if (/^ {0,3}(`{3,}|~{3,})/.test(line)) return true;
+      if (/^ {0,3}#{1,6}([ \t]|$)/.test(line)) return true;
+      if (/^ {0,3}>/.test(line)) return true;
+      if (/^ {0,3}([-*+]|\d{1,9}[.)])([ \t]|$)/.test(line)) return true;
+      if (/^ {0,3}([-*_])(?:[ \t]*\1){2,}[ \t]*$/.test(line)) return true;
+      if (/^ {0,3}(=+|-+)[ \t]*$/.test(line) && next !== undefined) return true;
+      if (/^ {0,3}<[a-zA-Z!/]/.test(line)) return true;
+      if (line.indexOf('|') >= 0 && next && isTableDelimiter(next)) return true;
+      return false;
+    }
+
+    function uniqueSlug(text, ctx) {
+      let base = String(text || '')
+        .toLowerCase()
+        .replace(/[`*_~\[\]()#>|]/g, '')
+        .replace(/[^\w\u4e00-\u9fff\u3400-\u4dbf\u3040-\u30ff-]+/g, '-')
+        .replace(/-+/g, '-')
+        .replace(/^-|-$/g, '');
+      if (!base) base = 'section';
+      let id = base;
+      let n = 1;
+      while (ctx.slugs[id]) { n += 1; id = base + '-' + n; }
+      ctx.slugs[id] = true;
+      return id;
+    }
+
+    function listBlock(lines, start, ctx) {
+      const first = lines[start].match(/^( {0,3})([-*+]|\d{1,9}[.)])([ \t]+|$)/);
+      const ordered = /\d/.test(first[2].charAt(0));
+      const startNum = ordered ? parseInt(first[2], 10) : 1;
+      const items = [];
+      let i = start;
+      while (i < lines.length) {
+        const m = lines[i].match(/^( {0,3})([-*+]|\d{1,9}[.)])([ \t]+|$)/);
+        if (!m) break;
+        if (/\d/.test(m[2].charAt(0)) !== ordered) break;
+        const markerLen = m[1].length + m[2].length;
+        const gap = m[3].length;
+        const contentIndent = markerLen + (gap === 0 ? 1 : Math.min(gap, 4));
+        const itemLines = [lines[i].slice(markerLen + (gap === 0 ? 0 : gap))];
+        i += 1;
+        let pendingBlank = false;
+        while (i < lines.length) {
+          const l = lines[i];
+          if (!l.trim()) { itemLines.push(''); pendingBlank = true; i += 1; continue; }
+          const indent = l.match(/^ */)[0].length;
+          const isMarker = /^( {0,3})([-*+]|\d{1,9}[.)])([ \t]+|$)/.test(l);
+          if (indent >= contentIndent) {
+            itemLines.push(l.slice(contentIndent));
+            pendingBlank = false; i += 1; continue;
+          }
+          if (isMarker) break;
+          if (indent > m[1].length && !pendingBlank) {
+            itemLines.push(l.slice(Math.min(indent, contentIndent)));
+            i += 1; continue;
+          }
+          if (!pendingBlank) { itemLines.push(l.trim()); i += 1; continue; }
+          break;
+        }
+        while (itemLines.length && !itemLines[itemLines.length - 1].trim()) itemLines.pop();
+        items.push(itemLines);
+      }
+      let html = ordered
+        ? '<ol' + (startNum !== 1 ? ' start="' + startNum + '"' : '') + '>'
+        : '<ul>';
+      for (let k = 0; k < items.length; k++) {
+        const item = items[k].slice();
+        let task = null;
+        const tm = item.length ? item[0].match(/^\[([ xX])\][ \t]+([\s\S]*)$/) : null;
+        if (tm) {
+          task = tm[1] !== ' ';
+          item[0] = tm[2];
+        }
+        let inner = blocks(item, ctx).trim();
+        const pCount = (inner.match(/<p>/g) || []).length;
+        if (pCount === 1 && inner.indexOf('<p>') === 0 && /<\/p>$/.test(inner)) {
+          inner = inner.slice(3, -4);
+        }
+        if (task !== null) {
+          html += '<li class="task"><span class="task-box' + (task ? ' done' : '') +
+                  '"></span><span>' + inner + '</span></li>';
+        } else {
+          html += '<li>' + inner + '</li>';
+        }
+      }
+      html += ordered ? '</ol>' : '</ul>';
+      return { html: html, next: i };
+    }
+
+    function blocks(lines, ctx) {
+      ctx.depth = (ctx.depth || 0) + 1;
+      if (ctx.depth > 12) { ctx.depth -= 1; return ''; }
+      let out = '';
+      let i = 0;
+      while (i < lines.length) {
+        const line = lines[i];
+        if (!line.trim()) { i += 1; continue; }
+        let m = line.match(/^ {0,3}(`{3,}|~{3,})[ \t]*([^`]*)$/);
+        if (m) {
+          const fenceChar = m[1].charAt(0);
+          const fenceLen = m[1].length;
+          const info = (m[2] || '').trim().split(/\s+/)[0];
+          i += 1;
+          const buf = [];
+          const closeRe = new RegExp('^ {0,3}' + (fenceChar === '`' ? '`' : '~') + '{' + fenceLen + ',}[ \\t]*$');
+          while (i < lines.length) {
+            if (closeRe.test(lines[i])) { i += 1; break; }
+            buf.push(lines[i]);
+            i += 1;
+          }
+          out += '<pre' + (info ? ' data-lang="' + esc(info) + '"' : '') + '><code>' +
+                 esc(buf.join('\n')) + '</code></pre>';
+          continue;
+        }
+        m = line.match(/^ {0,3}(#{1,6})(?:[ \t]+(.*?))?[ \t]*$/);
+        if (m) {
+          const level = m[1].length;
+          const content = (m[2] || '').replace(/[ \t]+#+[ \t]*$/, '').trim();
+          const textOnly = stripInline(content) || '未命名';
+          const id = uniqueSlug(textOnly, ctx);
+          ctx.toc.push({ level: level, text: textOnly, id: id });
+          out += '<h' + level + ' id="' + id + '">' + inline(content) + '</h' + level + '>';
+          i += 1;
+          continue;
+        }
+        if (i + 1 < lines.length && /^ {0,3}(=+|-+)[ \t]*$/.test(lines[i + 1]) &&
+            !/^ {0,3}([-*+]|\d{1,9}[.)])([ \t]|$)/.test(line)) {
+          const level = lines[i + 1].trim().charAt(0) === '=' ? 1 : 2;
+          const content = line.trim();
+          const textOnly = stripInline(content) || '未命名';
+          const id = uniqueSlug(textOnly, ctx);
+          ctx.toc.push({ level: level, text: textOnly, id: id });
+          out += '<h' + level + ' id="' + id + '">' + inline(content) + '</h' + level + '>';
+          i += 2;
+          continue;
+        }
+        if (/^ {0,3}([-*_])(?:[ \t]*\1){2,}[ \t]*$/.test(line)) {
+          out += '<hr>';
+          i += 1;
+          continue;
+        }
+        if (/^ {0,3}>/.test(line)) {
+          const buf = [];
+          while (i < lines.length) {
+            const l = lines[i];
+            if (/^ {0,3}>/.test(l)) {
+              buf.push(l.replace(/^ {0,3}> ?/, ''));
+              i += 1;
+              continue;
+            }
+            if (l.trim() && buf.length && !isBlockStart(l, lines[i + 1])) {
+              buf.push(l);
+              i += 1;
+              continue;
+            }
+            break;
+          }
+          out += '<blockquote>' + blocks(buf, ctx) + '</blockquote>';
+          continue;
+        }
+        if (/^( {0,3})([-*+]|\d{1,9}[.)])([ \t]+|$)/.test(line)) {
+          const nested = listBlock(lines, i, ctx);
+          out += nested.html;
+          i = nested.next;
+          continue;
+        }
+        if (line.indexOf('|') >= 0 && i + 1 < lines.length && isTableDelimiter(lines[i + 1])) {
+          const head = splitCells(line);
+          const aligns = splitCells(lines[i + 1]).map(function (c) {
+            c = c.trim();
+            const left = c.charAt(0) === ':';
+            const right = c.charAt(c.length - 1) === ':';
+            return left && right ? 'center' : right ? 'right' : left ? 'left' : '';
+          });
+          i += 2;
+          const rows = [];
+          while (i < lines.length && lines[i].trim() && lines[i].indexOf('|') >= 0) {
+            rows.push(splitCells(lines[i]));
+            i += 1;
+          }
+          let t = '<div class="table-wrap"><table><thead><tr>';
+          for (let c = 0; c < head.length; c++) {
+            t += '<th' + (aligns[c] ? ' align="' + aligns[c] + '"' : '') + '>' + inline(head[c]) + '</th>';
+          }
+          t += '</tr></thead><tbody>';
+          for (let r = 0; r < rows.length; r++) {
+            t += '<tr>';
+            for (let c = 0; c < head.length; c++) {
+              t += '<td' + (aligns[c] ? ' align="' + aligns[c] + '"' : '') + '>' +
+                   inline(rows[r][c] || '') + '</td>';
+            }
+            t += '</tr>';
+          }
+          t += '</tbody></table></div>';
+          out += t;
+          continue;
+        }
+        if (/^ {0,3}<[a-zA-Z!/]/.test(line)) {
+          const buf = [];
+          while (i < lines.length && lines[i].trim()) { buf.push(lines[i]); i += 1; }
+          out += buf.join('\n');
+          continue;
+        }
+        if (/^ {4}/.test(line)) {
+          const buf = [];
+          while (i < lines.length) {
+            if (/^ {4}/.test(lines[i])) { buf.push(lines[i].slice(4)); i += 1; continue; }
+            if (!lines[i].trim()) { buf.push(''); i += 1; continue; }
+            break;
+          }
+          while (buf.length && !buf[buf.length - 1].trim()) buf.pop();
+          out += '<pre><code>' + esc(buf.join('\n')) + '</code></pre>';
+          continue;
+        }
+        const buf = [line];
+        i += 1;
+        while (i < lines.length && lines[i].trim() && !isBlockStart(lines[i], lines[i + 1])) {
+          buf.push(lines[i]);
+          i += 1;
+        }
+        out += '<p>' + inline(buf.join('\n').trim()) + '</p>';
+      }
+      ctx.depth -= 1;
+      return out;
+    }
+
+    function parse(src) {
+      let text = String(src == null ? '' : src).replace(/\r\n?/g, '\n').replace(/^\uFEFF/, '');
+      const fm = text.match(/^---[ \t]*\n([\s\S]*?)\n---[ \t]*\n/);
+      if (fm) text = text.slice(fm[0].length);
+      const ctx = { toc: [], slugs: {}, depth: 0 };
+      const html = blocks(text.split('\n'), ctx);
+      return { html: html, toc: ctx.toc };
+    }
+
+    return { parse: parse, inline: inline, stripInline: stripInline };
+  })();
+
+  /* ================= HTML 白名单清理 ================= */
+  const SANITIZE = (function () {
+    const ALLOWED = {};
+    ['p', 'br', 'hr', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'ul', 'ol', 'li',
+     'blockquote', 'pre', 'code', 'em', 'strong', 'del', 'a', 'img', 'table',
+     'thead', 'tbody', 'tfoot', 'tr', 'th', 'td', 'details', 'summary', 'sup',
+     'sub', 'kbd', 'mark', 'div', 'span', 'dl', 'dt', 'dd', 'figure',
+     'figcaption', 'input'].forEach(function (t) { ALLOWED[t] = true; });
+    const DANGEROUS = {
+      script: 1, style: 1, iframe: 1, object: 1, embed: 1, form: 1, frame: 1,
+      frameset: 1, link: 1, meta: 1, base: 1, svg: 1, math: 1, noscript: 1,
+      template: 1, video: 1, audio: 1, source: 1, canvas: 1
+    };
+    const ATTRS = {
+      a: ['href', 'title'],
+      img: ['src', 'alt', 'title'],
+      code: ['class'],
+      pre: ['data-lang'],
+      ol: ['start'],
+      li: ['class'],
+      td: ['align', 'colspan', 'rowspan'],
+      th: ['align', 'colspan', 'rowspan'],
+      details: ['open'],
+      input: ['type', 'checked', 'disabled'],
+      h1: ['id'], h2: ['id'], h3: ['id'], h4: ['id'], h5: ['id'], h6: ['id']
+    };
+    function safeUrl(u) {
+      const t = String(u).trim().replace(/[\u0000-\u001f\u007f]/g, '');
+      if (!t) return false;
+      if (t.charAt(0) === '#') return true;
+      if (/^(https?:|mailto:|tel:)/i.test(t)) return true;
+      if (/^data:image\/(png|jpe?g|gif|webp);base64,/i.test(t)) return true;
+      return false;
+    }
+    function cleanAttrs(el, tag) {
+      const rules = ATTRS[tag] || [];
+      const attrs = Array.prototype.slice.call(el.attributes);
+      for (let i = 0; i < attrs.length; i++) {
+        const a = attrs[i];
+        const name = a.name.toLowerCase();
+        if (rules.indexOf(name) < 0 || name.charAt(0) === 'o' && name.indexOf('on') === 0) {
+          el.removeAttribute(a.name);
+          continue;
+        }
+        if ((name === 'href' || name === 'src') && !safeUrl(a.value)) {
+          if (name === 'src' && tag === 'img') {
+            el.setAttribute('data-broken', a.value);
+            el.removeAttribute('src');
+          } else {
+            el.removeAttribute(name);
+          }
+        }
+        if (name === 'colspan' || name === 'rowspan') {
+          if (!/^\d{1,2}$/.test(a.value)) el.removeAttribute(name);
+        }
+      }
+      if (tag === 'input') {
+        if (el.getAttribute('type') !== 'checkbox') el.remove();
+      }
+    }
+    function walk(el) {
+      let node = el.firstChild;
+      while (node) {
+        const next = node.nextSibling;
+        if (node.nodeType === 8) {
+          el.removeChild(node);
+        } else if (node.nodeType === 1) {
+          const tag = node.tagName.toLowerCase();
+          if (DANGEROUS[tag]) {
+            el.removeChild(node);
+          } else if (!ALLOWED[tag]) {
+            const frag = document.createDocumentFragment();
+            while (node.firstChild) frag.appendChild(node.firstChild);
+            node.replaceWith(frag);
+            let kid = frag.firstChild;
+            while (kid) {
+              const nk = kid.nextSibling;
+              if (kid.nodeType === 1) {
+                cleanAttrs(kid, kid.tagName.toLowerCase());
+                walk(kid);
+              }
+              kid = nk;
+            }
+          } else {
+            cleanAttrs(node, tag);
+            walk(node);
+          }
+        }
+        node = next;
+      }
+    }
+    return function sanitize(root) { walk(root); };
+  })();
+
+  /* ================= 阅读增强：代码复制、坏图占位 ================= */
+  function enhance(root) {
+    $$('table', root).forEach(function (table) {
+      if (!table.parentNode.classList || !table.parentNode.classList.contains('table-wrap')) {
+        const wrap = document.createElement('div');
+        wrap.className = 'table-wrap';
+        table.parentNode.insertBefore(wrap, table);
+        wrap.appendChild(table);
+      }
+    });
+    $$('pre', root).forEach(function (pre) {
+      const lang = pre.getAttribute('data-lang');
+      const code = pre.querySelector('code');
+      if (lang) {
+        const label = document.createElement('span');
+        label.className = 'code-lang';
+        label.textContent = lang;
+        pre.appendChild(label);
+      }
+      if (!code) return;
+      const btn = document.createElement('button');
+      btn.className = 'copy-btn';
+      btn.type = 'button';
+      btn.textContent = '复制';
+      btn.addEventListener('click', function () {
+        const text = code.textContent;
+        if (navigator.clipboard) navigator.clipboard.writeText(text).catch(function () {});
+        toast('已复制代码');
+      });
+      pre.appendChild(btn);
+    });
+    $$('img', root).forEach(function (img) {
+      const placeholder = function () {
+        if (img.getAttribute('data-placeholdered')) return;
+        img.setAttribute('data-placeholdered', '1');
+        const box = document.createElement('div');
+        box.className = 'broken';
+        box.style.cssText = 'display:flex;align-items:center;justify-content:center;min-height:90px;' +
+          'padding:14px;text-align:center;border:1px dashed var(--line);border-radius:12px;' +
+          'color:var(--muted);font-size:12.5px;margin:1.1em auto;';
+        const name = img.getAttribute('alt') || img.getAttribute('data-broken') || '图片';
+        box.textContent = '图片未能载入：' + name;
+        img.replaceWith(box);
+      };
+      if (!img.getAttribute('src')) placeholder();
+      else img.addEventListener('error', placeholder);
+    });
+    const end = document.createElement('div');
+    end.className = 'end-mark';
+    end.textContent = '· 完 ·';
+    root.appendChild(end);
+  }
+
+  /* ================= 提示 ================= */
+  let toastTimer = 0;
+  function toast(msg) {
+    const t = document.getElementById('toast');
+    if (!t) return;
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { t.classList.remove('show'); }, 2000);
+  }
+
+  function xmlEsc(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  function downloadBlob(blob, filename) {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(function () { URL.revokeObjectURL(url); a.remove(); }, 800);
+  }
+
+  /* ================= 本地存储：IndexedDB，失败时退回 localStorage ================= */
+  const DB = (function () {
+    let idb = null, idbFailed = false;
+    function open() {
+      return new Promise(function (resolve) {
+        if (!('indexedDB' in window)) { idbFailed = true; resolve(false); return; }
+        try {
+          const req = indexedDB.open('docdesk', 1);
+          req.onupgradeneeded = function () { req.result.createObjectStore('docs', { keyPath: 'id' }); };
+          req.onsuccess = function () { idb = req.result; resolve(true); };
+          req.onerror = function () { idbFailed = true; resolve(false); };
+        } catch (e) { idbFailed = true; resolve(false); }
+      });
+    }
+    function lsAll() { return store.get('docdesk-docs', []); }
+    function lsPut(doc) {
+      const all = lsAll().filter(function (d) { return d.id !== doc.id; });
+      all.push(doc);
+      store.set('docdesk-docs', all);
+    }
+    function lsDel(id) { store.set('docdesk-docs', lsAll().filter(function (d) { return d.id !== id; })); }
+    function all() {
+      if (idbFailed || !idb) return Promise.resolve(lsAll());
+      return new Promise(function (resolve) {
+        const req = idb.transaction('docs', 'readonly').objectStore('docs').getAll();
+        req.onsuccess = function () { resolve(req.result || []); };
+        req.onerror = function () { resolve(lsAll()); };
+      });
+    }
+    function put(doc) {
+      if (idbFailed || !idb) { lsPut(doc); return Promise.resolve(); }
+      return new Promise(function (resolve) {
+        const req = idb.transaction('docs', 'readwrite').objectStore('docs').put(doc);
+        req.onsuccess = function () { resolve(); };
+        req.onerror = function () { lsPut(doc); resolve(); };
+      });
+    }
+    function del(id) {
+      if (idbFailed || !idb) { lsDel(id); return Promise.resolve(); }
+      return new Promise(function (resolve) {
+        const req = idb.transaction('docs', 'readwrite').objectStore('docs').delete(id);
+        req.onsuccess = function () { resolve(); };
+        req.onerror = function () { lsDel(id); resolve(); };
+      });
+    }
+    return { open: open, all: all, put: put, del: del };
+  })();
+
+  /* ================= ZIP（仅存储，不压缩） ================= */
+  const CRC_TABLE = (function () {
+    const t = new Uint32Array(256);
+    for (let n = 0; n < 256; n++) {
+      let c = n;
+      for (let k = 0; k < 8; k++) c = (c & 1) ? (0xEDB88320 ^ (c >>> 1)) : (c >>> 1);
+      t[n] = c >>> 0;
+    }
+    return t;
+  })();
+  function crc32(buf) {
+    let c = 0xFFFFFFFF;
+    for (let i = 0; i < buf.length; i++) c = CRC_TABLE[(c ^ buf[i]) & 0xFF] ^ (c >>> 8);
+    return (c ^ 0xFFFFFFFF) >>> 0;
+  }
+  function zipStore(files) {
+    const enc = new TextEncoder();
+    const chunks = [], central = [];
+    let offset = 0;
+    files.forEach(function (f) {
+      const data = typeof f.data === 'string' ? enc.encode(f.data) : f.data;
+      const name = enc.encode(f.path);
+      const crc = crc32(data);
+      const lh = new DataView(new ArrayBuffer(30));
+      lh.setUint32(0, 0x04034b50, true);
+      lh.setUint16(4, 20, true);
+      lh.setUint16(6, 0x0800, true);
+      lh.setUint16(8, 0, true);
+      lh.setUint16(10, 0, true);
+      lh.setUint16(12, 0x21, true);
+      lh.setUint32(14, crc, true);
+      lh.setUint32(18, data.length, true);
+      lh.setUint32(22, data.length, true);
+      lh.setUint16(26, name.length, true);
+      lh.setUint16(28, 0, true);
+      chunks.push(lh.buffer, name, data);
+      const ch = new DataView(new ArrayBuffer(46));
+      ch.setUint32(0, 0x02014b50, true);
+      ch.setUint16(4, 20, true);
+      ch.setUint16(6, 20, true);
+      ch.setUint16(8, 0x0800, true);
+      ch.setUint16(10, 0, true);
+      ch.setUint16(12, 0, true);
+      ch.setUint16(14, 0x21, true);
+      ch.setUint32(16, crc, true);
+      ch.setUint32(20, data.length, true);
+      ch.setUint32(24, data.length, true);
+      ch.setUint16(28, name.length, true);
+      ch.setUint16(30, 0, true);
+      ch.setUint16(32, 0, true);
+      ch.setUint16(34, 0, true);
+      ch.setUint16(36, 0, true);
+      ch.setUint32(38, 0, true);
+      ch.setUint32(42, offset, true);
+      central.push(ch.buffer, name);
+      offset += 30 + name.length + data.length;
+    });
+    const centralSize = central.reduce(function (s, c) { return s + c.byteLength; }, 0);
+    const eo = new DataView(new ArrayBuffer(22));
+    eo.setUint32(0, 0x06054b50, true);
+    eo.setUint16(4, 0, true);
+    eo.setUint16(6, 0, true);
+    eo.setUint16(8, files.length, true);
+    eo.setUint16(10, files.length, true);
+    eo.setUint32(12, centralSize, true);
+    eo.setUint32(16, offset, true);
+    eo.setUint16(20, 0, true);
+    return new Blob(chunks.concat(central, [eo.buffer]), { type: 'application/zip' });
+  }
+
+  const XML_HEAD = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n';
+  const RELS_NS = 'http://schemas.openxmlformats.org/package/2006/relationships';
+  function relsXml(rels) {
+    return XML_HEAD + '<Relationships xmlns="' + RELS_NS + '">' +
+      rels.map(function (r) {
+        return '<Relationship Id="' + r.id + '" Type="' + r.type + '" Target="' + r.target + '"/>';
+      }).join('') + '</Relationships>';
+  }
+  function coreXml(title) {
+    const now = new Date().toISOString().replace(/\.\d+Z$/, 'Z');
+    return XML_HEAD + '<cp:coreProperties xmlns:cp="http://schemas.openxmlformats.org/package/2006/metadata/core-properties" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">' +
+      '<dc:title>' + xmlEsc(title) + '</dc:title><dc:creator>文档工作台</dc:creator>' +
+      '<dcterms:created xsi:type="dcterms:W3CDTF">' + now + '</dcterms:created>' +
+      '<dcterms:modified xsi:type="dcterms:W3CDTF">' + now + '</dcterms:modified></cp:coreProperties>';
+  }
+  function appXml() {
+    return XML_HEAD + '<Properties xmlns="http://schemas.openxmlformats.org/officeDocument/2006/extended-properties"><Application>文档工作台</Application></Properties>';
+  }
+
+  /* ================= DOCX ================= */
+  function buildDocx(blocks, title) {
+    const paras = (blocks || []).map(function (b) {
+      const text = String(b.text == null ? '' : b.text);
+      const style = b.type === 'h1' ? 'Heading1' : b.type === 'h2' ? 'Heading2'
+        : b.type === 'li' ? 'ListParagraph' : b.type === 'quote' ? 'IntenseQuote' : 'Normal';
+      const lines = text.split('\n');
+      const runs = lines.map(function (line, i) {
+        const t = (i === 0 && b.type === 'li' ? '•  ' : '') + line;
+        return (i ? '<w:br/>' : '') + '<w:r><w:t xml:space="preserve">' + xmlEsc(t) + '</w:t></w:r>';
+      }).join('');
+      return '<w:p><w:pPr><w:pStyle w:val="' + style + '"/></w:pPr>' + runs + '</w:p>';
+    }).join('');
+    const documentXml = XML_HEAD +
+      '<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:body>' + paras +
+      '<w:sectPr><w:pgSz w:w="11906" w:h="16838"/><w:pgMar w:top="1440" w:right="1800" w:bottom="1440" w:left="1800" w:header="720" w:footer="720" w:gutter="0"/></w:sectPr>' +
+      '</w:body></w:document>';
+    const stylesXml = XML_HEAD +
+      '<w:styles xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">' +
+      '<w:docDefaults><w:rPrDefault><w:rPr><w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Microsoft YaHei" w:cs="Calibri"/><w:sz w:val="22"/><w:szCs w:val="22"/><w:lang w:val="en-US" w:eastAsia="zh-CN"/></w:rPr></w:rPrDefault>' +
+      '<w:pPrDefault><w:pPr><w:spacing w:after="160" w:line="276" w:lineRule="auto"/></w:pPr></w:pPrDefault></w:docDefaults>' +
+      '<w:style w:type="paragraph" w:default="1" w:styleId="Normal"><w:name w:val="Normal"/><w:qFormat/><w:pPr><w:spacing w:after="160" w:line="276" w:lineRule="auto"/></w:pPr></w:style>' +
+      '<w:style w:type="paragraph" w:styleId="Heading1"><w:name w:val="heading 1"/><w:basedOn w:val="Normal"/><w:next w:val="Normal"/><w:qFormat/><w:pPr><w:keepNext/><w:spacing w:before="360" w:after="160"/><w:outlineLvl w:val="0"/></w:pPr><w:rPr><w:b/><w:sz w:val="32"/><w:szCs w:val="32"/></w:rPr></w:style>' +
+      '<w:style w:type="paragraph" w:styleId="Heading2"><w:name w:val="heading 2"/><w:basedOn w:val="Normal"/><w:next w:val="Normal"/><w:qFormat/><w:pPr><w:keepNext/><w:spacing w:before="280" w:after="120"/><w:outlineLvl w:val="1"/></w:pPr><w:rPr><w:b/><w:sz w:val="28"/><w:szCs w:val="28"/></w:rPr></w:style>' +
+      '<w:style w:type="paragraph" w:styleId="ListParagraph"><w:name w:val="List Paragraph"/><w:basedOn w:val="Normal"/><w:qFormat/><w:pPr><w:ind w:left="720"/><w:spacing w:after="80"/></w:pPr></w:style>' +
+      '<w:style w:type="paragraph" w:styleId="IntenseQuote"><w:name w:val="Intense Quote"/><w:basedOn w:val="Normal"/><w:qFormat/><w:pPr><w:ind w:left="360"/><w:spacing w:after="160"/></w:pPr><w:rPr><w:i/><w:color w:val="595959"/></w:rPr></w:style>' +
+      '</w:styles>';
+    const typesXml = XML_HEAD +
+      '<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">' +
+      '<Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>' +
+      '<Default Extension="xml" ContentType="application/xml"/>' +
+      '<Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/>' +
+      '<Override PartName="/word/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml"/>' +
+      '<Override PartName="/docProps/core.xml" ContentType="application/vnd.openxmlformats-package.core-properties+xml"/>' +
+      '<Override PartName="/docProps/app.xml" ContentType="application/vnd.openxmlformats-officedocument.extended-properties+xml"/></Types>';
+    return zipStore([
+      { path: '[Content_Types].xml', data: typesXml },
+      { path: '_rels/.rels', data: relsXml([
+        { id: 'rId1', type: 'http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument', target: 'word/document.xml' },
+        { id: 'rId2', type: 'http://schemas.openxmlformats.org/package/2006/relationships/metadata/core-properties', target: 'docProps/core.xml' },
+        { id: 'rId3', type: 'http://schemas.openxmlformats.org/officeDocument/2006/relationships/extended-properties', target: 'docProps/app.xml' }
+      ]) },
+      { path: 'docProps/core.xml', data: coreXml(title) },
+      { path: 'docProps/app.xml', data: appXml() },
+      { path: 'word/document.xml', data: documentXml },
+      { path: 'word/_rels/document.xml.rels', data: relsXml([
+        { id: 'rId1', type: 'http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles', target: 'styles.xml' }
+      ]) },
+      { path: 'word/styles.xml', data: stylesXml }
+    ]);
+  }
+
+  /* ================= XLSX ================= */
+  function colName(n) {
+    let s = '';
+    n += 1;
+    while (n > 0) { const m = (n - 1) % 26; s = String.fromCharCode(65 + m) + s; n = Math.floor((n - 1) / 26); }
+    return s;
+  }
+  function isNumberCell(v) {
+    if (v == null || String(v).trim() === '') return false;
+    return /^-?\d+(\.\d+)?$/.test(String(v).trim());
+  }
+  function cleanSheetName(name) {
+    const n = String(name || '工作表').replace(/[:\\/?*\[\]]/g, '_').slice(0, 31) || '工作表';
+    return n;
+  }
+  function buildXlsx(sheets, title) {
+    const ss = [], ssIndex = {};
+    function strIdx(s) {
+      s = String(s);
+      if (ssIndex[s] === undefined) { ssIndex[s] = ss.length; ss.push(s); }
+      return ssIndex[s];
+    }
+    const clean = (sheets || []).map(function (sh, i) {
+      return { name: cleanSheetName(sh.name || ('工作表' + (i + 1))), rows: sh.rows || [] };
+    });
+    if (!clean.length) clean.push({ name: '工作表1', rows: [] });
+    const files = [];
+    const sheetXmls = clean.map(function (sh) {
+      let maxCol = 0, maxRow = 0;
+      sh.rows.forEach(function (row, ri) {
+        (row || []).forEach(function (cell, ci) {
+          if (cell != null && String(cell) !== '') { maxCol = Math.max(maxCol, ci + 1); maxRow = Math.max(maxRow, ri + 1); }
+        });
+      });
+      let rowsXml = '';
+      sh.rows.forEach(function (row, ri) {
+        let cells = '';
+        (row || []).forEach(function (cell, ci) {
+          if (cell == null || String(cell) === '') return;
+          const ref = colName(ci) + (ri + 1);
+          if (isNumberCell(cell)) cells += '<c r="' + ref + '"><v>' + String(cell).trim() + '</v></c>';
+          else cells += '<c r="' + ref + '" t="s"><v>' + strIdx(cell) + '</v></c>';
+        });
+        rowsXml += '<row r="' + (ri + 1) + '">' + cells + '</row>';
+      });
+      const dim = maxCol ? ('A1:' + colName(maxCol - 1) + maxRow) : 'A1';
+      let colsXml = '';
+      for (let c = 0; c < Math.max(maxCol, 1); c++) colsXml += '<col min="' + (c + 1) + '" max="' + (c + 1) + '" width="14" customWidth="1"/>';
+      return XML_HEAD + '<worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><dimension ref="' + dim + '"/>' +
+        '<sheetViews><sheetView workbookViewId="0"/></sheetViews><sheetFormatPr defaultRowHeight="15"/><cols>' + colsXml + '</cols>' +
+        '<sheetData>' + rowsXml + '</sheetData></worksheet>';
+    });
+    const workbookXml = XML_HEAD +
+      '<workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><sheets>' +
+      clean.map(function (sh, i) {
+        return '<sheet name="' + xmlEsc(sh.name) + '" sheetId="' + (i + 1) + '" r:id="rId' + (i + 1) + '"/>';
+      }).join('') + '</sheets></workbook>';
+    const wbRels = clean.map(function (sh, i) {
+      return { id: 'rId' + (i + 1), type: 'http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet', target: 'worksheets/sheet' + (i + 1) + '.xml' };
+    });
+    wbRels.push({ id: 'rId' + (clean.length + 1), type: 'http://schemas.openxmlformats.org/officeDocument/2006/relationships/sharedStrings', target: 'sharedStrings.xml' });
+    wbRels.push({ id: 'rId' + (clean.length + 2), type: 'http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles', target: 'styles.xml' });
+    const sstXml = XML_HEAD + '<sst xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" count="' + ss.length + '" uniqueCount="' + ss.length + '">' +
+      ss.map(function (s) { return '<si><t xml:space="preserve">' + xmlEsc(s) + '</t></si>'; }).join('') + '</sst>';
+    const stylesXml = XML_HEAD +
+      '<styleSheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main">' +
+      '<fonts count="1"><font><sz val="11"/><name val="Calibri"/></font></fonts>' +
+      '<fills count="2"><fill><patternFill patternType="none"/></fill><fill><patternFill patternType="gray125"/></fill></fills>' +
+      '<borders count="1"><border><left/><right/><top/><bottom/><diagonal/></border></borders>' +
+      '<cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0"/></cellStyleXfs>' +
+      '<cellXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0"/></cellXfs>' +
+      '<cellStyles count="1"><cellStyle name="Normal" xfId="0" builtinId="0"/></cellStyles></styleSheet>';
+    let typesOverrides = '<Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/>' +
+      '<Override PartName="/xl/sharedStrings.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sharedStrings+xml"/>' +
+      '<Override PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml"/>' +
+      '<Override PartName="/docProps/core.xml" ContentType="application/vnd.openxmlformats-package.core-properties+xml"/>' +
+      '<Override PartName="/docProps/app.xml" ContentType="application/vnd.openxmlformats-officedocument.extended-properties+xml"/>';
+    clean.forEach(function (sh, i) {
+      typesOverrides += '<Override PartName="/xl/worksheets/sheet' + (i + 1) + '.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/>';
+    });
+    files.push(
+      { path: '[Content_Types].xml', data: XML_HEAD + '<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/>' + typesOverrides + '</Types>' },
+      { path: '_rels/.rels', data: relsXml([
+        { id: 'rId1', type: 'http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument', target: 'xl/workbook.xml' },
+        { id: 'rId2', type: 'http://schemas.openxmlformats.org/package/2006/relationships/metadata/core-properties', target: 'docProps/core.xml' },
+        { id: 'rId3', type: 'http://schemas.openxmlformats.org/officeDocument/2006/relationships/extended-properties', target: 'docProps/app.xml' }
+      ]) },
+      { path: 'docProps/core.xml', data: coreXml(title || clean[0].name) },
+      { path: 'docProps/app.xml', data: appXml() },
+      { path: 'xl/workbook.xml', data: workbookXml },
+      { path: 'xl/_rels/workbook.xml.rels', data: relsXml(wbRels) },
+      { path: 'xl/sharedStrings.xml', data: sstXml },
+      { path: 'xl/styles.xml', data: stylesXml }
+    );
+    sheetXmls.forEach(function (xml, i) { files.push({ path: 'xl/worksheets/sheet' + (i + 1) + '.xml', data: xml }); });
+    return zipStore(files);
+  }
+
+  /* ================= PPTX ================= */
+  const PPTX_A = 'http://schemas.openxmlformats.org/drawingml/2006/main';
+  const PPTX_R = 'http://schemas.openxmlformats.org/officeDocument/2006/relationships';
+  const PPTX_P = 'http://schemas.openxmlformats.org/presentationml/2006/main';
+  function pptxTheme() {
+    return XML_HEAD + '<a:theme xmlns:a="' + PPTX_A + '" name="Office Theme"><a:themeElements>' +
+      '<a:clrScheme name="Office">' +
+      '<a:dk1><a:sysClr val="windowText" lastClr="000000"/></a:dk1>' +
+      '<a:lt1><a:sysClr val="window" lastClr="FFFFFF"/></a:lt1>' +
+      '<a:dk2><a:srgbClr val="1F497D"/></a:dk2><a:lt2><a:srgbClr val="EEECE1"/></a:lt2>' +
+      '<a:accent1><a:srgbClr val="4F81BD"/></a:accent1><a:accent2><a:srgbClr val="C0504D"/></a:accent2>' +
+      '<a:accent3><a:srgbClr val="9BBB59"/></a:accent3><a:accent4><a:srgbClr val="8064A2"/></a:accent4>' +
+      '<a:accent5><a:srgbClr val="4BACC6"/></a:accent5><a:accent6><a:srgbClr val="F79646"/></a:accent6>' +
+      '<a:hlink><a:srgbClr val="0000FF"/></a:hlink><a:folHlink><a:srgbClr val="800080"/></a:folHlink></a:clrScheme>' +
+      '<a:fontScheme name="Office"><a:majorFont><a:latin typeface="Calibri"/><a:ea typeface=""/><a:cs typeface=""/></a:majorFont>' +
+      '<a:minorFont><a:latin typeface="Calibri"/><a:ea typeface=""/><a:cs typeface=""/></a:minorFont></a:fontScheme>' +
+      '<a:fmtScheme name="Office"><a:fillStyleLst><a:solidFill><a:schemeClr val="phClr"/></a:solidFill></a:fillStyleLst>' +
+      '<a:lnStyleLst><a:ln w="9525" cap="flat" cmpd="sng" algn="ctr"><a:solidFill><a:schemeClr val="phClr"/></a:solidFill><a:prstDash val="solid"/></a:ln></a:lnStyleLst>' +
+      '<a:effectStyleLst><a:effectStyle><a:effectLst/></a:effectStyle></a:effectStyleLst>' +
+      '<a:bgFillStyleLst><a:solidFill><a:schemeClr val="phClr"/></a:solidFill></a:bgFillStyleLst></a:fmtScheme>' +
+      '</a:themeElements></a:theme>';
+  }
+  function pptxSlideXml(slide) {
+    const title = String(slide.title || '');
+    const points = (slide.points || []).filter(function (p) { return String(p).trim() !== ''; });
+    const titleParas = title
+      ? '<a:p><a:r><a:rPr lang="zh-CN" sz="3200" b="1"><a:solidFill><a:srgbClr val="1F2937"/></a:solidFill></a:rPr><a:t>' + xmlEsc(title) + '</a:t></a:r></a:p>'
+      : '<a:p/>';
+    const pointParas = points.length ? points.map(function (p) {
+      return '<a:p><a:pPr marL="228600" indent="-228600"><a:buChar char="•"/></a:pPr>' +
+        '<a:r><a:rPr lang="zh-CN" sz="2000"><a:solidFill><a:srgbClr val="374151"/></a:solidFill></a:rPr><a:t>' + xmlEsc(p) + '</a:t></a:r></a:p>';
+    }).join('') : '<a:p/>';
+    return XML_HEAD +
+      '<p:sld xmlns:a="' + PPTX_A + '" xmlns:r="' + PPTX_R + '" xmlns:p="' + PPTX_P + '">' +
+      '<p:cSld><p:spTree>' +
+      '<p:nvGrpSpPr><p:cNvPr id="1" name=""/><p:cNvGrpSpPr/><p:nvPr/></p:nvGrpSpPr>' +
+      '<p:grpSpPr><a:xfrm><a:off x="0" y="0"/><a:ext cx="0" cy="0"/><a:chOff x="0" y="0"/><a:chExt cx="0" cy="0"/></a:xfrm></p:grpSpPr>' +
+      '<p:sp><p:nvSpPr><p:cNvPr id="2" name="标题"/><p:cNvSpPr txBox="1"/><p:nvPr/></p:nvSpPr>' +
+      '<p:spPr><a:xfrm><a:off x="457200" y="274320"/><a:ext cx="11277600" y="1143000"/></a:xfrm></p:spPr>' +
+      '<p:txBody><a:bodyPr wrap="square"/><a:lstStyle/>' + titleParas + '</p:txBody></p:sp>' +
+      '<p:sp><p:nvSpPr><p:cNvPr id="3" name="内容"/><p:cNvSpPr txBox="1"/><p:nvPr/></p:nvSpPr>' +
+      '<p:spPr><a:xfrm><a:off x="457200" y="1600200"/><a:ext cx="11277600" y="4572000"/></a:xfrm></p:spPr>' +
+      '<p:txBody><a:bodyPr wrap="square"/><a:lstStyle/>' + pointParas + '</p:txBody></p:sp>' +
+      '</p:spTree></p:cSld><p:clrMapOvr><a:masterClrMapping/></p:clrMapOvr></p:sld>';
+  }
+  function buildPptx(slides, title) {
+    const list = (slides && slides.length) ? slides : [{ title: '', points: [] }];
+    const files = [];
+    const sldIds = list.map(function (s, i) {
+      return '<p:sldId id="' + (256 + i) + '" r:id="rId' + (i + 2) + '"/>';
+    }).join('');
+    const presentationXml = XML_HEAD +
+      '<p:presentation xmlns:a="' + PPTX_A + '" xmlns:r="' + PPTX_R + '" xmlns:p="' + PPTX_P + '">' +
+      '<p:sldMasterIdLst><p:sldMasterId id="2147483648" r:id="rId1"/></p:sldMasterIdLst>' +
+      '<p:sldIdLst>' + sldIds + '</p:sldIdLst>' +
+      '<p:sldSz cx="12192000" cy="6858000" type="screen16x9"/><p:notesSz cx="6858000" cy="9144000"/></p:presentation>';
+    const presRels = [{ id: 'rId1', type: 'http://schemas.openxmlformats.org/officeDocument/2006/relationships/slideMaster', target: 'slideMasters/slideMaster1.xml' }];
+    list.forEach(function (s, i) {
+      presRels.push({ id: 'rId' + (i + 2), type: 'http://schemas.openxmlformats.org/officeDocument/2006/relationships/slide', target: 'slides/slide' + (i + 1) + '.xml' });
+    });
+    const masterXml = XML_HEAD +
+      '<p:sldMaster xmlns:a="' + PPTX_A + '" xmlns:r="' + PPTX_R + '" xmlns:p="' + PPTX_P + '">' +
+      '<p:cSld><p:bg><p:bgPr><a:solidFill><a:srgbClr val="FFFFFF"/></a:solidFill><a:effectLst/></p:bgPr></p:bg>' +
+      '<p:spTree><p:nvGrpSpPr><p:cNvPr id="1" name=""/><p:cNvGrpSpPr/><p:nvPr/></p:nvGrpSpPr>' +
+      '<p:grpSpPr><a:xfrm><a:off x="0" y="0"/><a:ext cx="0" cy="0"/><a:chOff x="0" y="0"/><a:chExt cx="0" cy="0"/></a:xfrm></p:grpSpPr></p:spTree></p:cSld>' +
+      '<p:clrMap bg1="lt1" tx1="dk1" bg2="lt2" tx2="dk2" accent1="accent1" accent2="accent2" accent3="accent3" accent4="accent4" accent5="accent5" accent6="accent6" hlink="hlink" folHlink="folHlink"/>' +
+      '<p:sldLayoutIdLst><p:sldLayoutId id="2147483649" r:id="rId1"/></p:sldLayoutIdLst>' +
+      '<p:txStyles><p:titleStyle><a:lvl1pPr algn="l"><a:defRPr sz="3200" b="1"/></a:lvl1pPr></p:titleStyle>' +
+      '<p:bodyStyle><a:lvl1pPr algn="l"><a:defRPr sz="2000"/></a:lvl1pPr></p:bodyStyle>' +
+      '<p:otherStyle><a:lvl1pPr algn="l"><a:defRPr sz="1800"/></a:lvl1pPr></p:otherStyle></p:txStyles></p:sldMaster>';
+    const layoutXml = XML_HEAD +
+      '<p:sldLayout xmlns:a="' + PPTX_A + '" xmlns:r="' + PPTX_R + '" xmlns:p="' + PPTX_P + '" type="blank">' +
+      '<p:cSld name="空白"><p:spTree><p:nvGrpSpPr><p:cNvPr id="1" name=""/><p:cNvGrpSpPr/><p:nvPr/></p:nvGrpSpPr>' +
+      '<p:grpSpPr><a:xfrm><a:off x="0" y="0"/><a:ext cx="0" cy="0"/><a:chOff x="0" y="0"/><a:chExt cx="0" cy="0"/></a:xfrm></p:grpSpPr></p:spTree></p:cSld>' +
+      '<p:clrMapOvr><a:masterClrMapping/></p:clrMapOvr></p:sldLayout>';
+    const presPropsXml = XML_HEAD + '<p:presentationPr xmlns:a="' + PPTX_A + '" xmlns:r="' + PPTX_R + '" xmlns:p="' + PPTX_P + '"/>';
+    const viewPropsXml = XML_HEAD + '<p:viewPr xmlns:a="' + PPTX_A + '" xmlns:r="' + PPTX_R + '" xmlns:p="' + PPTX_P + '" lastView="sldThumbnailView"><p:slideViewPr><p:cSldViewPr><p:guideLst/></p:cSldViewPr></p:slideViewPr></p:viewPr>';
+    let typesOverrides = '<Override PartName="/ppt/presentation.xml" ContentType="application/vnd.openxmlformats-officedocument.presentationml.presentation.main+xml"/>' +
+      '<Override PartName="/ppt/slideMasters/slideMaster1.xml" ContentType="application/vnd.openxmlformats-officedocument.presentationml.slideMaster+xml"/>' +
+      '<Override PartName="/ppt/slideLayouts/slideLayout1.xml" ContentType="application/vnd.openxmlformats-officedocument.presentationml.slideLayout+xml"/>' +
+      '<Override PartName="/ppt/theme/theme1.xml" ContentType="application/vnd.openxmlformats-officedocument.theme+xml"/>' +
+      '<Override PartName="/ppt/presProps.xml" ContentType="application/vnd.openxmlformats-officedocument.presentationml.presProps+xml"/>' +
+      '<Override PartName="/ppt/viewProps.xml" ContentType="application/vnd.openxmlformats-officedocument.presentationml.viewProps+xml"/>' +
+      '<Override PartName="/docProps/core.xml" ContentType="application/vnd.openxmlformats-package.core-properties+xml"/>' +
+      '<Override PartName="/docProps/app.xml" ContentType="application/vnd.openxmlformats-officedocument.extended-properties+xml"/>';
+    list.forEach(function (s, i) {
+      typesOverrides += '<Override PartName="/ppt/slides/slide' + (i + 1) + '.xml" ContentType="application/vnd.openxmlformats-officedocument.presentationml.slide+xml"/>';
+    });
+    files.push(
+      { path: '[Content_Types].xml', data: XML_HEAD + '<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/>' + typesOverrides + '</Types>' },
+      { path: '_rels/.rels', data: relsXml([
+        { id: 'rId1', type: 'http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument', target: 'ppt/presentation.xml' },
+        { id: 'rId2', type: 'http://schemas.openxmlformats.org/package/2006/relationships/metadata/core-properties', target: 'docProps/core.xml' },
+        { id: 'rId3', type: 'http://schemas.openxmlformats.org/officeDocument/2006/relationships/extended-properties', target: 'docProps/app.xml' }
+      ]) },
+      { path: 'docProps/core.xml', data: coreXml(title) },
+      { path: 'docProps/app.xml', data: appXml() },
+      { path: 'ppt/presentation.xml', data: presentationXml },
+      { path: 'ppt/_rels/presentation.xml.rels', data: relsXml(presRels) },
+      { path: 'ppt/slideMasters/slideMaster1.xml', data: masterXml },
+      { path: 'ppt/slideMasters/_rels/slideMaster1.xml.rels', data: relsXml([
+        { id: 'rId1', type: 'http://schemas.openxmlformats.org/officeDocument/2006/relationships/slideLayout', target: '../slideLayouts/slideLayout1.xml' },
+        { id: 'rId2', type: 'http://schemas.openxmlformats.org/officeDocument/2006/relationships/theme', target: '../theme/theme1.xml' }
+      ]) },
+      { path: 'ppt/slideLayouts/slideLayout1.xml', data: layoutXml },
+      { path: 'ppt/slideLayouts/_rels/slideLayout1.xml.rels', data: relsXml([
+        { id: 'rId1', type: 'http://schemas.openxmlformats.org/officeDocument/2006/relationships/slideMaster', target: '../slideMasters/slideMaster1.xml' }
+      ]) },
+      { path: 'ppt/theme/theme1.xml', data: pptxTheme() },
+      { path: 'ppt/presProps.xml', data: presPropsXml },
+      { path: 'ppt/viewProps.xml', data: viewPropsXml }
+    );
+    list.forEach(function (s, i) {
+      files.push({ path: 'ppt/slides/slide' + (i + 1) + '.xml', data: pptxSlideXml(s) });
+      files.push({ path: 'ppt/slides/_rels/slide' + (i + 1) + '.xml.rels', data: relsXml([
+        { id: 'rId1', type: 'http://schemas.openxmlformats.org/officeDocument/2006/relationships/slideLayout', target: '../slideLayouts/slideLayout1.xml' }
+      ]) });
+    });
+    return zipStore(files);
+  }
+
+  /* ================= CSV ================= */
+  function csvParse(text) {
+    const rows = [];
+    let row = [], cur = '', inQ = false;
+    for (let i = 0; i < text.length; i++) {
+      const c = text[i];
+      if (inQ) {
+        if (c === '"') { if (text[i + 1] === '"') { cur += '"'; i++; } else inQ = false; }
+        else cur += c;
+      } else if (c === '"') inQ = true;
+      else if (c === ',') { row.push(cur); cur = ''; }
+      else if (c === '\n' || c === '\r') {
+        if (c === '\r' && text[i + 1] === '\n') i++;
+        row.push(cur); cur = ''; rows.push(row); row = [];
+      } else cur += c;
+    }
+    if (cur !== '' || row.length) { row.push(cur); rows.push(row); }
+    return rows.filter(function (r) { return !(r.length === 1 && r[0] === ''); });
+  }
+  function csvStringify(rows) {
+    return rows.map(function (r) {
+      return (r || []).map(function (c) {
+        c = String(c == null ? '' : c);
+        return /[",\n\r]/.test(c) ? '"' + c.replace(/"/g, '""') + '"' : c;
+      }).join(',');
+    }).join('\r\n');
+  }
+
+  /* ================= MD 导出 HTML ================= */
+  function mdToHtmlDoc(text, title) {
+    const tmp = document.createElement('div');
+    tmp.innerHTML = MD.parse(text || '').html;
+    SANITIZE(tmp);
+    enhance(tmp);
+    const body = tmp.innerHTML;
+    return '<!DOCTYPE html>\n<html lang="zh-CN">\n<head>\n<meta charset="UTF-8">\n' +
+      '<meta name="viewport" content="width=device-width, initial-scale=1.0">\n' +
+      '<title>' + escHtml(title || '文档') + '</title>\n<style>' +
+      'body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;max-width:720px;margin:0 auto;padding:28px 20px;color:#221f1b;background:#faf7f1;line-height:1.82;font-size:17px}' +
+      'h1{font-size:1.7em}h2{font-size:1.35em}h3{font-size:1.15em}' +
+      'pre{background:#f3ede2;padding:14px;border-radius:8px;overflow:auto}code{font-family:ui-monospace,Menlo,monospace}' +
+      'table{border-collapse:collapse;width:100%}th,td{border:1px solid #ddd;padding:6px 10px;text-align:left}' +
+      'blockquote{border-left:3px solid #b4572f;padding-left:12px;color:#666}' +
+      'img{max-width:100%}a{color:#b4572f}</style>\n</head>\n<body>\n' + body + '\n</body>\n</html>';
+  }
+
+  /* ================= 小工具（基础层未提供的） ================= */
+  function escHtml(s) {
+    return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+  function timeAgo(ts) {
+    const diff = Date.now() - (ts || Date.now());
+    if (diff < 60000) return '刚刚';
+    if (diff < 3600000) return Math.floor(diff / 60000) + ' 分钟前';
+    if (diff < 86400000) return Math.floor(diff / 3600000) + ' 小时前';
+    if (diff < 604800000) return Math.floor(diff / 86400000) + ' 天前';
+    const d = new Date(ts);
+    return (d.getMonth() + 1) + ' 月 ' + d.getDate() + ' 日';
+  }
+  function fmtMeta(type) {
+    return {
+      md: { label: 'MD', ext: 'md', cls: 'fmt-md', name: 'Markdown' },
+      docx: { label: 'W', ext: 'docx', cls: 'fmt-docx', name: 'Word 文档' },
+      pptx: { label: 'P', ext: 'pptx', cls: 'fmt-pptx', name: '演示文稿' },
+      xlsx: { label: 'X', ext: 'xlsx', cls: 'fmt-xlsx', name: '表格' }
+    }[type] || { label: '?', ext: 'txt', cls: 'fmt-md', name: '文档' };
+  }
+  function cleanFileName(name) {
+    return String(name || '未命名').replace(/[\\/:*?"<>|]/g, '_').trim() || '未命名';
+  }
+  function wordStats(text) {
+    const t = String(text || '');
+    const cjk = (t.match(/[\u2e80-\u9fff\uf900-\ufaff]/g) || []).length;
+    const words = (t.replace(/[\u2e80-\u9fff\uf900-\ufaff]/g, ' ').match(/[A-Za-z0-9_]+/g) || []).length;
+    return { chars: cjk + words, minutes: Math.max(1, Math.round(cjk / 400 + words / 200)) };
+  }
+
+  /* ================= 状态 ================= */
+  const state = {
+    docs: [], filter: 'all', query: '',
+    current: null, dirty: false, saveTimer: 0,
+    tab: 'edit', slideIndex: 0, sheetIndex: 0, selCell: null,
+    undoStack: [], redoStack: [], histTimer: 0
+  };
+  const el = {};
+  function cacheEl() {
+    ['view-home', 'view-editor', 'btnNew', 'btnImport', 'filterRow', 'searchInput', 'docCount',
+     'docGrid', 'emptyHome', 'btnEmptyNew', 'btnBackHome', 'titleInput', 'fmtBadge', 'saveState',
+     'btnUndo', 'btnRedo', 'btnPreview', 'btnProcess', 'btnExport', 'edTabs',
+     'ed-md', 'mdToolbar', 'mdOutline', 'mdEdit', 'mdPreview',
+     'ed-docx', 'blockList', 'docxPreview',
+     'ed-pptx', 'slideList', 'slideTitle', 'slidePoints',
+     'btnSlidePrev', 'btnSlideNext', 'btnSlideAdd', 'btnSlideDup', 'btnSlideDel', 'slidePreview',
+     'ed-xlsx', 'sheetTabs', 'btnRowAdd', 'btnColAdd', 'btnRowDel', 'btnColDel',
+     'btnSheetAdd', 'btnSheetDel', 'gridTable',
+     'previewOverlay', 'btnPreviewBack', 'previewTitle', 'btnPreviewExport', 'previewBody',
+     'backdrop', 'newModal', 'btnNewCancel', 'importModal', 'importInput',
+     'btnPickImport', 'btnImportCancel', 'confirmModal', 'confirmTitle', 'confirmText',
+     'btnConfirmCancel', 'btnConfirmOk', 'menu', 'toast'
+    ].forEach(function (id) {
+      el[id.replace(/-([a-z])/g, function (m, c) { return c.toUpperCase(); })] = document.getElementById(id);
+    });
+  }
+
+  /* ================= 菜单与弹窗 ================= */
+  function closeMenu() { el.menu.hidden = true; el.menu.innerHTML = ''; }
+  function openMenu(items, anchor) {
+    closeMenu();
+    items.forEach(function (it) {
+      if (it.sep) { const s = document.createElement('div'); s.className = 'sep'; el.menu.appendChild(s); return; }
+      if (it.hint) { const h = document.createElement('div'); h.className = 'hint'; h.textContent = it.hint; el.menu.appendChild(h); return; }
+      const b = document.createElement('button');
+      b.textContent = it.label;
+      if (it.danger) b.className = 'danger';
+      if (it.disabled) b.disabled = true;
+      b.addEventListener('click', function () { closeMenu(); it.onClick && it.onClick(); });
+      el.menu.appendChild(b);
+    });
+    el.menu.hidden = false;
+    const r = anchor.getBoundingClientRect();
+    const mw = 232;
+    let x = Math.max(8, Math.min(r.left, window.innerWidth - mw - 8));
+    let y = r.bottom + 6;
+    el.menu.style.left = x + 'px';
+    el.menu.style.top = y + 'px';
+    const mh = el.menu.offsetHeight;
+    if (y + mh > window.innerHeight - 8) el.menu.style.top = Math.max(8, r.top - mh - 6) + 'px';
+  }
+  function openModal(id) {
+    closeModals();
+    el.backdrop.hidden = false;
+    document.getElementById(id).hidden = false;
+  }
+  function closeModals() {
+    el.backdrop.hidden = true;
+    ['newModal', 'importModal', 'confirmModal'].forEach(function (id) {
+      document.getElementById(id).hidden = true;
+    });
+  }
+  let confirmCb = null;
+  function askConfirm(title, text, okLabel, cb) {
+    el.confirmTitle.textContent = title;
+    el.confirmText.textContent = text;
+    el.btnConfirmOk.textContent = okLabel || '删除';
+    confirmCb = cb;
+    openModal('confirmModal');
+  }
+
+  /* ================= 工作台 ================= */
+  function loadDocs() {
+    return DB.all().then(function (docs) {
+      state.docs = (docs || []).sort(function (a, b) { return b.updatedAt - a.updatedAt; });
+      renderHome();
+    });
+  }
+  function filteredDocs() {
+    const q = state.query.trim().toLowerCase();
+    return state.docs.filter(function (d) {
+      if (state.filter !== 'all' && d.type !== state.filter) return false;
+      if (q && d.name.toLowerCase().indexOf(q) < 0) return false;
+      return true;
+    });
+  }
+  function renderHome() {
+    const docs = filteredDocs();
+    el.docGrid.innerHTML = '';
+    el.emptyHome.hidden = docs.length > 0;
+    el.docCount.textContent = state.docs.length ? '共 ' + state.docs.length + ' 篇' : '';
+    docs.forEach(function (doc) {
+      const meta = fmtMeta(doc.type);
+      const card = document.createElement('div');
+      card.className = 'doc-card';
+      card.setAttribute('role', 'button');
+      card.tabIndex = 0;
+      const ico = document.createElement('div');
+      ico.className = 'doc-ico ' + meta.cls;
+      ico.textContent = meta.label;
+      const name = document.createElement('div');
+      name.className = 'doc-name';
+      name.textContent = doc.name;
+      const m = document.createElement('div');
+      m.className = 'doc-meta';
+      m.textContent = meta.name + ' · ' + timeAgo(doc.updatedAt) + ' · 此浏览器';
+      const menuBtn = document.createElement('button');
+      menuBtn.className = 'doc-menu';
+      menuBtn.setAttribute('aria-label', '文档操作');
+      menuBtn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><circle cx="12" cy="5" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="12" cy="19" r="1.8"/></svg>';
+      menuBtn.addEventListener('click', function (ev) {
+        ev.stopPropagation();
+        docMenu(doc, menuBtn);
+      });
+      card.appendChild(ico);
+      card.appendChild(name);
+      card.appendChild(m);
+      card.appendChild(menuBtn);
+      card.addEventListener('click', function () { openDoc(doc.id); });
+      card.addEventListener('keydown', function (ev) {
+        if (ev.key === 'Enter') openDoc(doc.id);
+      });
+      el.docGrid.appendChild(card);
+    });
+  }
+  function docMenu(doc, anchor) {
+    openMenu([
+      { label: '打开', onClick: function () { openDoc(doc.id); } },
+      { label: '重命名', onClick: function () {
+        const name = window.prompt('重命名', doc.name);
+        if (name && name.trim() && name.trim() !== doc.name) {
+          doc.name = name.trim();
+          doc.updatedAt = Date.now();
+          DB.put(doc).then(function () { loadDocs(); toast('已重命名'); });
+        }
+      } },
+      { label: '复制一份', onClick: function () { duplicateDoc(doc); } },
+      { label: '导出', onClick: function () { exportDoc(doc); } },
+      { sep: true },
+      { label: '删除', danger: true, onClick: function () {
+        askConfirm('确定删除？', '只删除这个浏览器里的副本，不会影响你之前导出的文件。', '删除', function () {
+          DB.del(doc.id).then(function () { loadDocs(); toast('已删除'); });
+        });
+      } }
+    ], anchor);
+  }
+  function duplicateDoc(doc) {
+    const copy = JSON.parse(JSON.stringify(doc));
+    copy.id = 'doc-' + hash(doc.name + Date.now() + Math.random());
+    copy.name = doc.name + ' 副本';
+    copy.updatedAt = Date.now();
+    copy.createdAt = Date.now();
+    DB.put(copy).then(function () { loadDocs(); toast('已复制一份'); });
+  }
+
+  /* ================= 新建 / 导入 ================= */
+  function defaultData(fmt) {
+    if (fmt === 'md') return { text: '# 未命名\n\n开始写吧…\n' };
+    if (fmt === 'docx') return { blocks: [{ type: 'h1', text: '未命名文档' }, { type: 'p', text: '' }] };
+    if (fmt === 'pptx') return { slides: [{ title: '未命名演示', points: ['要点一', '要点二'] }] };
+    const rows = [];
+    for (let i = 0; i < 5; i++) rows.push(['', '', '', '']);
+    return { sheets: [{ name: '工作表1', rows: rows }] };
+  }
+  function defaultName(fmt) {
+    const base = { md: '未命名笔记', docx: '未命名文档', pptx: '未命名演示', xlsx: '未命名表格' }[fmt] || '未命名';
+    let name = base, n = 2;
+    while (state.docs.some(function (d) { return d.name === name; })) { name = base + ' ' + n; n++; }
+    return name;
+  }
+  function newDoc(fmt) {
+    const doc = {
+      id: 'doc-' + hash(fmt + Date.now() + Math.random()),
+      name: defaultName(fmt), type: fmt,
+      data: defaultData(fmt),
+      createdAt: Date.now(), updatedAt: Date.now()
+    };
+    DB.put(doc).then(function () {
+      state.docs.unshift(doc);
+      closeModals();
+      openDoc(doc.id);
+    });
+  }
+  function importFile(file) {
+    if (!file) return;
+    const name = file.name.replace(/\.(md|markdown|txt|csv)$/i, '');
+    file.text().then(function (text) {
+      if (/\.csv$/i.test(file.name)) {
+        const rows = csvParse(text);
+        if (!rows.length) { toast('这个 CSV 是空的'); return; }
+        const maxLen = Math.max.apply(null, rows.map(function (r) { return r.length; }));
+        const norm = rows.map(function (r) {
+          const copy = r.slice();
+          while (copy.length < maxLen) copy.push('');
+          return copy;
+        });
+        const doc = {
+          id: 'doc-' + hash(file.name + Date.now()),
+          name: name || '导入的表格', type: 'xlsx',
+          data: { sheets: [{ name: '工作表1', rows: norm }] },
+          createdAt: Date.now(), updatedAt: Date.now()
+        };
+        DB.put(doc).then(function () {
+          state.docs.unshift(doc);
+          closeModals();
+          openDoc(doc.id);
+          toast('已导入为表格');
+        });
+      } else if (/\.(md|markdown|txt)$/i.test(file.name)) {
+        const doc = {
+          id: 'doc-' + hash(file.name + Date.now()),
+          name: name || '导入的文档', type: 'md',
+          data: { text: text },
+          createdAt: Date.now(), updatedAt: Date.now()
+        };
+        DB.put(doc).then(function () {
+          state.docs.unshift(doc);
+          closeModals();
+          openDoc(doc.id);
+          toast('已导入');
+        });
+      } else {
+        toast('暂不支持导入这种格式，可新建一个再导出');
+      }
+    }).catch(function () { toast('读取文件失败'); });
+  }
+
+  /* ================= 编辑器：打开 / 保存 / 撤销 ================= */
+  function snap() { return JSON.stringify(state.current ? state.current.data : null); }
+  function openDoc(id) {
+    const doc = state.docs.find(function (d) { return d.id === id; });
+    if (!doc) { toast('打不开这篇文档了'); return; }
+    state.current = doc;
+    state.tab = 'edit';
+    state.slideIndex = 0;
+    state.sheetIndex = 0;
+    state.selCell = null;
+    state.undoStack = [snap()];
+    state.redoStack = [];
+    state.dirty = false;
+    el.viewHome.hidden = true;
+    el.viewEditor.hidden = false;
+    el.titleInput.value = doc.name;
+    const meta = fmtMeta(doc.type);
+    el.fmtBadge.textContent = meta.label + ' · ' + meta.name;
+    el.fmtBadge.className = 'badge ' + meta.cls;
+    el.saveState.textContent = '已保存到此浏览器';
+    el.saveState.classList.add('ok');
+    renderEditor();
+    window.scrollTo(0, 0);
+  }
+  function goHome() {
+    saveNow();
+    state.current = null;
+    el.viewEditor.hidden = true;
+    el.viewHome.hidden = false;
+    el.previewOverlay.hidden = true;
+    renderHome();
+  }
+  function renderEditor() {
+    const doc = state.current;
+    if (!doc) return;
+    ['ed-md', 'ed-docx', 'ed-pptx', 'ed-xlsx'].forEach(function (id) {
+      document.getElementById(id).hidden = true;
+    });
+    const sec = document.getElementById('ed-' + doc.type);
+    sec.hidden = false;
+    setTab(state.tab, true);
+    if (doc.type === 'md') { el.mdEdit.value = doc.data.text || ''; renderMd(); }
+    if (doc.type === 'docx') { renderBlocks(); renderDocxPreview(); }
+    if (doc.type === 'pptx') { renderSlideList(); renderSlideEditor(); renderSlidePreview(); }
+    if (doc.type === 'xlsx') { renderSheetTabs(); renderGrid(); }
+    updateUndoRedo();
+  }
+  function setTab(tab, silent) {
+    state.tab = tab;
+    $$('#edTabs .tab').forEach(function (b) { b.classList.toggle('on', b.dataset.tab === tab); });
+    const doc = state.current;
+    if (!doc) return;
+    const sec = document.getElementById('ed-' + doc.type);
+    sec.classList.remove('mode-edit', 'mode-preview');
+    sec.classList.add(tab === 'preview' ? 'mode-preview' : 'mode-edit');
+    if (!silent) {
+      if (doc.type === 'md') renderMd();
+      if (doc.type === 'docx') renderDocxPreview();
+      if (doc.type === 'pptx') renderSlidePreview();
+      if (doc.type === 'xlsx') renderGrid();
+    }
+  }
+  function markDirty() {
+    if (!state.current) return;
+    state.dirty = true;
+    el.saveState.textContent = '保存中…';
+    el.saveState.classList.remove('ok');
+    clearTimeout(state.saveTimer);
+    state.saveTimer = setTimeout(saveNow, 600);
+    clearTimeout(state.histTimer);
+    state.histTimer = setTimeout(pushHistory, 800);
+  }
+  function saveNow() {
+    if (!state.current) return;
+    clearTimeout(state.saveTimer);
+    state.current.updatedAt = Date.now();
+    const doc = state.current;
+    DB.put(doc).then(function () {
+      if (state.current !== doc) return;
+      state.dirty = false;
+      const d = new Date(doc.updatedAt);
+      const hh = String(d.getHours()).padStart(2, '0'), mm = String(d.getMinutes()).padStart(2, '0');
+      el.saveState.textContent = '已保存到此浏览器 ' + hh + ':' + mm;
+      el.saveState.classList.add('ok');
+      const idx = state.docs.findIndex(function (x) { return x.id === doc.id; });
+      if (idx >= 0) state.docs[idx] = doc;
+    });
+  }
+  function pushHistory() {
+    if (!state.current) return;
+    const s = snap();
+    const top = state.undoStack[state.undoStack.length - 1];
+    if (s === top) return;
+    state.undoStack.push(s);
+    if (state.undoStack.length > 60) state.undoStack.shift();
+    state.redoStack = [];
+    updateUndoRedo();
+  }
+  function applySnapshot(s) {
+    try { state.current.data = JSON.parse(s); } catch (e) { return; }
+    renderEditor();
+    saveNow();
+  }
+  function doUndo() {
+    if (state.undoStack.length <= 1) return;
+    state.redoStack.push(state.undoStack.pop());
+    applySnapshot(state.undoStack[state.undoStack.length - 1]);
+    updateUndoRedo();
+  }
+  function doRedo() {
+    if (!state.redoStack.length) return;
+    const s = state.redoStack.pop();
+    state.undoStack.push(s);
+    applySnapshot(s);
+    updateUndoRedo();
+  }
+  function updateUndoRedo() {
+    el.btnUndo.disabled = state.undoStack.length <= 1;
+    el.btnRedo.disabled = state.redoStack.length === 0;
+  }
+
+  /* ================= MD 编辑器 ================= */
+  let mdRenderTimer = 0;
+  function renderMd() {
+    const doc = state.current;
+    if (!doc || doc.type !== 'md') return;
+    clearTimeout(mdRenderTimer);
+    mdRenderTimer = setTimeout(function () {
+      const text = doc.data.text || '';
+      const parsed = MD.parse(text);
+      const tmp = document.createElement('div');
+      tmp.innerHTML = parsed.html;
+      SANITIZE(tmp);
+      enhance(tmp);
+      el.mdPreview.innerHTML = tmp.innerHTML;
+      const toc = parsed.toc;
+      el.mdOutline.innerHTML = toc.length
+        ? toc.map(function (h) {
+            return '<a href="#' + h.id + '" data-id="' + h.id + '" style="padding-left:' + (10 + Math.max(0, h.level - 1) * 14) + 'px">' + escHtml(h.text) + '</a>';
+          }).join('')
+        : '<div style="font-size:13px;color:var(--faint);padding:4px 0">这篇文档没有标题</div>';
+    }, 120);
+  }
+  function insertAtCursor(snippet) {
+    const ta = el.mdEdit;
+    const start = ta.selectionStart, end = ta.selectionEnd;
+    ta.setRangeText(snippet, start, end, 'end');
+    ta.focus();
+    state.current.data.text = ta.value;
+    renderMd();
+    markDirty();
+  }
+
+  /* ================= DOCX 编辑器 ================= */
+  const BLOCK_TYPES = { h1: '标题 1', h2: '标题 2', p: '正文', li: '列表项', quote: '引用' };
+  function autoResize(ta) {
+    ta.style.height = 'auto';
+    ta.style.height = Math.max(44, ta.scrollHeight) + 'px';
+  }
+  function renderBlocks() {
+    const doc = state.current;
+    if (!doc || doc.type !== 'docx') return;
+    el.blockList.innerHTML = '';
+    doc.data.blocks.forEach(function (block, i) {
+      const row = document.createElement('div');
+      row.className = 'block';
+      const sel = document.createElement('select');
+      sel.className = 'block-type';
+      sel.setAttribute('aria-label', '段落类型');
+      Object.keys(BLOCK_TYPES).forEach(function (k) {
+        const o = document.createElement('option');
+        o.value = k; o.textContent = BLOCK_TYPES[k];
+        if (k === block.type) o.selected = true;
+        sel.appendChild(o);
+      });
+      sel.addEventListener('change', function () {
+        block.type = sel.value;
+        markDirty();
+        renderDocxPreview();
+      });
+      const ta = document.createElement('textarea');
+      ta.className = 'block-text';
+      ta.rows = 1;
+      ta.value = block.text || '';
+      ta.setAttribute('aria-label', BLOCK_TYPES[block.type] || '段落');
+      ta.addEventListener('input', function () {
+        block.text = ta.value;
+        autoResize(ta);
+        markDirty();
+        renderDocxPreview();
+      });
+      const ops = document.createElement('div');
+      ops.className = 'block-ops';
+      const up = document.createElement('button');
+      up.textContent = '↑';
+      up.setAttribute('aria-label', '上移');
+      up.addEventListener('click', function () {
+        if (i === 0) return;
+        const arr = doc.data.blocks;
+        const tmp = arr[i - 1]; arr[i - 1] = arr[i]; arr[i] = tmp;
+        markDirty(); renderBlocks(); renderDocxPreview();
+      });
+      const down = document.createElement('button');
+      down.textContent = '↓';
+      down.setAttribute('aria-label', '下移');
+      down.addEventListener('click', function () {
+        const arr = doc.data.blocks;
+        if (i >= arr.length - 1) return;
+        const tmp = arr[i + 1]; arr[i + 1] = arr[i]; arr[i] = tmp;
+        markDirty(); renderBlocks(); renderDocxPreview();
+      });
+      const del = document.createElement('button');
+      del.textContent = '×';
+      del.setAttribute('aria-label', '删除这一段');
+      del.addEventListener('click', function () {
+        const arr = doc.data.blocks;
+        if (arr.length <= 1) { arr[0].text = ''; markDirty(); renderBlocks(); renderDocxPreview(); return; }
+        arr.splice(i, 1);
+        markDirty(); renderBlocks(); renderDocxPreview();
+      });
+      ops.appendChild(up); ops.appendChild(down); ops.appendChild(del);
+      row.appendChild(sel);
+      row.appendChild(ta);
+      row.appendChild(ops);
+      el.blockList.appendChild(row);
+      autoResize(ta);
+    });
+  }
+  function blocksToHtml(blocks) {
+    let html = '', inList = false;
+    (blocks || []).forEach(function (b) {
+      const text = escHtml(b.text || '').replace(/\n/g, '<br>');
+      if (b.type === 'li') {
+        if (!inList) { html += '<ul>'; inList = true; }
+        html += '<li>' + text + '</li>';
+      } else {
+        if (inList) { html += '</ul>'; inList = false; }
+        if (b.type === 'h1') html += '<h1>' + text + '</h1>';
+        else if (b.type === 'h2') html += '<h2>' + text + '</h2>';
+        else if (b.type === 'quote') html += '<blockquote>' + text + '</blockquote>';
+        else html += '<p>' + (text || '&nbsp;') + '</p>';
+      }
+    });
+    if (inList) html += '</ul>';
+    return html || '<p style="color:var(--faint)">空文档</p>';
+  }
+  function renderDocxPreview() {
+    const doc = state.current;
+    if (!doc || doc.type !== 'docx') return;
+    el.docxPreview.innerHTML = blocksToHtml(doc.data.blocks);
+  }
+
+  /* ================= PPTX 编辑器 ================= */
+  function curSlide() {
+    const doc = state.current;
+    if (!doc || doc.type !== 'pptx') return null;
+    return doc.data.slides[state.slideIndex] || null;
+  }
+  function slideToHtml(slide) {
+    const title = escHtml(slide.title || '（无标题）');
+    const points = (slide.points || []).filter(function (p) { return String(p).trim() !== ''; });
+    return '<h3>' + title + '</h3>' +
+      (points.length ? '<ul>' + points.map(function (p) { return '<li>' + escHtml(p) + '</li>'; }).join('') + '</ul>' : '');
+  }
+  function renderSlideList() {
+    const doc = state.current;
+    if (!doc || doc.type !== 'pptx') return;
+    el.slideList.innerHTML = '';
+    doc.data.slides.forEach(function (s, i) {
+      const b = document.createElement('button');
+      b.className = 'slide-thumb' + (i === state.slideIndex ? ' on' : '');
+      b.innerHTML = '<div class="n">第 ' + (i + 1) + ' 页</div><div class="t">' + escHtml(s.title || '（无标题）') + '</div>';
+      b.addEventListener('click', function () {
+        state.slideIndex = i;
+        renderSlideList();
+        renderSlideEditor();
+        renderSlidePreview();
+      });
+      el.slideList.appendChild(b);
+    });
+  }
+  function renderSlideEditor() {
+    const s = curSlide();
+    if (!s) return;
+    el.slideTitle.value = s.title || '';
+    el.slidePoints.value = (s.points || []).join('\n');
+  }
+  function renderSlidePreview() {
+    const doc = state.current;
+    if (!doc || doc.type !== 'pptx') return;
+    if (state.tab === 'preview') {
+      el.slidePreview.className = '';
+      el.slidePreview.innerHTML = doc.data.slides.map(function (s) {
+        return '<div class="slide-preview" style="margin-bottom:14px">' + slideToHtml(s) + '</div>';
+      }).join('');
+    } else {
+      el.slidePreview.className = 'slide-preview';
+      const s = curSlide();
+      el.slidePreview.innerHTML = s ? slideToHtml(s) : '';
+    }
+  }
+
+  /* ================= XLSX 编辑器 ================= */
+  function curSheet() {
+    const doc = state.current;
+    if (!doc || doc.type !== 'xlsx') return null;
+    return doc.data.sheets[state.sheetIndex] || null;
+  }
+  function sheetCols(sheet) {
+    let max = 0;
+    (sheet.rows || []).forEach(function (r) { max = Math.max(max, (r || []).length); });
+    return Math.max(max, 4);
+  }
+  function renderSheetTabs() {
+    const doc = state.current;
+    if (!doc || doc.type !== 'xlsx') return;
+    el.sheetTabs.innerHTML = '';
+    doc.data.sheets.forEach(function (sh, i) {
+      const b = document.createElement('button');
+      b.className = 'sheet-tab' + (i === state.sheetIndex ? ' on' : '');
+      b.textContent = sh.name;
+      b.addEventListener('click', function () {
+        state.sheetIndex = i;
+        renderSheetTabs();
+        renderGrid();
+      });
+      el.sheetTabs.appendChild(b);
+    });
+  }
+  function renderGrid() {
+    const sheet = curSheet();
+    if (!sheet) return;
+    const cols = sheetCols(sheet);
+    sheet.rows.forEach(function (r) { while (r.length < cols) r.push(''); });
+    let html = '<thead><tr><th class="row-h"></th>';
+    for (let c = 0; c < cols; c++) html += '<th>' + colName(c) + '</th>';
+    html += '</tr></thead><tbody>';
+    sheet.rows.forEach(function (row, ri) {
+      html += '<tr><th class="row-h">' + (ri + 1) + '</th>';
+      for (let c = 0; c < cols; c++) {
+        html += '<td><input data-r="' + ri + '" data-c="' + c + '" value="' + escHtml(row[c] == null ? '' : row[c]) + '" aria-label="第 ' + (ri + 1) + ' 行 ' + colName(c) + ' 列"></td>';
+      }
+      html += '</tr>';
+    });
+    html += '</tbody>';
+    el.gridTable.innerHTML = html;
+  }
+
+  /* ================= 预览浮层 ================= */
+  function openPreview() {
+    const doc = state.current;
+    if (!doc) return;
+    el.previewTitle.textContent = doc.name;
+    renderPreviewBody();
+    el.previewOverlay.hidden = false;
+  }
+  function renderPreviewBody() {
+    const doc = state.current;
+    if (!doc) return;
+    if (doc.type === 'md') {
+      const tmp = document.createElement('div');
+      tmp.innerHTML = MD.parse(doc.data.text || '').html;
+      SANITIZE(tmp);
+      enhance(tmp);
+      el.previewBody.innerHTML = tmp.innerHTML;
+    } else if (doc.type === 'docx') {
+      el.previewBody.innerHTML = blocksToHtml(doc.data.blocks);
+    } else if (doc.type === 'pptx') {
+      el.previewBody.innerHTML = doc.data.slides.map(function (s) {
+        return '<div class="slide-preview" style="margin-bottom:14px">' + slideToHtml(s) + '</div>';
+      }).join('');
+    } else if (doc.type === 'xlsx') {
+      const sheet = curSheet();
+      let html = '<table style="border-collapse:collapse;width:100%">';
+      (sheet.rows || []).forEach(function (row) {
+        html += '<tr>' + (row || []).map(function (c) {
+          return '<td style="border:1px solid var(--border);padding:8px 10px;font-size:15px">' + escHtml(c == null ? '' : c) + '</td>';
+        }).join('') + '</tr>';
+      });
+      html += '</table>';
+      el.previewBody.innerHTML = html;
+    }
+  }
+
+  /* ================= 导出 ================= */
+  function exportDoc(doc, kind) {
+    const name = cleanFileName(doc.name);
+    if (doc.type === 'md') {
+      if (!kind) {
+        openMenu([
+          { label: '导出 .md 文件', onClick: function () { exportDoc(doc, 'md'); } },
+          { label: '导出 HTML 网页', onClick: function () { exportDoc(doc, 'html'); } }
+        ], el.btnExport);
+        return;
+      }
+      if (kind === 'html') {
+        downloadBlob(new Blob([mdToHtmlDoc(doc.data.text, doc.name)], { type: 'text/html;charset=utf-8' }), name + '.html');
+      } else {
+        downloadBlob(new Blob([doc.data.text || ''], { type: 'text/markdown;charset=utf-8' }), name + '.md');
+      }
+      toast('已导出到本地');
+    } else if (doc.type === 'docx') {
+      downloadBlob(buildDocx(doc.data.blocks, doc.name), name + '.docx');
+      toast('已导出 .docx');
+    } else if (doc.type === 'pptx') {
+      downloadBlob(buildPptx(doc.data.slides, doc.name), name + '.pptx');
+      toast('已导出 .pptx');
+    } else if (doc.type === 'xlsx') {
+      if (!kind) {
+        openMenu([
+          { label: '导出 .xlsx 文件', onClick: function () { exportDoc(doc, 'xlsx'); } },
+          { label: '导出 .csv 文件', onClick: function () { exportDoc(doc, 'csv'); } }
+        ], el.btnExport);
+        return;
+      }
+      if (kind === 'csv') {
+        const sheet = (doc === state.current) ? curSheet() : doc.data.sheets[0];
+        downloadBlob(new Blob(['\ufeff' + csvStringify(sheet.rows)], { type: 'text/csv;charset=utf-8' }), name + '.csv');
+      } else {
+        downloadBlob(buildXlsx(doc.data.sheets, doc.name), name + '.xlsx');
+      }
+      toast('已导出到本地');
+    }
+  }
+  function exportCurrent() {
+    if (state.current) exportDoc(state.current);
+  }
+
+  /* ================= 处理菜单 ================= */
+  function copyText(text, okMsg) {
+    function done() { toast(okMsg || '已复制'); }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done).catch(function () { toast('复制失败'); });
+    } else {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); done(); } catch (e) { toast('复制失败'); }
+      ta.remove();
+    }
+  }
+  function processMenu() {
+    const doc = state.current;
+    if (!doc) return;
+    const items = [];
+    if (doc.type === 'md') {
+      const st = wordStats(doc.data.text);
+      items.push({ label: '字数统计', onClick: function () { toast('约 ' + st.chars.toLocaleString('zh-CN') + ' 字 · 约 ' + st.minutes + ' 分钟'); } });
+      items.push({ label: '复制全文', onClick: function () { copyText(doc.data.text || ''); } });
+      items.push({ label: '导出 HTML 网页', onClick: function () { exportDoc(doc, 'html'); } });
+      items.push({ sep: true });
+      items.push({ label: '清空文档', danger: true, onClick: function () {
+        askConfirm('确定清空？', '会清空这篇文档的全部内容，可以点撤销恢复。', '清空', function () {
+          doc.data.text = '';
+          renderEditor();
+          markDirty();
+        });
+      } });
+    } else if (doc.type === 'docx') {
+      const all = (doc.data.blocks || []).map(function (b) { return b.text || ''; }).join('\n');
+      const st = wordStats(all);
+      items.push({ label: '字数统计', onClick: function () { toast('约 ' + st.chars.toLocaleString('zh-CN') + ' 字 · 约 ' + st.minutes + ' 分钟'); } });
+      items.push({ label: '复制全文', onClick: function () { copyText(all); } });
+    } else if (doc.type === 'pptx') {
+      const n = doc.data.slides.length;
+      const pts = doc.data.slides.reduce(function (s, sl) { return s + (sl.points || []).filter(function (p) { return String(p).trim(); }).length; }, 0);
+      items.push({ label: '共 ' + n + ' 页 · ' + pts + ' 个要点', disabled: true, onClick: function () {} });
+      items.push({ label: '复制全部文字', onClick: function () {
+        const all = doc.data.slides.map(function (sl, i) {
+          return '第 ' + (i + 1) + ' 页 ' + (sl.title || '') + '\n' + (sl.points || []).join('\n');
+        }).join('\n\n');
+        copyText(all);
+      } });
+    } else if (doc.type === 'xlsx') {
+      items.push({ label: '导出 CSV（当前工作表）', onClick: function () { exportDoc(doc, 'csv'); } });
+      items.push({ label: '从 CSV 导入为新工作表', onClick: function () {
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.accept = '.csv';
+        input.addEventListener('change', function () {
+          const file = input.files && input.files[0];
+          if (!file) return;
+          file.text().then(function (text) {
+            const rows = csvParse(text);
+            if (!rows.length) { toast('这个 CSV 是空的'); return; }
+            const maxLen = Math.max.apply(null, rows.map(function (r) { return r.length; }));
+            const norm = rows.map(function (r) {
+              const copy = r.slice();
+              while (copy.length < maxLen) copy.push('');
+              return copy;
+            });
+            let name = file.name.replace(/\.csv$/i, '') || '导入的表';
+            let n = 2;
+            while (doc.data.sheets.some(function (s) { return s.name === name; })) { name = file.name.replace(/\.csv$/i, '') + ' ' + n; n++; }
+            doc.data.sheets.push({ name: name, rows: norm });
+            state.sheetIndex = doc.data.sheets.length - 1;
+            renderSheetTabs();
+            renderGrid();
+            markDirty();
+            toast('已导入为新工作表');
+          });
+        });
+        input.click();
+      } });
+      items.push({ label: '复制当前表为 CSV', onClick: function () {
+        const sheet = curSheet();
+        copyText(csvStringify(sheet.rows));
+      } });
+    }
+    items.push({ hint: '处理只做轻量、可撤销的操作，不改原文件。' });
+    openMenu(items, el.btnProcess);
+  }
+
+  /* ================= 绑定与启动 ================= */
+  function bind() {
+    $('#btnNew').addEventListener('click', function () { openModal('newModal'); });
+    $('#btnEmptyNew').addEventListener('click', function () { openModal('newModal'); });
+    $$('#newModal .fmt-card').forEach(function (card) {
+      card.addEventListener('click', function () { newDoc(card.dataset.fmt); });
+    });
+    $('#btnNewCancel').addEventListener('click', closeModals);
+    $('#btnImport').addEventListener('click', function () { openModal('importModal'); });
+    $('#btnPickImport').addEventListener('click', function () { el.importInput.click(); });
+    el.importInput.addEventListener('change', function () {
+      const file = el.importInput.files && el.importInput.files[0];
+      if (!file) return;
+      importFile(file);
+      el.importInput.value = '';
+    });
+    $('#btnImportCancel').addEventListener('click', closeModals);
+    el.backdrop.addEventListener('click', function () { closeModals(); closeMenu(); });
+    $('#btnConfirmCancel').addEventListener('click', closeModals);
+    $('#btnConfirmOk').addEventListener('click', function () {
+      closeModals();
+      if (confirmCb) { const cb = confirmCb; confirmCb = null; cb(); }
+    });
+
+    $$('#filterRow .chip').forEach(function (chip) {
+      chip.addEventListener('click', function () {
+        state.filter = chip.dataset.filter;
+        $$('#filterRow .chip').forEach(function (c) { c.classList.toggle('on', c === chip); });
+        renderHome();
+      });
+    });
+    el.searchInput.addEventListener('input', function () {
+      state.query = el.searchInput.value;
+      renderHome();
+    });
+
+    $('#btnBackHome').addEventListener('click', goHome);
+    el.titleInput.addEventListener('change', function () {
+      const v = el.titleInput.value.trim();
+      if (!state.current) return;
+      state.current.name = v || '未命名';
+      el.titleInput.value = state.current.name;
+      markDirty();
+    });
+    $('#btnUndo').addEventListener('click', doUndo);
+    $('#btnRedo').addEventListener('click', doRedo);
+    $('#btnPreview').addEventListener('click', openPreview);
+    $('#btnPreviewBack').addEventListener('click', function () { el.previewOverlay.hidden = true; });
+    $('#btnPreviewExport').addEventListener('click', exportCurrent);
+    $('#btnExport').addEventListener('click', exportCurrent);
+    $('#btnProcess').addEventListener('click', processMenu);
+    $$('#edTabs .tab').forEach(function (b) {
+      b.addEventListener('click', function () { setTab(b.dataset.tab); });
+    });
+
+    el.mdEdit.addEventListener('input', function () {
+      if (!state.current) return;
+      state.current.data.text = el.mdEdit.value;
+      renderMd();
+      markDirty();
+    });
+    el.mdToolbar.addEventListener('click', function (ev) {
+      const btn = ev.target.closest('[data-ins]');
+      if (!btn) return;
+      insertAtCursor(btn.dataset.ins);
+    });
+    el.mdOutline.addEventListener('click', function (ev) {
+      const a = ev.target.closest('a[data-id]');
+      if (!a) return;
+      ev.preventDefault();
+      setTab('preview');
+      setTimeout(function () {
+        const h = el.mdPreview.querySelector('#' + CSS.escape(a.dataset.id));
+        if (h) h.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 150);
+    });
+
+    $$('#ed-docx .add-row [data-add]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        const doc = state.current;
+        if (!doc) return;
+        doc.data.blocks.push({ type: btn.dataset.add, text: '' });
+        markDirty();
+        renderBlocks();
+        renderDocxPreview();
+        const tas = $$('#blockList .block-text');
+        const last = tas[tas.length - 1];
+        if (last) last.focus();
+      });
+    });
+
+    el.slideTitle.addEventListener('input', function () {
+      const s = curSlide();
+      if (!s) return;
+      s.title = el.slideTitle.value;
+      markDirty();
+      renderSlideList();
+      renderSlidePreview();
+    });
+    el.slidePoints.addEventListener('input', function () {
+      const s = curSlide();
+      if (!s) return;
+      s.points = el.slidePoints.value.split('\n');
+      markDirty();
+      renderSlidePreview();
+    });
+    $('#btnSlidePrev').addEventListener('click', function () {
+      if (state.slideIndex > 0) {
+        state.slideIndex--;
+        renderSlideList(); renderSlideEditor(); renderSlidePreview();
+      }
+    });
+    $('#btnSlideNext').addEventListener('click', function () {
+      const doc = state.current;
+      if (doc && state.slideIndex < doc.data.slides.length - 1) {
+        state.slideIndex++;
+        renderSlideList(); renderSlideEditor(); renderSlidePreview();
+      }
+    });
+    $('#btnSlideAdd').addEventListener('click', function () {
+      const doc = state.current;
+      if (!doc) return;
+      doc.data.slides.splice(state.slideIndex + 1, 0, { title: '', points: [''] });
+      state.slideIndex++;
+      markDirty();
+      renderSlideList(); renderSlideEditor(); renderSlidePreview();
+    });
+    $('#btnSlideDup').addEventListener('click', function () {
+      const doc = state.current;
+      if (!doc) return;
+      const copy = JSON.parse(JSON.stringify(curSlide()));
+      doc.data.slides.splice(state.slideIndex + 1, 0, copy);
+      state.slideIndex++;
+      markDirty();
+      renderSlideList(); renderSlideEditor(); renderSlidePreview();
+      toast('已复制本页');
+    });
+    $('#btnSlideDel').addEventListener('click', function () {
+      const doc = state.current;
+      if (!doc) return;
+      if (doc.data.slides.length <= 1) {
+        doc.data.slides[0] = { title: '', points: [''] };
+      } else {
+        doc.data.slides.splice(state.slideIndex, 1);
+        state.slideIndex = Math.max(0, Math.min(state.slideIndex, doc.data.slides.length - 1));
+      }
+      markDirty();
+      renderSlideList(); renderSlideEditor(); renderSlidePreview();
+    });
+
+    el.gridTable.addEventListener('focusin', function (ev) {
+      const input = ev.target.closest('input[data-r]');
+      if (!input) return;
+      state.selCell = { r: +input.dataset.r, c: +input.dataset.c };
+      $$('#gridTable td').forEach(function (td) { td.classList.remove('sel'); });
+      input.parentElement.classList.add('sel');
+    });
+    el.gridTable.addEventListener('input', function (ev) {
+      const input = ev.target.closest('input[data-r]');
+      if (!input) return;
+      const sheet = curSheet();
+      if (!sheet) return;
+      sheet.rows[+input.dataset.r][+input.dataset.c] = input.value;
+      markDirty();
+    });
+    $('#btnRowAdd').addEventListener('click', function () {
+      const sheet = curSheet();
+      if (!sheet) return;
+      const cols = sheetCols(sheet);
+      const at = state.selCell ? state.selCell.r + 1 : sheet.rows.length;
+      sheet.rows.splice(at, 0, new Array(cols).fill(''));
+      markDirty();
+      renderGrid();
+    });
+    $('#btnColAdd').addEventListener('click', function () {
+      const sheet = curSheet();
+      if (!sheet) return;
+      const at = state.selCell ? state.selCell.c + 1 : sheetCols(sheet);
+      sheet.rows.forEach(function (r) { r.splice(at, 0, ''); });
+      markDirty();
+      renderGrid();
+    });
+    $('#btnRowDel').addEventListener('click', function () {
+      const sheet = curSheet();
+      if (!sheet) return;
+      if (sheet.rows.length <= 1) { toast('至少保留一行'); return; }
+      const at = state.selCell ? state.selCell.r : sheet.rows.length - 1;
+      sheet.rows.splice(at, 1);
+      state.selCell = null;
+      markDirty();
+      renderGrid();
+    });
+    $('#btnColDel').addEventListener('click', function () {
+      const sheet = curSheet();
+      if (!sheet) return;
+      if (sheetCols(sheet) <= 1) { toast('至少保留一列'); return; }
+      const at = state.selCell ? state.selCell.c : sheetCols(sheet) - 1;
+      sheet.rows.forEach(function (r) { r.splice(at, 1); });
+      state.selCell = null;
+      markDirty();
+      renderGrid();
+    });
+    $('#btnSheetAdd').addEventListener('click', function () {
+      const doc = state.current;
+      if (!doc) return;
+      let name = '工作表' + (doc.data.sheets.length + 1), n = doc.data.sheets.length + 1;
+      while (doc.data.sheets.some(function (s) { return s.name === name; })) { n++; name = '工作表' + n; }
+      const rows = [];
+      for (let i = 0; i < 5; i++) rows.push(['', '', '', '']);
+      doc.data.sheets.push({ name: name, rows: rows });
+      state.sheetIndex = doc.data.sheets.length - 1;
+      markDirty();
+      renderSheetTabs();
+      renderGrid();
+    });
+    $('#btnSheetDel').addEventListener('click', function () {
+      const doc = state.current;
+      if (!doc) return;
+      if (doc.data.sheets.length <= 1) { toast('至少保留一个工作表'); return; }
+      const name = doc.data.sheets[state.sheetIndex].name;
+      askConfirm('删除工作表？', '将删除「' + name + '」，可以点撤销恢复。', '删除', function () {
+        doc.data.sheets.splice(state.sheetIndex, 1);
+        state.sheetIndex = Math.max(0, Math.min(state.sheetIndex, doc.data.sheets.length - 1));
+        markDirty();
+        renderSheetTabs();
+        renderGrid();
+      });
+    });
+
+    document.addEventListener('keydown', function (ev) {
+      if (ev.key === 'Escape') {
+        if (!el.previewOverlay.hidden) { el.previewOverlay.hidden = true; return; }
+        if (!el.menu.hidden) { closeMenu(); return; }
+        closeModals();
+      }
+    });
+    document.addEventListener('click', function (ev) {
+      if (!el.menu.hidden && !ev.target.closest('#menu') && !ev.target.closest('.doc-menu') && ev.target.id !== 'btnProcess' && !ev.target.closest('#btnProcess') && ev.target.id !== 'btnExport' && !ev.target.closest('#btnExport')) {
+        closeMenu();
+      }
+    });
+    window.addEventListener('beforeunload', function (ev) {
+      if (state.current && state.dirty) { ev.preventDefault(); ev.returnValue = ''; }
+    });
+  }
+
+  /* ================= 启动 ================= */
+  function boot() {
+    cacheEl();
+    bind();
+    DB.open().then(function () { return loadDocs(); });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', boot);
+  } else {
+    boot();
+  }
+})();
+</script>
+</body>
+</html>
