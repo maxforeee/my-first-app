@@ -1,121 +1,111 @@
 {
-  "date": "2026-11-19",
+  "date": "2026-11-20",
   "items": [
     {
+      "id": "news-20261120-anthropic-ipo",
+      "title": "Anthropic Becomes One of World's Most Valuable Public Companies in Stock Market Debut",
       "cat": "新闻",
-      "desc": "AI 公司 Anthropic 上市在即，估值最高 1.5 万亿美元。",
-      "id": "news-20261119-anthropic",
       "level": "B2",
       "minutes": 4,
+      "desc": "AI 公司 Anthropic 上市首日股价大涨，市值一度逼近 2 万亿美元。",
+      "source": "BBC News",
+      "sourceUrl": "https://www.bbc.co.uk/news/articles/c3x29ggenz12o",
+      "published": "2026-11-20",
+      "vocab": [
+        {
+          "w": "valuation",
+          "ph": "/ˌvæljuˈeɪʃn/",
+          "pos": "n.",
+          "zh": "估值；价值评估",
+          "en": "the estimated worth of a company",
+          "ex": "The company's valuation reached roughly $1.76 trillion.",
+          "exZh": "这家公司的估值达到了约 1.76 万亿美元。"
+        },
+        {
+          "w": "debut",
+          "ph": "/ˈdeɪbjuː/",
+          "pos": "n.",
+          "zh": "首次亮相；上市首日",
+          "en": "the first public appearance of something",
+          "ex": "The company's debut on the Nasdaq was a crucial test for the industry.",
+          "exZh": "这家公司在纳斯达克的上市首秀是对整个行业的一次关键考验。"
+        },
+        {
+          "w": "scrutiny",
+          "ph": "/ˈskruːtəni/",
+          "pos": "n.",
+          "zh": "密切关注；仔细审查",
+          "en": "careful and close examination",
+          "ex": "The company will remain under intense scrutiny in the months ahead.",
+          "exZh": "这家公司在未来几个月仍将受到密切关注。"
+        },
+        {
+          "w": "bubble",
+          "ph": "/ˈbʌbl/",
+          "pos": "n.",
+          "zh": "泡沫",
+          "en": "a situation where prices rise far above their real value",
+          "ex": "Many investors worry about a financial bubble in AI stocks.",
+          "exZh": "许多投资者担心 AI 股票存在金融泡沫。"
+        },
+        {
+          "w": "exuberance",
+          "ph": "/ɪɡˈzuːbərəns/",
+          "pos": "n.",
+          "zh": "兴奋；热情高涨",
+          "en": "a feeling of great excitement and energy",
+          "ex": "The initial exuberance of investors will wear off over time.",
+          "exZh": "投资者最初的兴奋会随着时间慢慢消退。"
+        },
+        {
+          "w": "swing",
+          "ph": "/swɪŋ/",
+          "pos": "n.",
+          "zh": "（价格的）大幅波动",
+          "en": "a sudden, large change in price or value",
+          "ex": "The stock saw significant swings in price on its first day.",
+          "exZh": "这只股票上市首日价格大幅波动。"
+        }
+      ],
       "paras": [
         {
           "en": [
-            "Anthropic has seen its value jump to as much as $1.5tn (£1.14tn) as its shares are set to start trading on the stock market on Thursday.",
-            "The artificial intelligence (AI) company behind the popular chatbot Claude said its shares will be priced at $83 each when it lists on the Nasdaq, a tech-focused stock exchange based in New York.",
-            "That will make it one of the most valuable companies in the world."
+            "Anthropic has become one of the most valuable public companies in the world after its shares began trading on the public stock market, taking its valuation to roughly $1.76 trillion.",
+            "The artificial intelligence (AI) company's Thursday debut on the Nasdaq stock exchange was a crucial test for the industry, given the huge amount of money being poured into advancing the technology.",
+            "Anthropic's shares flew past its allocation price of $83 per share, showing there is plenty of excitement around AI."
           ],
           "zh": [
-            "随着股票将于周四开始交易，Anthropic 的估值已飙升至最高 1.5 万亿美元（约 1.14 万亿英镑）。",
-            "这家人工智能公司开发了热门聊天机器人 Claude，它表示在纽约的科技股交易所纳斯达克上市时，每股定价为 83 美元。",
-            "这将使它成为世界上最有价值的公司之一。"
+            "Anthropic 股票开始公开交易后，已成为全球最有价值的上市公司之一，估值达到约 1.76 万亿美元。",
+            "这家人工智能公司周四在纳斯达克上市，是对整个行业的一次关键考验，因为大量资金正涌入推动这项技术发展。",
+            "Anthropic 的股价远超每股 83 美元的发行价，显示出市场对人工智能的热情高涨。"
           ]
         },
         {
           "en": [
-            "Anthropic's stock market debut will make it the first US firm focused exclusively on AI to go public.",
-            "It will also mark a crucial test for the fast-growing industry, which faces questions over whether the huge amounts of money being poured into the technology will be profitable.",
-            "The firm said earlier this month it would offer its shares for between $70 and $78 each, which valued the company at up to $1.3tn."
+            "Yet the company, which is behind AI chatbot Claude, will remain under intense scrutiny in the months ahead to answer the key question surrounding AI: is it all worth it?",
+            "In just a few hours of trading, Anthropic's stock seemed to show that investors remain uncertain of where exactly AI is heading.",
+            "The share price rose immediately to $111.5, sending the company's market value to almost $2 trillion, before falling by the end of the day, with shares hitting $97."
           ],
           "zh": [
-            "Anthropic 的上市将使它成为第一家专注于人工智能的美国上市公司。",
-            "这也将是对这个快速发展行业的一次关键考验，人们质疑投入这项技术的大量资金是否能带来利润。",
-            "该公司本月早些时候表示，将以每股 70 至 78 美元的价格发行股票，估值最高达 1.3 万亿美元。"
+            "不过，这家开发了 AI 聊天机器人 Claude 的公司，在未来几个月仍将受到密切关注，要回答围绕人工智能的关键问题：这一切到底值不值？",
+            "在短短几小时的交易中，Anthropic 的股价似乎表明，投资者对人工智能究竟走向何方仍不确定。",
+            "股价开盘即涨至 111.5 美元，市值一度逼近 2 万亿美元，但收盘前回落至 97 美元。"
           ]
         },
         {
           "en": [
-            "But demand for Anthropic's stock debut — commonly referred to as its initial public offering, or IPO — is very high, according to one early investor in the company who spoke with the BBC on condition of anonymity.",
-            "The person said shares were more than 10 times oversubscribed ahead of the public listing, meaning demand for Anthropic shares exceeded the number of shares available.",
-            "If that turns out to be the case, Anthropic's valuation could quickly blow past its target on Thursday when trading begins."
+            "Some investors said Anthropic's debut seemed to be a success, as shares rose roughly 17% during the day, but the broader tech market did not perform as well.",
+            "The tech-heavy Nasdaq Composite Index closed down nearly 2.3%.",
+            "Stocks fell in the largest tech firms, including Google's parent company Alphabet (down 3%) and Amazon (down 3.9%)."
           ],
           "zh": [
-            "但据一位要求匿名的早期投资者向 BBC 透露，市场对 Anthropic 首次公开募股（IPO）的需求非常高。",
-            "这位人士表示，在公开上市之前，股票的认购量已超过可供认购数量的 10 倍，这意味着需求超过了供应。",
-            "如果情况属实，Anthropic 的估值在周四开盘后可能很快超过目标。"
+            "一些投资者表示，Anthropic 的上市首日似乎是成功的，股价当天上涨约 17%，但整个科技板块的表现却没那么好。",
+            "以科技股为主的纳斯达克综合指数收盘下跌近 2.3%。",
+            "大型科技公司的股票纷纷下跌，包括谷歌母公司 Alphabet（跌 3%）和亚马逊（跌 3.9%）。"
           ]
-        }
-      ],
-      "published": "2026-11-19",
-      "source": "BBC News",
-      "sourceUrl": "https://www.bbc.co.uk/news/articles/c6742m39xgzxo",
-      "title": "AI Giant Anthropic Valued at up to $1.5tn Ahead of Stock Market Debut",
-      "vocab": [
-        {
-          "en": "how much something is worth",
-          "ex": "The company's value reached $1.5 trillion.",
-          "exZh": "该公司的估值达到了 1.5 万亿美元。",
-          "ph": "/ˈvæljuː/",
-          "pos": "n.",
-          "w": "value",
-          "zh": "价值；估值"
-        },
-        {
-          "en": "a computer program that talks with people",
-          "ex": "Many people use a chatbot to answer questions every day.",
-          "exZh": "许多人每天都用聊天机器人回答问题。",
-          "ph": "/ˈtʃætbɒt/",
-          "pos": "n.",
-          "w": "chatbot",
-          "zh": "聊天机器人"
-        },
-        {
-          "en": "to put a company's shares on a stock market",
-          "ex": "The company will list on the Nasdaq.",
-          "exZh": "这家公司将在纳斯达克上市。",
-          "ph": "/lɪst/",
-          "pos": "v.",
-          "w": "list",
-          "zh": "（股票）上市"
-        },
-        {
-          "en": "the first time something appears in public",
-          "ex": "The film made its debut at the festival.",
-          "exZh": "这部电影在电影节上首次亮相。",
-          "ph": "/ˈdeɪbjuː/",
-          "pos": "n.",
-          "w": "debut",
-          "zh": "首次亮相；初次登场"
-        },
-        {
-          "en": "with more buyers than shares available",
-          "ex": "The shares were ten times oversubscribed.",
-          "exZh": "这些股票的认购量是供应量的十倍。",
-          "ph": "/ˌəʊvəsəbˈskraɪbd/",
-          "pos": "adj.",
-          "w": "oversubscribed",
-          "zh": "超额认购的"
-        },
-        {
-          "en": "making a profit",
-          "ex": "The new business is not profitable yet.",
-          "exZh": "这项新业务目前还没有盈利。",
-          "ph": "/ˈprɒfɪtəbl/",
-          "pos": "adj.",
-          "w": "profitable",
-          "zh": "有利可图的；赚钱的"
         }
       ],
       "phrases": [
-        {
-          "p": "start doing",
-          "surf": [
-            "start trading"
-          ],
-          "zh": "开始做某事",
-          "en": "to begin doing something",
-          "ex": "She started learning the piano at six.",
-          "exZh": "她六岁开始学钢琴。"
-        },
         {
           "p": "pour into",
           "surf": [
@@ -125,7 +115,261 @@
           "en": "To put a lot of money or effort into something.",
           "ex": "They poured a lot of money into the project.",
           "exZh": "他们往这个项目里投了很多钱。"
+        }
+      ]
+    },
+    {
+      "id": "news-20261120-gravity-message",
+      "title": "An Elevator, a Brick Wall and a Bathroom: Scientists Use Gravity to Send 'Practically Unblockable' Message",
+      "cat": "新闻",
+      "level": "B2",
+      "minutes": 4,
+      "desc": "科学家用一部老电梯和重力仪，把一条信息穿过砖墙传送出去。",
+      "source": "The Guardian",
+      "sourceUrl": "https://www.theguardian.com/science/2026/nov/20/scientists-communicate-using-gravity-elevator-brick-wall-bathroom-experiment",
+      "published": "2026-11-20",
+      "vocab": [
+        {
+          "w": "transmit",
+          "ph": "/trænzˈmɪt/",
+          "pos": "v.",
+          "zh": "传送；传输",
+          "en": "to send a signal or message from one place to another",
+          "ex": "The scientists used gravity to transmit a message through a wall.",
+          "exZh": "科学家用引力把一条信息穿过墙传送出去。"
         },
+        {
+          "w": "counterweight",
+          "ph": "/ˈkaʊntəweɪt/",
+          "pos": "n.",
+          "zh": "配重；平衡重",
+          "en": "a weight that balances another weight",
+          "ex": "The elevator's counterweight moved between two floors.",
+          "exZh": "电梯的配重在两个楼层之间移动。"
+        },
+        {
+          "w": "gravimeter",
+          "ph": "/ɡrəˈvɪmɪtə(r)/",
+          "pos": "n.",
+          "zh": "重力仪",
+          "en": "an instrument that measures gravity",
+          "ex": "A gravimeter detected the position of the counterweight.",
+          "exZh": "重力仪探测到了配重的位置。"
+        },
+        {
+          "w": "practically",
+          "ph": "/ˈpræktɪkli/",
+          "pos": "adv.",
+          "zh": "几乎；实际上",
+          "en": "almost; nearly",
+          "ex": "The message was practically unblockable.",
+          "exZh": "这条信息几乎无法屏蔽。"
+        },
+        {
+          "w": "signal",
+          "ph": "/ˈsɪɡnəl/",
+          "pos": "n.",
+          "zh": "信号",
+          "en": "a message or sound sent by a device",
+          "ex": "A gravitational signal cannot be screened out by ordinary material.",
+          "exZh": "引力信号无法被普通材料屏蔽掉。"
+        },
+        {
+          "w": "binary",
+          "ph": "/ˈbaɪnəri/",
+          "pos": "adj.",
+          "zh": "二进制的",
+          "en": "using only the numbers 0 and 1",
+          "ex": "The message was sent in binary code.",
+          "exZh": "这条信息是用二进制代码发送的。"
+        }
+      ],
+      "paras": [
+        {
+          "en": [
+            "Australian scientists have used gravity as a means of communication, in a proof-of-concept experiment involving a snail-paced 1950s elevator, a brick wall and a men's bathroom.",
+            "Physicists at the University of Queensland have used gravity to transmit a “practically unblockable” message about 70cm through a brick wall, by sending an elevator up and down between two floors and measuring changes in the gravitational field as a result of the movement.",
+            "The research, published in the journal Science Advances, involved a sensitive detection device known as a gravimeter, which was set up on the floor of a men's bathroom adjacent to the lift."
+          ],
+          "zh": [
+            "澳大利亚科学家在一项概念验证实验中，用引力作为通信手段，实验用到的是一部慢吞吞的 1950 年代老电梯、一堵砖墙和一间男洗手间。",
+            "昆士兰大学的物理学家让电梯在两层楼之间上下移动，并测量由此产生的引力场变化，成功把一条“几乎无法屏蔽”的信息穿过一堵砖墙传送了约 70 厘米。",
+            "这项研究发表在《科学进展》期刊上，用到了一种名为重力仪的灵敏探测装置，它被安放在电梯旁男洗手间的地板上。"
+          ]
+        },
+        {
+          "en": [
+            "The gravimeter was able to detect the position of the elevator's 1.8-tonne counterweight as it moved between two levels – representing 0 and 1 in binary code – which enabled the scientists to send a message.",
+            "The researchers chose to transmit the word “gravity”, or 1000111 1110010 1100001 1110110 1101001 1110100 1111001 in binary code.",
+            "At a transmission rate of one bit (digit) per minute, the single word took nearly an hour to send."
+          ],
+          "zh": [
+            "重力仪能探测到电梯 1.8 吨重的配重在两个楼层之间的位置——分别代表二进制代码中的 0 和 1——科学家由此得以发送信息。",
+            "研究人员选择传送的单词是“gravity”，用二进制代码表示就是 1000111 1110010 1100001 1110110 1101001 1110100 1111001。",
+            "按每分钟传输一位（一个数字）的速度，发送这一个单词花了将近一小时。"
+          ]
+        },
+        {
+          "en": [
+            "The scientists say that while gravitational communication is currently far from usable given its extremely slow speed, an advantage is that it is a “practically unblockable wireless communication scheme”.",
+            "“Unlike the electromagnetic signals used in modern wireless communication, a gravitational signal cannot simply be screened out by placing ordinary material in its path,” said co-author Dr Charles Woffinden, of UQ's school of mathematics and physics.",
+            "“Anyone who has lost phone reception in a tunnel or struggled with wifi through a solid wall will understand the appeal.”"
+          ],
+          "zh": [
+            "科学家表示，尽管引力通信速度极慢、目前还远谈不上实用，但它的一个优点是“几乎无法屏蔽的无线通信方式”。",
+            "合著者、昆士兰大学数学与物理学院的查尔斯·沃芬登博士说：“与现代无线通信使用的电磁信号不同，引力信号无法简单地靠在传播路径上放点普通材料就屏蔽掉。”",
+            "“任何在隧道里丢过手机信号、或为 WiFi 穿不过一堵实墙而发愁的人，都会明白它的吸引力。”"
+          ]
+        }
+      ],
+      "phrases": [
+        {
+          "p": "set up",
+          "surf": [
+            "set up"
+          ],
+          "zh": "安装；布置；建立",
+          "en": "to put something in place so it is ready for use",
+          "ex": "The gravimeter was set up on the floor of a men's bathroom.",
+          "exZh": "重力仪被安放在男洗手间的地板上。"
+        },
+        {
+          "p": "be able to",
+          "surf": [
+            "was able to"
+          ],
+          "zh": "能够",
+          "en": "Can, to have the ability to.",
+          "ex": "I am able to swim.",
+          "exZh": "我会游泳。"
+        },
+        {
+          "p": "far from",
+          "surf": [
+            "far from"
+          ],
+          "zh": "离……很远；远非",
+          "en": "A long way from; not at all.",
+          "ex": "Don't leave now: our task is far from complete!",
+          "exZh": "现在别走：我们的任务还远没有完成！"
+        },
+        {
+          "p": "screen out",
+          "surf": [
+            "screened out"
+          ],
+          "zh": "屏蔽；挡住",
+          "en": "to block something so it cannot get through",
+          "ex": "A gravitational signal cannot simply be screened out by ordinary material.",
+          "exZh": "引力信号无法简单地被普通材料屏蔽掉。"
+        }
+      ]
+    },
+    {
+      "id": "news-20261120-eu-uk-talks",
+      "title": "EU-UK Talks Going Down to the Wire, Says No 10",
+      "cat": "新闻",
+      "level": "B2",
+      "minutes": 4,
+      "desc": "英欧峰会前夕谈判进入最后关头，青年流动计划成为焦点。",
+      "source": "BBC News",
+      "sourceUrl": "https://www.bbc.co.uk/news/articles/c623j4kpg94go",
+      "published": "2026-11-20",
+      "vocab": [
+        {
+          "w": "summit",
+          "ph": "/ˈsʌmɪt/",
+          "pos": "n.",
+          "zh": "峰会",
+          "en": "a meeting between leaders of different countries",
+          "ex": "The summit in Brussels will discuss trade and visas.",
+          "exZh": "布鲁塞尔峰会将讨论贸易和签证问题。"
+        },
+        {
+          "w": "quota",
+          "ph": "/ˈkwəʊtə/",
+          "pos": "n.",
+          "zh": "配额；限额",
+          "en": "a fixed limit on a number of people or things",
+          "ex": "The UK may agree to a quota of 100,000 young people per year.",
+          "exZh": "英国可能同意每年 10 万名年轻人的配额。"
+        },
+        {
+          "w": "mobility",
+          "ph": "/məʊˈbɪləti/",
+          "pos": "n.",
+          "zh": "流动性；流动",
+          "en": "the ability to move freely between places",
+          "ex": "The new youth mobility scheme will help young people travel and work abroad.",
+          "exZh": "新的青年流动计划将帮助年轻人出国旅行和工作。"
+        },
+        {
+          "w": "division",
+          "ph": "/dɪˈvɪʒn/",
+          "pos": "n.",
+          "zh": "分歧；分裂",
+          "en": "a disagreement between people",
+          "ex": "The debate reopened the divisions of the Brexit referendum.",
+          "exZh": "这场辩论重新挑起了脱欧公投时的分歧。"
+        },
+        {
+          "w": "legislation",
+          "ph": "/ˌledʒɪsˈleɪʃn/",
+          "pos": "n.",
+          "zh": "法律；立法",
+          "en": "laws that a government makes",
+          "ex": "The government will introduce legislation to put the deal into effect.",
+          "exZh": "政府将出台法律来落实这项协议。"
+        },
+        {
+          "w": "scheme",
+          "ph": "/skiːm/",
+          "pos": "n.",
+          "zh": "计划；方案",
+          "en": "an official plan for doing something",
+          "ex": "The scheme aims to make it easier for young people to work abroad.",
+          "exZh": "该计划旨在让年轻人更容易出国工作。"
+        }
+      ],
+      "paras": [
+        {
+          "en": [
+            "Negotiations between the EU and UK are “going down to the wire” ahead of Friday's summit in Brussels, Downing Street has said.",
+            "The summit is aimed at reaching new agreements between the two sides on food trade rules, visas for young people and carbon emissions pricing.",
+            "Sources have told the BBC the UK is set to agree to a quota of 100,000 young people per year coming to the UK as part of a new youth mobility scheme."
+          ],
+          "zh": [
+            "唐宁街表示，欧盟与英国的谈判在周五布鲁塞尔峰会前夕已进入“最后关头”。",
+            "这次峰会旨在就食品贸易规则、青年签证和碳排放定价达成新协议。",
+            "消息人士告诉 BBC，作为新的青年流动计划的一部分，英国准备同意每年允许 10 万名年轻人来英。"
+          ]
+        },
+        {
+          "en": [
+            "Downing Street has not commented on the details, which would also allow young Britons to live in Europe.",
+            "Conservative leader Kemi Badenoch accused Prime Minister Andy Burnham of “reopening the divisions and debates” of the Brexit referendum.",
+            "Speaking to the BBC's Today programme, she said she wanted to see easier trading with the EU, but added “not trade at any cost”."
+          ],
+          "zh": [
+            "唐宁街尚未就细节置评，该计划也将允许英国年轻人到欧洲生活。",
+            "保守党领袖凯米·巴德诺克指责首相安迪·伯纳姆“重新挑起”脱欧公投时的分歧与争论。",
+            "她在接受 BBC《今日》节目采访时说，她希望看到与欧盟的贸易更顺畅，但补充说“不是不惜一切代价换贸易”。"
+          ]
+        },
+        {
+          "en": [
+            "She also said the new deals could see UK companies having to follow EU rules, even those that do not trade with the bloc.",
+            "Speaking to broadcasters on Thursday evening, Burnham was asked if there were any circumstances in which the UK would walk away from the deal on Friday.",
+            "“There would always be those circumstances because I'm in this to get the best deal for Britain, always,” he said."
+          ],
+          "zh": [
+            "她还表示，新协议可能导致英国公司不得不遵守欧盟规则，哪怕是不与欧盟做生意的公司。",
+            "伯纳姆周四晚在接受媒体采访时被问到，是否存在英国周五会退出谈判的情况。",
+            "他说：“总会有这种情况，因为我始终要为英国争取最好的协议。”"
+          ]
+        }
+      ],
+      "phrases": [
         {
           "p": "ahead of",
           "surf": [
@@ -137,700 +381,457 @@
           "exZh": "一座小山出现在他们面前。"
         },
         {
-          "p": "turn out",
+          "p": "aim at",
           "surf": [
-            "turns out"
+            "aimed at"
           ],
-          "zh": "结果是；原来是",
-          "en": "To result; to end up being.",
-          "ex": "I had hoped our first meeting would turn out better.",
-          "exZh": "我本希望我们的第一次见面能更好一些。"
+          "zh": "以……为目标；旨在",
+          "en": "to have something as a goal or target",
+          "ex": "The summit is aimed at reaching new agreements on food trade rules.",
+          "exZh": "这次峰会旨在就食品贸易规则达成新协议。"
         },
         {
-          "p": "be the case",
+          "p": "agree to do",
           "surf": [
-            "be the case"
+            "agree to a"
           ],
-          "zh": "情况是这样；事实如此",
-          "en": "To be true; to be the situation.",
-          "ex": "If that is the case, we need a new plan.",
-          "exZh": "如果情况是这样，我们需要一个新计划。"
+          "zh": "同意做某事",
+          "en": "to say yes to doing something",
+          "ex": "He agreed to help us.",
+          "exZh": "他同意帮助我们。"
         },
         {
-          "p": "blow past",
+          "p": "want to do",
           "surf": [
-            "blow past"
+            "wanted to see"
           ],
-          "zh": "轻易超过；一下子超过",
-          "en": "To easily go past a limit or target.",
-          "ex": "I've just blown past my calorie limit for the day.",
-          "exZh": "我今天的卡路里摄入一下子就超标了。"
+          "zh": "想要做某事",
+          "en": "to wish to do something",
+          "ex": "I want to learn English.",
+          "exZh": "我想学英语。"
+        },
+        {
+          "p": "walk away from",
+          "surf": [
+            "walk away from"
+          ],
+          "zh": "退出；放弃（谈判、交易等）",
+          "en": "to leave or abandon a deal or situation",
+          "ex": "The UK could walk away from the deal on Friday.",
+          "exZh": "英国可能在周五退出这项协议。"
         }
       ]
     },
     {
+      "id": "news-20261120-fiona-hippo",
+      "title": "Fiona the Hippo Dies After Swallowing Knitted Hat at Cincinnati Zoo",
       "cat": "新闻",
-      "desc": "英格兰将废除租赁产权制，公寓改为居民共同持有。",
-      "id": "news-20261119-leasehold",
       "level": "B2",
       "minutes": 4,
+      "desc": "美国著名河马菲奥娜吞下一顶针织帽后不幸去世。",
+      "source": "The Guardian",
+      "sourceUrl": "https://www.theguardian.com/world/2026/nov/19/fiona-hippo-cincinnati-zoo-knit-hat",
+      "published": "2026-11-20",
+      "vocab": [
+        {
+          "w": "enclosure",
+          "ph": "/ɪnˈkləʊʒə(r)/",
+          "pos": "n.",
+          "zh": "围栏；圈地",
+          "en": "an area closed in by a fence",
+          "ex": "The hat fell into the hippo's enclosure.",
+          "exZh": "帽子掉进了河马的围栏里。"
+        },
+        {
+          "w": "asymptomatic",
+          "ph": "/ˌeɪsɪmptəˈmætɪk/",
+          "pos": "adj.",
+          "zh": "无症状的",
+          "en": "showing no signs of illness",
+          "ex": "Fiona ate the hat and was initially asymptomatic.",
+          "exZh": "菲奥娜吃下帽子后起初没有任何症状。"
+        },
+        {
+          "w": "appetite",
+          "ph": "/ˈæpɪtaɪt/",
+          "pos": "n.",
+          "zh": "食欲",
+          "en": "the desire to eat",
+          "ex": "Days later, she began to lose appetite.",
+          "exZh": "几天后，她开始食欲不振。"
+        },
+        {
+          "w": "vibration",
+          "ph": "/vaɪˈbreɪʃn/",
+          "pos": "n.",
+          "zh": "振动",
+          "en": "a small, fast shaking movement",
+          "ex": "The team used a vibration plate to help move the hat along.",
+          "exZh": "团队用一块振动板来帮助推动帽子排出。"
+        },
+        {
+          "w": "premature",
+          "ph": "/ˌpreməˈtʃʊə(r)/",
+          "pos": "adj.",
+          "zh": "早产的；过早的",
+          "en": "born too early",
+          "ex": "Fiona was born six weeks premature.",
+          "exZh": "菲奥娜早产了六周出生。"
+        },
+        {
+          "w": "veterinarian",
+          "ph": "/ˌvetərɪˈneəriən/",
+          "pos": "n.",
+          "zh": "兽医",
+          "en": "a doctor who treats animals",
+          "ex": "Veterinarians tried an alternative method to help the hat pass through.",
+          "exZh": "兽医们尝试了另一种办法来帮助帽子排出来。"
+        }
+      ],
       "paras": [
         {
           "en": [
-            "The government is to introduce new laws to scrap the way flats are built in England and Wales.",
-            "Under the proposed bill, most new leasehold flats will be banned and replaced with commonhold, where residents collectively own and manage their buildings.",
-            "Matthew Pennycook, the housing minister, said the current leasehold system was \"blighting lives\" and was an \"anachronism in the twenty-first century\"."
+            "Fiona the hippo, one of America's most famous zoo animals, has died after efforts to remove a knitted hat that she swallowed after it fell into her enclosure proved unsuccessful.",
+            "“It is with extreme sadness that we share with you the devastating news that Fiona did not make it after multiple attempts from our amazing vets and keeper team to help her through what ended up being a medical emergency,” the zoo wrote in a post on social media.",
+            "With surgery too risky for full-grown hippos such as Fiona, who weighed in the region of 2,500lb (1,113kg), veterinarians tried an alternative method of getting the hat to pass through her system."
           ],
           "zh": [
-            "政府将出台新法律，废除英格兰和威尔士现有的公寓建造方式。",
-            "根据拟议法案，大多数新建的租赁产权公寓将被禁止，取而代之的是共同持有制，即居民共同拥有和管理自己的楼房。",
-            "住房大臣马修·彭尼库克表示，现行的租赁产权制度正在“毁掉人们的生活”，是“21 世纪的时代错误”。"
+            "美国最著名的动物园动物之一、河马菲奥娜已经去世。此前它吞下了一顶掉进围栏的针织帽，工作人员想方设法要把它取出来，但没有成功。",
+            "动物园在社交媒体上写道：“我们怀着极大的悲痛告诉大家这个令人心碎的消息：尽管我们出色的兽医和饲养员团队多次努力，帮助菲奥娜度过这场突发的医疗紧急情况，但她还是没能挺过来。”",
+            "对菲奥娜这样体重约 2500 磅（1113 公斤）的成年河马来说，手术风险太大，于是兽医们尝试了另一种办法，让帽子从它的体内排出来。"
           ]
         },
         {
           "en": [
-            "The legislation follows Labour's 2024 election manifesto to \"bring the feudal leasehold system to an end\" — with further details expected to be set out later.",
-            "However, freeholders argue the policy is \"unjust\" and will have a detrimental impact on investment markets.",
-            "The proposed Commonhold and Leasehold Reform Bill will also include capping ground rent — the annual fee paid by current leaseholders to their freeholder — at £250."
+            "The hat fell near Fiona when a visitor to the Cincinnati zoo tossed it in the air, after which it bounced off a ceiling fan and fell into the enclosure, according to the Associated Press.",
+            "Fiona ate the hat and was initially asymptomatic.",
+            "Days later, however, she began to lose appetite and staff at the zoo were forced to feed Fiona more in the hope that she would eventually get the hat through her digestive system."
           ],
           "zh": [
-            "这项立法遵循了工党 2024 年竞选纲领中“终结封建租赁产权制度”的承诺，更多细节预计稍后公布。",
-            "然而，永久产权人认为这项政策“不公平”，将对投资市场产生不利影响。",
-            "拟议的《共同持有与租赁产权改革法案》还将把地租——即当前租赁产权人每年向永久产权人支付的费用——上限设定为 250 英镑。"
+            "据美联社报道，一名游客在辛辛那提动物园把帽子抛向空中，帽子弹到天花板风扇上，又掉进了围栏，正好落在菲奥娜附近。",
+            "菲奥娜吃下了帽子，起初没有任何症状。",
+            "然而几天后，她开始食欲不振，动物园的工作人员不得不给她多喂食，希望帽子最终能通过她的消化系统排出来。"
           ]
         },
         {
           "en": [
-            "That will then be reduced to a \"peppercorn\" rate — which is effectively nothing — after 40 years.",
-            "Fozia Malik lives in a one-bedroom flat in Oldham and says her ground rent will go up from £150 to £300 in January.",
-            "Malik says she would \"never\" buy a leasehold flat again, describing it as a \"continuous torture cell\"."
+            "“Despite multiple attempts to move the hat out of her system, it was ultimately too much to overcome.”",
+            "“The team performed necessary supportive care today in an attempt to save her, but it was not successful and she did not recover,” the zoo statement said.",
+            "The zoo announced on Wednesday that the animal care team was using a vibration plate from a horse farm to help move things along, according to the Associated Press."
           ],
           "zh": [
-            "40 年后，地租将降至“象征性”水平，也就是实际上等于零。",
-            "福齐娅·马利克住在奥尔德姆的一居室公寓里，她说自己的地租将于明年一月从 150 英镑涨到 300 英镑。",
-            "马利克说她“再也不会”买租赁产权公寓了，她把这称作“持续的折磨”。"
+            "“尽管多次尝试把帽子从她体内移出来，但最终还是没能克服这个困难。”",
+            "动物园的声明说：“团队今天进行了必要的支持性护理，试图挽救她，但没有成功，她没能恢复过来。”",
+            "据美联社报道，动物园周三宣布，动物护理团队正在用一块从马场借来的振动板来帮助推动帽子排出。"
           ]
-        }
-      ],
-      "published": "2026-11-19",
-      "source": "BBC News",
-      "sourceUrl": "https://www.bbc.co.uk/news/articles/cw987ynpd0n1o",
-      "title": "'Feudal' Leasehold System Set to Be Scrapped in England and Wales",
-      "vocab": [
-        {
-          "en": "the right to use a flat for a long time, without owning the land",
-          "ex": "Most flats in England are sold on a leasehold basis.",
-          "exZh": "英格兰的大多数公寓都是以租赁产权的形式出售的。",
-          "ph": "/ˈliːshəʊld/",
-          "pos": "n.",
-          "w": "leasehold",
-          "zh": "租赁产权"
-        },
-        {
-          "en": "to get rid of something",
-          "ex": "The government plans to scrap the old system.",
-          "exZh": "政府计划废除旧制度。",
-          "ph": "/skræp/",
-          "pos": "v.",
-          "w": "scrap",
-          "zh": "废除；取消"
-        },
-        {
-          "en": "a system where residents own and manage their building together",
-          "ex": "Under commonhold, residents own the building together.",
-          "exZh": "在共同持有制下，居民共同拥有这栋楼。",
-          "ph": "/ˈkɒmənhəʊld/",
-          "pos": "n.",
-          "w": "commonhold",
-          "zh": "共同持有制"
-        },
-        {
-          "en": "something that belongs to a different time",
-          "ex": "He called the old rule an anachronism.",
-          "exZh": "他称这条旧规定是时代错误。",
-          "ph": "/əˈnækrənɪzəm/",
-          "pos": "n.",
-          "w": "anachronism",
-          "zh": "时代错误；不合时宜的事物"
-        },
-        {
-          "en": "harmful",
-          "ex": "Smoking is detrimental to your health.",
-          "exZh": "吸烟对你的健康有害。",
-          "ph": "/ˌdetrɪˈmentl/",
-          "pos": "adj.",
-          "w": "detrimental",
-          "zh": "有害的；不利的"
-        },
-        {
-          "en": "money paid to use land or a building",
-          "ex": "She pays £150 a year in ground rent.",
-          "exZh": "她每年支付 150 英镑地租。",
-          "ph": "/rent/",
-          "pos": "n.",
-          "w": "rent",
-          "zh": "租金；地租"
         }
       ],
       "phrases": [
         {
-          "p": "set out",
+          "p": "fall into",
           "surf": [
-            "set out"
+            "fell into"
           ],
-          "zh": "详细说明；出发",
-          "en": "To explain something in detail; to start a journey.",
-          "ex": "This contract sets out all the terms of the agreement.",
-          "exZh": "这份合同详细列出了协议的所有条款。"
+          "zh": "掉进；落入",
+          "en": "to go into something by falling",
+          "ex": "The hat fell into the hippo's enclosure.",
+          "exZh": "帽子掉进了河马的围栏里。"
         },
         {
-          "p": "go up",
+          "p": "end up",
           "surf": [
-            "go up"
+            "ended up"
           ],
-          "zh": "上升；上涨",
-          "en": "To move upwards; to increase.",
-          "ex": "There are new offices going up in town.",
-          "exZh": "镇上正在建新的办公楼。"
-        }
-      ]
-    },
-    {
-      "cat": "新闻",
-      "desc": "梵高名画拍出 1.9 亿美元，创下艺术家拍卖纪录。",
-      "id": "news-20261119-vangogh",
-      "level": "B2",
-      "minutes": 4,
-      "paras": [
-        {
-          "en": [
-            "Auction house Sotheby's has sold a painting by Vincent van Gogh for a record $190.4m (£144.8m).",
-            "The sale of Châtaigniers en fleurs (\"Chestnut Trees in Blossom\") shatters the renowned artist's previous auction record of $117.2 million set in 2022.",
-            "The historic sale in New York on Wednesday comes after an eleventh-hour agreement was reached to resolve a dispute regarding claims the art piece was previously sold under duress during the rise of the Nazis."
-          ],
-          "zh": [
-            "拍卖行苏富比以创纪录的 1.904 亿美元（约 1.448 亿英镑）售出了一幅文森特·梵高的画作。",
-            "《花栗树盛开》的成交价打破了这位著名艺术家 2022 年创下的 1.172 亿美元拍卖纪录。",
-            "这场在纽约举行的历史性拍卖之前，双方刚刚在最后时刻达成协议，解决了有关这件艺术品在纳粹崛起时期被迫出售的争议。"
-          ]
+          "zh": "最终成为；最后落得",
+          "en": "to finally be in a particular place or situation",
+          "ex": "What started as a small problem ended up being a medical emergency.",
+          "exZh": "起初的一个小问题最终变成了一场医疗紧急情况。"
         },
         {
-          "en": [
-            "Châtaigniers en fleurs was painted in 1890 in the final two months of Van Gogh's life.",
-            "It is considered one of the most important works of art from that period to remain in private hands, according to Sotheby's.",
-            "The oil painting, which was estimated to carry a value of $180m (£136m) prior to the sale, was put up for auction as part of a set called the Blaquier-Arrieta Collection."
-          ],
-          "zh": [
-            "《花栗树盛开》创作于 1890 年，是梵高生命最后两个月的作品。",
-            "据苏富比称，它被认为是那个时期仍属私人收藏的最重要的艺术品之一。",
-            "这幅油画在拍卖前估价为 1.8 亿美元（约 1.36 亿英镑），是作为布拉基耶-阿列塔收藏系列的一部分进行拍卖的。"
-          ]
-        },
-        {
-          "en": [
-            "Representatives acting for heirs of the Fischer family had claimed the painting may have been sold under duress during the rise of the Nazis.",
-            "A lawyer for the family's heirs reportedly wrote to Sotheby's on their behalf, telling the auction house that the painting was sold in Amsterdam before World War Two because of financial losses the Fischer family's publishing company suffered under the Nazis.",
-            "\"In recognition of the painting's complex Nazi-era history and the suffering endured by the Fischer family during the Holocaust, the two families have reached a mutually satisfactory resolution and the work will be sold pursuant to their agreement,\" Sotheby's said on Wednesday."
-          ],
-          "zh": [
-            "代表菲舍尔家族继承人的代理人曾声称，这幅画可能是在纳粹崛起时期被迫出售的。",
-            "据报道，继承人的律师曾代表他们致信苏富比，称这幅画在二战前于阿姆斯特丹出售，是因为菲舍尔家族的出版公司在纳粹统治下遭受了经济损失。",
-            "苏富比周三表示：“鉴于这幅画复杂的纳粹时期历史以及菲舍尔家族在大屠杀期间遭受的苦难，两个家族已达成双方都满意的解决方案，这件作品将根据他们的协议出售。”"
-          ]
-        }
-      ],
-      "published": "2026-11-19",
-      "source": "BBC News",
-      "sourceUrl": "https://www.bbc.co.uk/news/articles/c5dj1dkwzvzwo",
-      "title": "Van Gogh Painting Sells for Record $190.4m After Row Over Its Nazi History",
-      "vocab": [
-        {
-          "en": "a public sale where things are sold to the highest bidder",
-          "ex": "The painting was sold at auction for $190 million.",
-          "exZh": "这幅画在拍卖会上以 1.9 亿美元成交。",
-          "ph": "/ˈɔːkʃn/",
-          "pos": "n.",
-          "w": "auction",
-          "zh": "拍卖"
-        },
-        {
-          "en": "to break a record",
-          "ex": "She shattered the world record.",
-          "exZh": "她打破了世界纪录。",
-          "ph": "/ˈʃætə(r)/",
-          "pos": "v.",
-          "w": "shatter",
-          "zh": "打破；粉碎"
-        },
-        {
-          "en": "famous",
-          "ex": "He is a renowned artist.",
-          "exZh": "他是一位著名的艺术家。",
-          "ph": "/rɪˈnaʊnd/",
-          "pos": "adj.",
-          "w": "renowned",
-          "zh": "著名的；有声望的"
-        },
-        {
-          "en": "pressure that forces someone to do something",
-          "ex": "He signed the paper under duress.",
-          "exZh": "他是在被胁迫的情况下签署这份文件的。",
-          "ph": "/dʊˈres/",
-          "pos": "n.",
-          "w": "duress",
-          "zh": "胁迫；强迫"
-        },
-        {
-          "en": "a person who gets money or property after someone dies",
-          "ex": "She is the heir to the family business.",
-          "exZh": "她是家族企业的继承人。",
-          "ph": "/eə(r)/",
-          "pos": "n.",
-          "w": "heir",
-          "zh": "继承人"
-        },
-        {
-          "en": "to find a solution to a problem",
-          "ex": "The two families resolved the dispute.",
-          "exZh": "两个家族解决了这场争议。",
-          "ph": "/rɪˈzɒlv/",
-          "pos": "v.",
-          "w": "resolve",
-          "zh": "解决；化解"
-        }
-      ],
-      "phrases": [
-        {
-          "p": "put up",
+          "p": "in the region of",
           "surf": [
-            "put up"
+            "in the region of"
           ],
-          "zh": "拿出来（拍卖）；张贴；举起",
-          "en": "To offer something for sale; to place something up.",
-          "ex": "The painting was put up for auction.",
-          "exZh": "这幅画被拿出来拍卖。"
-        }
-      ]
-    },
-    {
-      "cat": "新闻",
-      "desc": "克里米亚大桥本周第三次遇袭，交通暂时中断。",
-      "id": "news-20261119-crimea",
-      "level": "B2",
-      "minutes": 4,
-      "paras": [
-        {
-          "en": [
-            "The Crimean Bridge has been attacked by Ukraine for the third time this week, a Russian official has said.",
-            "The Moscow-installed head of Crimea, Sergei Aksyonov, confirmed that traffic was temporarily suspended following another strike on the bridge connecting Russia to occupied Crimea.",
-            "The critical bridge had already been hit twice earlier in the week resulting in severe damage and part of the bridge collapsing into the water."
-          ],
-          "zh": [
-            "一名俄罗斯官员表示，克里米亚大桥本周已第三次遭到乌克兰袭击。",
-            "莫斯科任命的克里米亚领导人谢尔盖·阿克肖诺夫证实，在这座连接俄罗斯与被占领的克里米亚的大桥再次遭到打击后，交通已暂时中断。",
-            "这座关键大桥在本周早些时候已两次遭到袭击，造成严重损坏，部分桥体坍塌入水。"
-          ]
+          "zh": "大约；接近（某个数字）",
+          "en": "approximately; close to a particular figure",
+          "ex": "Fiona weighed in the region of 2,500lb.",
+          "exZh": "菲奥娜体重大约 2500 磅。"
         },
         {
-          "en": [
-            "The important infrastructure has long been targeted by Ukraine because of its significance as a logistical and symbolic asset to Moscow's war effort.",
-            "It comes as Russian President Vladimir Putin meets US President Donald Trump and China's President Xi Jinping on Thursday for landmark talks in China.",
-            "Aksyonov confirmed the strike on the bridge in the early hours of Thursday via Telegram, adding that assessment of the damage was under way."
-          ],
-          "zh": [
-            "这座重要基础设施长期以来一直是乌克兰的打击目标，因为它对莫斯科的战争行动具有后勤和象征意义。",
-            "与此同时，俄罗斯总统普京将于周四在中国与美国总统特朗普和中国国家主席习近平举行具有里程碑意义的会谈。",
-            "阿克肖诺夫周四凌晨通过 Telegram 证实了这次袭击，并表示损失评估正在进行中。"
-          ]
-        },
-        {
-          "en": [
-            "President Volodymyr Zelensky has called the initial strikes on the Crimean Bridge as an \"unprecedented operation\" weeks in the making.",
-            "Ukraine used drones and missiles against it on 17 November which brought down a key section of the road.",
-            "In response, Kremlin spokesman Dmitry Peskov has said the bridge \"will be rebuilt, and it will be even better than before\"."
-          ],
-          "zh": [
-            "泽连斯基总统称最初对克里米亚大桥的袭击是经过数周筹备的“前所未有的行动”。",
-            "乌克兰于 11 月 17 日使用无人机和导弹袭击了大桥，炸毁了路面的一段关键部分。",
-            "对此，克里姆林宫发言人佩斯科夫表示，大桥“将会重建，而且会比以前更好”。"
-          ]
-        }
-      ],
-      "published": "2026-11-19",
-      "source": "BBC News",
-      "sourceUrl": "https://www.bbc.co.uk/news/articles/cm879dqn3e1jo",
-      "title": "Crimean Bridge Attacked Again, Russian Official Says",
-      "vocab": [
-        {
-          "en": "an attack",
-          "ex": "Traffic stopped after another strike on the bridge.",
-          "exZh": "大桥再次遭到打击后，交通中断了。",
-          "ph": "/straɪk/",
-          "pos": "n.",
-          "w": "strike",
-          "zh": "袭击；打击"
-        },
-        {
-          "en": "harm done to something",
-          "ex": "The attack caused severe damage to the bridge.",
-          "exZh": "这次袭击对大桥造成了严重损坏。",
-          "ph": "/ˈdæmɪdʒ/",
-          "pos": "n.",
-          "w": "damage",
-          "zh": "损坏；损失"
-        },
-        {
-          "en": "basic systems like roads and bridges",
-          "ex": "The city is building new infrastructure.",
-          "exZh": "这座城市正在建设新的基础设施。",
-          "ph": "/ˈɪnfrəstrʌktʃə(r)/",
-          "pos": "n.",
-          "w": "infrastructure",
-          "zh": "基础设施"
-        },
-        {
-          "en": "about moving soldiers and supplies",
-          "ex": "The bridge is a logistical asset for the army.",
-          "exZh": "这座大桥是军队的一项后勤资产。",
-          "ph": "/lɒˈdʒɪstɪkl/",
-          "pos": "adj.",
-          "w": "logistical",
-          "zh": "后勤的"
-        },
-        {
-          "en": "very important and historic",
-          "ex": "The two leaders held landmark talks.",
-          "exZh": "两位领导人举行了具有里程碑意义的会谈。",
-          "ph": "/ˈlændmɑːk/",
-          "pos": "adj.",
-          "w": "landmark",
-          "zh": "里程碑式的"
-        },
-        {
-          "en": "never done before",
-          "ex": "This is an unprecedented operation.",
-          "exZh": "这是一次前所未有的行动。",
-          "ph": "/ʌnˈpresɪdentɪd/",
-          "pos": "adj.",
-          "w": "unprecedented",
-          "zh": "前所未有的"
-        }
-      ],
-      "phrases": [
-        {
-          "p": "in the making",
+          "p": "pass through",
           "surf": [
-            "in the making"
+            "pass through"
           ],
-          "zh": "在筹备中；正在形成",
-          "en": "In development; in the process of being made.",
-          "ex": "You're witnessing a great reference work in the making.",
-          "exZh": "你正在见证一部伟大的参考著作的诞生。"
+          "zh": "通过；穿过",
+          "en": "to go through a place or thing",
+          "ex": "Veterinarians tried to help the hat pass through her system.",
+          "exZh": "兽医们试图帮助帽子从她的体内排出来。"
         },
         {
-          "p": "bring down",
+          "p": "begin to do",
           "surf": [
-            "brought down"
-          ],
-          "zh": "使倒下；推翻；击落",
-          "en": "To cause something to fall; to defeat or remove from power.",
-          "ex": "The rebel forces are trying to bring down the president.",
-          "exZh": "反叛军正试图推翻总统。"
-        }
-      ]
-    },
-    {
-      "cat": "新闻",
-      "desc": "孩子说谎不一定是坏事，可能是心理在发育。",
-      "id": "news-20261119-lying",
-      "level": "B2",
-      "minutes": 4,
-      "paras": [
-        {
-          "en": [
-            "When drawings appear on the wall or biscuits disappear from the tin, your child might blame the dog or claim there was a ghost — even if they are clutching crayons or covered in crumbs.",
-            "Children telling fibs is something most parents experience, but such dishonesty and deception is an important part of mental development.",
-            "\"It's actually a skill that they're developing and that they will play with in order to get better,\" clinical psychologist Dr Jade Redfern tells the CBeebies Parenting Download podcast."
-          ],
-          "zh": [
-            "当墙上出现涂鸦或饼干从罐子里消失时，你的孩子可能会怪狗，或者说是有鬼——即使他们手里还攥着蜡笔、满身都是饼干屑。",
-            "孩子说谎是大多数父母都会经历的事，但这种不诚实和欺骗却是心理发展的重要部分。",
-            "临床心理学家杰德·雷德芬博士在 CBeebies 育儿播客中说：“这其实是他们正在发展的一项技能，他们会通过练习让它变得更好。”"
-          ]
-        },
-        {
-          "en": [
-            "Young children aren't quite sophisticated enough to lie, says Redfern, but they are capable of deception before the age of one.",
-            "One of the studies mentioned on the podcast comes from the University of Bristol, which found that around a quarter of children appear to understand some form of deception by the time they are ten months old.",
-            "Prof Elena Hoicka, who led the study, says it was fascinating to see how \"surprisingly young\" kids could be so adept and cunning, including her own."
-          ],
-          "zh": [
-            "雷德芬说，年幼的孩子还不够老练到会说谎，但在不到一岁时就已经会欺骗了。",
-            "播客中提到的一项研究来自布里斯托大学，研究发现，大约四分之一的孩子在十个月大时就已经能理解某种形式的欺骗。",
-            "主持这项研究的埃琳娜·霍伊卡教授说，看到孩子们如此“出乎意料地年幼”却又如此熟练和狡猾，令人着迷，包括她自己的孩子。"
-          ]
-        },
-        {
-          "en": [
-            "Hoicka says that the kind of deception a child uses from the age of two is quite basic — like pretending not to hear their parent or denying they've done something.",
-            "She says they also start to withhold information.",
-            "By the age of three, they have become much more proficient and creative in their deceptions, showing a deeper understanding of language and how other people's minds work."
-          ],
-          "zh": [
-            "霍伊卡说，孩子从两岁起使用的欺骗方式相当简单——比如假装没听见父母的话，或者否认自己做过某事。",
-            "她说，他们也开始隐瞒信息。",
-            "到了三岁，他们的欺骗变得熟练和有创意得多，表现出对语言和他人想法的更深理解。"
-          ]
-        }
-      ],
-      "published": "2026-11-19",
-      "source": "BBC News",
-      "sourceUrl": "https://www.bbc.co.uk/news/articles/cwvg2mp0de2jo",
-      "title": "Is Your Child Lying to You? That Might Not Be a Bad Thing",
-      "vocab": [
-        {
-          "en": "the act of making someone believe something false",
-          "ex": "The child used deception to get more sweets.",
-          "exZh": "这个孩子用欺骗来得到更多糖果。",
-          "ph": "/dɪˈsepʃn/",
-          "pos": "n.",
-          "w": "deception",
-          "zh": "欺骗"
-        },
-        {
-          "en": "clever and experienced",
-          "ex": "She is too young to be sophisticated.",
-          "exZh": "她还太小，不够老练。",
-          "ph": "/səˈfɪstɪkeɪtɪd/",
-          "pos": "adj.",
-          "w": "sophisticated",
-          "zh": "老练的；世故的"
-        },
-        {
-          "en": "very good at something",
-          "ex": "He is adept at solving problems.",
-          "exZh": "他很擅长解决问题。",
-          "ph": "/əˈdept/",
-          "pos": "adj.",
-          "w": "adept",
-          "zh": "熟练的；擅长的"
-        },
-        {
-          "en": "clever in a dishonest way",
-          "ex": "The fox is known for being cunning.",
-          "exZh": "狐狸以狡猾著称。",
-          "ph": "/ˈkʌnɪŋ/",
-          "pos": "adj.",
-          "w": "cunning",
-          "zh": "狡猾的"
-        },
-        {
-          "en": "very good at something through practice",
-          "ex": "After years of practice, she became proficient in English.",
-          "exZh": "经过多年的练习，她的英语变得非常熟练。",
-          "ph": "/prəˈfɪʃnt/",
-          "pos": "adj.",
-          "w": "proficient",
-          "zh": "熟练的；精通的"
-        },
-        {
-          "en": "to keep something back and not share it",
-          "ex": "She withheld the truth from her parents.",
-          "exZh": "她向父母隐瞒了真相。",
-          "ph": "/wɪðˈhəʊld/",
-          "pos": "v.",
-          "w": "withhold",
-          "zh": "隐瞒；扣留"
-        }
-      ],
-      "phrases": [
-        {
-          "p": "play with",
-          "surf": [
-            "play with"
-          ],
-          "zh": "玩弄；摆弄；试着用",
-          "en": "To use something in a playful or experimental way.",
-          "ex": "The children like to play with the new toy.",
-          "exZh": "孩子们喜欢玩这个新玩具。"
-        },
-        {
-          "p": "in order to",
-          "surf": [
-            "in order to"
-          ],
-          "zh": "为了",
-          "en": "As a means of achieving something; to.",
-          "ex": "In order to be fit, you've gotta train hard every day.",
-          "exZh": "为了保持健康，你必须每天刻苦训练。"
-        },
-        {
-          "p": "come from",
-          "surf": [
-            "comes from"
-          ],
-          "zh": "来自",
-          "en": "To have as one's birthplace or nationality.",
-          "ex": "Where do you come from?",
-          "exZh": "你来自哪里？"
-        },
-        {
-          "p": "by the time",
-          "surf": [
-            "by the time"
-          ],
-          "zh": "到……的时候",
-          "en": "When a future event has happened.",
-          "ex": "I'll be an old man by the time you finish!",
-          "exZh": "等你做完，我都成老头子了！"
-        },
-        {
-          "p": "kind of",
-          "surf": [
-            "kind of"
-          ],
-          "zh": "一种；有点",
-          "en": "A type of; slightly, somewhat.",
-          "ex": "I'm getting kind of tired. Could we finish tomorrow?",
-          "exZh": "我有点累了，明天再做完行吗？"
-        },
-        {
-          "p": "like doing",
-          "surf": [
-            "like pretending"
-          ],
-          "zh": "喜欢做某事",
-          "en": "to find doing something pleasant",
-          "ex": "She likes swimming in summer.",
-          "exZh": "她喜欢夏天游泳。"
-        },
-        {
-          "p": "do something",
-          "surf": [
-            "done something"
-          ],
-          "zh": "做某事",
-          "en": "to perform an action",
-          "ex": "Let's do something fun today.",
-          "exZh": "今天我们做点有趣的事吧。"
-        },
-        {
-          "p": "start to do",
-          "surf": [
-            "start to withhold"
+            "began to lose"
           ],
           "zh": "开始做某事",
-          "en": "to begin to do something",
-          "ex": "It started to rain.",
-          "exZh": "开始下雨了。"
+          "en": "to start to do something",
+          "ex": "He began to feel tired.",
+          "exZh": "他开始感到累了。"
         }
       ]
     },
     {
+      "id": "news-20261120-star-wars-welsh",
+      "title": "'Welsh Can Tell Any Story': Cymraeg Dub of Star Wars Premieres in Cardiff",
       "cat": "新闻",
-      "desc": "调查称贝叶斯号船员事前不知道致命的大风风险。",
-      "id": "news-20261119-bayesian",
       "level": "B2",
       "minutes": 4,
+      "desc": "《星球大战》首部威尔士语配音版在卡迪夫首映。",
+      "source": "The Guardian",
+      "sourceUrl": "https://www.theguardian.com/film/2026/nov/19/welsh-cymraeg-dub-star-wars-cardiff",
+      "published": "2026-11-20",
+      "vocab": [
+        {
+          "w": "dub",
+          "ph": "/dʌb/",
+          "pos": "n./v.",
+          "zh": "配音",
+          "en": "to add voices in another language to a film",
+          "ex": "This is the first Welsh-language dub of Star Wars.",
+          "exZh": "这是《星球大战》首部威尔士语配音版。"
+        },
+        {
+          "w": "plaudit",
+          "ph": "/ˈplɔːdɪt/",
+          "pos": "n.",
+          "zh": "赞誉；喝彩",
+          "en": "praise and approval",
+          "ex": "The actors took the plaudits at the screening.",
+          "exZh": "演员们在首映式上赢得了满堂喝彩。"
+        },
+        {
+          "w": "trajectory",
+          "ph": "/trəˈdʒektəri/",
+          "pos": "n.",
+          "zh": "轨迹；发展趋势",
+          "en": "the path or direction something takes over time",
+          "ex": "Wales is on an upward trajectory in the creative arts.",
+          "exZh": "威尔士的创意艺术正处于上升势头。"
+        },
+        {
+          "w": "apposite",
+          "ph": "/ˈæpəzɪt/",
+          "pos": "adj.",
+          "zh": "恰当的；贴切的",
+          "en": "suitable and right for a situation",
+          "ex": "His presence was apposite, since C-3PO speaks millions of languages.",
+          "exZh": "他的到场非常贴切，因为 C-3PO 会说数百万种语言。"
+        },
+        {
+          "w": "staccato",
+          "ph": "/stəˈkɑːtəʊ/",
+          "pos": "adj.",
+          "zh": "短促的；断音的",
+          "en": "with short, sharp sounds",
+          "ex": "C-3PO speaks staccato, living on his nerves.",
+          "exZh": "C-3PO 说话短促，总是神经紧张。"
+        },
+        {
+          "w": "broadcast",
+          "ph": "/ˈbrɔːdkɑːst/",
+          "pos": "v.",
+          "zh": "播出；广播",
+          "en": "to send out a programme on television or radio",
+          "ex": "The Welsh version will be broadcast on Christmas Day.",
+          "exZh": "威尔士语版将于圣诞节播出。"
+        }
+      ],
       "paras": [
         {
           "en": [
-            "The crew of the Bayesian superyacht did not know about a critical safety risk that left it vulnerable in powerful winds before it sank off the coast of northern Sicily, killing seven people, British investigators say.",
-            "British tech tycoon Mike Lynch, 59, and his daughter Hannah, 18, were among seven people who died when the vessel sank on 19 August 2024.",
-            "The sinking of the Bayesian unfolded with \"extraordinary speed\" when a violent downburst of freak hurricane-force winds knocked it onto its side in less than 15 seconds, the UK's Marine Accident Investigation Branch (MAIB) final report said."
+            "It has been a memorable few days for Wales.",
+            "At the weekend, the men's rugby team secured a historic win against New Zealand – their first victory over the All Blacks in more than 70 years.",
+            "Then on Thursday evening came another culturally significant moment when Cardiff rolled out the red carpet to celebrate the first Welsh-language dub of the Star Wars franchise."
           ],
           "zh": [
-            "英国调查人员表示，贝叶斯号超级游艇的船员不知道一个关键的安全风险，正是这个风险使游艇在大风中变得脆弱，最终在西西里岛北部海岸附近沉没，造成七人死亡。",
-            "英国科技大亨迈克·林奇（59 岁）和他的女儿汉娜（18 岁）是 2024 年 8 月 19 日船只沉没时死亡的七人之一。",
-            "英国海事事故调查处（MAIB）的最终报告称，贝叶斯号的沉没以“极快的速度”展开，一股猛烈的飓风级下击暴流在不到 15 秒内将船掀翻。"
+            "对威尔士来说，这是难忘的几天。",
+            "上周末，威尔士男子橄榄球队历史性地战胜了新西兰队——这是他们 70 多年来首次击败全黑队。",
+            "随后周四晚又迎来另一个具有文化意义的时刻：卡迪夫铺开红毯，庆祝《星球大战》系列首部威尔士语配音版诞生。"
           ]
         },
         {
           "en": [
-            "Safety information provided to the crew did not identify this type of risk, the MAIB said.",
-            "\"It was very dynamic, very quick,\" said MAIB principal inspector Simon Graves.",
-            "\"The speed of events overtook the crew and prevented them from taking any other action.\""
+            "Stars of stage and screen who voiced the words of Luke Skywalker, Darth Vader, C-3PO et al in Welsh (Cymraeg) over the original 1977 Star Wars film took the plaudits at the Cineworld Cardiff screening.",
+            "Among those on the red carpet was Mark Lewis Jones, who has appeared in shows ranging from The Crown to Game of Thrones and had a role in the 2017 Star Wars film The Last Jedi.",
+            "In this version of Star Wars, he is a Welsh Darth Vader."
           ],
           "zh": [
-            "调查处表示，提供给船员的安全信息没有指出这种风险。",
-            "调查处首席检查员西蒙·格雷夫斯说：“一切都非常迅速，非常快。”",
-            "“事态发展得太快，船员来不及采取任何其他行动。”"
+            "在卡迪夫 Cineworld 影院的首映式上，为 1977 年原版《星球大战》中卢克·天行者、达斯·维达、C-3PO 等角色配威尔士语（Cymraeg）的舞台和银幕明星们赢得了满堂喝彩。",
+            "走红毯的嘉宾中包括马克·刘易斯·琼斯，他出演过从《王冠》到《权力的游戏》等多部剧集，还在 2017 年的《星球大战：最后的绝地武士》中出演过角色。",
+            "在这一版《星球大战》中，他是威尔士版的达斯·维达。"
           ]
         },
         {
           "en": [
-            "The marine investigation found that the Bayesian \"had a vulnerability to high winds that was not recognised, because the yacht had never been assessed at anchor with its sails down\".",
-            "In addition, \"the extreme winds that night were also not explicitly forecast, so the crew had no warning of the risk\", Loder added.",
-            "With thunderstorms rapidly coming in, wind speeds went from 8 knots to about 70 knots (80mph) within minutes."
+            "He said he thought Welsh was a good language for Vader.",
+            "“It has an ancient, poetic sense.”",
+            "“It gives him that status, that authority,” said Jones, who hails from the Wrexham area in north-east Wales."
           ],
           "zh": [
-            "海事调查发现，贝叶斯号“对大风存在未被发现的弱点，因为这艘游艇从未在降帆锚泊状态下接受过评估”。",
-            "洛德补充说：“此外，当晚的极端大风也没有在预报中明确提到，所以船员对这一风险毫无预警。”",
-            "随着雷暴迅速逼近，风速在几分钟内从 8 节上升到约 70 节（每小时 80 英里）。"
+            "他说，他觉得威尔士语很适合维达这个角色。",
+            "“它有一种古老而诗意的感觉。”",
+            "“它赋予他那种地位、那种威严，”来自威尔士东北部雷克瑟姆地区的琼斯说。"
           ]
         }
       ],
-      "published": "2026-11-19",
-      "source": "BBC News",
-      "sourceUrl": "https://www.bbc.co.uk/news/articles/c6e9kn15z9d7o",
-      "title": "Crew Unaware of Risks Before Bayesian Yacht Accident, Say Investigators",
+      "phrases": [
+        {
+          "p": "hail from",
+          "surf": [
+            "hails from"
+          ],
+          "zh": "来自；出生于（某地）",
+          "en": "to come from a particular place",
+          "ex": "Jones hails from the Wrexham area in north-east Wales.",
+          "exZh": "琼斯来自威尔士东北部的雷克瑟姆地区。"
+        }
+      ]
+    },
+    {
+      "id": "news-20261120-gta-vi-launch",
+      "title": "Grand Theft Auto Fans Skip Work and Pull All-Nighters to Play New Instalment",
+      "cat": "新闻",
+      "level": "B2",
+      "minutes": 4,
+      "desc": "等待 13 年后，《GTA VI》发售，全球玩家熬夜排队、翘班翘课。",
+      "source": "The Guardian",
+      "sourceUrl": "https://www.theguardian.com/games/2026/nov/19/grand-theft-auto-six-fans-skip-work-pull-all-nighters",
+      "published": "2026-11-20",
       "vocab": [
         {
-          "en": "easily hurt or harmed",
-          "ex": "The small boat was vulnerable in strong winds.",
-          "exZh": "这艘小船在大风中很脆弱。",
-          "ph": "/ˈvʌlnərəbl/",
+          "w": "instalment",
+          "ph": "/ɪnˈstɔːlmənt/",
+          "pos": "n.",
+          "zh": "（系列中的）一部；一集",
+          "en": "one part of a series",
+          "ex": "Fans waited 13 years for the latest instalment of the series.",
+          "exZh": "粉丝们等了 13 年才等到这个系列的最新一部。"
+        },
+        {
+          "w": "launch",
+          "ph": "/lɔːntʃ/",
+          "pos": "n.",
+          "zh": "发售；发布",
+          "en": "the start of selling a new product",
+          "ex": "The launch generated more than 2.6 million posts on social media.",
+          "exZh": "这次发售在社交媒体上引发了超过 260 万条帖子。"
+        },
+        {
+          "w": "hype",
+          "ph": "/haɪp/",
+          "pos": "n.",
+          "zh": "炒作；热炒",
+          "en": "a lot of excited talk about something new",
+          "ex": "The hype around the release led schools to warn pupils not to miss lessons.",
+          "exZh": "围绕发售的热炒让学校提醒学生不要缺课。"
+        },
+        {
+          "w": "absence",
+          "ph": "/ˈæbsəns/",
+          "pos": "n.",
+          "zh": "缺席；缺勤",
+          "en": "the fact of not being present",
+          "ex": "'GTA flu' is a term for the swathe of absences when the game was released.",
+          "exZh": "“GTA 流感”指的是游戏发售时大批学生缺课的现象。"
+        },
+        {
+          "w": "protagonist",
+          "ph": "/prəˈtæɡənɪst/",
+          "pos": "n.",
+          "zh": "主角",
+          "en": "the main character in a story or game",
+          "ex": "Jason and Lucia are the game's dual protagonists.",
+          "exZh": "杰森和露西娅是游戏里的两位主角。"
+        },
+        {
+          "w": "nostalgic",
+          "ph": "/nɒˈstældʒɪk/",
           "pos": "adj.",
-          "w": "vulnerable",
-          "zh": "脆弱的；易受伤害的"
-        },
-        {
-          "en": "a very rich and powerful business person",
-          "ex": "He is a tech tycoon.",
-          "exZh": "他是一位科技大亨。",
-          "ph": "/taɪˈkuːn/",
-          "pos": "n.",
-          "w": "tycoon",
-          "zh": "大亨；巨头"
-        },
-        {
-          "en": "a person who looks into an accident or crime",
-          "ex": "Investigators say the crew did not know the risk.",
-          "exZh": "调查人员说，船员并不知道这个风险。",
-          "ph": "/ɪnˈvestɪɡeɪtə(r)/",
-          "pos": "n.",
-          "w": "investigator",
-          "zh": "调查人员"
-        },
-        {
-          "en": "changing quickly",
-          "ex": "The situation was very dynamic.",
-          "exZh": "局势变化得非常快。",
-          "ph": "/daɪˈnæmɪk/",
-          "pos": "adj.",
-          "w": "dynamic",
-          "zh": "迅速变化的"
-        },
-        {
-          "en": "to say what will happen in the future",
-          "ex": "The weather forecast predicted rain.",
-          "exZh": "天气预报说会下雨。",
-          "ph": "/ˈfɔːkɑːst/",
-          "pos": "v.",
-          "w": "forecast",
-          "zh": "预报；预测"
-        },
-        {
-          "en": "a heavy tool that holds a ship in place",
-          "ex": "The ship dropped anchor near the port.",
-          "exZh": "这艘船在港口附近抛锚。",
-          "ph": "/ˈæŋkə(r)/",
-          "pos": "n.",
-          "w": "anchor",
-          "zh": "锚"
+          "zh": "怀旧的",
+          "en": "feeling happy about the past",
+          "ex": "Waiting 13 years gave fans a nostalgic feeling.",
+          "exZh": "等待 13 年让粉丝们有一种怀旧的感觉。"
         }
       ],
-      "phrases": []
+      "paras": [
+        {
+          "en": [
+            "Grand Theft Auto fans around the world pulled all-nighters, skipped work and school, and attended overnight launch parties to vicariously embark on police chases and coordinate robberies as the latest instalment of the eagerly anticipated series arrived.",
+            "GTA VI, a Bonnie and Clyde-inspired crime adventure game set in the fictional US state of Leonida, was launched at midnight on Wednesday after a 13-year wait.",
+            "The hype around the release led to schools encouraging pupils not to miss lessons in anticipation of “GTA flu”, a term coined for the swathe of absences when GTA V was released in 2013, which is expected to recur over the coming weeks."
+          ],
+          "zh": [
+            "全球《侠盗猎车手》的粉丝们熬通宵、翘班翘课、参加通宵发售派对，只为在万众期待的系列新作到来之际，体验一把警匪追逐、策划抢劫的快感。",
+            "以雌雄大盗邦妮和克莱德为灵感、背景设定在虚构的美国莱昂尼达州的犯罪冒险游戏《GTA VI》，在等待了 13 年后于周三午夜正式发售。",
+            "发售热潮让学校纷纷提醒学生不要缺课，以防出现“GTA 流感”——这个词是 2013 年《GTA V》发售时大批学生缺课后造出来的，预计未来几周会再度出现。"
+          ]
+        },
+        {
+          "en": [
+            "The human resources platform Remote said there had been a 32% increase in leave requests worldwide on Thursday.",
+            "Birchgrove comprehensive school in Swansea, south Wales, had warned parents and carers that despite the “considerable excitement”, studies should remain a priority.",
+            "The Sandon secondary school in Essex entered students into a raffle for £10 Amazon vouchers, a lunchtime queue-jump pass and free Christmas dinners as incentives to stop them bunking off to play as the game's dual protagonists, Jason and Lucia."
+          ],
+          "zh": [
+            "人力资源平台 Remote 表示，周四全球请假申请增加了 32%。",
+            "南威尔士斯旺西的伯奇格罗夫综合学校提醒家长和监护人，尽管大家“非常兴奋”，学习仍应放在首位。",
+            "埃塞克斯的桑登中学用抽奖来留住学生：奖品有 10 英镑亚马逊代金券、午餐插队卡和免费圣诞大餐，目的是不让他们逃课去玩游戏里的两位主角杰森和露西娅。"
+          ]
+        },
+        {
+          "en": [
+            "Narendra Modi, India's prime minister, took a different approach in a country with an estimated 550 million gamers.",
+            "Modi posted 10 images on X modelled on the game's artwork that compared India today with the time of GTA V's release.",
+            "The Indian politician, who has stepped up efforts to appeal to younger voters since youth-led protests over jobs and education, wrote: “India is playing a whole new game!”"
+          ],
+          "zh": [
+            "在拥有约 5.5 亿玩家的印度，印度总理纳伦德拉·莫迪采取了不同的做法。",
+            "莫迪在 X 上发布了 10 张仿照游戏海报风格的图片，对比了如今的印度与《GTA V》发售时的印度。",
+            "这位印度政治家自青年主导的就业与教育抗议以来，一直在努力争取年轻选民，他写道：“印度正在玩一场全新的游戏！”"
+          ]
+        }
+      ],
+      "phrases": [
+        {
+          "p": "around the world",
+          "surf": [
+            "around the world"
+          ],
+          "zh": "在世界各地；全世界",
+          "en": "in many different places all over the world",
+          "ex": "Grand Theft Auto fans around the world pulled all-nighters to play the new game.",
+          "exZh": "全球《侠盗猎车手》的粉丝们熬通宵玩这款新游戏。"
+        },
+        {
+          "p": "bunk off",
+          "surf": [
+            "bunking off"
+          ],
+          "zh": "逃课；翘班",
+          "en": "to stay away from school or work without permission",
+          "ex": "Students bunked off school to play the new game.",
+          "exZh": "学生们逃课去玩新游戏。"
+        },
+        {
+          "p": "step up",
+          "surf": [
+            "stepped up"
+          ],
+          "zh": "加大；加强；提升",
+          "en": "to increase or improve something",
+          "ex": "He has stepped up efforts to appeal to younger voters.",
+          "exZh": "他加大了争取年轻选民的力度。"
+        }
+      ]
     }
   ]
 }
