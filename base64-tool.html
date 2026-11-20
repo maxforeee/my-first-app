@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Base64 编解码</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f2f2f7;color:#1c1c1e;font-family:-apple-system,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;line-height:1.5;-webkit-text-size-adjust:100%}
+.wrap{max-width:720px;margin:0 auto;padding:24px 16px 56px}
+h1{font-size:28px;margin:8px 0 4px;font-weight:700}
+.sub{color:#8e8e93;margin:0 0 22px;font-size:15px}
+.card{background:#fff;border:1px solid #e5e5ea;border-radius:14px;padding:18px;margin-bottom:14px}
+label{display:block;font-size:14px;color:#8e8e93;margin-bottom:6px}
+input,select,textarea{width:100%;font:inherit;font-size:17px;color:#1c1c1e;background:#fff;border:1px solid #e5e5ea;border-radius:12px;padding:12px 14px;min-height:48px;outline:none}
+textarea{min-height:150px;resize:vertical;line-height:1.5}
+input:focus,select:focus,textarea:focus{border-color:#007aff;box-shadow:0 0 0 3px #e5f0ff}
+input[type=checkbox]{width:24px;height:24px;min-height:0;padding:0;accent-color:#007aff}
+input[type=range]{padding:0;min-height:36px;accent-color:#007aff;border:0;box-shadow:none}
+.btn{font:inherit;font-size:17px;font-weight:600;min-height:48px;padding:0 20px;border-radius:12px;border:1px solid #e5e5ea;background:#fff;color:#007aff;cursor:pointer}
+.btn.p{background:#007aff;border-color:#007aff;color:#fff}
+.btn.sm{min-height:40px;font-size:15px;padding:0 14px;flex:none}
+.btn:active{opacity:.7}
+.btn:focus-visible,.chip:focus-visible{outline:3px solid #b3d4ff;outline-offset:1px}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.row>*{flex:1}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{min-height:40px;padding:0 16px;border-radius:20px;border:1px solid #e5e5ea;background:#fff;font:inherit;font-size:15px;color:#1c1c1e;cursor:pointer}
+.chip.on{background:#e5f0ff;border-color:#007aff;color:#007aff;font-weight:600}
+.msg{border-radius:12px;padding:12px 14px;font-size:15px;margin-top:12px;word-break:break-word}
+.msg.err{background:#ffe9e8;color:#d70015}
+.msg.ok{background:#e8f8ec;color:#1e7d35}
+.opt{display:flex;align-items:center;justify-content:space-between;min-height:48px;border-bottom:1px solid #e5e5ea;font-size:17px}
+.opt:last-child{border-bottom:0}
+.res{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #e5e5ea}
+.res:last-child{border-bottom:0}
+.res .k{color:#8e8e93;font-size:14px;width:76px;flex:none}
+.res .v{flex:1;font-size:17px;word-break:break-all;font-variant-numeric:tabular-nums}
+.mono{font-family:ui-monospace,Menlo,Consolas,monospace}
+</style>
+<script>
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+async function copyText(t,btn){
+  try{await navigator.clipboard.writeText(t)}catch(e){const a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy')}catch(_){}a.remove()}
+  if(btn){const o=btn.dataset.o||btn.textContent;btn.dataset.o=o;btn.textContent='已复制';clearTimeout(btn._t);btn._t=setTimeout(()=>btn.textContent=o,1200)}
+}
+</script>
+</head>
+<body>
+<div class="wrap">
+<h1>Base64 编解码</h1>
+<p class="sub">文字和 Base64 互相转换，支持中文等 UTF-8 文本</p>
+<div class="card">
+  <label for="in">输入</label>
+  <textarea id="in" spellcheck="false" class="mono" style="font-size:15px"></textarea>
+  <div class="row" style="margin-top:12px"><button class="btn p" id="enc">编码</button><button class="btn" id="dec">解码</button></div>
+  <div class="opt" style="margin-top:6px"><span>编码时使用 URL 安全格式</span><input type="checkbox" id="url"></div>
+  <button class="btn" id="clr" style="width:100%;margin-top:10px">清除</button>
+  <div id="st"></div>
+</div>
+<div class="card">
+  <label for="out">输出</label>
+  <textarea id="out" readonly spellcheck="false" class="mono" style="font-size:15px"></textarea>
+  <button class="btn" id="cp" style="width:100%;margin-top:12px">复制输出</button>
+</div>
+</div>
+<script>
+const show=(k,h)=>$('st').innerHTML=`<div class="msg ${k}">${h}</div>`;
+$('enc').onclick=()=>{
+  const s=$('in').value;
+  if(!s){show('err','请先输入要编码的文字');return}
+  const bytes=new TextEncoder().encode(s);let bin='';
+  for(let i=0;i<bytes.length;i+=8192)bin+=String.fromCharCode.apply(null,bytes.subarray(i,i+8192));
+  let r=btoa(bin);
+  if($('url').checked)r=r.replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+  $('out').value=r;show('ok','编码完成');
+};
+$('dec').onclick=()=>{
+  let s=$('in').value.replace(/\s+/g,'');
+  if(!s){show('err','请先输入要解码的 Base64');return}
+  s=s.replace(/-/g,'+').replace(/_/g,'/');
+  if(!/^[A-Za-z0-9+/]*={0,2}$/.test(s)){show('err','不是有效的 Base64：包含不属于 Base64 的字符');return}
+  const body=s.replace(/=+$/,'');
+  if(body.length%4===1){show('err','不是有效的 Base64：长度不对，可能缺了字符');return}
+  s=body+'='.repeat((4-body.length%4)%4);
+  try{
+    const bin=atob(s),bytes=Uint8Array.from(bin,c=>c.charCodeAt(0));
+    $('out').value=new TextDecoder('utf-8',{fatal:true}).decode(bytes);show('ok','解码完成');
+  }catch(e){
+    show('err','解码失败：这段 Base64 解出来不是有效的 UTF-8 文本（可能是图片或其他二进制数据）');
+  }
+};
+$('clr').onclick=()=>{$('in').value=$('out').value='';$('st').innerHTML='';$('in').focus()};
+$('cp').onclick=e=>{if($('out').value)copyText($('out').value,e.target)};
+</script>
+
+</body>
+</html>

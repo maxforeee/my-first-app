@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>单位换算</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f2f2f7;color:#1c1c1e;font-family:-apple-system,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;line-height:1.5;-webkit-text-size-adjust:100%}
+.wrap{max-width:720px;margin:0 auto;padding:24px 16px 56px}
+h1{font-size:28px;margin:8px 0 4px;font-weight:700}
+.sub{color:#8e8e93;margin:0 0 22px;font-size:15px}
+.card{background:#fff;border:1px solid #e5e5ea;border-radius:14px;padding:18px;margin-bottom:14px}
+label{display:block;font-size:14px;color:#8e8e93;margin-bottom:6px}
+input,select,textarea{width:100%;font:inherit;font-size:17px;color:#1c1c1e;background:#fff;border:1px solid #e5e5ea;border-radius:12px;padding:12px 14px;min-height:48px;outline:none}
+textarea{min-height:150px;resize:vertical;line-height:1.5}
+input:focus,select:focus,textarea:focus{border-color:#007aff;box-shadow:0 0 0 3px #e5f0ff}
+input[type=checkbox]{width:24px;height:24px;min-height:0;padding:0;accent-color:#007aff}
+input[type=range]{padding:0;min-height:36px;accent-color:#007aff;border:0;box-shadow:none}
+.btn{font:inherit;font-size:17px;font-weight:600;min-height:48px;padding:0 20px;border-radius:12px;border:1px solid #e5e5ea;background:#fff;color:#007aff;cursor:pointer}
+.btn.p{background:#007aff;border-color:#007aff;color:#fff}
+.btn.sm{min-height:40px;font-size:15px;padding:0 14px;flex:none}
+.btn:active{opacity:.7}
+.btn:focus-visible,.chip:focus-visible{outline:3px solid #b3d4ff;outline-offset:1px}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.row>*{flex:1}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{min-height:40px;padding:0 16px;border-radius:20px;border:1px solid #e5e5ea;background:#fff;font:inherit;font-size:15px;color:#1c1c1e;cursor:pointer}
+.chip.on{background:#e5f0ff;border-color:#007aff;color:#007aff;font-weight:600}
+.msg{border-radius:12px;padding:12px 14px;font-size:15px;margin-top:12px;word-break:break-word}
+.msg.err{background:#ffe9e8;color:#d70015}
+.msg.ok{background:#e8f8ec;color:#1e7d35}
+.opt{display:flex;align-items:center;justify-content:space-between;min-height:48px;border-bottom:1px solid #e5e5ea;font-size:17px}
+.opt:last-child{border-bottom:0}
+.res{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #e5e5ea}
+.res:last-child{border-bottom:0}
+.res .k{color:#8e8e93;font-size:14px;width:76px;flex:none}
+.res .v{flex:1;font-size:17px;word-break:break-all;font-variant-numeric:tabular-nums}
+.mono{font-family:ui-monospace,Menlo,Consolas,monospace}
+</style>
+<script>
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+async function copyText(t,btn){
+  try{await navigator.clipboard.writeText(t)}catch(e){const a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy')}catch(_){}a.remove()}
+  if(btn){const o=btn.dataset.o||btn.textContent;btn.dataset.o=o;btn.textContent='已复制';clearTimeout(btn._t);btn._t=setTimeout(()=>btn.textContent=o,1200)}
+}
+</script>
+</head>
+<body>
+<div class="wrap">
+<h1>单位换算</h1>
+<p class="sub">在任意一边输入数值，另一边实时换算</p>
+<div class="card"><div class="chips" id="cats"></div></div>
+<div class="card">
+  <label for="a">从</label>
+  <div class="row"><input id="a" inputmode="decimal" placeholder="0" style="flex:2"><select id="ua" aria-label="起始单位"></select></div>
+  <div class="row" style="margin:14px 0"><button class="btn" id="swap">交换</button><button class="btn" id="clr">清除</button></div>
+  <label for="b">到</label>
+  <div class="row"><input id="b" inputmode="decimal" placeholder="0" style="flex:2"><select id="ub" aria-label="目标单位"></select></div>
+</div>
+</div>
+<script>
+const C={
+ '长度':{d:5,u:{'米':1,'千米':1000,'厘米':.01,'毫米':.001,'英里':1609.344,'码':.9144,'英尺':.3048,'英寸':.0254}},
+ '重量':{d:1,u:{'千克':1,'克':.001,'磅':.45359237,'盎司':.028349523125}},
+ '温度':{d:1,t:1,u:{'摄氏度 °C':0,'华氏度 °F':0,'开尔文 K':0}},
+ '体积':{d:1,u:{'升':1,'毫升':.001,'加仑（美）':3.785411784,'杯（美）':.2365882365}},
+ '面积':{d:2,u:{'平方米':1,'平方千米':1e6,'公顷':1e4,'英亩':4046.8564224,'平方英尺':.09290304}},
+ '速度':{d:1,u:{'千米/时':1/3.6,'米/秒':1,'英里/时':.44704}}
+};
+const toK={'摄氏度 °C':v=>v+273.15,'华氏度 °F':v=>(v-32)*5/9+273.15,'开尔文 K':v=>v};
+const fromK={'摄氏度 °C':k=>k-273.15,'华氏度 °F':k=>(k-273.15)*9/5+32,'开尔文 K':k=>k};
+let cat='长度',last='a';
+function conv(v,f,t){const c=C[cat];return c.t?fromK[t](toK[f](v)):v*c.u[f]/c.u[t]}
+function fmt(x){return isFinite(x)?String(parseFloat(x.toPrecision(10))):''}
+function fill(){
+  const names=Object.keys(C[cat].u);
+  $('ua').innerHTML=$('ub').innerHTML=names.map(n=>`<option>${n}</option>`).join('');
+  $('ub').selectedIndex=C[cat].d;
+}
+function calc(){
+  const [src,dst,us,ud]=last==='a'?['a','b','ua','ub']:['b','a','ub','ua'];
+  const raw=$(src).value.trim();
+  const v=parseFloat(raw);
+  $(dst).value=(raw===''||isNaN(v))?'':fmt(conv(v,$(us).value,$(ud).value));
+}
+function tabs(){
+  $('cats').innerHTML=Object.keys(C).map(n=>`<button class="chip${n===cat?' on':''}" data-n="${n}">${n}</button>`).join('');
+}
+$('cats').onclick=e=>{const n=e.target.dataset.n;if(!n)return;cat=n;last='a';fill();tabs();calc()};
+$('a').oninput=()=>{last='a';calc()};
+$('b').oninput=()=>{last='b';calc()};
+$('ua').onchange=$('ub').onchange=calc;
+$('swap').onclick=()=>{
+  const ua=$('ua').selectedIndex,ub=$('ub').selectedIndex,a=$('a').value,b=$('b').value;
+  $('ua').selectedIndex=ub;$('ub').selectedIndex=ua;$('a').value=b;$('b').value=a;last='a';calc();
+};
+$('clr').onclick=()=>{$('a').value=$('b').value='';$('a').focus()};
+fill();tabs();
+</script>
+
+</body>
+</html>

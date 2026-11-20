@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>番茄钟</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f2f2f7;color:#1c1c1e;font-family:-apple-system,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;line-height:1.5;-webkit-text-size-adjust:100%}
+.wrap{max-width:720px;margin:0 auto;padding:24px 16px 56px}
+h1{font-size:28px;margin:8px 0 4px;font-weight:700}
+.sub{color:#8e8e93;margin:0 0 22px;font-size:15px}
+.card{background:#fff;border:1px solid #e5e5ea;border-radius:14px;padding:18px;margin-bottom:14px}
+label{display:block;font-size:14px;color:#8e8e93;margin-bottom:6px}
+input,select,textarea{width:100%;font:inherit;font-size:17px;color:#1c1c1e;background:#fff;border:1px solid #e5e5ea;border-radius:12px;padding:12px 14px;min-height:48px;outline:none}
+textarea{min-height:150px;resize:vertical;line-height:1.5}
+input:focus,select:focus,textarea:focus{border-color:#007aff;box-shadow:0 0 0 3px #e5f0ff}
+input[type=checkbox]{width:24px;height:24px;min-height:0;padding:0;accent-color:#007aff}
+input[type=range]{padding:0;min-height:36px;accent-color:#007aff;border:0;box-shadow:none}
+.btn{font:inherit;font-size:17px;font-weight:600;min-height:48px;padding:0 20px;border-radius:12px;border:1px solid #e5e5ea;background:#fff;color:#007aff;cursor:pointer}
+.btn.p{background:#007aff;border-color:#007aff;color:#fff}
+.btn.sm{min-height:40px;font-size:15px;padding:0 14px;flex:none}
+.btn:active{opacity:.7}
+.btn:focus-visible,.chip:focus-visible{outline:3px solid #b3d4ff;outline-offset:1px}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.row>*{flex:1}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{min-height:40px;padding:0 16px;border-radius:20px;border:1px solid #e5e5ea;background:#fff;font:inherit;font-size:15px;color:#1c1c1e;cursor:pointer}
+.chip.on{background:#e5f0ff;border-color:#007aff;color:#007aff;font-weight:600}
+.msg{border-radius:12px;padding:12px 14px;font-size:15px;margin-top:12px;word-break:break-word}
+.msg.err{background:#ffe9e8;color:#d70015}
+.msg.ok{background:#e8f8ec;color:#1e7d35}
+.opt{display:flex;align-items:center;justify-content:space-between;min-height:48px;border-bottom:1px solid #e5e5ea;font-size:17px}
+.opt:last-child{border-bottom:0}
+.res{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #e5e5ea}
+.res:last-child{border-bottom:0}
+.res .k{color:#8e8e93;font-size:14px;width:76px;flex:none}
+.res .v{flex:1;font-size:17px;word-break:break-all;font-variant-numeric:tabular-nums}
+.mono{font-family:ui-monospace,Menlo,Consolas,monospace}
+</style>
+<script>
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+async function copyText(t,btn){
+  try{await navigator.clipboard.writeText(t)}catch(e){const a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy')}catch(_){}a.remove()}
+  if(btn){const o=btn.dataset.o||btn.textContent;btn.dataset.o=o;btn.textContent='已复制';clearTimeout(btn._t);btn._t=setTimeout(()=>btn.textContent=o,1200)}
+}
+</script>
+</head>
+<body>
+<div class="wrap">
+<h1>番茄钟</h1>
+<p class="sub">专注一段时间，然后休息一下</p>
+<div class="card" style="text-align:center">
+  <div class="chips" id="modes" style="justify-content:center;margin-bottom:8px"><button class="chip" data-m="focus">专注</button><button class="chip" data-m="short">短休息</button><button class="chip" data-m="long">长休息</button></div>
+  <div style="position:relative;width:240px;max-width:100%;margin:12px auto">
+    <svg viewBox="0 0 200 200" width="100%" style="transform:rotate(-90deg);display:block"><circle cx="100" cy="100" r="90" fill="none" stroke="#e5f0ff" stroke-width="10"/><circle id="ring" cx="100" cy="100" r="90" fill="none" stroke="#007aff" stroke-width="10" stroke-linecap="round" stroke-dasharray="565.49" stroke-dashoffset="0"/></svg>
+    <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center">
+      <div id="time" style="font-size:52px;font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:1px">25:00</div>
+      <div id="label" style="color:#8e8e93;font-size:16px">专注</div>
+    </div>
+  </div>
+  <div id="dots" style="font-size:20px;color:#007aff;letter-spacing:6px;height:28px"></div>
+  <div id="count" class="sub" style="margin:2px 0 14px"></div>
+  <div class="row"><button class="btn p" id="go">开始</button><button class="btn" id="reset">重置</button></div>
+  <div id="note" class="msg ok" hidden></div>
+</div>
+<div class="card">
+  <div class="opt"><span>结束时播放提示音</span><input type="checkbox" id="snd" checked></div>
+  <div class="row" style="margin-top:14px">
+    <div><label for="sf">专注（分钟）</label><input id="sf" type="number" inputmode="numeric" min="1" max="120"></div>
+    <div><label for="ss">短休息</label><input id="ss" type="number" inputmode="numeric" min="1" max="60"></div>
+    <div><label for="sl">长休息</label><input id="sl" type="number" inputmode="numeric" min="1" max="60"></div>
+  </div>
+</div>
+</div>
+<script>
+const CIRC=565.49,NAMES={focus:'专注',short:'短休息',long:'长休息'};
+let cfg={focus:25,short:5,long:15};
+try{Object.assign(cfg,JSON.parse(localStorage.getItem('pomo-cfg')||'{}'))}catch(e){}
+let mode='focus',total=0,left=0,running=false,endAt=0,done=0,timer=null,ac=null;
+function fmt(ms){const s=Math.ceil(ms/1000);return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0')}
+function render(){
+  $('time').textContent=fmt(left);$('label').textContent=NAMES[mode];
+  $('ring').style.strokeDashoffset=CIRC*(1-left/total);
+  $('go').textContent=running?'暂停':(left<total?'继续':'开始');
+  [...$('modes').children].forEach(b=>b.classList.toggle('on',b.dataset.m===mode));
+  const cyc=(done>0&&done%4===0&&mode==='long')?4:done%4;
+  $('dots').textContent='●'.repeat(cyc)+'○'.repeat(4-cyc);
+  $('count').textContent=`已完成 ${done} 个专注`;
+  document.title=(running?fmt(left)+' · ':'')+NAMES[mode]+' - 番茄钟';
+}
+function setMode(m){mode=m;total=left=cfg[m]*60000;running=false;clearInterval(timer);render()}
+function start(){
+  if(!ac){try{ac=new (window.AudioContext||window.webkitAudioContext)()}catch(e){}}
+  if(ac&&ac.state==='suspended')ac.resume();
+  running=true;endAt=Date.now()+left;timer=setInterval(tick,250);$('note').hidden=true;render();
+}
+function pause(){left=Math.max(0,endAt-Date.now());running=false;clearInterval(timer);render()}
+function beep(){
+  if(!$('snd').checked||!ac)return;
+  [0,.35,.7].forEach(d=>{const o=ac.createOscillator(),g=ac.createGain();o.frequency.value=880;o.connect(g);g.connect(ac.destination);
+    const t=ac.currentTime+d;g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.3,t+.02);g.gain.exponentialRampToValueAtTime(.0001,t+.25);o.start(t);o.stop(t+.3)});
+}
+function finish(){
+  clearInterval(timer);beep();if(navigator.vibrate)navigator.vibrate([200,100,200]);
+  let next,msg;
+  if(mode==='focus'){done++;next=done%4===0?'long':'short';msg=next==='long'?'完成 4 个专注，该好好休息一下了':'专注结束，休息一下'}
+  else{next='focus';msg='休息结束，开始下一个专注'}
+  setMode(next);$('note').textContent=msg;$('note').hidden=false;
+}
+function tick(){left=endAt-Date.now();if(left<=0){left=0;finish()}else render()}
+$('go').onclick=()=>running?pause():start();
+$('reset').onclick=()=>{setMode(mode);$('note').hidden=true};
+$('modes').onclick=e=>{const m=e.target.dataset.m;if(m){setMode(m);$('note').hidden=true}};
+[['sf','focus'],['ss','short'],['sl','long']].forEach(([id,k])=>{
+  $(id).value=cfg[k];
+  $(id).onchange=()=>{let v=Math.round(+$(id).value);if(!(v>=1))v=cfg[k];v=Math.min(v,120);$(id).value=v;cfg[k]=v;
+    try{localStorage.setItem('pomo-cfg',JSON.stringify(cfg))}catch(e){}
+    if(!running&&mode===k)setMode(mode)};
+});
+document.addEventListener('visibilitychange',()=>{if(running)tick()});
+setMode('focus');
+</script>
+
+</body>
+</html>

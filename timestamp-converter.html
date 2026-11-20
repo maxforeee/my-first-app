@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>时间戳转换</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f2f2f7;color:#1c1c1e;font-family:-apple-system,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;line-height:1.5;-webkit-text-size-adjust:100%}
+.wrap{max-width:720px;margin:0 auto;padding:24px 16px 56px}
+h1{font-size:28px;margin:8px 0 4px;font-weight:700}
+.sub{color:#8e8e93;margin:0 0 22px;font-size:15px}
+.card{background:#fff;border:1px solid #e5e5ea;border-radius:14px;padding:18px;margin-bottom:14px}
+label{display:block;font-size:14px;color:#8e8e93;margin-bottom:6px}
+input,select,textarea{width:100%;font:inherit;font-size:17px;color:#1c1c1e;background:#fff;border:1px solid #e5e5ea;border-radius:12px;padding:12px 14px;min-height:48px;outline:none}
+textarea{min-height:150px;resize:vertical;line-height:1.5}
+input:focus,select:focus,textarea:focus{border-color:#007aff;box-shadow:0 0 0 3px #e5f0ff}
+input[type=checkbox]{width:24px;height:24px;min-height:0;padding:0;accent-color:#007aff}
+input[type=range]{padding:0;min-height:36px;accent-color:#007aff;border:0;box-shadow:none}
+.btn{font:inherit;font-size:17px;font-weight:600;min-height:48px;padding:0 20px;border-radius:12px;border:1px solid #e5e5ea;background:#fff;color:#007aff;cursor:pointer}
+.btn.p{background:#007aff;border-color:#007aff;color:#fff}
+.btn.sm{min-height:40px;font-size:15px;padding:0 14px;flex:none}
+.btn:active{opacity:.7}
+.btn:focus-visible,.chip:focus-visible{outline:3px solid #b3d4ff;outline-offset:1px}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.row>*{flex:1}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{min-height:40px;padding:0 16px;border-radius:20px;border:1px solid #e5e5ea;background:#fff;font:inherit;font-size:15px;color:#1c1c1e;cursor:pointer}
+.chip.on{background:#e5f0ff;border-color:#007aff;color:#007aff;font-weight:600}
+.msg{border-radius:12px;padding:12px 14px;font-size:15px;margin-top:12px;word-break:break-word}
+.msg.err{background:#ffe9e8;color:#d70015}
+.msg.ok{background:#e8f8ec;color:#1e7d35}
+.opt{display:flex;align-items:center;justify-content:space-between;min-height:48px;border-bottom:1px solid #e5e5ea;font-size:17px}
+.opt:last-child{border-bottom:0}
+.res{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #e5e5ea}
+.res:last-child{border-bottom:0}
+.res .k{color:#8e8e93;font-size:14px;width:76px;flex:none}
+.res .v{flex:1;font-size:17px;word-break:break-all;font-variant-numeric:tabular-nums}
+.mono{font-family:ui-monospace,Menlo,Consolas,monospace}
+</style>
+<script>
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+async function copyText(t,btn){
+  try{await navigator.clipboard.writeText(t)}catch(e){const a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy')}catch(_){}a.remove()}
+  if(btn){const o=btn.dataset.o||btn.textContent;btn.dataset.o=o;btn.textContent='已复制';clearTimeout(btn._t);btn._t=setTimeout(()=>btn.textContent=o,1200)}
+}
+</script>
+</head>
+<body>
+<div class="wrap">
+<h1>时间戳转换</h1>
+<p class="sub">Unix 时间戳和日期时间互相转换</p>
+<div class="card">
+  <label>当前时间戳</label>
+  <div class="res"><span class="k">秒</span><span class="v mono" id="nowS"></span><button class="btn sm" data-c="nowS">复制</button></div>
+  <div class="res"><span class="k">毫秒</span><span class="v mono" id="nowM"></span><button class="btn sm" data-c="nowM">复制</button></div>
+</div>
+<div class="card">
+  <label for="ts">时间戳 → 日期时间</label>
+  <div class="row"><input id="ts" inputmode="numeric" placeholder="例如 1700000000" style="flex:2"><button class="btn" id="useNow" style="flex:1">取当前</button></div>
+  <div id="tsMsg" class="sub" style="margin:8px 0 0"></div>
+  <div id="tsRes" style="margin-top:6px">
+    <div class="res"><span class="k">本地时间</span><span class="v" id="r1">—</span><button class="btn sm" data-c="r1">复制</button></div>
+    <div class="res"><span class="k">UTC</span><span class="v" id="r2">—</span><button class="btn sm" data-c="r2">复制</button></div>
+  </div>
+</div>
+<div class="card">
+  <label for="dt">日期时间 → 时间戳</label>
+  <input type="datetime-local" id="dt" step="1">
+  <select id="zone" style="margin-top:10px" aria-label="时区"><option value="local">按本地时间计算</option><option value="utc">按 UTC 计算</option></select>
+  <div style="margin-top:6px">
+    <div class="res"><span class="k">秒</span><span class="v mono" id="r3">—</span><button class="btn sm" data-c="r3">复制</button></div>
+    <div class="res"><span class="k">毫秒</span><span class="v mono" id="r4">—</span><button class="btn sm" data-c="r4">复制</button></div>
+  </div>
+</div>
+</div>
+<script>
+const p2=n=>String(n).padStart(2,'0');
+const tz=(Intl.DateTimeFormat().resolvedOptions().timeZone)||'';
+function fLocal(d){return `${d.getFullYear()}-${p2(d.getMonth()+1)}-${p2(d.getDate())} ${p2(d.getHours())}:${p2(d.getMinutes())}:${p2(d.getSeconds())}`}
+function fUTC(d){return `${d.getUTCFullYear()}-${p2(d.getUTCMonth()+1)}-${p2(d.getUTCDate())} ${p2(d.getUTCHours())}:${p2(d.getUTCMinutes())}:${p2(d.getUTCSeconds())}`}
+function tickNow(){const n=Date.now();$('nowS').textContent=Math.floor(n/1000);$('nowM').textContent=n}
+function ts2date(){
+  const raw=$('ts').value.trim();
+  if(!raw){$('tsMsg').textContent='';$('r1').textContent=$('r2').textContent='—';return}
+  if(!/^-?\d+(\.\d+)?$/.test(raw)){$('tsMsg').textContent='请输入纯数字的时间戳';$('r1').textContent=$('r2').textContent='—';return}
+  let n=parseFloat(raw);const ms=Math.abs(n)>=1e11;
+  const d=new Date(ms?n:n*1000);
+  if(isNaN(d.getTime())){$('tsMsg').textContent='数值超出范围';$('r1').textContent=$('r2').textContent='—';return}
+  $('tsMsg').textContent=`按${ms?'毫秒':'秒'}处理（位数自动判断）`;
+  $('r1').textContent=fLocal(d)+(tz?`（${tz}）`:'');$('r2').textContent=fUTC(d);
+}
+function date2ts(){
+  const v=$('dt').value;
+  if(!v){$('r3').textContent=$('r4').textContent='—';return}
+  const m=v.match(/^(\d+)-(\d+)-(\d+)T(\d+):(\d+)(?::(\d+))?/);
+  if(!m){$('r3').textContent=$('r4').textContent='—';return}
+  const a=m.slice(1,7).map(x=>+x||0);
+  const ms=$('zone').value==='utc'?Date.UTC(a[0],a[1]-1,a[2],a[3],a[4],a[5]):new Date(a[0],a[1]-1,a[2],a[3],a[4],a[5]).getTime();
+  $('r3').textContent=Math.floor(ms/1000);$('r4').textContent=ms;
+}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-c]');if(!b)return;const t=$(b.dataset.c).textContent;if(t&&t!=='—')copyText(t.replace(/（.*$/,''),b)});
+$('ts').oninput=ts2date;
+$('useNow').onclick=()=>{$('ts').value=Math.floor(Date.now()/1000);ts2date()};
+$('dt').oninput=$('zone').onchange=date2ts;
+const now=new Date();$('dt').value=`${now.getFullYear()}-${p2(now.getMonth()+1)}-${p2(now.getDate())}T${p2(now.getHours())}:${p2(now.getMinutes())}:${p2(now.getSeconds())}`;
+tickNow();setInterval(tickNow,1000);date2ts();
+</script>
+
+</body>
+</html>

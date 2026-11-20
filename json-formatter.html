@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>JSON 格式化</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f2f2f7;color:#1c1c1e;font-family:-apple-system,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;line-height:1.5;-webkit-text-size-adjust:100%}
+.wrap{max-width:720px;margin:0 auto;padding:24px 16px 56px}
+h1{font-size:28px;margin:8px 0 4px;font-weight:700}
+.sub{color:#8e8e93;margin:0 0 22px;font-size:15px}
+.card{background:#fff;border:1px solid #e5e5ea;border-radius:14px;padding:18px;margin-bottom:14px}
+label{display:block;font-size:14px;color:#8e8e93;margin-bottom:6px}
+input,select,textarea{width:100%;font:inherit;font-size:17px;color:#1c1c1e;background:#fff;border:1px solid #e5e5ea;border-radius:12px;padding:12px 14px;min-height:48px;outline:none}
+textarea{min-height:150px;resize:vertical;line-height:1.5}
+input:focus,select:focus,textarea:focus{border-color:#007aff;box-shadow:0 0 0 3px #e5f0ff}
+input[type=checkbox]{width:24px;height:24px;min-height:0;padding:0;accent-color:#007aff}
+input[type=range]{padding:0;min-height:36px;accent-color:#007aff;border:0;box-shadow:none}
+.btn{font:inherit;font-size:17px;font-weight:600;min-height:48px;padding:0 20px;border-radius:12px;border:1px solid #e5e5ea;background:#fff;color:#007aff;cursor:pointer}
+.btn.p{background:#007aff;border-color:#007aff;color:#fff}
+.btn.sm{min-height:40px;font-size:15px;padding:0 14px;flex:none}
+.btn:active{opacity:.7}
+.btn:focus-visible,.chip:focus-visible{outline:3px solid #b3d4ff;outline-offset:1px}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.row>*{flex:1}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{min-height:40px;padding:0 16px;border-radius:20px;border:1px solid #e5e5ea;background:#fff;font:inherit;font-size:15px;color:#1c1c1e;cursor:pointer}
+.chip.on{background:#e5f0ff;border-color:#007aff;color:#007aff;font-weight:600}
+.msg{border-radius:12px;padding:12px 14px;font-size:15px;margin-top:12px;word-break:break-word}
+.msg.err{background:#ffe9e8;color:#d70015}
+.msg.ok{background:#e8f8ec;color:#1e7d35}
+.opt{display:flex;align-items:center;justify-content:space-between;min-height:48px;border-bottom:1px solid #e5e5ea;font-size:17px}
+.opt:last-child{border-bottom:0}
+.res{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #e5e5ea}
+.res:last-child{border-bottom:0}
+.res .k{color:#8e8e93;font-size:14px;width:76px;flex:none}
+.res .v{flex:1;font-size:17px;word-break:break-all;font-variant-numeric:tabular-nums}
+.mono{font-family:ui-monospace,Menlo,Consolas,monospace}
+</style>
+<script>
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+async function copyText(t,btn){
+  try{await navigator.clipboard.writeText(t)}catch(e){const a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy')}catch(_){}a.remove()}
+  if(btn){const o=btn.dataset.o||btn.textContent;btn.dataset.o=o;btn.textContent='已复制';clearTimeout(btn._t);btn._t=setTimeout(()=>btn.textContent=o,1200)}
+}
+</script>
+</head>
+<body>
+<div class="wrap">
+<h1>JSON 格式化</h1>
+<p class="sub">格式化、压缩、校验，出错时指出具体位置</p>
+<div class="card">
+  <label for="in">输入 JSON</label>
+  <textarea id="in" spellcheck="false" class="mono" style="min-height:200px;font-size:15px" placeholder='{"name":"工具箱","tools":[1,2,3]}'></textarea>
+  <div class="row" style="margin-top:12px;align-items:center">
+    <select id="ind" aria-label="缩进" style="flex:none;width:auto"><option value="2">缩进 2 空格</option><option value="4">缩进 4 空格</option><option value="t">缩进 Tab</option></select>
+  </div>
+  <div class="row" style="margin-top:10px"><button class="btn p" id="fmt">格式化</button><button class="btn" id="min">压缩</button><button class="btn" id="val">校验</button></div>
+  <div class="row" style="margin-top:10px"><button class="btn" id="smp">示例</button><button class="btn" id="clr">清除</button></div>
+  <div id="st"></div>
+</div>
+<div class="card">
+  <label for="out">输出</label>
+  <textarea id="out" readonly spellcheck="false" class="mono" style="min-height:200px;font-size:15px"></textarea>
+  <button class="btn" id="cp" style="width:100%;margin-top:12px">复制输出</button>
+</div>
+</div>
+<script>
+function findErr(s){
+  let i=0;const n=s.length;
+  const ws=()=>{while(i<n&&' \t\n\r'.includes(s[i]))i++};
+  const fail=m=>{throw {pos:Math.min(i,Math.max(n-1,0)),msg:m}};
+  function str(){i++;while(i<n){const c=s[i];if(c==='"'){i++;return}if(c==='\\'){i+=2;continue}if(c<' ')fail('字符串里不能直接换行');i++}fail('字符串缺少结束的双引号')}
+  function val(){
+    ws();const c=s[i];
+    if(c==='{'){i++;ws();if(s[i]==='}'){i++;return}
+      for(;;){ws();if(s[i]!=='"')fail('这里应该是属性名（需要用双引号包起来）');str();ws();if(s[i]!==':')fail('这里应该是冒号 ":"');i++;val();ws();if(s[i]===','){i++;continue}if(s[i]==='}'){i++;return}fail('这里应该是逗号 "," 或右花括号 "}"')}}
+    if(c==='['){i++;ws();if(s[i]===']'){i++;return}
+      for(;;){val();ws();if(s[i]===','){i++;continue}if(s[i]===']'){i++;return}fail('这里应该是逗号 "," 或右方括号 "]"')}}
+    if(c==='"')return str();
+    const m=/^(-?(0|[1-9]\d*)(\.\d+)?([eE][+-]?\d+)?|true|false|null)/.exec(s.slice(i));
+    if(m){i+=m[0].length;return}
+    fail(i>=n?'内容意外结束，可能少了括号或值':'这里的内容无法识别');
+  }
+  val();ws();if(i<n)fail('这里之后还有多余的内容');
+}
+function check(){
+  const s=$('in').value;
+  if(!s.trim()){show('err','请先输入 JSON');return null}
+  try{const v=JSON.parse(s);return {v}}catch(e){
+    let r=null;try{findErr(s)}catch(x){r=x}
+    if(!r||typeof r.pos!=='number'){show('err','JSON 无效：'+esc(e.message));return null}
+    const before=s.slice(0,r.pos),line=before.split('\n').length,col=r.pos-before.lastIndexOf('\n');
+    const lines=s.split('\n'),text=lines[line-1]||'';
+    const st=Math.max(0,col-1-30),snip=text.slice(st,st+60);
+    show('err',`<b>第 ${line} 行，第 ${col} 列</b>：${r.msg}<pre class="mono" style="margin:8px 0 0;white-space:pre-wrap;word-break:break-all;font-size:14px">${esc(snip)}\n${' '.repeat(Math.max(0,col-1-st))}^</pre>`);
+    return null;
+  }
+}
+function show(k,h){$('st').innerHTML=`<div class="msg ${k}">${h}</div>`}
+const indent=()=>{const v=$('ind').value;return v==='t'?'\t':+v};
+$('fmt').onclick=()=>{const r=check();if(!r)return;$('out').value=JSON.stringify(r.v,null,indent());show('ok','格式化完成')};
+$('min').onclick=()=>{const r=check();if(!r)return;$('out').value=JSON.stringify(r.v);show('ok','压缩完成')};
+$('val').onclick=()=>{const r=check();if(!r)return;const t=Array.isArray(r.v)?'数组':r.v===null?'null':typeof r.v==='object'?'对象':'简单值';show('ok','✓ JSON 有效（最外层是'+t+'）')};
+$('smp').onclick=()=>{$('in').value='{"name":"工具箱","version":1.2,"tags":["计算","转换"],"author":{"name":"小明","active":true},"notes":null}';$('st').innerHTML=''};
+$('clr').onclick=()=>{$('in').value=$('out').value='';$('st').innerHTML='';$('in').focus()};
+$('cp').onclick=e=>{if($('out').value)copyText($('out').value,e.target)};
+</script>
+
+</body>
+</html>
