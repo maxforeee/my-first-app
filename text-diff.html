@@ -8,6 +8,7 @@
 *{box-sizing:border-box}
 body{margin:0;background:#f2f2f7;color:#1c1c1e;font-family:-apple-system,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;line-height:1.5;-webkit-text-size-adjust:100%}
 .wrap{max-width:720px;margin:0 auto;padding:24px 16px 56px}
+.back{color:#007aff;text-decoration:none;font-size:15px;font-weight:600;display:inline-block;margin-bottom:10px}
 h1{font-size:28px;margin:8px 0 4px;font-weight:700}
 .sub{color:#8e8e93;margin:0 0 22px;font-size:15px}
 .card{background:#fff;border:1px solid #e5e5ea;border-radius:14px;padding:18px;margin-bottom:14px}
@@ -57,6 +58,7 @@ mark{color:inherit;border-radius:3px}mark.d{background:#ff9f9f}mark.a{background
 .uni{border:1px solid #e5e5ea;border-radius:12px;overflow:hidden}
 </style>
 <div class="wrap">
+<a class="back" href="index.html" onclick="if(history.length>1){history.back();return false}">‹ 返回</a>
 <h1>文本对比</h1>
 <p class="sub">放入两段文字，标出新增、删除和修改的地方</p>
 <div class="card">

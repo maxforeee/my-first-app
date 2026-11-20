@@ -60,6 +60,22 @@
   }
   .card.coming { opacity: .55; }
   .card.coming .go { color: var(--sub); }
+  .cats {
+    display: flex; gap: 8px; flex-wrap: wrap;
+    padding: 4px 20px 0;
+  }
+  .cats .chip {
+    min-height: 40px; padding: 0 16px; border-radius: 20px;
+    border: 1px solid var(--border); background: var(--card);
+    font: inherit; font-size: 15px; color: var(--text); cursor: pointer;
+  }
+  .cats .chip.on {
+    background: var(--accent-soft); border-color: var(--accent);
+    color: var(--accent); font-weight: 600;
+  }
+  @media (min-width: 600px) {
+    .cats { max-width: 720px; margin: 0 auto; }
+  }
   footer {
     padding: 24px 20px 0;
     font-size: 12px; color: var(--sub); text-align: center;
@@ -76,99 +92,107 @@
   <p>常用小工具，点开就能用</p>
 </header>
 
+<nav class="cats" id="cats">
+  <button class="chip on" data-cat="all">全部</button>
+  <button class="chip" data-cat="calc">计算换算</button>
+  <button class="chip" data-cat="text">文本工具</button>
+  <button class="chip" data-cat="learn">学习效率</button>
+  <button class="chip" data-cat="share">安全分享</button>
+</nav>
+
 <main class="grid">
-  <a class="card" href="calculator.html">
+  <a class="card" href="calculator.html" data-cat="calc">
     <div class="icon">🧮</div>
     <h2>计算器</h2>
     <p>加减乘除、百分比，手机上顺手算</p>
     <span class="go">打开 →</span>
   </a>
 
-  <a class="card" href="reading.html">
+  <a class="card" href="reading.html" data-cat="learn">
     <div class="icon">📖</div>
     <h2>英语阅读</h2>
     <p>6 篇英文文章，左边读原文、右边看重点词，每段有翻译，点句同步高亮</p>
     <span class="go">打开 →</span>
   </a>
 
-  <a class="card" href="markdown.html">
+  <a class="card" href="markdown.html" data-cat="text">
     <div class="icon">📄</div>
     <h2>墨读</h2>
     <p>Markdown 阅读器：打开 .md 文件，排成干净的纸页，目录、查找、主题、字号都在手边</p>
     <span class="go">打开 →</span>
   </a>
 
-  <a class="card" href="docs.html">
+  <a class="card" href="docs.html" data-cat="text">
     <div class="icon">📑</div>
     <h2>文档工作台</h2>
     <p>新建、导入、编辑、预览、导出 MD / Word / 演示 / 表格，都存在这个浏览器里</p>
     <span class="go">打开 →</span>
   </a>
 
-  <a class="card" href="https://toolseverything.com:442">
+  <a class="card" href="https://toolseverything.com:442" data-cat="learn">
     <div class="icon">📡</div>
     <h2>RoutePass 网页版</h2>
     <p>路由通刷题网页版：每日一练、练习考试、错题本收藏，浏览器里直接用</p>
     <span class="go">打开 →</span>
   </a>
 
-  <a class="card" href="unit-converter.html">
+  <a class="card" href="unit-converter.html" data-cat="calc">
     <div class="icon">🔄</div>
     <h2>单位换算</h2>
     <p>长度、重量、温度、体积、面积、速度，输一边另一边实时换算</p>
     <span class="go">打开 →</span>
   </a>
 
-  <a class="card" href="qr-generator.html">
+  <a class="card" href="qr-generator.html" data-cat="share">
     <div class="icon">🔳</div>
     <h2>二维码生成器</h2>
     <p>链接、文字、WiFi 一键生成二维码，还能下载</p>
     <span class="go">打开 →</span>
   </a>
 
-  <a class="card" href="password-generator.html">
+  <a class="card" href="password-generator.html" data-cat="share">
     <div class="icon">🔑</div>
     <h2>密码生成器</h2>
     <p>随机强密码，长度和字符类型自己选</p>
     <span class="go">打开 →</span>
   </a>
 
-  <a class="card" href="json-formatter.html">
+  <a class="card" href="json-formatter.html" data-cat="text">
     <div class="icon">🧩</div>
     <h2>JSON 格式化</h2>
     <p>贴 JSON 就能格式化、压缩、校验报错位置</p>
     <span class="go">打开 →</span>
   </a>
 
-  <a class="card" href="pomodoro.html">
+  <a class="card" href="pomodoro.html" data-cat="learn">
     <div class="icon">🍅</div>
     <h2>番茄钟</h2>
     <p>25 分钟专注 + 休息循环，学习的时候用</p>
     <span class="go">打开 →</span>
   </a>
 
-  <a class="card" href="timestamp-converter.html">
+  <a class="card" href="timestamp-converter.html" data-cat="calc">
     <div class="icon">⏱️</div>
     <h2>时间戳转换</h2>
     <p>Unix 时间戳和日期互转，实时显示当前时间戳</p>
     <span class="go">打开 →</span>
   </a>
 
-  <a class="card" href="text-diff.html">
+  <a class="card" href="text-diff.html" data-cat="text">
     <div class="icon">📝</div>
     <h2>文本对比</h2>
     <p>两段文字放进去，高亮哪里改了</p>
     <span class="go">打开 →</span>
   </a>
 
-  <a class="card" href="base64-tool.html">
+  <a class="card" href="base64-tool.html" data-cat="text">
     <div class="icon">🔤</div>
     <h2>Base64 编解码</h2>
     <p>文字和 Base64 互转，支持中文</p>
     <span class="go">打开 →</span>
   </a>
 
-  <div class="card coming">
+  <div class="card coming" data-cat="all">
     <div class="icon">➕</div>
     <h2>更多工具</h2>
     <p>敬请期待，想到什么就加什么</p>
@@ -177,5 +201,22 @@
 </main>
 
 <footer>部署在 Abasthan · 可在 Telegram Mini App 里打开</footer>
+<script>
+(function(){
+  var cats = document.getElementById('cats');
+  var cards = document.querySelectorAll('main.grid .card');
+  cats.addEventListener('click', function(e){
+    var btn = e.target.closest('.chip');
+    if (!btn) return;
+    cats.querySelectorAll('.chip').forEach(function(c){ c.classList.remove('on'); });
+    btn.classList.add('on');
+    var cat = btn.getAttribute('data-cat');
+    cards.forEach(function(card){
+      var c = card.getAttribute('data-cat');
+      card.style.display = (cat === 'all' || c === cat) ? '' : 'none';
+    });
+  });
+})();
+</script>
 </body>
 </html>
