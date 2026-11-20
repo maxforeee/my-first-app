@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>日语入门</title>
+<style>
+:root{--bg:#f2f2f7;--card:#fff;--text:#1c1c1e;--sub:#8e8e93;--accent:#007aff;--accent-soft:#e5f0ff;--border:#e5e5ea;--ok:#34c759;--ok-soft:#e3f7e8;--bad:#ff3b30;--bad-soft:#ffe5e3}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.5 -apple-system,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif}
+button{font:inherit;color:inherit;cursor:pointer}
+.jp{font-family:"Hiragino Sans","Yu Gothic","Noto Sans JP",-apple-system,"PingFang SC",sans-serif}
+#app{max-width:720px;margin:0 auto;padding:0 16px 130px}
+.top{position:sticky;top:0;z-index:5;background:var(--bg);display:flex;align-items:center;gap:8px;padding:max(10px,env(safe-area-inset-top)) 0 10px}
+.top h2{margin:0;font-size:20px}
+.back{border:0;background:var(--accent-soft);color:var(--accent);border-radius:20px;padding:8px 14px;font-weight:600}
+h1{margin:0 0 4px;font-size:30px}
+h3{margin:18px 2px 8px;font-size:15px;color:var(--sub);font-weight:600}
+.sub,small{color:var(--sub)}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px;margin-bottom:12px}
+.hd{margin-top:max(16px,env(safe-area-inset-top))}
+.bar{height:8px;background:var(--border);border-radius:4px;overflow:hidden;margin:10px 0 4px}
+.bar i{display:block;height:100%;background:var(--accent);border-radius:4px}
+.en{display:block;width:100%;text-align:left}
+.en b{display:block;font-size:20px}.en span{display:block;color:var(--sub);font-size:14px}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:2px 0 10px;scrollbar-width:none}
+.chip{flex:none;padding:9px 15px;border-radius:20px;border:1px solid var(--border);background:var(--card)}
+.chip.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.g{display:grid;gap:8px;grid-template-columns:repeat(5,1fr)}.g.y{grid-template-columns:repeat(3,1fr)}
+.cell{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:4px;text-align:center}
+.cell.e{visibility:hidden}
+.kb{display:block;width:100%;border:0;background:none;font-size:28px;line-height:1.3;padding:6px 0;border-radius:10px}
+.kb.m{background:var(--ok-soft);color:#1a7f37}
+.kb.sel{box-shadow:inset 0 0 0 2px var(--accent)}
+.r{font-size:12px;color:var(--sub);padding-bottom:2px}
+.pl{background:var(--accent-soft)!important}
+#sel{position:fixed;left:0;right:0;bottom:0;z-index:6;background:rgba(255,255,255,.96);border-top:1px solid var(--border);display:flex;align-items:center;gap:14px;justify-content:center;padding:10px 16px max(10px,env(safe-area-inset-bottom))}
+.bk{font-size:38px;line-height:1}.br{font-size:20px;font-weight:600;min-width:56px}
+.mb{border:0;border-radius:12px;background:var(--accent);color:#fff;padding:12px 18px;font-weight:600}
+.mb.m{background:var(--ok)}
+.it{display:flex;align-items:center;gap:12px}
+.col{flex:1;min-width:0}
+.tx{display:block;border:0;background:none;text-align:left;padding:0;width:100%}
+.big{display:block;font-size:26px;line-height:1.35}
+.rd{display:block;color:var(--sub);font-size:14px}
+.zh{display:inline-block;border:0;background:none;padding:2px 6px;margin:4px 0 0 -6px;font-size:17px;border-radius:8px;text-align:left}
+.zh.h{color:transparent;background:var(--border);user-select:none}
+.mk{flex:none;width:46px;height:46px;border-radius:50%;border:2px solid var(--border);background:#fff;color:var(--border);font-size:22px}
+.mk.m{background:var(--ok);border-color:var(--ok);color:#fff}
+.opt{display:block;width:100%;margin-bottom:10px;padding:16px;border-radius:14px;border:1px solid var(--border);background:var(--card);font-size:20px;text-align:center}
+.opt.ok{background:var(--ok-soft);border-color:var(--ok)}.opt.bad{background:var(--bad-soft);border-color:var(--bad)}
+.pq{text-align:center;font-size:60px;line-height:1.3;margin:10px 0 18px}
+.pq.w{font-size:42px}
+.pb{display:block;margin:0 auto 18px;border:0;border-radius:40px;background:var(--accent);color:#fff;padding:16px 28px;font-size:20px}
+.main{display:block;width:100%;border:0;border-radius:14px;background:var(--accent);color:#fff;padding:15px;font-weight:600;margin-top:6px}
+.fb{text-align:center;font-weight:600;margin:4px 0 8px}
+.sc{text-align:center;font-size:54px;font-weight:700;color:var(--accent);margin:6px 0}
+.rst{display:block;margin:26px auto 0;border:0;background:none;color:var(--sub);padding:10px;text-decoration:underline}
+.rst.c{color:var(--bad);font-weight:600}
+.toast{position:fixed;left:50%;top:max(16px,env(safe-area-inset-top));transform:translateX(-50%);z-index:20;background:rgba(28,28,30,.92);color:#fff;border-radius:12px;padding:12px 16px;max-width:90%;text-align:center}
+</style></head><body><div id="app"></div>
+<script>
+const $=s=>document.querySelector(s),sh=a=>a.map(x=>[Math.random(),x]).sort((a,b)=>a[0]-b[0]).map(x=>x[1]);
+/* ===== 数据 ===== */
+const K=[];
+const P=(t,g)=>t.split('\n').forEach(l=>{const[n,h,k,r]=l.split('|'),rs=r.split(' '),ka=[...k];[...h].forEach((c,i)=>K.push(c=='_'?{e:1,g,n,i}:{g,n,i,h:c,k:ka[i],r:rs[i]}))});
+P(`あ行|あいうえお|アイウエオ|a i u e o
+か行|かきくけこ|カキクケコ|ka ki ku ke ko
+さ行|さしすせそ|サシスセソ|sa shi su se so
+た行|たちつてと|タチツテト|ta chi tsu te to
+な行|なにぬねの|ナニヌネノ|na ni nu ne no
+は行|はひふへほ|ハヒフヘホ|ha hi fu he ho
+ま行|まみむめも|マミムメモ|ma mi mu me mo
+や行|や_ゆ_よ|ヤ_ユ_ヨ|ya _ yu _ yo
+ら行|らりるれろ|ラリルレロ|ra ri ru re ro
+わ行|わ___を|ワ___ヲ|wa _ _ _ wo
+ん|ん____|ン____|n _ _ _ _`,0);
+P(`が行|がぎぐげご|ガギグゲゴ|ga gi gu ge go
+ざ行|ざじずぜぞ|ザジズゼゾ|za ji zu ze zo
+だ行|だぢづでど|ダヂヅデド|da ji zu de do
+ば行|ばびぶべぼ|バビブベボ|ba bi bu be bo
+ぱ行|ぱぴぷぺぽ|パピプペポ|pa pi pu pe po`,1);
+[['き','キ','ky'],['し','シ','sh'],['ち','チ','ch'],['に','ニ','ny'],['ひ','ヒ','hy'],['み','ミ','my'],['り','リ','ry'],['ぎ','ギ','gy'],['じ','ジ','j'],['び','ビ','by'],['ぴ','ピ','py']]
+.forEach(([h,k,r])=>['a','u','o'].forEach((v,i)=>K.push({g:2,n:h+'ゃ行',i,h:h+'ゃゅょ'[i],k:k+'ャュョ'[i],r:r+v})));
+const KK=K.filter(x=>!x.e);
+const W=[];
+const WG={问候:`おはようございます|ohayou gozaimasu|早上好
+こんにちは|konnichiwa|你好
+こんばんは|konbanwa|晚上好
+ありがとう|arigatou|谢谢
+ありがとうございます|arigatou gozaimasu|非常感谢
+すみません|sumimasen|对不起；劳驾
+さようなら|sayounara|再见
+はじめまして|hajimemashite|初次见面
+よろしくおねがいします|yoroshiku onegai shimasu|请多关照
+おやすみなさい|oyasumi nasai|晚安`,
+数字:`一|いち|ichi|1
+二|に|ni|2
+三|さん|san|3
+四|よん|yon|4
+五|ご|go|5
+六|ろく|roku|6
+七|なな|nana|7
+八|はち|hachi|8
+九|きゅう|kyuu|9
+十|じゅう|juu|10
+百|ひゃく|hyaku|100
+千|せん|sen|1000`,
+时间:`今日|きょう|kyou|今天
+明日|あした|ashita|明天
+昨日|きのう|kinou|昨天
+月曜日|げつようび|getsuyoubi|星期一
+火曜日|かようび|kayoubi|星期二
+水曜日|すいようび|suiyoubi|星期三
+木曜日|もくようび|mokuyoubi|星期四
+金曜日|きんようび|kinyoubi|星期五
+土曜日|どようび|doyoubi|星期六
+日曜日|にちようび|nichiyoubi|星期日
+朝|あさ|asa|早上
+夜|よる|yoru|夜晚`,
+人物:`私|わたし|watashi|我
+あなた|anata|你
+友達|ともだち|tomodachi|朋友
+家族|かぞく|kazoku|家人
+お父さん|おとうさん|otousan|父亲
+お母さん|おかあさん|okaasan|母亲
+先生|せんせい|sensei|老师
+学生|がくせい|gakusei|学生`,
+食物:`水|みず|mizu|水
+お茶|おちゃ|ocha|茶
+ご飯|ごはん|gohan|米饭；饭
+パン|pan|面包
+肉|にく|niku|肉
+魚|さかな|sakana|鱼
+野菜|やさい|yasai|蔬菜
+果物|くだもの|kudamono|水果
+牛乳|ぎゅうにゅう|gyuunyu|牛奶
+コーヒー|koohii|咖啡`,
+动作:`行く|いく|iku|去
+来る|くる|kuru|来
+食べる|たべる|taberu|吃
+飲む|のむ|nomu|喝
+見る|みる|miru|看
+聞く|きく|kiku|听
+話す|はなす|hanasu|说
+読む|よむ|yomu|读
+書く|かく|kaku|写
+買う|かう|kau|买`,
+形容词:`大きい|おおきい|ookii|大的
+小さい|ちいさい|chiisai|小的
+新しい|あたらしい|atarashii|新的
+古い|ふるい|furui|旧的
+高い|たかい|takai|高的；贵的
+安い|やすい|yasui|便宜的
+美味しい|おいしい|oishii|好吃的
+忙しい|いそがしい|isogashii|忙的`};
+const pl=(g,t,a)=>t.split('\n').forEach(s=>{const f=s.split('|');a.push(f.length==3?{g,j:f[0],k:f[0],r:f[1],z:f[2]}:{g,j:f[0],k:f[1],r:f[2],z:f[3]})});
+Object.entries(WG).forEach(([g,t])=>pl(g,t,W));
+const T=[];pl('',`おはようございます。|ohayou gozaimasu|早上好。
+こんにちは。|konnichiwa|你好。
+こんばんは。|konbanwa|晚上好。
+ありがとうございます。|arigatou gozaimasu|非常感谢。
+すみません。|sumimasen|对不起。/ 劳驾。
+はじめまして、よろしくおねがいします。|hajimemashite, yoroshiku onegai shimasu|初次见面，请多关照。
+私の名前は〜です。|わたしのなまえは〜です。|watashi no namae wa ~ desu|我的名字是～。
+お元気ですか。|おげんきですか。|ogenki desu ka|你好吗？
+はい、元気です。|はい、げんきです。|hai, genki desu|是的，我很好。
+これは何ですか。|これはなんですか。|kore wa nan desu ka|这是什么？
+いくらですか。|ikura desu ka|多少钱？
+トイレはどこですか。|toire wa doko desu ka|洗手间在哪儿？
+日本語がわかりません。|にほんごがわかりません。|nihongo ga wakarimasen|我不懂日语。
+もう一度おねがいします。|もういちどおねがいします。|mou ichido onegai shimasu|请再说一遍。
+ゆっくり話してください。|ゆっくりはなしてください。|yukkuri hanashite kudasai|请说慢一点。
+大丈夫です。|だいじょうぶです。|daijoubu desu|没关系。/ 我没事。
+お疲れ様です。|おつかれさまです。|otsukaresama desu|辛苦了。
+いただきます。|itadakimasu|我开动了。（饭前说）
+ごちそうさまでした。|gochisousama deshita|谢谢款待。（饭后说）
+さようなら。|sayounara|再见。`,T);
+/* ===== 进度 ===== */
+let S={};try{S=JSON.parse(localStorage.getItem('jp_v1'))||{}}catch(e){}
+const sv=()=>{try{localStorage.setItem('jp_v1',JSON.stringify(S))}catch(e){}};
+const KA=KK.flatMap(x=>['h:'+x.h,'k:'+x.k]),WA=W.map(w=>'w:'+w.j),SA=T.map((_,i)=>'s:'+i);
+const pr=a=>a.filter(k=>S[k]).length;
+const bar=(n,t)=>`<div class="bar"><i style="width:${t?n/t*100:0}%"></i></div>`;
+/* ===== 发音：优先微软 Edge 在线语音，失败回落系统语音 ===== */
+const sy=window.speechSynthesis;let cur=null;
+let au=null,ws=null,reqSeq=0,auUrl=null;
+const EDGE_TOKEN='6A5AA1D4EAFF4E9FB37E23D68491D6F4';
+const EDGE_WSS='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1';
+const EDGE_VER='2-143.0.3650.75';
+const EDGE_VOICE="Microsoft Server Speech Text to Speech Voice (ja-JP, NanamiNeural)";
+const uuid=()=>window.crypto&&crypto.randomUUID?crypto.randomUUID():Date.now()+'-'+Math.random().toString(36).slice(2);
+const escXml=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const ratePct=r=>{const p=Math.round((r-1)*100);return(p>=0?'+':'')+p+'%'};
+const ts=()=>new Date().toISOString().replace(/[-:.]/g,"").slice(0,-1);
+/* Sec-MS-GEC v2：微软 2026-10-10 起只认 v2 token（CS64 校验 + SHA-256），v1 直接 403 */
+const WIN_EPOCH_SECONDS=11644473600;
+const TOKEN_WINDOW_SECONDS=300;
+const SHA256_INITIAL=[0x6a09e667,0xbb67ae85,0x3c6ef372,0xa54ff53a,0x510e527f,0x9b05688c,0x1f83d9ab,0x5be0cd19];
+const SHA256_PREFIX_STATE=[0xfd9fbea2,0x91243ce7,0xbe499094,0xcd2e1e0a,0x6c006f49,0x04bd35ab,0xfeb0a7e4,0x03effbd2];
+const SHA256_PREFIX_SCHEDULE=[0xeb24bf9e,0x1558691f,0xa0c09ee2,0x0cfa32ba,0xa622ee8c,0xd1dd9491,0xc0dd25a0,0xf9e70ab6,0xf0c31573,0x7058ce4e,0x7188e606,0x00e5ab33,0xd258b060,0x72766564];
+const SHA256_ROUND_CONSTANTS=[0x428a2f98,0x71374491,0xb5c0fbcf,0xe9b5dba5,0x3956c25b,0x59f111f1,0x923f82a4,0xab1c5ed5,0xd807aa98,0x12835b01,0x243185be,0x550c7dc3,0x72be5d74,0x80deb1fe,0x9bdc06a7,0xc19bf174,0xe49b69c1,0xefbe4786,0x0fc19dc6,0x240ca1cc,0x2de92c6f,0x4a7484aa,0x5cb0a9dc,0x76f988da,0x983e5152,0xa831c66d,0xb00327c8,0xbf597fc7,0xc6e00bf3,0xd5a79147,0x06ca6351,0x14292967,0x27b70a85,0x2e1b2138,0x4d2c6dfc,0x53380d13,0x650a7354,0x766a0abb,0x81c2c92e,0x92722c85,0xa2bfe8a1,0xa81a664b,0xc24b8b70,0xc76c51a3,0xd192e819,0xd6990624,0xf40e3585,0x106aa070,0x19a4c116,0x1e376c08,0x2748774c,0x34b0bcb5,0x391c0cb3,0x4ed8aa4a,0x5b9cca4f,0x682e6ff3,0x748f82ee,0x78a5636f,0x84c87814,0x8cc70208,0x90befffa,0xa4506ceb,0xbef9a3f7,0xc67178f2];
+const SHA256_ROUND_14_ADJUSTMENT=0xc9dc06a7;
+const SHA256_PREFIX_BLOCK_CONSTANTS=SHA256_ROUND_CONSTANTS.map((constant,index)=>(index===14?SHA256_ROUND_14_ADJUSTMENT:constant));
+const SHA256_SIGMA0_ADJUSTMENT=0x059c0b80;
+const SHA256_SIGMA1_ADJUSTMENT=0x000b92c0;
+const CS64_COEFFICIENTS=[[0xe82e91b1,0xb32700d0],[0x44de24c6,0x88dff51d],[0x3beb65bc,0x29514038],[0xc89c5933,0xb328cbdf],[0x8d1ec211,0xd405b4d5],[0x314ef5d5,0x26e55f3c],[0xe92491b1,0x607801c6],[0xf0a5b9d5,0x82b2c1fb],[0x06064cf3,0xfa51a3da],[0xda79fa60,0x207cc464],[0xbed20560,0x3c3c74f3],[0x89f9c9f8,0xd2d14b61],[0x35fa38c6,0xbb04a2c1],[0xcb49e3c6,0xc5626167]];
+const CS64_FACTOR=0x82893933;
+const CS64_ADJUSTMENT0=0xf2f90b1a;
+const CS64_ADJUSTMENT1=0x0b1a0000;
+function rotr(value,bits){return((value>>>bits)|(value<<(32-bits)))>>>0}
+function rol16(value){return((value<<16)|(value>>>16))>>>0}
+function sigma0(value){return(rotr(value,7)^rotr(value,18)^(value>>>3))>>>0}
+function sigma1(value){return(rotr(value,17)^rotr(value,19)^(value>>>10))>>>0}
+function expandSchedule(words,firstWord){
+  if(firstWord===undefined)firstWord=16;
+  for(let index=firstWord;index<64;index+=1){
+    words[index]=(sigma1(words[index-2])+words[index-7]+sigma0(words[index-15])+words[index-16])>>>0;
+  }
+}
+function compress(state,words,firstRound){
+  if(firstRound===undefined)firstRound=0;
+  const constants=firstRound===14?SHA256_PREFIX_BLOCK_CONSTANTS:SHA256_ROUND_CONSTANTS;
+  let a=state[0],b=state[1],c=state[2],d=state[3],e=state[4],f=state[5],g=state[6],h=state[7];
+  for(let index=firstRound;index<64;index+=1){
+    const t1=(h+(rotr(e,6)^rotr(e,11)^rotr(e,25))+(g^(e&(f^g)))+constants[index]+words[index])>>>0;
+    const t2=((rotr(a,2)^rotr(a,13)^rotr(a,22))+((a&b)|(c&(a|b))))>>>0;
+    h=g;g=f;f=e;e=(d+t1)>>>0;d=c;c=b;b=a;a=(t1+t2)>>>0;
+  }
+  return[a,b,c,d,e,f,g,h];
+}
+function prefixBlockState(payload){
+  const words=new Array(14).fill(0);
+  words.push((payload[0]<<16)|(payload[1]<<8)|payload[2]);
+  words.push(((payload[3]<<24)|(payload[4]<<16)|(payload[5]<<8)|payload[6])>>>0);
+  for(let index=16;index<30;index+=1){
+    let value=SHA256_PREFIX_SCHEDULE[index-16]+(index===16?(sigma1(words[14])^SHA256_SIGMA1_ADJUSTMENT)>>>0:sigma1(words[index-2]));
+    if(index>=21)value+=words[index-7];
+    if(index===29)value+=(sigma0(words[14])^SHA256_SIGMA0_ADJUSTMENT)>>>0;
+    words.push(value>>>0);
+  }
+  words.push((sigma1(words[28])+words[23]+sigma0(words[15])+words[14]+SHA256_ROUND_14_ADJUSTMENT-SHA256_ROUND_CONSTANTS[14])>>>0);
+  expandSchedule(words,31);
+  const working=compress(SHA256_PREFIX_STATE,words,14);
+  return SHA256_INITIAL.map((value,index)=>(value+working[index])>>>0);
+}
+function sha256Digest(payload){
+  if(payload.length<7)throw new Error("Sec-MS-GEC payload must contain at least seven bytes");
+  const messageLength=57+payload.length;
+  const zeroPadding=(((55-messageLength)%64)+64)%64;
+  const tail=new Uint8Array(payload.length-7+1+zeroPadding+8);
+  tail.set(payload.subarray(7));
+  tail[payload.length-7]=0x80;
+  const tailView=new DataView(tail.buffer);
+  const bitLength=messageLength*8;
+  tailView.setUint32(tail.length-8,Math.floor(bitLength/2**32));
+  tailView.setUint32(tail.length-4,bitLength>>>0);
+  let state=prefixBlockState(payload);
+  for(let offset=0;offset<tail.length;offset+=64){
+    const words=[];
+    for(let index=0;index<16;index+=1)words.push(tailView.getUint32(offset+index*4));
+    expandSchedule(words);
+    const working=compress(state,words);
+    state=state.map((value,index)=>(value+working[index])>>>0);
+  }
+  const digest=new Uint8Array(32);
+  const digestView=new DataView(digest.buffer);
+  state.forEach((value,index)=>digestView.setUint32(index*4,value));
+  return digest;
+}
+function cs64Words(payload){
+  const byteLength=Math.ceil((payload.length+1)/8)*8;
+  const bytes=new Uint8Array(byteLength);
+  bytes.set(payload,1);
+  const view=new DataView(bytes.buffer);
+  const words=[];
+  for(let offset=0;offset<byteLength;offset+=4)words.push(view.getUint32(offset,true));
+  return words;
+}
+function cs64Digest(payload,digest){
+  const digestView=new DataView(digest.buffer,digest.byteOffset,digest.byteLength);
+  const keyA=(digestView.getUint32(0,true)|1)>>>0;
+  const keyB=(digestView.getUint32(4,true)|1)>>>0;
+  const factors=[Math.imul(keyA,CS64_FACTOR)>>>0,Math.imul(keyB,CS64_FACTOR)>>>0];
+  const terms=CS64_COEFFICIENTS.map((pair,index)=>Math.imul(pair[0],factors[index%2])>>>0);
+  const offsets=CS64_COEFFICIENTS.map(pair=>pair[1]);
+  cs64Words(payload).forEach((word,index)=>{
+    const even=index%2===0;
+    let term=Math.imul(word,even?keyA:keyB);
+    let offset=Math.imul(rol16(word),even?0xef0569fb:0xc31713db);
+    if(index===0){term+=Math.imul(CS64_ADJUSTMENT0,factors[0]);offset+=CS64_ADJUSTMENT1}
+    terms.push(term>>>0);
+    offsets.push(offset>>>0);
+  });
+  let swapAcc=0,swapLast=0,state=0,acc=0;
+  for(let index=0;index<terms.length;index+=2){
+    const x=terms[index],y=terms[index+1];
+    let q=Math.imul(rol16((offsets[index]+x)>>>0),0x76f50f34)>>>0;
+    swapAcc=(swapAcc+Math.imul(rol16(q),0xc3efea97)+q)>>>0;
+    q=Math.imul(rol16((offsets[index+1]+y)>>>0),0x1881ce3c)>>>0;
+    swapLast=(Math.imul(rol16(q),0x35bd1ec9)+q)>>>0;
+    swapAcc=(swapAcc+swapLast)>>>0;
+    state=(Math.imul(state,keyA)+x)>>>0;
+    state=Math.imul(rol16(state),0xcf98b111)>>>0;
+    state=Math.imul(rol16(state),0x87085b9f)>>>0;
+    state=Math.imul(rol16(state),0x12ceb96d)>>>0;
+    state=Math.imul(rol16(state),0x257e1d83)>>>0;
+    acc=(acc+state)>>>0;
+    let t=(Math.imul(state,keyB)+y)>>>0;
+    t=Math.imul(rol16(t),0xa27416f5)>>>0;
+    t=Math.imul(rol16(t),0xd38396ff)>>>0;
+    t=Math.imul(rol16(t),0x7c932b89)>>>0;
+    state=Math.imul(rol16(t),0xbfa49f69)>>>0;
+    acc=(acc+state)>>>0;
+  }
+  return[(swapLast^state)>>>0,(swapAcc^acc)>>>0];
+}
+function toHex(bytes){return Array.from(bytes).map(byte=>byte.toString(16).padStart(2,"0")).join("").toUpperCase()}
+function hashSecMsGecPayload(payload){
+  const bytes=new TextEncoder().encode(payload);
+  const digest=sha256Digest(bytes);
+  const checksum=new Uint8Array(8);
+  const checksumView=new DataView(checksum.buffer);
+  cs64Digest(bytes,digest).forEach((word,index)=>checksumView.setUint32(index*4,word,true));
+  return toHex(checksum)+"-"+toHex(digest);
+}
+function generateSecMsGec(trustedClientToken,unixSeconds){
+  if(unixSeconds===undefined)unixSeconds=Date.now()/1000;
+  let ticks=unixSeconds+WIN_EPOCH_SECONDS;
+  ticks-=ticks%TOKEN_WINDOW_SECONDS;
+  ticks*=1e7;
+  return hashSecMsGecPayload(ticks.toFixed(0)+trustedClientToken);
+}
+function edgeSay(t,k,r){
+ if(!window.WebSocket)return Promise.reject(new Error('no edge'));
+ const my=++reqSeq;
+ let gec;
+ try{gec=generateSecMsGec(EDGE_TOKEN)}catch(e){return Promise.reject(e)}
+ return new Promise((res,rej)=>{
+  let done=false;const chunks=[];
+  const s=new WebSocket(EDGE_WSS+'?TrustedClientToken='+EDGE_TOKEN+'&Sec-MS-GEC='+gec+'&Sec-MS-GEC-Version='+EDGE_VER+'&ConnectionId='+encodeURIComponent(uuid().replace(/-/g,'')));
+  ws=s;
+  const to=setTimeout(()=>fail(new Error('timeout')),8000);
+  function fail(e){if(done)return;done=true;clearTimeout(to);try{s.close()}catch(_){}rej(e)}
+  function ok(){if(done)return;done=true;clearTimeout(to);try{s.close()}catch(_){}res()}
+  function finish(){
+   if(done)return;
+   if(!chunks.length){fail(new Error('no audio'));return}
+   const blob=new Blob(chunks,{type:'audio/mpeg'});
+   if(auUrl)URL.revokeObjectURL(auUrl);
+   auUrl=URL.createObjectURL(blob);
+   au=new Audio(auUrl);
+   au.onended=()=>{if(cur===k)setP(null)};
+   au.onerror=()=>{if(cur===k)setP(null);fail(new Error('audio error'))};
+   au.play().then(ok).catch(fail)}
+  s.binaryType='arraybuffer';
+  s.onopen=()=>{
+   if(my!==reqSeq||cur!==k){fail(new Error('stale'));return}
+   try{
+    s.send('X-Timestamp:'+ts()+'\r\nContent-Type:application/json; charset=utf-8\r\nPath:speech.config\r\n\r\n{"context":{"synthesis":{"audio":{"metadataoptions":{"sentenceBoundaryEnabled":"false","wordBoundaryEnabled":"true"},"outputFormat":"audio-24khz-48kbitrate-mono-mp3"}}}}\r\n');
+    const ssml="<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xml:lang='ja-JP'><voice name='"+EDGE_VOICE+"'><prosody pitch='+0Hz' rate='"+ratePct(r)+"' volume='+0%'>"+escXml(t)+"</prosody></voice></speak>";
+    s.send('X-RequestId:'+uuid()+'\r\nContent-Type:application/ssml+xml\r\nX-Timestamp:'+ts()+'Z\r\nPath:ssml\r\n\r\n'+ssml);
+   }catch(e){fail(e)}};
+  s.onmessage=e=>{
+   if(my!==reqSeq||cur!==k){fail(new Error('stale'));return}
+   if(typeof e.data==='string'){if(e.data.indexOf('Path:turn.end')>-1)finish();return}
+   const b=new Uint8Array(e.data);
+   if(b.length<2)return;
+   const hl=(b[0]<<8)|b[1];
+   if(b.length<2+hl)return;
+   if(new TextDecoder().decode(b.slice(2,2+hl)).indexOf('Path:audio')>-1)chunks.push(b.slice(2+hl))};
+  s.onerror=()=>fail(new Error('ws error'));
+  s.onclose=()=>{if(!done&&chunks.length)finish();else if(!done)fail(new Error('closed'))};
+ })}
+function sysSay(t,k,rate){
+ if(!sy||typeof SpeechSynthesisUtterance=='undefined'){if(cur===k)setP(null);toast('发音失败：联网和系统语音都不可用');return}
+ const v=sy.getVoices(),ja=v.find(x=>/^ja/i.test(x.lang.replace('_','-')));
+ if(v.length&&!ja){if(cur===k)setP(null);toast('发音失败：联网不可用，且这台手机没有日语语音');return}
+ try{sy.cancel()}catch(e){}
+ const u=new SpeechSynthesisUtterance(t);u.lang='ja-JP';if(ja)u.voice=ja;u.rate=rate;
+ u.onend=()=>{if(cur===k)setP(null)};
+ u.onerror=e=>{if(cur===k)setP(null);if(e.error&&!/canceled|interrupted/.test(e.error))toast('发音失败：联网和系统语音都不可用')};
+ sy.speak(u)}
+function toast(m){const d=document.createElement('div');d.className='toast';d.textContent=m;document.body.appendChild(d);setTimeout(()=>d.remove(),3000)}
+function setP(k){cur=k;document.querySelectorAll('.pl').forEach(e=>e.classList.remove('pl'));if(k)document.querySelectorAll('[data-key="'+k+'"]').forEach(e=>e.classList.add('pl'))}
+function stop(){reqSeq++;if(ws){try{ws.close()}catch(e){}ws=null}if(au){try{au.pause()}catch(e){}au=null}if(sy)try{sy.cancel()}catch(e){}setP(null)}
+function say(t,k,rate){
+ if(cur===k){stop();return}
+ stop();
+ rate=rate||.8;
+ setP(k);
+ edgeSay(t,k,rate).catch(()=>{if(cur===k)sysSay(t,k,rate)})}
+/* ===== 状态 ===== */
+let pg='home',Q=null;const ui={sc:'both',row:'all',sel:null,wg:'问候',rate:.8,H:{},rc:0};
+const ch=(a,v,t,on)=>`<button class="chip${on?' on':''}" data-a="${a}" data-v="${v}">${t}</button>`;
+const back=t=>`<div class="top"><button class="back" data-a="go" data-v="home">‹ 返回</button><h2>${t}</h2></div>`;
+const mk=(id,m)=>`<button class="mk${S[id]?' m':''}" data-a="mk" data-v="${id}" aria-label="标记已掌握">✓</button>`;
+/* ===== 页面 ===== */
+function Home(){
+ const en=(v,t,d,a)=>`<button class="card en" data-a="go" data-v="${v}"><b>${t}</b><span>${d}</span>${a?bar(pr(a),a.length)+`<small>已掌握 ${pr(a)} / ${a.length}</small>`:''}</button>`;
+ const all=[...KA,...WA,...SA],n=pr(all);
+ return `<div class="card hd"><h1>日语入门</h1><div class="sub">总进度：已掌握 ${n} / ${all.length}（假名 + 单词 + 常用句）</div>${bar(n,all.length)}</div>
+ ${en('kana','五十音图','平假名 · 片假名 · 浊音 · 拗音',KA)}
+ ${en('word','基础词汇','70 个入门单词，7 组',WA)}
+ ${en('sent','常用句','20 句日常用语',SA)}
+ ${en('quiz','小测验','认假名 · 听音选假名 · 认单词')}
+ <button class="rst${ui.rc?' c':''}" data-a="rs">${ui.rc?'再点一次，确认清除全部进度':'重置进度'}</button>`}
+function Kana(){
+ const gs=['基本音','浊音 / 半浊音','拗音'],rows=[...new Set(K.map(x=>x.n))];
+ const kb=(x,s)=>{const id=s+':'+x[s];return `<button class="kb jp${S[id]?' m':''}${ui.sel===id?' sel':''}" data-a="k" data-v="${id}" data-key="${id}">${x[s]}</button>`};
+ const cell=x=>x.e?'<div class="cell e"></div>':`<div class="cell">${ui.sc!='k'?kb(x,'h'):''}${ui.sc!='h'?kb(x,'k'):''}<div class="r">${x.r}</div></div>`;
+ let h=back('五十音图')+`<div class="sub" style="margin:-2px 2px 4px">已掌握 ${pr(KA)} / ${KA.length}</div>`+bar(pr(KA),KA.length);
+ h+=`<div class="chips">${[['both','对照'],['h','平假名'],['k','片假名']].map(a=>ch('sc',a[0],a[1],ui.sc==a[0])).join('')}</div>`;
+ h+=`<div class="chips">${ch('row','all','全部',ui.row=='all')+rows.map(r=>ch('row',r,r,ui.row==r)).join('')}</div>`;
+ [0,1,2].forEach(g=>{const it=K.filter(x=>x.g==g&&(ui.row=='all'||x.n==ui.row));if(it.length)h+=`<h3>${gs[g]}</h3><div class="g${g==2?' y':''}">${it.map(cell).join('')}</div>`});
+ const id=ui.sel,x=id&&K.find(y=>y[id[0]]===id.slice(2));
+ return h+(x?`<div id="sel"><span class="jp bk">${id.slice(2)}</span><span class="br">${x.r}</span><button class="mb${S[id]?' m':''}" data-a="mk" data-v="${id}">${S[id]?'✓ 已掌握':'标记已掌握'}</button></div>`:`<div id="sel"><span class="sub">点一下假名，听发音、看罗马音</span></div>`)}
+function Word(){
+ const gs=Object.keys(WG);
+ let h=back('基础词汇')+`<div class="sub" style="margin:-2px 2px 4px">已掌握 ${pr(WA)} / ${WA.length}</div>`+bar(pr(WA),WA.length);
+ h+=`<div class="chips">${gs.map(g=>ch('wg',g,g,ui.wg==g)).join('')}</div>`;
+ h+=`<div class="chips">${ch('hz',1,'遮住中文')+ch('hz',0,'显示中文')}</div>`;
+ W.forEach((w,i)=>{if(w.g!=ui.wg)return;
+  h+=`<div class="card it" data-key="w${i}"><div class="col"><button class="tx" data-a="sw" data-v="${i}"><span class="big jp">${w.j}</span><span class="rd jp">${w.k!=w.j?w.k+' · ':''}${w.r}</span></button><button class="zh${ui.H[i]?' h':''}" data-a="zh" data-v="${i}">${ui.H[i]?'点击显示':w.z}</button></div>${mk('w:'+w.j)}</div>`});
+ return h}
+function Sent(){
+ let h=back('常用句')+`<div class="sub" style="margin:-2px 2px 4px">已掌握 ${pr(SA)} / ${SA.length}</div>`+bar(pr(SA),SA.length);
+ h+=`<div class="chips">${[[.8,'默认语速'],[.5,'0.5x'],[.75,'0.75x'],[1,'1x']].map(a=>ch('rt',a[0],a[1],ui.rate==a[0])).join('')}</div>`;
+ T.forEach((t,i)=>{h+=`<div class="card it" data-key="s${i}"><div class="col"><button class="tx" data-a="ss" data-v="${i}"><span class="big jp" style="font-size:22px">${t.j}</span><span class="rd jp">${t.k!=t.j?t.k+'<br>':''}${t.r}</span><span style="display:block;margin-top:4px;font-size:17px">${t.z}</span></button></div>${mk('s:'+i)}</div>`});
+ return h}
+function Quiz(){
+ let h=back('小测验');
+ if(!Q)return h+`<p class="sub">每轮 10 题，答错会马上显示正确答案；答对的会自动记为已掌握。</p>`+[['认假名','看假名，选罗马音'],['听音选假名','听发音，选对应的假名'],['认单词','看日语单词，选中文意思']].map((a,i)=>`<button class="card en" data-a="qs" data-v="${i}"><b>${a[0]}</b><span>${a[1]}</span></button>`).join('');
+ if(Q.done){
+  return h+`<div class="card"><div class="sub" style="text-align:center">本轮得分</div><div class="sc">${Q.sc} / 10</div></div>`+
+  (Q.wr.length?`<h3>错题回顾</h3>`+Q.wr.map(q=>`<div class="card"><span class="jp" style="font-size:22px">${q.rv}</span><br><span style="color:var(--ok);font-weight:600">正确：<span class="jp">${q.a}</span></span> <span style="color:var(--bad)">你选：<span class="jp">${q.pick}</span></span></div>`).join(''):`<p class="fb">全部答对，太棒了！</p>`)+
+  `<button class="main" data-a="qs" data-v="${Q.m}">再来一轮</button><button class="main" style="background:var(--accent-soft);color:var(--accent)" data-a="qm">换个模式</button>`}
+ const q=Q.qs[Q.i],d=q.pick!=null;
+ h+=`<div class="sub" style="text-align:center">第 ${Q.i+1} / 10 题</div>`;
+ h+=Q.m==1?`<div class="pq">🔊</div><button class="pb" data-a="rp">再听一次</button>`:`<div class="pq jp${Q.m==2?' w':''}">${q.p}</div>`;
+ h+=q.o.map((o,i)=>`<button class="opt${Q.m==1?' jp':''}${d&&o==q.a?' ok':''}${d&&o==q.pick&&o!=q.a?' bad':''}" style="${Q.m==1?'font-size:30px':''}" data-a="ans" data-v="${i}">${o}</button>`).join('');
+ if(d)h+=`<div class="fb" style="color:var(--${q.pick==q.a?'ok':'bad'})">${q.pick==q.a?'✓ 答对了':'✗ 正确答案：'+q.a}</div><button class="main" data-a="nx">${Q.i==9?'看结果':'下一题'}</button>`;
+ return h}
+function render(fresh){
+ const sl=fresh?[]:[...document.querySelectorAll('.chips')].map(e=>e.scrollLeft);
+ $('#app').innerHTML=({home:Home,kana:Kana,word:Word,sent:Sent,quiz:Quiz})[pg]();
+ document.querySelectorAll('.chips').forEach((e,i)=>e.scrollLeft=sl[i]||0);
+ if(cur)setP(cur)}
+/* ===== 测验 ===== */
+const dis=(pool,f,c)=>{const s=new Set([c]),o=[];for(const y of sh(pool)){const v=f(y);if(!s.has(v)){s.add(v);o.push(v);if(o.length==3)break}}return o};
+function qstart(m){
+ const qs=(m<2?sh(KK):sh(W)).slice(0,10).map(x=>{
+  if(m==2)return{p:x.j,a:x.z,o:sh([x.z,...dis(W,y=>y.z,x.z)]),id:'w:'+x.j,rv:x.j};
+  const s=Math.random()<.5?'h':'k',id=s+':'+x[s];
+  if(m==0)return{p:x[s],a:x.r,o:sh([x.r,...dis(KK,y=>y.r,x.r)]),id,rv:x[s]};
+  return{au:x[s],a:x[s],o:sh([x[s],...dis(KK.filter(y=>y.r!=x.r),y=>y[s],x[s])]),id,rv:'听音题（'+x.r+'）'}});
+ Q={m:+m,qs,i:0,sc:0,wr:[],done:0};render(1);qplay()}
+function qplay(){const q=Q&&!Q.done&&Q.qs[Q.i];if(Q&&Q.m==1&&q&&q.pick==null)say(q.au,'q'+Q.i,.8)}
+/* ===== 事件 ===== */
+const A={
+ go(v){stop();pg=v;if(v=='home')Q=null;scrollTo(0,0);render(1)},
+ sc(v){ui.sc=v;render()},row(v){ui.row=v;render()},
+ k(id){ui.sel=id;say(id.slice(2),id,.8);render()},
+ mk(id){S[id]?delete S[id]:S[id]=1;sv();render()},
+ wg(v){stop();ui.wg=v;scrollTo(0,0);render(1)},
+ hz(v){W.forEach((w,i)=>{if(w.g==ui.wg)ui.H[i]=+v});render()},
+ zh(i){ui.H[i]=!ui.H[i];render()},
+ sw(i){say(W[i].k,'w'+i,.8)},
+ rt(v){ui.rate=+v;render()},
+ ss(i){say(T[i].k.replace(/〜/g,'、'),'s'+i,ui.rate)},
+ qs(m){stop();qstart(m)},qm(){Q=null;render(1)},
+ rp(){const q=Q.qs[Q.i];say(q.au,'q'+Q.i,.8)},
+ ans(i){const q=Q.qs[Q.i];if(q.pick!=null)return;q.pick=q.o[i];if(q.pick==q.a){Q.sc++;S[q.id]=1;sv()}else Q.wr.push(q);render()},
+ nx(){stop();Q.i++;if(Q.i>=10)Q.done=1;scrollTo(0,0);render(1);qplay()},
+ rs(){if(!ui.rc){ui.rc=1;render();setTimeout(()=>{ui.rc=0;if(pg=='home')render()},4000)}else{S={};sv();ui.rc=0;ui.sel=null;render();toast('进度已重置')}}
+};
+document.addEventListener('click',e=>{const t=e.target.closest('[data-a]');if(t&&A[t.dataset.a])A[t.dataset.a](t.dataset.v)});
+if(sy&&sy.addEventListener)sy.addEventListener('voiceschanged',()=>{});
+render(1);
+</script></body></html>
