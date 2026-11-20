@@ -11,7 +11,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 #app{max-width:720px;margin:0 auto;padding:0 16px 130px}
 .top{position:sticky;top:0;z-index:5;background:var(--bg);display:flex;align-items:center;gap:8px;padding:max(10px,env(safe-area-inset-top)) 0 10px}
 .top h2{margin:0;font-size:20px}
-.back{border:0;background:var(--accent-soft);color:var(--accent);border-radius:20px;padding:8px 14px;font-weight:600}
+.back{border:0;background:var(--accent-soft);color:var(--accent);border-radius:20px;padding:8px 14px;font-weight:600;text-decoration:none}
 h1{margin:0 0 4px;font-size:30px}
 h3{margin:18px 2px 8px;font-size:15px;color:var(--sub);font-weight:600}
 .sub,small{color:var(--sub)}
@@ -391,13 +391,13 @@ function say(t,k,rate){
 /* ===== 状态 ===== */
 let pg='home',Q=null;const ui={sc:'both',row:'all',sel:null,wg:'问候',rate:.8,H:{},rc:0};
 const ch=(a,v,t,on)=>`<button class="chip${on?' on':''}" data-a="${a}" data-v="${v}">${t}</button>`;
-const back=t=>`<div class="top"><button class="back" data-a="go" data-v="home">‹ 返回</button><h2>${t}</h2></div>`;
+const back=t=>`<div class="top"><a class="back" href="index.html" onclick="if(history.length>1){history.back();return false}">‹ 返回</a><h2>${t}</h2></div>`;
 const mk=(id,m)=>`<button class="mk${S[id]?' m':''}" data-a="mk" data-v="${id}" aria-label="标记已掌握">✓</button>`;
 /* ===== 页面 ===== */
 function Home(){
  const en=(v,t,d,a)=>`<button class="card en" data-a="go" data-v="${v}"><b>${t}</b><span>${d}</span>${a?bar(pr(a),a.length)+`<small>已掌握 ${pr(a)} / ${a.length}</small>`:''}</button>`;
  const all=[...KA,...WA,...SA],n=pr(all);
- return `<div class="card hd"><h1>日语入门</h1><div class="sub">总进度：已掌握 ${n} / ${all.length}（假名 + 单词 + 常用句）</div>${bar(n,all.length)}</div>
+ return `<div class="top"><a class="back" href="index.html" onclick="if(history.length>1){history.back();return false}">‹ 返回</a></div><div class="card hd"><h1>日语入门</h1><div class="sub">总进度：已掌握 ${n} / ${all.length}（假名 + 单词 + 常用句）</div>${bar(n,all.length)}</div>
  ${en('kana','五十音图','平假名 · 片假名 · 浊音 · 拗音',KA)}
  ${en('word','基础词汇','70 个入门单词，7 组',WA)}
  ${en('sent','常用句','20 句日常用语',SA)}
