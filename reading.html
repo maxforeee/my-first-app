@@ -238,7 +238,7 @@
     <span class="meta" id="topMeta"></span>
   </div>
   <div class="progress hidden" id="progressBar"><i id="progressFill"></i></div>
-  <!-- 悬浮朗读条：只在阅读页出现，跟着顶栏走，手机自带语音，免费不用服务器 -->
+  <!-- 悬浮朗读条：只在阅读页出现，跟着顶栏走；有英文语音用手机自带语音，没有就用在线语音（Google 翻译发音），都不行就直接告诉你原因，不会悄悄跳过 -->
   <div class="player hidden" id="playerBar">
     <button class="pbtn" id="playBtn" type="button" title="朗读全文">▶</button>
     <div class="pinfo">
@@ -893,18 +893,46 @@ function stopSpeak() {
   if (curAudio) { try { curAudio.pause(); } catch (e) {} curAudio = null; }
   try { speechSynthesis.cancel(); } catch (e) {}
 }
+/* 播一段音频 URL：播完返回 true，播不出来（404、网络不通、被拦）返回 false；
+   8 秒还没动静也算失败，别一直等。调用方按这个结果换下一条路。 */
+function playAudioUrl(url) {
+  return new Promise(function (resolve) {
+    var a = new Audio(url);
+    curAudio = a;
+    var done = false;
+    var to = setTimeout(function () { fin(false); }, 8000);
+    function fin(ok) {
+      if (done) return;
+      done = true;
+      clearTimeout(to);
+      a.onended = null; a.onerror = null;
+      if (curAudio === a) curAudio = null;
+      resolve(ok);
+    }
+    a.onended = function () { fin(true); };
+    a.onerror = function () { fin(false); };
+    a.play().catch(function () { fin(false); });
+  });
+}
+/* 单词发音三条路，按顺序试：① 字典真人录音 ② 在线语音读一遍 ③ 手机自带语音；
+   三条都不通，就在小浮窗里写一句原因，不再悄悄没声。 */
 async function playWord(word) {
   stopSpeak();
   if (ttsPlaying) ttsPause(); /* 单词发音和全文朗读别叠在一起，先把朗读停在当前句 */
   var e = null;
   try { e = await getDict(word); } catch (err) {}
   if (e && e.audio) {
-    curAudio = new Audio(e.audio);
-    curAudio.play().catch(function () { curAudio = null; speakFallback(word); });
-    curAudio.onended = function () { curAudio = null; };
-    return;
+    if (await playAudioUrl(e.audio)) return;
   }
-  speakFallback(word);
+  if (await playAudioUrl(ttsAudioUrl(word))) return;
+  if (hasEnglishVoice()) { speakFallback(word); return; }
+  if (popWord && popWord.toLowerCase() === word.toLowerCase() && wordPop && !wordPop.classList.contains('hidden')) {
+    var note = document.createElement('div');
+    note.className = 'wp-none';
+    note.textContent = '这次没放出声音：录音打不开、在线语音也没连上，检查网络后重试。';
+    $('wpBody').appendChild(note);
+    positionWordPop();
+  }
 }
 function speakFallback(word) {
   try {
@@ -1016,12 +1044,13 @@ document.addEventListener('click', function (e) {
 });
 window.addEventListener('scroll', function () { hideWordPop(); }, { passive: true });
 
-/* ---------- 悬浮朗读：手机自带语音，免费，不用服务器 ----------
-   一句一句读，读到哪句高亮哪句，读的那句不在屏幕里就滚进来；
+/* ---------- 悬浮朗读：一句一句读，读到哪句高亮哪句，读的那句不在屏幕里就滚进来；
    语速 0.5x–2x 点一下换一档。暂停不停在半句里：直接停在当前句，
-   再点就从这句接着读（不用系统那个时灵时不灵的 pause/resume）。 */
+   再点就从这句接着读（不用系统那个时灵时不灵的 pause/resume）。
+   声音两条路：手机有英文语音就用手机自带语音，没有就用在线语音；
+   哪条都走不通，就把原因写在朗读条上，不再悄悄把文章“读完”。 */
 var SPEEDS = [0.5, 0.75, 1, 1.25, 1.5, 2];
-var ttsSpeed = 1, ttsPlaying = false, ttsIdx = 0, ttsList = [], ttsToken = 0;
+var ttsSpeed = 1, ttsPlaying = false, ttsIdx = 0, ttsList = [], ttsToken = 0, ttsMode = 'local';
 function ttsSupported() { return 'speechSynthesis' in window; }
 function pickVoice() {
   try {
@@ -1032,6 +1061,43 @@ function pickVoice() {
     var us = vs.filter(function (v) { return v.lang.toLowerCase().indexOf('en-us') === 0; });
     return us.length ? us[0] : vs[0];
   } catch (e) { return null; }
+}
+/* 语音列表预热：Chrome 要等一会儿才把系统语音准备好，页面打开就先要一次，
+   准备好了记下来，点朗读时才知道这台手机到底有没有英文语音。 */
+var cachedVoices = null;
+function warmVoices() {
+  try {
+    cachedVoices = speechSynthesis.getVoices();
+    speechSynthesis.onvoiceschanged = function () {
+      try { cachedVoices = speechSynthesis.getVoices(); } catch (e) {}
+    };
+  } catch (e) {}
+}
+function hasEnglishVoice() {
+  try {
+    var vs = cachedVoices || speechSynthesis.getVoices();
+    for (var i = 0; i < vs.length; i++) {
+      if ((vs[i].lang || '').toLowerCase().indexOf('en') === 0) return true;
+    }
+  } catch (e) {}
+  return false;
+}
+/* 在线语音（Google 翻译发音）：手机没有英文语音时用它，一句一段音频，免费不用 key。
+   单次最多约 200 字，长句先按标点切成小段再读。 */
+var TTS_API = 'https://translate.googleapis.com/translate_tts?ie=UTF-8&tl=en&client=gtx&q=';
+function ttsAudioUrl(text) { return TTS_API + encodeURIComponent(text); }
+function ttsChunks(text) {
+  if (text.length <= 180) return [text];
+  var bits = text.match(/[^,;:!?]+[,;:!?]?/g) || [text];
+  var out = [], cur = '';
+  bits.forEach(function (b) {
+    b = b.trim();
+    if (!b) return;
+    if (cur && (cur + ' ' + b).length > 180) { out.push(cur); cur = b; }
+    else cur = cur ? cur + ' ' : '' + b;
+  });
+  if (cur) out.push(cur);
+  return out.length ? out : [text];
 }
 function buildTtsList() {
   ttsList = [];
@@ -1054,7 +1120,7 @@ function ttsUi() {
   if (!total) { $('playText').textContent = '点 ▶ 朗读全文'; $('playFill').style.width = '0'; return; }
   if (!ttsPlaying && ttsIdx === 0) { $('playText').textContent = '点 ▶ 朗读全文 · 共 ' + total + ' 句'; $('playFill').style.width = '0'; return; }
   if (!ttsPlaying) { $('playText').textContent = '已暂停 · 第 ' + (ttsIdx + 1) + '/' + total + ' 句，点 ▶ 继续'; $('playFill').style.width = (ttsIdx / total * 100) + '%'; return; }
-  $('playText').textContent = '正在读第 ' + Math.min(ttsIdx + 1, total) + '/' + total + ' 句';
+  $('playText').textContent = (ttsMode === 'remote' ? '在线语音 · ' : '') + '正在读第 ' + Math.min(ttsIdx + 1, total) + '/' + total + ' 句';
   $('playFill').style.width = (ttsIdx / total * 100) + '%';
 }
 function ensureSentenceVisible(p, s) {
@@ -1067,9 +1133,30 @@ function ensureSentenceVisible(p, s) {
   var target = window.scrollY + r.top - Math.max(topLim, (botLim - topLim) * 0.35);
   window.scrollTo({ top: Math.max(0, target), behavior: 'smooth' });
 }
+/* 朗读失败就停下来、把原因写在朗读条上，不再悄悄把整篇文章“读完”。 */
+function ttsError(msg) {
+  ttsPlaying = false;
+  ttsToken++;
+  stopRemote();
+  if (ttsSupported()) { try { speechSynthesis.cancel(); } catch (e) {} }
+  $('playBtn').textContent = '▶';
+  $('playText').textContent = msg;
+}
+var remoteAudio = null;
+function stopRemote() {
+  if (remoteAudio) {
+    try { remoteAudio.pause(); } catch (e) {}
+    remoteAudio.onended = null; remoteAudio.onerror = null;
+    remoteAudio = null;
+  }
+}
 function speakSentence(i) {
   if (!ttsPlaying) return;
   if (i >= ttsList.length) { ttsFinish(); return; }
+  if (ttsMode === 'remote') speakRemoteSentence(i);
+  else speakLocalSentence(i);
+}
+function speakLocalSentence(i) {
   ttsIdx = i;
   var item = ttsList[i];
   highlightSentence(item.p, item.s, false);
@@ -1082,14 +1169,39 @@ function speakSentence(i) {
   var v = pickVoice();
   if (v) u.voice = v;
   u.onend = function () { if (token === ttsToken && ttsPlaying) speakSentence(i + 1); };
-  u.onerror = function () { if (token === ttsToken && ttsPlaying) speakSentence(i + 1); };
-  try { speechSynthesis.speak(u); } catch (e) { if (token === ttsToken && ttsPlaying) speakSentence(i + 1); }
+  /* 本机读不出来（比如手机没有英文语音）：别跳过这句，改走在线语音重读这句 */
+  u.onerror = function () { if (token === ttsToken && ttsPlaying) { ttsMode = 'remote'; speakSentence(i); } };
+  try { speechSynthesis.speak(u); } catch (e) { if (token === ttsToken && ttsPlaying) { ttsMode = 'remote'; speakSentence(i); } }
+}
+var ttsChunksCur = [], ttsChunkIdx = 0;
+function speakRemoteSentence(i) {
+  ttsIdx = i;
+  var item = ttsList[i];
+  highlightSentence(item.p, item.s, false);
+  ensureSentenceVisible(item.p, item.s);
+  ttsUi();
+  ttsChunksCur = ttsChunks(item.text);
+  ttsChunkIdx = 0;
+  playRemoteChunk(i, ++ttsToken);
+}
+function playRemoteChunk(i, token) {
+  if (token !== ttsToken || !ttsPlaying) return;
+  if (ttsChunkIdx >= ttsChunksCur.length) { speakSentence(i + 1); return; }
+  var a = new Audio(ttsAudioUrl(ttsChunksCur[ttsChunkIdx]));
+  a.playbackRate = ttsSpeed;
+  remoteAudio = a;
+  a.onended = function () {
+    if (token === ttsToken && ttsPlaying) { ttsChunkIdx++; playRemoteChunk(i, token); }
+  };
+  a.onerror = function () { if (token === ttsToken && ttsPlaying) ttsError('在线语音没连上，检查网络后重试'); };
+  a.play().catch(function () { if (token === ttsToken && ttsPlaying) ttsError('在线语音没放出来，检查网络后重试'); });
 }
 function ttsPlay() {
   if (!ttsSupported()) { $('playText').textContent = '这台设备不支持朗读'; return; }
   if (!current) return;
   if (ttsPlaying) { ttsPause(); return; }
   if (!ttsList.length || ttsIdx >= ttsList.length) { buildTtsList(); ttsIdx = 0; }
+  ttsMode = hasEnglishVoice() ? 'local' : 'remote'; /* 没英文语音就直接走在线语音，别等读失败才换 */
   ttsPlaying = true;
   ttsUi();
   speakSentence(ttsIdx);
@@ -1097,6 +1209,7 @@ function ttsPlay() {
 function ttsPause() {
   ttsPlaying = false;
   ttsToken++; /* 让正在读的那句的 onend 失效，别读完又跳下一句 */
+  stopRemote();
   if (ttsSupported()) { try { speechSynthesis.cancel(); } catch (e) {} }
   ttsUi();
 }
@@ -1104,6 +1217,7 @@ function ttsFinish() {
   ttsPlaying = false;
   ttsIdx = 0;
   ttsToken++;
+  stopRemote();
   if (ttsSupported()) { try { speechSynthesis.cancel(); } catch (e) {} }
   document.querySelectorAll('#articleBody .sent').forEach(function (el) { el.classList.remove('active'); });
   $('playBtn').textContent = '▶';
@@ -1114,6 +1228,7 @@ function ttsReset() {
   ttsPlaying = false;
   ttsIdx = 0;
   ttsToken++;
+  stopRemote();
   if (ttsSupported()) { try { speechSynthesis.cancel(); } catch (e) {} }
   buildTtsList();
   ttsUi();
@@ -1124,11 +1239,14 @@ $('speedBtn').addEventListener('click', function () {
   ttsSpeed = SPEEDS[(i + 1) % SPEEDS.length];
   if (ttsPlaying) {
     ttsToken++;
+    stopRemote();
     try { speechSynthesis.cancel(); } catch (e) {}
     speakSentence(ttsIdx); /* 当前这句用新语速重读 */
   }
   ttsUi();
 });
+
+if (ttsSupported()) warmVoices(); /* 页面一打开就先把系统语音列表要过来 */
 
 /* ---------- 控件 ---------- */
 $('backBtn').addEventListener('click', function () {
