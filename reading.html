@@ -900,7 +900,7 @@ function playAudioUrl(url) {
     var a = new Audio(url);
     curAudio = a;
     var done = false;
-    var to = setTimeout(function () { fin(false); }, 8000);
+    var to = setTimeout(function () { fin(false); }, 5000);
     function fin(ok) {
       if (done) return;
       done = true;
@@ -924,7 +924,10 @@ async function playWord(word) {
   if (e && e.audio) {
     if (await playAudioUrl(e.audio)) return;
   }
-  if (await playAudioUrl(ttsAudioUrl(word))) return;
+  /* 有道词典发音（单词最稳）→ 百度语音 → 谷歌语音，一条不行换下一条 */
+  if (await playAudioUrl('https://dict.youdao.com/dictvoice?audio=' + encodeURIComponent(word) + '&type=2')) return;
+  if (await playAudioUrl(baiduTtsUrl(word))) return;
+  if (await playAudioUrl(googleTtsUrl(word))) return;
   if (hasEnglishVoice()) { speakFallback(word); return; }
   if (popWord && popWord.toLowerCase() === word.toLowerCase() && wordPop && !wordPop.classList.contains('hidden')) {
     var note = document.createElement('div');
@@ -1082,10 +1085,11 @@ function hasEnglishVoice() {
   } catch (e) {}
   return false;
 }
-/* 在线语音（Google 翻译发音）：手机没有英文语音时用它，一句一段音频，免费不用 key。
-   单次最多约 200 字，长句先按标点切成小段再读。 */
-var TTS_API = 'https://translate.googleapis.com/translate_tts?ie=UTF-8&tl=en&client=gtx&q=';
-function ttsAudioUrl(text) { return TTS_API + encodeURIComponent(text); }
+/* 在线语音：手机没有英文语音时用它，一句一段音频，免费不用 key。
+   先试百度（国内稳），不行再试谷歌；单次最多约 200 字，长句先按标点切成小段再读。 */
+function baiduTtsUrl(text) { return 'https://fanyi.baidu.com/gettts?lan=en&text=' + encodeURIComponent(text) + '&spd=3&source=web'; }
+function googleTtsUrl(text) { return 'https://translate.googleapis.com/translate_tts?ie=UTF-8&tl=en&client=gtx&q=' + encodeURIComponent(text); }
+function ttsAudioUrls(text) { return [baiduTtsUrl(text), googleTtsUrl(text)]; }
 function ttsChunks(text) {
   if (text.length <= 180) return [text];
   var bits = text.match(/[^,;:!?]+[,;:!?]?/g) || [text];
@@ -1182,19 +1186,34 @@ function speakRemoteSentence(i) {
   ttsUi();
   ttsChunksCur = ttsChunks(item.text);
   ttsChunkIdx = 0;
-  playRemoteChunk(i, ++ttsToken);
+  playRemoteChunk(i, ++ttsToken, 0);
 }
-function playRemoteChunk(i, token) {
+function playRemoteChunk(i, token, urlIdx) {
   if (token !== ttsToken || !ttsPlaying) return;
   if (ttsChunkIdx >= ttsChunksCur.length) { speakSentence(i + 1); return; }
-  var a = new Audio(ttsAudioUrl(ttsChunksCur[ttsChunkIdx]));
+  var urls = ttsAudioUrls(ttsChunksCur[ttsChunkIdx]);
+  if (urlIdx >= urls.length) { ttsError('在线语音没连上，检查网络后重试'); return; }
+  var a = new Audio(urls[urlIdx]);
   a.playbackRate = ttsSpeed;
   remoteAudio = a;
+  var started = false, settled = false;
+  var to = setTimeout(function () {
+    /* 10 秒还没开始播：这条路不通，换下一条 */
+    if (!started) { try { a.pause(); } catch (err) {} nextUrl(); }
+  }, 10000);
+  function nextUrl() {
+    if (settled) return;
+    settled = true;
+    clearTimeout(to);
+    if (token === ttsToken && ttsPlaying) playRemoteChunk(i, token, urlIdx + 1);
+  }
+  a.onplaying = function () { started = true; clearTimeout(to); };
   a.onended = function () {
-    if (token === ttsToken && ttsPlaying) { ttsChunkIdx++; playRemoteChunk(i, token); }
+    clearTimeout(to);
+    if (token === ttsToken && ttsPlaying) { ttsChunkIdx++; playRemoteChunk(i, token, 0); }
   };
-  a.onerror = function () { if (token === ttsToken && ttsPlaying) ttsError('在线语音没连上，检查网络后重试'); };
-  a.play().catch(function () { if (token === ttsToken && ttsPlaying) ttsError('在线语音没放出来，检查网络后重试'); });
+  a.onerror = function () { nextUrl(); };
+  a.play().catch(function () { nextUrl(); });
 }
 function ttsPlay() {
   if (!ttsSupported()) { $('playText').textContent = '这台设备不支持朗读'; return; }
