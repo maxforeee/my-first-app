@@ -898,6 +898,7 @@ function stopSpeak() {
 function playAudioUrl(url) {
   return new Promise(function (resolve) {
     var a = new Audio(url);
+    try { a.referrerPolicy = 'no-referrer'; } catch (e) {} /* 不带本站地址去取音频：有的语音接口认出来源就拒绝，空着反而给 */
     curAudio = a;
     var done = false;
     var to = setTimeout(function () { fin(false); }, 5000);
@@ -1195,6 +1196,7 @@ function playRemoteChunk(i, token, urlIdx) {
   if (urlIdx >= urls.length) { ttsError('在线语音没连上，检查网络后重试'); return; }
   var a = new Audio(urls[urlIdx]);
   a.playbackRate = ttsSpeed;
+  try { a.referrerPolicy = 'no-referrer'; } catch (e) {} /* 不带本站地址去取音频：百度认出来源就回空音频，空着才给 */
   remoteAudio = a;
   var started = false, settled = false;
   var to = setTimeout(function () {
