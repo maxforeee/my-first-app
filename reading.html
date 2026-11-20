@@ -895,10 +895,17 @@ function stopSpeak() {
 }
 /* 播一段音频 URL：播完返回 true，播不出来（404、网络不通、被拦）返回 false；
    8 秒还没动静也算失败，别一直等。调用方按这个结果换下一条路。 */
+/* 建一个音频：先把“不带本站地址”设好再挂地址——地址挂上去浏览器可能立刻就去取，
+   设晚了就白设；有的语音接口认出来源就拒绝，空着反而给。 */
+function makeAudio(url) {
+  var a = new Audio();
+  try { a.referrerPolicy = 'no-referrer'; } catch (e) {}
+  a.src = url;
+  return a;
+}
 function playAudioUrl(url) {
   return new Promise(function (resolve) {
-    var a = new Audio(url);
-    try { a.referrerPolicy = 'no-referrer'; } catch (e) {} /* 不带本站地址去取音频：有的语音接口认出来源就拒绝，空着反而给 */
+    var a = makeAudio(url);
     curAudio = a;
     var done = false;
     var to = setTimeout(function () { fin(false); }, 5000);
@@ -1194,9 +1201,8 @@ function playRemoteChunk(i, token, urlIdx) {
   if (ttsChunkIdx >= ttsChunksCur.length) { speakSentence(i + 1); return; }
   var urls = ttsAudioUrls(ttsChunksCur[ttsChunkIdx]);
   if (urlIdx >= urls.length) { ttsError('在线语音没连上，检查网络后重试'); return; }
-  var a = new Audio(urls[urlIdx]);
+  var a = makeAudio(urls[urlIdx]);
   a.playbackRate = ttsSpeed;
-  try { a.referrerPolicy = 'no-referrer'; } catch (e) {} /* 不带本站地址去取音频：百度认出来源就回空音频，空着才给 */
   remoteAudio = a;
   var started = false, settled = false;
   var to = setTimeout(function () {
