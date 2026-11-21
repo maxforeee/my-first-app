@@ -1,0 +1,827 @@
+{
+  "date": "2026-11-21",
+  "items": [
+    {
+      "id": "news-20261121-tech-selloff",
+      "title": "Tech Stock Sell-Off Drags Markets Down as Anthropic Shares Slide",
+      "cat": "新闻",
+      "level": "B2",
+      "minutes": 4,
+      "desc": "科技股大跌拖累美股，标普和道指跌入调整区间，Anthropic 上市第二天股价回落。",
+      "source": "BBC News",
+      "sourceUrl": "https://www.bbc.co.uk/news/articles/c6808ym10vzgo",
+      "published": "2026-11-21",
+      "vocab": [
+        {
+          "w": "sell-off",
+          "ph": "/ˈsel ɒf/",
+          "pos": "n.",
+          "zh": "抛售；大跌",
+          "en": "a sudden sale of many shares, causing prices to fall",
+          "ex": "The sell-off comes as concerns remain over the speed of AI investment.",
+          "exZh": "这次抛售源于人们对 AI 投资速度的持续担忧。"
+        },
+        {
+          "w": "correction",
+          "ph": "/kəˈrekʃn/",
+          "pos": "n.",
+          "zh": "（股市）调整；修正",
+          "en": "a fall of 10% or more in share prices from a recent high",
+          "ex": "The S&P 500 was pushed into correction territory on Friday.",
+          "exZh": "标普 500 指数周五被推入调整区间。"
+        },
+        {
+          "w": "plunge",
+          "ph": "/plʌndʒ/",
+          "pos": "v.",
+          "zh": "暴跌；骤降",
+          "en": "to fall suddenly and by a large amount",
+          "ex": "The tech-heavy Nasdaq Composite Index plunged 5.3%.",
+          "exZh": "以科技股为主的纳斯达克综合指数暴跌 5.3%。"
+        },
+        {
+          "w": "bubble",
+          "ph": "/ˈbʌbl/",
+          "pos": "n.",
+          "zh": "泡沫",
+          "en": "a situation where prices rise far above their real value",
+          "ex": "The speed of AI investment has led to concerns of a financial bubble.",
+          "exZh": "AI 投资的速度引发了人们对金融泡沫的担忧。"
+        },
+        {
+          "w": "volatility",
+          "ph": "/ˌvɒləˈtɪləti/",
+          "pos": "n.",
+          "zh": "波动性；不稳定性",
+          "en": "the tendency of prices to change quickly and unpredictably",
+          "ex": "Analysts said volatility was to be expected in the first days of trading.",
+          "exZh": "分析师表示，交易头几天出现波动在意料之中。"
+        },
+        {
+          "w": "investor",
+          "ph": "/ɪnˈvestə(r)/",
+          "pos": "n.",
+          "zh": "投资者",
+          "en": "a person who puts money into something to make a profit",
+          "ex": "The news worried investors in large tech companies.",
+          "exZh": "这则消息让大型科技公司的投资者感到担忧。"
+        }
+      ],
+      "paras": [
+        {
+          "en": [
+            "The sell-off comes as concerns remain over the speed and size of artificial intelligence investment, but also as some large companies including Nvidia and SpaceX faced specific issues that worried investors.",
+            "Those pressures combined to weigh on US markets through Friday, with all key US indexes closing sharply down on the day, furthering earlier falls over the week.",
+            "The S&P 500 and the Dow Jones Industrial Average were pushed into correction territory, a point where they are trading at 10% or more down from a recent high."
+          ],
+          "zh": [
+            "这次抛售源于人们对人工智能投资速度和规模的持续担忧，同时英伟达和 SpaceX 等大公司也遇到了令投资者不安的具体问题。",
+            "这些压力在整个周五持续拖累美国市场，所有主要股指当天都大幅收跌，进一步延续了本周早些时候的跌势。",
+            "标普 500 指数和道琼斯工业平均指数被推入调整区间，也就是较近期高点下跌 10% 或以上的位置。"
+          ]
+        },
+        {
+          "en": [
+            "The S&P 500 closed down 3.7%, the Dow Jones Industrial Average was down 1.9% and the tech-heavy Nasdaq Composite Index plunged 5.3%.",
+            "The speed at which AI investment has been growing - with more than $1 trillion spent in the last year alone by a small handful of major tech companies - has led to ongoing concerns of a financial bubble.",
+            "Questions are being raised over whether those investments will pay off, and when."
+          ],
+          "zh": [
+            "标普 500 指数收跌 3.7%，道琼斯指数下跌 1.9%，以科技股为主的纳斯达克综合指数则暴跌 5.3%。",
+            "AI 投资增长的速度——仅过去一年，少数几家大型科技公司就花了 1 万多亿美元——引发了人们对金融泡沫的持续担忧。",
+            "人们开始质疑，这些投资是否会带来回报，又会在什么时候带来回报。"
+          ]
+        },
+        {
+          "en": [
+            "Despite a positive first day of trading, Anthropic's shares fell on Friday, dropping at one point by more than 12% to about $85, close to its initial public offering (IPO) price of $83.",
+            "It closed down 8.5%, reversing half of the gains made on Thursday.",
+            "Analysts said volatility was to be expected in the first days or even weeks of Anthropic's trading, as the company was the first frontier AI firm to go public so had no direct peers."
+          ],
+          "zh": [
+            "尽管上市首日表现积极，Anthropic 的股价周五却出现下跌，一度跌超 12%，至约 85 美元，接近其 83 美元的首次公开募股（IPO）发行价。",
+            "该股最终收跌 8.5%，回吐了周四一半的涨幅。",
+            "分析师表示，Anthropic 上市头几天甚至头几周出现波动在意料之中，因为它是首家上市的前沿 AI 公司，没有可直接比较的同行。"
+          ]
+        }
+      ],
+      "phrases": [
+        {
+          "p": "sell off",
+          "surf": [
+            "sell off"
+          ],
+          "zh": "抛售；清仓出售",
+          "en": "to sell assets quickly, often at a low price",
+          "ex": "Investors sold off tech stocks as the market fell.",
+          "exZh": "市场下跌时，投资者抛售了科技股。"
+        },
+        {
+          "p": "weigh on",
+          "surf": [
+            "weigh on"
+          ],
+          "zh": "拖累；使人担忧",
+          "en": "to be a burden on something; to trouble",
+          "ex": "Those pressures combined to weigh on US markets.",
+          "exZh": "这些压力共同拖累了美国市场。"
+        },
+        {
+          "p": "down from",
+          "surf": [
+            "down from"
+          ],
+          "zh": "比……低；较……下降",
+          "en": "lower than a previous value",
+          "ex": "The index is trading at 10% or more down from a recent high.",
+          "exZh": "该指数较近期高点下跌 10% 或更多。"
+        },
+        {
+          "p": "pay off",
+          "surf": [
+            "pay off"
+          ],
+          "zh": "取得回报；见效",
+          "en": "to produce good results or profit",
+          "ex": "Investors wonder whether AI investments will pay off.",
+          "exZh": "投资者质疑 AI 投资是否会带来回报。"
+        }
+      ]
+    },
+    {
+      "id": "news-20261121-denmark-russia",
+      "title": "Denmark Accuses Russia of Plotting to Assassinate US-Ukrainian Rapper",
+      "cat": "新闻",
+      "level": "B2",
+      "minutes": 4,
+      "desc": "丹麦称两名男子受雇于俄罗斯、企图暗杀一名乌克兰说唱歌手，俄方否认指控。",
+      "source": "BBC News",
+      "sourceUrl": "https://www.bbc.co.uk/news/articles/cmde1lj4yjxno",
+      "published": "2026-11-21",
+      "vocab": [
+        {
+          "w": "assassination",
+          "ph": "/əˌsæsɪˈneɪʃn/",
+          "pos": "n.",
+          "zh": "暗杀",
+          "en": "the murder of an important person for political reasons",
+          "ex": "Danish media named the target of the assassination attempt as the rapper known as Kyivstoner.",
+          "exZh": "丹麦媒体称，暗杀企图的目标是人称 Kyivstoner 的说唱歌手。"
+        },
+        {
+          "w": "embassy",
+          "ph": "/ˈembəsi/",
+          "pos": "n.",
+          "zh": "大使馆",
+          "en": "the official building where a country's ambassador works",
+          "ex": "Russia's Embassy in Denmark called the allegations unsubstantiated.",
+          "exZh": "俄罗斯驻丹麦大使馆称这些指控毫无根据。"
+        },
+        {
+          "w": "intelligence",
+          "ph": "/ɪnˈtelɪdʒəns/",
+          "pos": "n.",
+          "zh": "情报；情报机构",
+          "en": "secret information collected about another country",
+          "ex": "Two people were charged with assisting a foreign intelligence service.",
+          "exZh": "两人被控协助外国情报机构。"
+        },
+        {
+          "w": "allegation",
+          "ph": "/ˌæləˈɡeɪʃn/",
+          "pos": "n.",
+          "zh": "指控；说法",
+          "en": "a claim that someone has done something wrong, without proof",
+          "ex": "Russia's Embassy in Denmark called the allegations unsubstantiated.",
+          "exZh": "俄罗斯驻丹麦大使馆称这些指控毫无根据。"
+        },
+        {
+          "w": "intimidation",
+          "ph": "/ɪnˌtɪmɪˈdeɪʃn/",
+          "pos": "n.",
+          "zh": "恐吓；威胁",
+          "en": "the act of frightening someone to make them do what you want",
+          "ex": "The minister said the attempt was Russian intimidation.",
+          "exZh": "这位大臣表示，这起企图是俄罗斯的恐吓行为。"
+        },
+        {
+          "w": "evidence",
+          "ph": "/ˈevɪdəns/",
+          "pos": "n.",
+          "zh": "证据",
+          "en": "facts that show something is true",
+          "ex": "Copenhagen failed to provide evidence of Moscow's involvement.",
+          "exZh": "哥本哈根未能提供莫斯科参与其中的证据。"
+        }
+      ],
+      "paras": [
+        {
+          "en": [
+            "Denmark's security and intelligence agency said it had stopped individuals who were intending to kill the person, named by Danish media as rapper Kyivstoner, at a concert in September.",
+            "Two people were charged with attempted murder and assisting a foreign intelligence service, and pleaded not guilty.",
+            "Denmark's foreign minister said Russia's defence attaché will now be expelled."
+          ],
+          "zh": [
+            "丹麦安全情报局表示，他们阻止了一些人，这些人本打算在 9 月的一场音乐会上杀害一名被丹麦媒体称为说唱歌手 Kyivstoner 的人。",
+            "两人被控企图谋杀和协助外国情报机构，他们均不认罪。",
+            "丹麦外交大臣表示，俄罗斯驻丹麦国防武官将被驱逐出境。"
+          ]
+        },
+        {
+          "en": [
+            "Russia's Embassy in Denmark called the allegations \"unsubstantiated\" and said Copenhagen failed to provide evidence of Moscow's involvement.",
+            "Danish media named the target of the assassination attempt as the rapper known as Kyivstoner, whose real name is Albert Vasiliev.",
+            "Denmark's security and intelligence agency (PET) said the individuals who allegedly tried to assassinate him were associated with a banned Danish gang named Loyal to Familia."
+          ],
+          "zh": [
+            "俄罗斯驻丹麦大使馆称这些指控“毫无根据”，并表示哥本哈根未能提供莫斯科参与其中的证据。",
+            "丹麦媒体称，暗杀企图的目标是人称 Kyivstoner 的说唱歌手，真名阿尔伯特·瓦西里耶夫。",
+            "丹麦安全情报局（PET）表示，涉嫌企图暗杀他的几个人与一个被禁的丹麦帮派“忠于家族”（Loyal to Familia）有关联。"
+          ]
+        },
+        {
+          "en": [
+            "PET, which worked with police on the case, said three individuals were stopped while travelling by car near the music venue where Kyivstoner was set to perform on 25 September.",
+            "Firearms and knives were found in the vehicle, PET said.",
+            "In a statement on Friday, Danish Foreign Minister Lars Løkke Rasmussen said the alleged assassination attempt was Russian \"intimidation\" and an attempt to make Denmark \"waver\" in its support for Ukraine."
+          ],
+          "zh": [
+            "PET 与警方合作办案，表示三人在 Kyivstoner 定于 9 月 25 日演出的音乐场馆附近乘车时被拦下。",
+            "PET 表示，车内发现了枪支和刀具。",
+            "丹麦外交大臣拉斯·勒克·拉斯穆森周五在一份声明中表示，这起涉嫌暗杀企图是俄罗斯的“恐吓”行为，意在让丹麦在支持乌克兰的问题上“动摇”。"
+          ]
+        }
+      ],
+      "phrases": [
+        {
+          "p": "fail to do",
+          "surf": [
+            "failed to provide"
+          ],
+          "zh": "未能做某事",
+          "en": "to not succeed in doing something",
+          "ex": "He failed to pass the exam.",
+          "exZh": "他考试没通过。"
+        },
+        {
+          "p": "try to do",
+          "surf": [
+            "tried to assassinate"
+          ],
+          "zh": "设法做某事；努力做某事",
+          "en": "to attempt to do something",
+          "ex": "Try to arrive on time.",
+          "exZh": "尽量准时到。"
+        },
+        {
+          "p": "on the case",
+          "surf": [
+            "on the case"
+          ],
+          "zh": "在办案；着手处理",
+          "en": "actively working on a task or investigation",
+          "ex": "PET worked with police on the case.",
+          "exZh": "PET 与警方一起办案。"
+        }
+      ]
+    },
+    {
+      "id": "news-20261121-french-police",
+      "title": "French Police Officers Sentenced for Beating of Music Producer Michel Zecler",
+      "cat": "新闻",
+      "level": "B2",
+      "minutes": 4,
+      "desc": "三名法国警察因殴打黑人音乐制作人米歇尔·泽克勒被定罪，法院认定存在种族主义加重情节。",
+      "source": "BBC News",
+      "sourceUrl": "https://www.bbc.co.uk/news/articles/ck9d7e9wvvweo",
+      "published": "2026-11-21",
+      "vocab": [
+        {
+          "w": "guilty",
+          "ph": "/ˈɡɪlti/",
+          "pos": "adj.",
+          "zh": "有罪的",
+          "en": "having done something wrong or illegal",
+          "ex": "The three were also found guilty of signing a falsified police report.",
+          "exZh": "三人还被判有罪，罪名是签署了一份伪造的警方报告。"
+        },
+        {
+          "w": "resistance",
+          "ph": "/rɪˈzɪstəns/",
+          "pos": "n.",
+          "zh": "反抗；抵抗",
+          "en": "the act of fighting against something",
+          "ex": "He had suffered punches and kicks while offering little resistance at all.",
+          "exZh": "他遭受拳打脚踢时几乎没有反抗。"
+        },
+        {
+          "w": "sentence",
+          "ph": "/ˈsentəns/",
+          "pos": "n.",
+          "zh": "刑期；判决",
+          "en": "the punishment given by a court",
+          "ex": "All three received five year sentences, with different amounts suspended.",
+          "exZh": "三人均被判处五年监禁，缓刑部分各不相同。"
+        },
+        {
+          "w": "testimony",
+          "ph": "/ˈtestɪməni/",
+          "pos": "n.",
+          "zh": "证词；证言",
+          "en": "a formal statement given in court",
+          "ex": "Much depended in the two-week trial on Zecler's own testimony.",
+          "exZh": "在为期两周的审判中，很大程度上取决于泽克勒本人的证词。"
+        },
+        {
+          "w": "racism",
+          "ph": "/ˈreɪsɪzəm/",
+          "pos": "n.",
+          "zh": "种族主义；种族歧视",
+          "en": "unfair treatment of people because of their race",
+          "ex": "The case exposed systematic racism among officers.",
+          "exZh": "这起案件暴露了警员中系统性的种族主义。"
+        },
+        {
+          "w": "trial",
+          "ph": "/ˈtraɪəl/",
+          "pos": "n.",
+          "zh": "审判；审讯",
+          "en": "a legal process in which a court decides if someone is guilty",
+          "ex": "Much depended in the two-week trial on Zecler's own testimony.",
+          "exZh": "在为期两周的审判中，很大程度上取决于泽克勒本人的证词。"
+        }
+      ],
+      "paras": [
+        {
+          "en": [
+            "Three French police officers have been convicted of beating up a black music producer six years ago in Paris in what the court upheld as an aggravated circumstance of racism.",
+            "The three were also found guilty of signing a falsified police report stating that the producer - Michel Zecler, 47 - had violently resisted their attempt to arrest him.",
+            "Their lies were exposed because the whole scene at Zecler's recording studio was caught on CCTV, revealing the producer had suffered some 30 punches, kicks and baton strikes while offering little resistance at all."
+          ],
+          "zh": [
+            "三名法国警察因六年前在巴黎殴打一名黑人音乐制作人而被定罪，法院认定种族主义是加重情节。",
+            "三人还被判有罪，罪名是签署了一份伪造的警方报告，报告称制作人——47 岁的米歇尔·泽克勒——在被捕时曾暴力反抗。",
+            "他们的谎言被揭穿，是因为泽克勒录音室里的整个过程都被闭路电视拍了下来，画面显示制作人遭受了约 30 次拳打、脚踢和警棍击打，几乎没有反抗。"
+          ]
+        },
+        {
+          "en": [
+            "Aurelien Lapersonne, 29, Philippe Tondeux, 50, and Pierre Plantier, 37, all received five year sentences, with different amounts suspended.",
+            "All were told they could never serve in the police again.",
+            "The case became a cause célèbre for critics of the police, who say it exposed systematic racism among officers."
+          ],
+          "zh": [
+            "奥雷利安·拉佩尔索讷（29 岁）、菲利普·通德（50 岁）和皮埃尔·普朗蒂耶（37 岁）均被判处五年监禁，缓刑部分各不相同。",
+            "他们都被告知永远不得再在警队任职。",
+            "这起案件成了警察批评者的标志性案例，他们认为它暴露了警员中系统性的种族主义。"
+          ]
+        },
+        {
+          "en": [
+            "Much depended in the two-week trial on Zecler's own testimony that the officers called him a racial slur during the beating.",
+            "But the court preferred the evidence of the producer, because - unlike the police - everything else he said was verifiably true.",
+            "Because the racist element was accepted by the court, the sentences were toughened."
+          ],
+          "zh": [
+            "在为期两周的审判中，很大程度上取决于泽克勒本人的证词：他说警察在殴打过程中对他说了种族歧视的辱骂。",
+            "但法庭更采信制作人的证据，因为——与警察不同——他所说的其他一切都经核实属实。",
+            "由于法庭接受了种族主义这一情节，刑期被加重。"
+          ]
+        }
+      ],
+      "phrases": [
+        {
+          "p": "beat up",
+          "surf": [
+            "beating up"
+          ],
+          "zh": "殴打；痛打",
+          "en": "to hit someone repeatedly",
+          "ex": "Three police officers were convicted of beating up a music producer.",
+          "exZh": "三名警察因殴打一名音乐制作人被定罪。"
+        }
+      ]
+    },
+    {
+      "id": "news-20261121-mercury-spacecraft",
+      "title": "Mysterious Mercury Is About to Get a Visitor After Spacecraft's Eight-Year Epic Voyage",
+      "cat": "新闻",
+      "level": "B2",
+      "minutes": 4,
+      "desc": "经过八年、近 60 亿英里的飞行，贝皮科伦坡探测器即将进入环绕水星的轨道。",
+      "source": "BBC News",
+      "sourceUrl": "https://www.bbc.co.uk/news/articles/c39w9l4v1p9ro",
+      "published": "2026-11-21",
+      "vocab": [
+        {
+          "w": "journey",
+          "ph": "/ˈdʒɜːni/",
+          "pos": "n.",
+          "zh": "旅程；旅行",
+          "en": "the act of travelling from one place to another",
+          "ex": "After an eight-year journey, the spacecraft is about to reach Mercury.",
+          "exZh": "经过八年的旅程，探测器即将抵达水星。"
+        },
+        {
+          "w": "hostile",
+          "ph": "/ˈhɒstaɪl/",
+          "pos": "adj.",
+          "zh": "恶劣的；敌对的",
+          "en": "very difficult or dangerous to live in",
+          "ex": "It will be entering an extremely hostile environment.",
+          "exZh": "它将进入一个极其恶劣的环境。"
+        },
+        {
+          "w": "radiation",
+          "ph": "/ˌreɪdiˈeɪʃn/",
+          "pos": "n.",
+          "zh": "辐射",
+          "en": "energy sent out in the form of rays or waves",
+          "ex": "Mercury is constantly blasted with intense solar radiation.",
+          "exZh": "水星一直受到强烈的太阳辐射。"
+        },
+        {
+          "w": "destination",
+          "ph": "/ˌdestɪˈneɪʃn/",
+          "pos": "n.",
+          "zh": "目的地；终点",
+          "en": "the place where someone or something is going",
+          "ex": "The spacecraft is about to reach its final destination.",
+          "exZh": "探测器即将抵达最终目的地。"
+        },
+        {
+          "w": "collaboration",
+          "ph": "/kəˌlæbəˈreɪʃn/",
+          "pos": "n.",
+          "zh": "合作",
+          "en": "the act of working together with others",
+          "ex": "The mission is a collaboration between ESA and JAXA.",
+          "exZh": "这次任务是欧洲航天局与日本宇宙航空研究开发机构的合作项目。"
+        },
+        {
+          "w": "gravity",
+          "ph": "/ˈɡrævəti/",
+          "pos": "n.",
+          "zh": "引力；重力",
+          "en": "the force that pulls objects towards each other",
+          "ex": "It needs to be grabbed by the planet's gravity.",
+          "exZh": "它需要被水星的引力捕获。"
+        }
+      ],
+      "paras": [
+        {
+          "en": [
+            "After an eight-year journey travelling almost six billion miles (10bn km), a spacecraft called BepiColombo is about to reach its final destination and get into orbit around Mercury.",
+            "It will be entering an extremely hostile environment: Mercury is the closest planet to the Sun and temperatures can reach a fierce 430C and then plunge to -180C, and it is constantly blasted with intense solar radiation.",
+            "Until now, the planet has been little explored but the hope is this mission will solve some of Mercury's major mysteries."
+          ],
+          "zh": [
+            "经过近 60 亿英里（100 亿公里）、长达八年的旅程，名为“贝皮科伦坡”（BepiColombo）的探测器即将抵达最终目的地，进入环绕水星的轨道。",
+            "它将进入一个极其恶劣的环境：水星是离太阳最近的行星，气温可高达 430 摄氏度，又会骤降至零下 180 摄氏度，而且一直受到强烈的太阳辐射。",
+            "到目前为止，这颗行星很少被探索，但人们希望这次任务能解开水星的一些重大谜团。"
+          ]
+        },
+        {
+          "en": [
+            "These include uncovering why there is ice in its craters despite its proximity to the Sun, and understanding the mysterious hollows that are dotted all over its surface.",
+            "The BepiColombo mission, which is a collaboration between the European Space Agency (ESA) and Japanese Space Agency (JAXA), blasted off in 2018, launching from French Guiana.",
+            "With the spacecraft heading deep into the inner Solar System, it has had to battle the Sun's immense gravitational pull."
+          ],
+          "zh": [
+            "其中包括揭开水星陨石坑里为何会有冰——尽管它离太阳这么近——以及理解遍布其表面的神秘洼地。",
+            "贝皮科伦坡任务是欧洲航天局（ESA）与日本宇宙航空研究开发机构（JAXA）的合作项目，于 2018 年从法属圭亚那发射升空。",
+            "探测器深入太阳系内侧一路前行，不得不与太阳巨大的引力抗争。"
+          ]
+        },
+        {
+          "en": [
+            "So it has had its brakes on for the entire journey, and has also taken a very convoluted path - looping once around the Earth, twice around Venus and six times around Mercury - to slow it down enough to get into orbit.",
+            "This journey should have taken seven years, but a problem with BepiColombo's propulsion system meant the already epic voyage was extended by a year.",
+            "The final manoeuvre to get into orbit is a perilous one: it needs to perform a 37-minute handbrake turn to be grabbed by the planet's gravity."
+          ],
+          "zh": [
+            "所以它整个旅程都在“踩刹车”，还走了一条非常曲折的路线——绕地球一圈、绕金星两圈、绕水星六圈——以便减速到足以进入轨道。",
+            "这趟旅程本应只需七年，但贝皮科伦坡的推进系统出了问题，本就漫长的航行又延长了一年。",
+            "进入轨道的最后一次机动非常危险：它需要完成一个 37 分钟的“急转弯”，才能被水星的引力捕获。"
+          ]
+        }
+      ],
+      "phrases": [
+        {
+          "p": "get into",
+          "surf": [
+            "get into"
+          ],
+          "zh": "进入；到达（某种状态）",
+          "en": "to move into a place or state",
+          "ex": "The spacecraft is about to get into orbit around Mercury.",
+          "exZh": "探测器即将进入环绕水星的轨道。"
+        },
+        {
+          "p": "all over",
+          "surf": [
+            "all over"
+          ],
+          "zh": "到处；遍及",
+          "en": "over an entire area; everywhere",
+          "ex": "The hollows are dotted all over the surface of Mercury.",
+          "exZh": "这些洼地遍布水星表面。"
+        },
+        {
+          "p": "blast off",
+          "surf": [
+            "blasted off"
+          ],
+          "zh": "（火箭）发射升空",
+          "en": "to take off into space under rocket power",
+          "ex": "The BepiColombo mission blasted off in 2018.",
+          "exZh": "贝皮科伦坡任务于 2018 年发射升空。"
+        },
+        {
+          "p": "have to do",
+          "surf": [
+            "had to battle"
+          ],
+          "zh": "不得不做某事",
+          "en": "must; to be obliged to do something",
+          "ex": "I have to do my homework now.",
+          "exZh": "我现在必须做作业。"
+        },
+        {
+          "p": "need to do",
+          "surf": [
+            "needs to perform"
+          ],
+          "zh": "需要做某事",
+          "en": "to have to do something; to require doing something",
+          "ex": "You need to eat more vegetables.",
+          "exZh": "你需要多吃蔬菜。"
+        }
+      ]
+    },
+    {
+      "id": "news-20261121-home-alone",
+      "title": "Home Alone Sequel Reportedly in Development with Macaulay Culkin Returning",
+      "cat": "新闻",
+      "level": "B2",
+      "minutes": 4,
+      "desc": "《小鬼当家》续集据报正在筹备，麦考利·卡尔金将回归出演凯文，这次从父亲的视角讲故事。",
+      "source": "The Guardian",
+      "sourceUrl": "https://www.theguardian.com/film/2026/nov/20/home-alone-sequel-macaulay-culkin",
+      "published": "2026-11-21",
+      "vocab": [
+        {
+          "w": "sequel",
+          "ph": "/ˈsiːkwəl/",
+          "pos": "n.",
+          "zh": "续集；续篇",
+          "en": "a book or film that continues the story of an earlier one",
+          "ex": "A Home Alone sequel is reportedly in development.",
+          "exZh": "据报道，《小鬼当家》续集正在筹备中。"
+        },
+        {
+          "w": "franchise",
+          "ph": "/ˈfræntʃaɪz/",
+          "pos": "n.",
+          "zh": "（电影）系列",
+          "en": "a series of films or books about the same characters",
+          "ex": "The film will bring Culkin back to the franchise as Kevin McCallister.",
+          "exZh": "这部影片将让卡尔金以凯文·麦卡利斯特的身份回归该系列。"
+        },
+        {
+          "w": "recruit",
+          "ph": "/rɪˈkruːt/",
+          "pos": "v.",
+          "zh": "招募；聘请",
+          "en": "to find new people to join a company or project",
+          "ex": "The film will also recruit Seth Rogen and Evan Goldberg as writers.",
+          "exZh": "影片还将邀请塞斯·罗根和埃文·戈德堡担任编剧。"
+        },
+        {
+          "w": "release",
+          "ph": "/rɪˈliːs/",
+          "pos": "n.",
+          "zh": "上映；发布",
+          "en": "the act of making a film available to the public",
+          "ex": "Home Alone was a major box office hit upon release in 1990.",
+          "exZh": "《小鬼当家》1990 年上映时票房大卖。"
+        },
+        {
+          "w": "hit",
+          "ph": "/hɪt/",
+          "pos": "n.",
+          "zh": "大卖的作品；热门",
+          "en": "something that is very popular and successful",
+          "ex": "Home Alone was a major box office hit upon release in 1990.",
+          "exZh": "《小鬼当家》1990 年上映时票房大卖。"
+        },
+        {
+          "w": "reboot",
+          "ph": "/riːˈbuːt/",
+          "pos": "n.",
+          "zh": "重启版",
+          "en": "a new version of a film that starts the story again",
+          "ex": "There was a straight-to-streaming reboot in 2021.",
+          "exZh": "2021 年推出了一部直接上线流媒体的重启版。"
+        }
+      ],
+      "paras": [
+        {
+          "en": [
+            "A Home Alone sequel is reportedly in development with original star Macaulay Culkin set to return.",
+            "According to Puck's Matthew Belloni, Culkin met with Disney executives earlier this year with a pitch for a follow-up and now the project has been met with a green light.",
+            "The new Home Alone film will bring the 46-year-old back to the franchise as Kevin McCallister for a comedy that, according to Deadline, will be from the father's point of view."
+          ],
+          "zh": [
+            "据报道，《小鬼当家》续集正在筹备中，原主演麦考利·卡尔金将回归。",
+            "据 Puck 的马修·贝洛尼报道，卡尔金今年早些时候与迪士尼高管见面，提出了一个续集方案，如今该项目已获准推进。",
+            "据 Deadline 报道，这部新的《小鬼当家》将让现年 46 岁的卡尔金以凯文·麦卡利斯特的身份回归系列，影片将是一部从父亲视角讲述的喜剧。"
+          ]
+        },
+        {
+          "en": [
+            "The film will also recruit Seth Rogen and Evan Goldberg as writers and producers and they will work with Culkin to craft the script.",
+            "Home Alone was a major box office hit upon release in 1990, grossing $476m worldwide and becoming the year's second-biggest movie.",
+            "Culkin returned for the sequel Home Alone 2: Lost in New York, which made $359m two years later."
+          ],
+          "zh": [
+            "影片还将邀请塞斯·罗根和埃文·戈德堡担任编剧和制片人，他们将与卡尔金一起打磨剧本。",
+            "《小鬼当家》1990 年上映时票房大卖，全球票房达 4.76 亿美元，成为当年票房第二高的电影。",
+            "卡尔金两年后回归出演了续集《小鬼当家 2：迷失纽约》，票房达 3.59 亿美元。"
+          ]
+        },
+        {
+          "en": [
+            "The franchise continued without the actor for three further movies and then in 2021, after Fox had been bought by Disney, there was a straight-to-streaming reboot.",
+            "Culkin later reprised the role in a 2018 commercial for Google and this year has once again returned as Kevin for a new McDonald's advert.",
+            "The original film's director, Chris Columbus, who later went on to direct the first two Harry Potter adventures, has spoken out about a possible sequel."
+          ],
+          "zh": [
+            "此后该系列在没有他的情况下又拍了三部电影，2021 年，在福克斯被迪士尼收购后，又推出了一部直接上线流媒体的重启版。",
+            "卡尔金后来在 2018 年谷歌的一支广告中再次扮演了这个角色，今年又在一支新的麦当劳广告中再次出演凯文。",
+            "原版电影的导演克里斯·哥伦布——他后来执导了前两部《哈利·波特》电影——已就可能的续集发表了看法。"
+          ]
+        }
+      ],
+      "phrases": [
+        {
+          "p": "meet with",
+          "surf": [
+            "met with"
+          ],
+          "zh": "与……会面；会见",
+          "en": "to have a meeting with someone",
+          "ex": "Culkin met with Disney executives earlier this year.",
+          "exZh": "卡尔金今年早些时候与迪士尼高管见了面。"
+        },
+        {
+          "p": "go on to do",
+          "surf": [
+            "went on to direct"
+          ],
+          "zh": "接下来做某事；继续",
+          "en": "to continue to do something next",
+          "ex": "He later went on to direct the first two Harry Potter films.",
+          "exZh": "他后来接着执导了前两部《哈利·波特》电影。"
+        },
+        {
+          "p": "speak out",
+          "surf": [
+            "spoken out"
+          ],
+          "zh": "公开表态；直言",
+          "en": "to say publicly what you think about something",
+          "ex": "The director has spoken out about a possible sequel.",
+          "exZh": "这位导演已就可能的续集公开表态。"
+        }
+      ]
+    },
+    {
+      "id": "news-20261121-coalmine-law",
+      "title": "NSW Passes Mount Pleasant Coalmine Law as Greens Claim Change an Attempt to Head Off One Nation",
+      "cat": "新闻",
+      "level": "B2",
+      "minutes": 4,
+      "desc": "新州议会通过特别立法，允许芒特普莱森特煤矿增产 32%，绿党批评此举开创危险先例。",
+      "source": "The Guardian",
+      "sourceUrl": "https://www.theguardian.com/australia-news/2026/nov/21/nsw-passes-hunter-valley-coalmine-law-as-greens-claim-change-an-attempt-to-head-off-one-nation-ntwnfb",
+      "published": "2026-11-21",
+      "vocab": [
+        {
+          "w": "legislation",
+          "ph": "/ˌledʒɪsˈleɪʃn/",
+          "pos": "n.",
+          "zh": "立法；法律",
+          "en": "laws that are made by a government",
+          "ex": "The government has passed special legislation to allow a coalmine to increase production.",
+          "exZh": "政府通过了一项特别立法，允许一座煤矿增产。"
+        },
+        {
+          "w": "battleground",
+          "ph": "/ˈbætlɡraʊnd/",
+          "pos": "n.",
+          "zh": "战场；争夺之地",
+          "en": "a place where a contest or election is fought",
+          "ex": "The region will be a key battleground at the March state election.",
+          "exZh": "该地区将成为 3 月州选举的关键战场。"
+        },
+        {
+          "w": "ruling",
+          "ph": "/ˈruːlɪŋ/",
+          "pos": "n.",
+          "zh": "裁决；裁定",
+          "en": "an official decision made by a court",
+          "ex": "In a 3-2 split ruling, the high court found the commission had failed to consider emissions.",
+          "exZh": "高等法院以 3 比 2 的分歧裁决认定，该委员会未能考虑排放问题。"
+        },
+        {
+          "w": "emission",
+          "ph": "/ɪˈmɪʃn/",
+          "pos": "n.",
+          "zh": "排放（物）",
+          "en": "gas or other substances sent out into the air",
+          "ex": "The court considered conditions to minimise greenhouse gas emissions.",
+          "exZh": "法院考虑了附加条件，以尽量减少温室气体排放。"
+        },
+        {
+          "w": "amendment",
+          "ph": "/əˈmendmənt/",
+          "pos": "n.",
+          "zh": "修正案",
+          "en": "a change made to a law or bill",
+          "ex": "The government blocked almost 200 amendments to the bill.",
+          "exZh": "政府否决了针对该法案的近 200 项修正案。"
+        },
+        {
+          "w": "guarantee",
+          "ph": "/ˌɡærənˈtiː/",
+          "pos": "n.",
+          "zh": "保证；担保",
+          "en": "a promise that something will happen",
+          "ex": "The legislation ties consent to a jobs guarantee protecting workers.",
+          "exZh": "这项立法把许可与一项保障工人就业的承诺挂钩。"
+        }
+      ],
+      "paras": [
+        {
+          "en": [
+            "The New South Wales government has passed special legislation to allow a coalmine in the Hunter Valley to increase production by 32% in its final act of parliament before the March state election, in which the region will be a key battleground for One Nation.",
+            "After a marathon session in the legislative council on Friday, the Minns government and the Coalition voted at 1.36am on Saturday morning to allow the Mount Pleasant mine to increase its annual extraction rate from 12.5MT to 16.5MT until 2032.",
+            "In a 3-2 split ruling, the high court found the state's Independent Planning Commission (IPC) failed to properly consider imposing conditions to minimise greenhouse gas emissions that would be generated by the mine when the coal is sold and burned overseas."
+          ],
+          "zh": [
+            "新南威尔士州政府通过了一项特别立法，允许猎人谷的一座煤矿增产 32%，这是该州议会在 3 月州选举前的最后一次立法行动，而该地区将成为一国党争夺的关键战场。",
+            "经过周五立法委员会的一场马拉松式会议，明斯政府与联盟党于周六凌晨 1 点 36 分投票，允许芒特普莱森特煤矿把年开采量从 1250 万吨提高到 1650 万吨，直至 2032 年。",
+            "高等法院以 3 比 2 的分歧裁决认定，该州独立规划委员会（IPC）未能恰当考虑附加条件，以尽量减少煤矿所产煤炭在海外出售和燃烧后产生的温室气体排放。"
+          ]
+        },
+        {
+          "en": [
+            "Despite saying he would not bypass the court's decision, the NSW premier, Chris Minns, subsequently announced the legislation, claiming it would save 400 jobs ahead of Christmas.",
+            "On Friday, the government and Coalition used their numbers to block almost 200 amendments to the bill sought by the Greens, who called the legislation \"exceptional and unprecedented and dangerous\".",
+            "The Hunter region, the centre of NSW's coalmining industry, is emerging as a key battleground at the March 2027 state election."
+          ],
+          "zh": [
+            "尽管曾表示不会绕过法院的裁决，新州州长克里斯·明斯随后还是宣布了这项立法，称它会在圣诞节前保住 400 个工作岗位。",
+            "周五，政府与联盟党凭借人数优势，否决了绿党提出的近 200 项修正案，绿党称这项立法“例外、史无前例且危险”。",
+            "猎人谷地区是新州煤矿业的中心，正在成为 2027 年 3 月州选举的关键战场。"
+          ]
+        },
+        {
+          "en": [
+            "Higginson told the upper house that in bringing the bill, the government had turned its back on the advice of the state's Net Zero Commission, which has said further coalmine expansions are incompatible with meeting legislated emissions reduction targets.",
+            "The Coalition, which supported the bill, said it was \"about people\".",
+            "The legislation ties consent for the mine expansion to a jobs guarantee protecting workers at the mine."
+          ],
+          "zh": [
+            "希金森告诉上议院，政府提出这项法案，就是背弃了该州净零委员会的建议——该委员会表示，进一步扩大煤矿与实现法定的减排目标是不相容的。",
+            "支持这项法案的联盟党表示，法案“关乎人”。",
+            "这项立法把煤矿扩建的许可与一项保障矿工就业的承诺挂钩。"
+          ]
+        }
+      ],
+      "phrases": [
+        {
+          "p": "fail to do",
+          "surf": [
+            "failed to properly"
+          ],
+          "zh": "未能做某事",
+          "en": "to not succeed in doing something",
+          "ex": "He failed to pass the exam.",
+          "exZh": "他考试没通过。"
+        },
+        {
+          "p": "ahead of",
+          "surf": [
+            "ahead of"
+          ],
+          "zh": "在……之前；领先于",
+          "en": "In front of; before.",
+          "ex": "A hill loomed ahead of them.",
+          "exZh": "一座小山出现在他们面前。"
+        }
+      ]
+    }
+  ]
+}

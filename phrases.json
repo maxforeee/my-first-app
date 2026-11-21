@@ -1,2090 +1,2302 @@
 {
- "version": 2,
- "note": "Short-phrase dictionary for the reading tool. English definitions/examples checked against Free Dictionary API and Wiktionary; verb patterns like 'forget to do' are grammar constructions, not dictionary entries, so their glosses are standard textbook meanings. Grows over time: scripts/discover_phrases.py screens article text for new dictionary-listed phrases; reviewed entries are appended here.",
- "items": [
-  {
-   "p": "forget to do",
-   "pat": [
-    "forget",
-    "to",
-    "DO"
-   ],
-   "forms": {
-    "forget": [
-     "forget",
-     "forgets",
-     "forgot",
-     "forgotten"
-    ]
-   },
-   "zh": "忘记做某事",
-   "en": "to not remember to do something that you should do",
-   "ex": "Don't forget to do your homework.",
-   "exZh": "别忘了做作业。"
-  },
-  {
-   "p": "forget doing",
-   "pat": [
-    "forget",
-    "DOING"
-   ],
-   "forms": {
-    "forget": [
-     "forget",
-     "forgets",
-     "forgot",
-     "forgotten"
-    ]
-   },
-   "zh": "忘记做过某事",
-   "en": "to not remember that you did something",
-   "ex": "I forgot meeting her before.",
-   "exZh": "我忘了以前见过她。"
-  },
-  {
-   "p": "remember to do",
-   "pat": [
-    "remember",
-    "to",
-    "DO"
-   ],
-   "forms": {
-    "remember": [
-     "remember",
-     "remembers",
-     "remembered"
-    ]
-   },
-   "zh": "记得要做某事",
-   "en": "to not forget to do something",
-   "ex": "Remember to do your homework.",
-   "exZh": "记得做作业。"
-  },
-  {
-   "p": "remember doing",
-   "pat": [
-    "remember",
-    "DOING"
-   ],
-   "forms": {
-    "remember": [
-     "remember",
-     "remembers",
-     "remembered"
-    ]
-   },
-   "zh": "记得做过某事",
-   "en": "to have a memory of doing something",
-   "ex": "I remember seeing this film before.",
-   "exZh": "我记得以前看过这部电影。"
-  },
-  {
-   "p": "keep doing",
-   "pat": [
-    "keep",
-    "DOING"
-   ],
-   "forms": {
-    "keep": [
-     "keep",
-     "keeps",
-     "kept"
-    ]
-   },
-   "zh": "一直做某事",
-   "en": "to continue doing something",
-   "ex": "Keep trying, and you will succeed.",
-   "exZh": "坚持下去，你会成功的。"
-  },
-  {
-   "p": "stop doing",
-   "pat": [
-    "stop",
-    "DOING"
-   ],
-   "forms": {
-    "stop": [
-     "stop",
-     "stops",
-     "stopped"
-    ]
-   },
-   "zh": "停止做某事",
-   "en": "to no longer do something",
-   "ex": "Please stop talking.",
-   "exZh": "请不要再说话了。"
-  },
-  {
-   "p": "stop to do",
-   "pat": [
-    "stop",
-    "to",
-    "DO"
-   ],
-   "forms": {
-    "stop": [
-     "stop",
-     "stops",
-     "stopped"
-    ]
-   },
-   "zh": "停下来去做某事",
-   "en": "to stop what you are doing in order to do something else",
-   "ex": "He stopped to talk with an old friend.",
-   "exZh": "他停下来和一位老朋友聊了几句。"
-  },
-  {
-   "p": "decide to do",
-   "pat": [
-    "decide",
-    "to",
-    "DO"
-   ],
-   "forms": {
-    "decide": [
-     "decide",
-     "decides",
-     "decided"
-    ]
-   },
-   "zh": "决定做某事",
-   "en": "to make a choice to do something",
-   "ex": "She decided to study abroad.",
-   "exZh": "她决定出国留学。"
-  },
-  {
-   "p": "plan to do",
-   "pat": [
-    "plan",
-    "to",
-    "DO"
-   ],
-   "forms": {
-    "plan": [
-     "plan",
-     "plans",
-     "planned"
-    ]
-   },
-   "zh": "计划做某事",
-   "en": "to intend to do something",
-   "ex": "We plan to visit Beijing next year.",
-   "exZh": "我们计划明年去北京。"
-  },
-  {
-   "p": "hope to do",
-   "pat": [
-    "hope",
-    "to",
-    "DO"
-   ],
-   "forms": {
-    "hope": [
-     "hope",
-     "hopes",
-     "hoped"
-    ]
-   },
-   "zh": "希望做某事",
-   "en": "to want something to happen or to be true",
-   "ex": "I hope to see you again soon.",
-   "exZh": "希望很快能再见到你。"
-  },
-  {
-   "p": "agree to do",
-   "pat": [
-    "agree",
-    "to",
-    "DO"
-   ],
-   "forms": {
-    "agree": [
-     "agree",
-     "agrees",
-     "agreed"
-    ]
-   },
-   "zh": "同意做某事",
-   "en": "to say yes to doing something",
-   "ex": "He agreed to help us.",
-   "exZh": "他同意帮助我们。"
-  },
-  {
-   "p": "refuse to do",
-   "pat": [
-    "refuse",
-    "to",
-    "DO"
-   ],
-   "forms": {
-    "refuse": [
-     "refuse",
-     "refuses",
-     "refused"
-    ]
-   },
-   "zh": "拒绝做某事",
-   "en": "to say no to doing something",
-   "ex": "She refused to answer the question.",
-   "exZh": "她拒绝回答这个问题。"
-  },
-  {
-   "p": "manage to do",
-   "pat": [
-    "manage",
-    "to",
-    "DO"
-   ],
-   "forms": {
-    "manage": [
-     "manage",
-     "manages",
-     "managed"
-    ]
-   },
-   "zh": "设法做成某事",
-   "en": "to succeed in doing something difficult",
-   "ex": "He managed to finish the work on time.",
-   "exZh": "他设法按时完成了工作。"
-  },
-  {
-   "p": "fail to do",
-   "pat": [
-    "fail",
-    "to",
-    "DO"
-   ],
-   "forms": {
-    "fail": [
-     "fail",
-     "fails",
-     "failed"
-    ]
-   },
-   "zh": "未能做某事",
-   "en": "to not succeed in doing something",
-   "ex": "He failed to pass the exam.",
-   "exZh": "他考试没通过。"
-  },
-  {
-   "p": "learn to do",
-   "pat": [
-    "learn",
-    "to",
-    "DO"
-   ],
-   "forms": {
-    "learn": [
-     "learn",
-     "learns",
-     "learned",
-     "learnt"
-    ]
-   },
-   "zh": "学会做某事",
-   "en": "to gain the skill to do something",
-   "ex": "Children learn to read at school.",
-   "exZh": "孩子们在学校学会阅读。"
-  },
-  {
-   "p": "try to do",
-   "pat": [
-    "try",
-    "to",
-    "DO"
-   ],
-   "forms": {
-    "try": [
-     "try",
-     "tries",
-     "tried"
-    ]
-   },
-   "zh": "设法做某事；努力做某事",
-   "en": "to attempt to do something",
-   "ex": "Try to arrive on time.",
-   "exZh": "尽量准时到。"
-  },
-  {
-   "p": "try doing",
-   "pat": [
-    "try",
-    "DOING"
-   ],
-   "forms": {
-    "try": [
-     "try",
-     "tries",
-     "tried"
-    ]
-   },
-   "zh": "试着做某事（换个方法试试）",
-   "en": "to do something as an experiment, to see if it works",
-   "ex": "If you can't sleep, try reading a book.",
-   "exZh": "如果你睡不着，试试看书。"
-  },
-  {
-   "p": "want to do",
-   "pat": [
-    "want",
-    "to",
-    "DO"
-   ],
-   "forms": {
-    "want": [
-     "want",
-     "wants",
-     "wanted"
-    ]
-   },
-   "zh": "想要做某事",
-   "en": "to wish to do something",
-   "ex": "I want to learn English.",
-   "exZh": "我想学英语。"
-  },
-  {
-   "p": "need to do",
-   "pat": [
-    "need",
-    "to",
-    "DO"
-   ],
-   "forms": {
-    "need": [
-     "need",
-     "needs",
-     "needed"
-    ]
-   },
-   "zh": "需要做某事",
-   "en": "to have to do something; to require doing something",
-   "ex": "You need to eat more vegetables.",
-   "exZh": "你需要多吃蔬菜。"
-  },
-  {
-   "p": "have to do",
-   "pat": [
-    "have",
-    "to",
-    "DO"
-   ],
-   "forms": {
-    "have": [
-     "have",
-     "has",
-     "had"
-    ]
-   },
-   "zh": "不得不做某事",
-   "en": "must; to be obliged to do something",
-   "ex": "I have to do my homework now.",
-   "exZh": "我现在必须做作业。"
-  },
-  {
-   "p": "have to do with",
-   "pat": [
-    "have",
-    "to",
-    "do",
-    "with"
-   ],
-   "forms": {
-    "have": [
-     "have",
-     "has",
-     "had"
-    ]
-   },
-   "zh": "与……有关",
-   "en": "Related to or relevant to; concerned with. Used directly after the verb have or have got.",
-   "ex": "As I recall, his book had to do with alien abductions.",
-   "exZh": ""
-  },
-  {
-   "p": "start to do",
-   "pat": [
-    "start",
-    "to",
-    "DO"
-   ],
-   "forms": {
-    "start": [
-     "start",
-     "starts",
-     "started"
-    ]
-   },
-   "zh": "开始做某事",
-   "en": "to begin to do something",
-   "ex": "It started to rain.",
-   "exZh": "开始下雨了。"
-  },
-  {
-   "p": "start doing",
-   "pat": [
-    "start",
-    "DOING"
-   ],
-   "forms": {
-    "start": [
-     "start",
-     "starts",
-     "started"
-    ]
-   },
-   "zh": "开始做某事",
-   "en": "to begin doing something",
-   "ex": "She started learning the piano at six.",
-   "exZh": "她六岁开始学钢琴。"
-  },
-  {
-   "p": "begin to do",
-   "pat": [
-    "begin",
-    "to",
-    "DO"
-   ],
-   "forms": {
-    "begin": [
-     "begin",
-     "begins",
-     "began",
-     "begun"
-    ]
-   },
-   "zh": "开始做某事",
-   "en": "to start to do something",
-   "ex": "He began to feel tired.",
-   "exZh": "他开始感到累了。"
-  },
-  {
-   "p": "enjoy doing",
-   "pat": [
-    "enjoy",
-    "DOING"
-   ],
-   "forms": {
-    "enjoy": [
-     "enjoy",
-     "enjoys",
-     "enjoyed"
-    ]
-   },
-   "zh": "喜欢做某事",
-   "en": "to get pleasure from doing something",
-   "ex": "I enjoy reading in the evening.",
-   "exZh": "我喜欢晚上看书。"
-  },
-  {
-   "p": "like doing",
-   "pat": [
-    "like",
-    "DOING"
-   ],
-   "forms": {
-    "like": [
-     "like",
-     "likes",
-     "liked"
-    ]
-   },
-   "zh": "喜欢做某事",
-   "en": "to find doing something pleasant",
-   "ex": "She likes swimming in summer.",
-   "exZh": "她喜欢夏天游泳。"
-  },
-  {
-   "p": "love doing",
-   "pat": [
-    "love",
-    "DOING"
-   ],
-   "forms": {
-    "love": [
-     "love",
-     "loves",
-     "loved"
-    ]
-   },
-   "zh": "喜爱做某事",
-   "en": "to like doing something very much",
-   "ex": "I love listening to music.",
-   "exZh": "我很喜欢听音乐。"
-  },
-  {
-   "p": "hate doing",
-   "pat": [
-    "hate",
-    "DOING"
-   ],
-   "forms": {
-    "hate": [
-     "hate",
-     "hates",
-     "hated"
-    ]
-   },
-   "zh": "讨厌做某事",
-   "en": "to dislike doing something very much",
-   "ex": "I hate waiting in line.",
-   "exZh": "我讨厌排队。"
-  },
-  {
-   "p": "mind doing",
-   "pat": [
-    "mind",
-    "DOING"
-   ],
-   "forms": {
-    "mind": [
-     "mind",
-     "minds",
-     "minded"
-    ]
-   },
-   "zh": "介意做某事",
-   "en": "to be annoyed or worried by doing something",
-   "ex": "Do you mind opening the window?",
-   "exZh": "你介意开一下窗吗？"
-  },
-  {
-   "p": "practice doing",
-   "pat": [
-    "practice",
-    "DOING"
-   ],
-   "forms": {
-    "practice": [
-     "practice",
-     "practices",
-     "practiced",
-     "practised"
-    ]
-   },
-   "zh": "练习做某事",
-   "en": "to do something repeatedly to improve",
-   "ex": "Practice speaking English every day.",
-   "exZh": "每天练习说英语。"
-  },
-  {
-   "p": "avoid doing",
-   "pat": [
-    "avoid",
-    "DOING"
-   ],
-   "forms": {
-    "avoid": [
-     "avoid",
-     "avoids",
-     "avoided"
-    ]
-   },
-   "zh": "避免做某事",
-   "en": "to keep away from doing something",
-   "ex": "Avoid eating too much sugar.",
-   "exZh": "避免吃太多糖。"
-  },
-  {
-   "p": "finish doing",
-   "pat": [
-    "finish",
-    "DOING"
-   ],
-   "forms": {
-    "finish": [
-     "finish",
-     "finishes",
-     "finished"
-    ]
-   },
-   "zh": "做完某事",
-   "en": "to complete doing something",
-   "ex": "Have you finished reading the book?",
-   "exZh": "你读完这本书了吗？"
-  },
-  {
-   "p": "suggest doing",
-   "pat": [
-    "suggest",
-    "DOING"
-   ],
-   "forms": {
-    "suggest": [
-     "suggest",
-     "suggests",
-     "suggested"
-    ]
-   },
-   "zh": "建议做某事",
-   "en": "to say that someone should do something",
-   "ex": "I suggest going by train.",
-   "exZh": "我建议坐火车去。"
-  },
-  {
-   "p": "give up doing",
-   "pat": [
-    "give",
-    "up",
-    "DOING"
-   ],
-   "forms": {
-    "give": [
-     "give",
-     "gives",
-     "gave",
-     "given"
-    ]
-   },
-   "zh": "放弃做某事",
-   "en": "to stop doing something, especially something you have done for a long time",
-   "ex": "He gave up smoking last year.",
-   "exZh": "他去年戒烟了。"
-  },
-  {
-   "p": "go on doing",
-   "pat": [
-    "go",
-    "on",
-    "DOING"
-   ],
-   "forms": {
-    "go": [
-     "go",
-     "goes",
-     "went",
-     "gone"
-    ]
-   },
-   "zh": "继续做某事",
-   "en": "to continue doing something",
-   "ex": "Go on reading, please.",
-   "exZh": "请继续读。"
-  },
-  {
-   "p": "be used to",
-   "pat": [
-    "be",
-    "used",
-    "to"
-   ],
-   "forms": {
-    "be": [
-     "be",
-     "am",
-     "is",
-     "are",
-     "was",
-     "were",
-     "been",
-     "being"
-    ]
-   },
-   "zh": "习惯于",
-   "en": "To be familiar with or accustomed to something or someone through repeated experience; to be acclimated to.",
-   "ex": "I'm used to this climate.",
-   "exZh": ""
-  },
-  {
-   "p": "get used to",
-   "pat": [
-    "get",
-    "used",
-    "to"
-   ],
-   "forms": {
-    "get": [
-     "get",
-     "gets",
-     "got",
-     "gotten"
-    ]
-   },
-   "zh": "逐渐习惯于",
-   "en": "To become accustomed to something; to acclimate; to adjust.",
-   "ex": "I'm getting used to this climate.",
-   "exZh": ""
-  },
-  {
-   "p": "used to do",
-   "pat": [
-    "used",
-    "to",
-    "DO"
-   ],
-   "forms": {},
-   "zh": "过去常常做某事",
-   "en": "to do something regularly in the past, but not now",
-   "ex": "I used to play football when I was young.",
-   "exZh": "我小时候常踢足球。"
-  },
-  {
-   "p": "look forward to",
-   "pat": [
-    "look",
-    "forward",
-    "to"
-   ],
-   "forms": {
-    "look": [
-     "look",
-     "looks",
-     "looked"
-    ]
-   },
-   "zh": "期待",
-   "en": "To anticipate, expect, or wait for, especially with a feeling of approval or pleasure. To be excited or eager to.",
-   "ex": "I look forward to seeing you.",
-   "exZh": "我期待见到你。"
-  },
-  {
-   "p": "be interested in",
-   "pat": [
-    "be",
-    "interested",
-    "in"
-   ],
-   "forms": {
-    "be": [
-     "be",
-     "am",
-     "is",
-     "are",
-     "was",
-     "were",
-     "been",
-     "being"
-    ]
-   },
-   "zh": "对……感兴趣",
-   "en": "to want to know or learn about something",
-   "ex": "She is interested in music.",
-   "exZh": "她对音乐感兴趣。"
-  },
-  {
-   "p": "be good at",
-   "pat": [
-    "be",
-    "good",
-    "at"
-   ],
-   "forms": {
-    "be": [
-     "be",
-     "am",
-     "is",
-     "are",
-     "was",
-     "were",
-     "been",
-     "being"
-    ]
-   },
-   "zh": "擅长",
-   "en": "to be skilled at doing something",
-   "ex": "He is good at maths.",
-   "exZh": "他数学很好。"
-  },
-  {
-   "p": "be afraid of",
-   "pat": [
-    "be",
-    "afraid",
-    "of"
-   ],
-   "forms": {
-    "be": [
-     "be",
-     "am",
-     "is",
-     "are",
-     "was",
-     "were",
-     "been",
-     "being"
-    ]
-   },
-   "zh": "害怕",
-   "en": "to feel fear of something",
-   "ex": "She is afraid of dogs.",
-   "exZh": "她怕狗。"
-  },
-  {
-   "p": "be able to",
-   "pat": [
-    "be",
-    "able",
-    "to"
-   ],
-   "forms": {
-    "be": [
-     "be",
-     "am",
-     "is",
-     "are",
-     "was",
-     "were",
-     "been",
-     "being"
-    ]
-   },
-   "zh": "能够",
-   "en": "Can, to have the ability to.",
-   "ex": "I am able to swim.",
-   "exZh": "我会游泳。"
-  },
-  {
-   "p": "be ready to do",
-   "pat": [
-    "be",
-    "ready",
-    "to",
-    "DO"
-   ],
-   "forms": {
-    "be": [
-     "be",
-     "am",
-     "is",
-     "are",
-     "was",
-     "were",
-     "been",
-     "being"
-    ]
-   },
-   "zh": "准备好做某事",
-   "en": "to be prepared to do something",
-   "ex": "Are you ready to go?",
-   "exZh": "你准备好走了吗？"
-  },
-  {
-   "p": "be busy doing",
-   "pat": [
-    "be",
-    "busy",
-    "DOING"
-   ],
-   "forms": {
-    "be": [
-     "be",
-     "am",
-     "is",
-     "are",
-     "was",
-     "were",
-     "been",
-     "being"
-    ]
-   },
-   "zh": "忙于做某事",
-   "en": "to be occupied with doing something",
-   "ex": "She is busy preparing dinner.",
-   "exZh": "她正忙着做晚饭。"
-  },
-  {
-   "p": "be worth doing",
-   "pat": [
-    "be",
-    "worth",
-    "DOING"
-   ],
-   "forms": {
-    "be": [
-     "be",
-     "am",
-     "is",
-     "are",
-     "was",
-     "were",
-     "been",
-     "being"
-    ]
-   },
-   "zh": "值得做某事",
-   "en": "to be good or important enough to do",
-   "ex": "This book is worth reading.",
-   "exZh": "这本书值得一读。"
-  },
-  {
-   "p": "spend time doing",
-   "pat": [
-    "spend",
-    "time",
-    "DOING"
-   ],
-   "forms": {
-    "spend": [
-     "spend",
-     "spends",
-     "spent"
-    ]
-   },
-   "zh": "花时间做某事",
-   "en": "to use time doing something",
-   "ex": "He spends a lot of time playing games.",
-   "exZh": "他花很多时间打游戏。"
-  },
-  {
-   "p": "have fun doing",
-   "pat": [
-    "have",
-    "fun",
-    "DOING"
-   ],
-   "forms": {
-    "have": [
-     "have",
-     "has",
-     "had"
-    ]
-   },
-   "zh": "做某事很开心",
-   "en": "to enjoy doing something",
-   "ex": "We had fun playing football.",
-   "exZh": "我们踢足球玩得很开心。"
-  },
-  {
-   "p": "would like to do",
-   "pat": [
-    "would",
-    "like",
-    "to",
-    "DO"
-   ],
-   "forms": {},
-   "zh": "想要做某事（客气说法）",
-   "en": "to want to do something (a polite way to say 'want')",
-   "ex": "I would like to visit London.",
-   "exZh": "我想去伦敦看看。"
-  },
-  {
-   "p": "help to do",
-   "pat": [
-    "help",
-    "to",
-    "DO"
-   ],
-   "forms": {
-    "help": [
-     "help",
-     "helps",
-     "helped"
-    ]
-   },
-   "zh": "帮助做某事",
-   "en": "to assist someone to do something",
-   "ex": "Can you help me to carry this box?",
-   "exZh": "你能帮我搬一下这个箱子吗？"
-  },
-  {
-   "p": "take part in",
-   "pat": [
-    "take",
-    "part",
-    "in"
-   ],
-   "forms": {
-    "take": [
-     "take",
-     "takes",
-     "took",
-     "taken"
-    ]
-   },
-   "zh": "参加",
-   "en": "to join in an activity",
-   "ex": "Many students took part in the sports meeting.",
-   "exZh": "很多学生参加了运动会。"
-  },
-  {
-   "p": "take care of",
-   "pat": [
-    "take",
-    "care",
-    "of"
-   ],
-   "forms": {
-    "take": [
-     "take",
-     "takes",
-     "took",
-     "taken"
-    ]
-   },
-   "zh": "照顾；小心",
-   "en": "To look after, to provide care for.",
-   "ex": "My elderly mother needs to be taken care of.",
-   "exZh": ""
-  },
-  {
-   "p": "pay attention to",
-   "pat": [
-    "pay",
-    "attention",
-    "to"
-   ],
-   "forms": {
-    "pay": [
-     "pay",
-     "pays",
-     "paid"
-    ]
-   },
-   "zh": "注意",
-   "en": "to listen to or watch something carefully",
-   "ex": "Pay attention to your teacher.",
-   "exZh": "注意听老师讲。"
-  },
-  {
-   "p": "make sure",
-   "pat": [
-    "make",
-    "sure"
-   ],
-   "forms": {
-    "make": [
-     "make",
-     "makes",
-     "made"
-    ]
-   },
-   "zh": "确保；一定要",
-   "en": "To ensure; to take care that something happens.",
-   "ex": "I'm going to make sure that I get to the interview on time.",
-   "exZh": ""
-  },
-  {
-   "p": "make a decision",
-   "pat": [
-    "make",
-    "a",
-    "decision"
-   ],
-   "forms": {
-    "make": [
-     "make",
-     "makes",
-     "made"
-    ]
-   },
-   "zh": "做决定",
-   "en": "To decide.",
-   "ex": "You need to make a decision whether or not to go.",
-   "exZh": ""
-  },
-  {
-   "p": "at the same time",
-   "pat": [
-    "at",
-    "the",
-    "same",
-    "time"
-   ],
-   "forms": {},
-   "zh": "同时",
-   "en": "At the same instant.",
-   "ex": "Their departures were at the same time.",
-   "exZh": ""
-  },
-  {
-   "p": "in the end",
-   "pat": [
-    "in",
-    "the",
-    "end"
-   ],
-   "forms": {},
-   "zh": "最后；终于",
-   "en": "Eventually, finally.",
-   "ex": "We had a great day at the beach and in the end we had ice cream.",
-   "exZh": ""
-  },
-  {
-   "p": "at first",
-   "pat": [
-    "at",
-    "first"
-   ],
-   "forms": {},
-   "zh": "起初",
-   "en": "Initially; at the start; originally.",
-   "ex": "If at first you don't succeed, try, try again.",
-   "exZh": ""
-  },
-  {
-   "p": "at last",
-   "pat": [
-    "at",
-    "last"
-   ],
-   "forms": {},
-   "zh": "最后；终于",
-   "en": "After a long time; eventually.",
-   "ex": "Now that the dog has stopped barking, perhaps we can at last get some rest.",
-   "exZh": ""
-  },
-  {
-   "p": "in fact",
-   "pat": [
-    "in",
-    "fact"
-   ],
-   "forms": {},
-   "zh": "事实上",
-   "en": "actually; in reality",
-   "ex": "People think he's rich, but in fact he's nearly penniless.",
-   "exZh": ""
-  },
-  {
-   "p": "for example",
-   "pat": [
-    "for",
-    "example"
-   ],
-   "forms": {},
-   "zh": "例如",
-   "en": "As an example.",
-   "ex": "For example, I like apples and bananas.",
-   "exZh": "例如，我喜欢苹果和香蕉。"
-  },
-  {
-   "p": "do something",
-   "pat": [
-    "do",
-    "something"
-   ],
-   "forms": {
-    "do": [
-     "do",
-     "does",
-     "did",
-     "done"
-    ]
-   },
-   "zh": "做某事",
-   "en": "to perform an action",
-   "ex": "Let's do something fun today.",
-   "exZh": "今天我们做点有趣的事吧。"
-  },
-  {
-   "p": "to do something",
-   "pat": [
-    "to",
-    "do",
-    "something"
-   ],
-   "forms": {},
-   "zh": "去做某事",
-   "en": "to perform an action (used after verbs like want, need, decide)",
-   "ex": "She wants to do something special.",
-   "exZh": "她想做点特别的事。"
-  },
-  {
-   "p": "turn into",
-   "pat": [
-    "turn",
-    "into"
-   ],
-   "forms": {
-    "turn": [
-     "turn",
-     "turns",
-     "turned"
-    ]
-   },
-   "zh": "变成",
-   "en": "To transform into; become.",
-   "ex": "The carriage turned into a pumpkin at midnight.",
-   "exZh": ""
-  },
-  {
-   "p": "grow up",
-   "pat": [
-    "grow",
-    "up"
-   ],
-   "forms": {
-    "grow": [
-     "grow",
-     "grows",
-     "grew",
-     "grown"
-    ]
-   },
-   "zh": "长大",
-   "en": "To mature and become an adult.",
-   "ex": "What do you want to be when you grow up?",
-   "exZh": ""
-  },
-  {
-   "p": "take place",
-   "pat": [
-    "take",
-    "place"
-   ],
-   "forms": {
-    "take": [
-     "take",
-     "takes",
-     "took",
-     "taken"
-    ]
-   },
-   "zh": "发生；举行",
-   "en": "To happen, to occur.",
-   "ex": "The planned meeting never took place.",
-   "exZh": ""
-  },
-  {
-   "p": "find out",
-   "pat": [
-    "find",
-    "out"
-   ],
-   "forms": {
-    "find": [
-     "find",
-     "finds",
-     "found"
-    ]
-   },
-   "zh": "发现；查明",
-   "en": "To discover, as by asking or investigating.",
-   "ex": "Please find out when the train leaves.",
-   "exZh": "请查一下火车什么时候开。"
-  },
-  {
-   "p": "look for",
-   "pat": [
-    "look",
-    "for"
-   ],
-   "forms": {
-    "look": [
-     "look",
-     "looks",
-     "looked"
-    ]
-   },
-   "zh": "寻找",
-   "en": "To search for; to seek.",
-   "ex": "He spent his life looking for the truth.",
-   "exZh": ""
-  },
-  {
-   "p": "look at",
-   "pat": [
-    "look",
-    "at"
-   ],
-   "forms": {
-    "look": [
-     "look",
-     "looks",
-     "looked"
-    ]
-   },
-   "zh": "看",
-   "en": "To observe or watch.",
-   "ex": "Look at the blackboard, please.",
-   "exZh": "请看黑板。"
-  },
-  {
-   "p": "talk about",
-   "pat": [
-    "talk",
-    "about"
-   ],
-   "forms": {
-    "talk": [
-     "talk",
-     "talks",
-     "talked"
-    ]
-   },
-   "zh": "谈论",
-   "en": "to speak about something; to discuss",
-   "ex": "Let's talk about your plan.",
-   "exZh": "我们来谈谈你的计划。"
-  },
-  {
-   "p": "think about",
-   "pat": [
-    "think",
-    "about"
-   ],
-   "forms": {
-    "think": [
-     "think",
-     "thinks",
-     "thought"
-    ]
-   },
-   "zh": "思考；考虑",
-   "en": "To ponder.",
-   "ex": "I've been thinking about human rights since watching that documentary.",
-   "exZh": ""
-  },
-  {
-   "p": "worry about",
-   "pat": [
-    "worry",
-    "about"
-   ],
-   "forms": {
-    "worry": [
-     "worry",
-     "worries",
-     "worried"
-    ]
-   },
-   "zh": "担心",
-   "en": "to feel troubled about something",
-   "ex": "Don't worry about the exam.",
-   "exZh": "别担心考试。"
-  },
-  {
-   "p": "learn from",
-   "pat": [
-    "learn",
-    "from"
-   ],
-   "forms": {
-    "learn": [
-     "learn",
-     "learns",
-     "learned",
-     "learnt"
-    ]
-   },
-   "zh": "向……学习；从……吸取教训",
-   "en": "to gain knowledge by studying or experiencing something",
-   "ex": "We can learn from our mistakes.",
-   "exZh": "我们可以从错误中吸取教训。"
-  },
-  {
-   "p": "come from",
-   "pat": [
-    "come",
-    "from"
-   ],
-   "forms": {
-    "come": [
-     "come",
-     "comes",
-     "came"
-    ]
-   },
-   "zh": "来自",
-   "en": "To have as one's birthplace or nationality.",
-   "ex": "Where do you come from?",
-   "exZh": "你来自哪里？"
-  },
-  {
-   "p": "arrive at",
-   "pat": [
-    "arrive",
-    "at"
-   ],
-   "forms": {
-    "arrive": [
-     "arrive",
-     "arrives",
-     "arrived"
-    ]
-   },
-   "zh": "到达（小地方）",
-   "en": "To reach (a destination)",
-   "ex": "We arrived at the station at nine.",
-   "exZh": "我们九点到达车站。"
-  },
-  {
-   "p": "arrive in",
-   "pat": [
-    "arrive",
-    "in"
-   ],
-   "forms": {
-    "arrive": [
-     "arrive",
-     "arrives",
-     "arrived"
-    ]
-   },
-   "zh": "到达（大地方）",
-   "en": "to reach a large place, such as a city or country",
-   "ex": "They arrived in London yesterday.",
-   "exZh": "他们昨天到达伦敦。"
-  },
-  {
-   "p": "get ready for",
-   "pat": [
-    "get",
-    "ready",
-    "for"
-   ],
-   "forms": {
-    "get": [
-     "get",
-     "gets",
-     "got",
-     "gotten"
-    ]
-   },
-   "zh": "为……做好准备",
-   "en": "to prepare for something",
-   "ex": "Get ready for school!",
-   "exZh": "准备好去上学！"
-  },
-  {
-   "en": "In front of; before.",
-   "ex": "A hill loomed ahead of them.",
-   "exZh": "一座小山出现在他们面前。",
-   "forms": {},
-   "p": "ahead of",
-   "pat": [
-    "ahead",
-    "of"
-   ],
-   "zh": "在……之前；领先于"
-  },
-  {
-   "en": "To be true; to be the situation.",
-   "ex": "If that is the case, we need a new plan.",
-   "exZh": "如果情况是这样，我们需要一个新计划。",
-   "forms": {
-    "be": [
-     "be",
-     "am",
-     "is",
-     "are",
-     "was",
-     "were",
-     "been",
-     "being"
-    ]
-   },
-   "p": "be the case",
-   "pat": [
-    "be",
-    "the",
-    "case"
-   ],
-   "zh": "情况是这样；事实如此"
-  },
-  {
-   "en": "To easily go past a limit or target.",
-   "ex": "I've just blown past my calorie limit for the day.",
-   "exZh": "我今天的卡路里摄入一下子就超标了。",
-   "forms": {
-    "blow": [
-     "blow",
-     "blows",
-     "blew",
-     "blown"
-    ]
-   },
-   "p": "blow past",
-   "pat": [
-    "blow",
-    "past"
-   ],
-   "zh": "轻易超过；一下子超过"
-  },
-  {
-   "en": "To cause something to fall; to defeat or remove from power.",
-   "ex": "The rebel forces are trying to bring down the president.",
-   "exZh": "反叛军正试图推翻总统。",
-   "forms": {
-    "bring": [
-     "bring",
-     "brings",
-     "brought"
-    ]
-   },
-   "p": "bring down",
-   "pat": [
-    "bring",
-    "down"
-   ],
-   "zh": "使倒下；推翻；击落"
-  },
-  {
-   "en": "To fetch something back; to return with something.",
-   "ex": "Could you bring me back some chocolate?",
-   "exZh": "你能给我带回一些巧克力吗？",
-   "forms": {
-    "bring": [
-     "bring",
-     "brings",
-     "brought"
-    ]
-   },
-   "p": "bring back",
-   "pat": [
-    "bring",
-    "back"
-   ],
-   "zh": "带回来；使恢复"
-  },
-  {
-   "en": "When a future event has happened.",
-   "ex": "I'll be an old man by the time you finish!",
-   "exZh": "等你做完，我都成老头子了！",
-   "forms": {},
-   "p": "by the time",
-   "pat": [
-    "by",
-    "the",
-    "time"
-   ],
-   "zh": "到……的时候"
-  },
-  {
-   "en": "To look after someone; to like something.",
-   "ex": "I cared for my ailing mother for five years.",
-   "exZh": "我照顾了生病的母亲五年。",
-   "forms": {
-    "care": [
-     "care",
-     "cares",
-     "cared"
-    ]
-   },
-   "p": "care for",
-   "pat": [
-    "care",
-    "for"
-   ],
-   "zh": "照顾；喜欢"
-  },
-  {
-   "en": "To bring down by cutting; to reduce.",
-   "ex": "They want to cut down several trees to make room for the parking lot.",
-   "exZh": "他们想砍掉几棵树来建停车场。",
-   "forms": {
-    "cut": [
-     "cut",
-     "cuts",
-     "cut"
-    ]
-   },
-   "p": "cut down",
-   "pat": [
-    "cut",
-    "down"
-   ],
-   "zh": "砍倒；削减"
-  },
-  {
-   "en": "A long way from; not at all.",
-   "ex": "Don't leave now: our task is far from complete!",
-   "exZh": "现在别走：我们的任务还远没有完成！",
-   "forms": {},
-   "p": "far from",
-   "pat": [
-    "far",
-    "from"
-   ],
-   "zh": "离……很远；远非"
-  },
-  {
-   "en": "To want to do something; to seem like.",
-   "ex": "I didn't feel like working yesterday, so I called in sick.",
-   "exZh": "我昨天不想工作，所以请了病假。",
-   "forms": {
-    "feel": [
-     "feel",
-     "feels",
-     "felt"
-    ]
-   },
-   "p": "feel like",
-   "pat": [
-    "feel",
-    "like"
-   ],
-   "zh": "想要；感觉像是"
-  },
-  {
-   "en": "To leave a place; (of a light or fire) to stop burning.",
-   "ex": "Please go out through the back door.",
-   "exZh": "请从后门出去。",
-   "forms": {
-    "go": [
-     "go",
-     "goes",
-     "went",
-     "gone"
-    ]
-   },
-   "p": "go out",
-   "pat": [
-    "go",
-    "out"
-   ],
-   "zh": "出去；熄灭"
-  },
-  {
-   "en": "To move upwards; to increase.",
-   "ex": "There are new offices going up in town.",
-   "exZh": "镇上正在建新的办公楼。",
-   "forms": {
-    "go": [
-     "go",
-     "goes",
-     "went",
-     "gone"
-    ]
-   },
-   "p": "go up",
-   "pat": [
-    "go",
-    "up"
-   ],
-   "zh": "上升；上涨"
-  },
-  {
-   "en": "As a means of achieving something; to.",
-   "ex": "In order to be fit, you've gotta train hard every day.",
-   "exZh": "为了保持健康，你必须每天刻苦训练。",
-   "forms": {},
-   "p": "in order to",
-   "pat": [
-    "in",
-    "order",
-    "to"
-   ],
-   "zh": "为了"
-  },
-  {
-   "en": "In development; in the process of being made.",
-   "ex": "You're witnessing a great reference work in the making.",
-   "exZh": "你正在见证一部伟大的参考著作的诞生。",
-   "forms": {},
-   "p": "in the making",
-   "pat": [
-    "in",
-    "the",
-    "making"
-   ],
-   "zh": "在筹备中；正在形成"
-  },
-  {
-   "en": "In place of; rather than.",
-   "ex": "He walked to school instead of taking the car.",
-   "exZh": "他走路去上学，而不是坐车。",
-   "forms": {},
-   "p": "instead of",
-   "pat": [
-    "instead",
-    "of"
-   ],
-   "zh": "而不是"
-  },
-  {
-   "en": "A type of; slightly, somewhat.",
-   "ex": "I'm getting kind of tired. Could we finish tomorrow?",
-   "exZh": "我有点累了，明天再做完行吗？",
-   "forms": {},
-   "p": "kind of",
-   "pat": [
-    "kind",
-    "of"
-   ],
-   "zh": "一种；有点"
-  },
-  {
-   "en": "To confuse two things.",
-   "ex": "He often mixes up two similar words.",
-   "exZh": "他常常混淆两个相似的词。",
-   "forms": {
-    "mix": [
-     "mix",
-     "mixes",
-     "mixed"
-    ]
-   },
-   "p": "mix up",
-   "pat": [
-    "mix",
-    "up"
-   ],
-   "zh": "混淆；弄混"
-  },
-  {
-   "en": "To use something in a playful or experimental way.",
-   "ex": "The children like to play with the new toy.",
-   "exZh": "孩子们喜欢玩这个新玩具。",
-   "forms": {
-    "play": [
-     "play",
-     "plays",
-     "played"
-    ]
-   },
-   "p": "play with",
-   "pat": [
-    "play",
-    "with"
-   ],
-   "zh": "玩弄；摆弄；试着用"
-  },
-  {
-   "en": "To put a lot of money or effort into something.",
-   "ex": "They poured a lot of money into the project.",
-   "exZh": "他们往这个项目里投了很多钱。",
-   "forms": {
-    "pour": [
-     "pour",
-     "pours",
-     "poured"
-    ]
-   },
-   "p": "pour into",
-   "pat": [
-    "pour",
-    "into"
-   ],
-   "zh": "大量投入（金钱、精力）"
-  },
-  {
-   "en": "To offer something for sale; to place something up.",
-   "ex": "The painting was put up for auction.",
-   "exZh": "这幅画被拿出来拍卖。",
-   "forms": {
-    "put": [
-     "put",
-     "puts",
-     "put"
-    ]
-   },
-   "p": "put up",
-   "pat": [
-    "put",
-    "up"
-   ],
-   "zh": "拿出来（拍卖）；张贴；举起"
-  },
-  {
-   "en": "To bring about; to lead to.",
-   "ex": "The protests resulted in widespread unrest.",
-   "exZh": "抗议导致了广泛的动乱。",
-   "forms": {
-    "result": [
-     "result",
-     "results",
-     "resulted"
-    ]
-   },
-   "p": "result in",
-   "pat": [
-    "result",
-    "in"
-   ],
-   "zh": "导致"
-  },
-  {
-   "en": "To explain something in detail; to start a journey.",
-   "ex": "This contract sets out all the terms of the agreement.",
-   "exZh": "这份合同详细列出了协议的所有条款。",
-   "forms": {
-    "set": [
-     "set",
-     "sets",
-     "set"
-    ]
-   },
-   "p": "set out",
-   "pat": [
-    "set",
-    "out"
-   ],
-   "zh": "详细说明；出发"
-  },
-  {
-   "en": "To go more slowly.",
-   "ex": "When approaching a bend in the road, slow down.",
-   "exZh": "接近弯道时减速。",
-   "forms": {
-    "slow": [
-     "slow",
-     "slows",
-     "slowed"
-    ]
-   },
-   "p": "slow down",
-   "pat": [
-    "slow",
-    "down"
-   ],
-   "zh": "放慢；减速"
-  },
-  {
-   "en": "To result; to end up being.",
-   "ex": "I had hoped our first meeting would turn out better.",
-   "exZh": "我本希望我们的第一次见面能更好一些。",
-   "forms": {
-    "turn": [
-     "turn",
-     "turns",
-     "turned"
-    ]
-   },
-   "p": "turn out",
-   "pat": [
-    "turn",
-    "out"
-   ],
-   "zh": "结果是；原来是"
-  },
-  {
-   "en": "Higher than a previous value; increased from.",
-   "ex": "The unemployment rate is 4.2%, up from 3.8% last quarter.",
-   "exZh": "失业率是 4.2%，高于上季度的 3.8%。",
-   "forms": {},
-   "p": "up from",
-   "pat": [
-    "up",
-    "from"
-   ],
-   "zh": "比……高；从……上升"
-  },
-  {
-   "en": "To walk along or down something.",
-   "ex": "You can walk down a narrow lane and hear only your own steps.",
-   "exZh": "你可以沿着一条小巷走下去，只听见自己的脚步声。",
-   "forms": {
-    "walk": [
-     "walk",
-     "walks",
-     "walked"
-    ]
-   },
-   "p": "walk down",
-   "pat": [
-    "walk",
-    "down"
-   ],
-   "zh": "沿着……走下去"
-  },
-  {
-   "p": "aim at",
-   "pat": [
-    "aim",
-    "at"
-   ],
-   "forms": {
-    "aim": [
-     "aim",
-     "aims",
-     "aimed",
-     "aiming"
-    ]
-   },
-   "zh": "以……为目标；旨在",
-   "en": "to have something as a goal or target",
-   "ex": "The summit is aimed at reaching new agreements on food trade rules.",
-   "exZh": "这次峰会旨在就食品贸易规则达成新协议。"
-  },
-  {
-   "p": "around the world",
-   "pat": [
-    "around",
-    "the",
-    "world"
-   ],
-   "forms": {},
-   "zh": "在世界各地；全世界",
-   "en": "in many different places all over the world",
-   "ex": "Grand Theft Auto fans around the world pulled all-nighters to play the new game.",
-   "exZh": "全球《侠盗猎车手》的粉丝们熬通宵玩这款新游戏。"
-  },
-  {
-   "p": "bunk off",
-   "pat": [
-    "bunk",
-    "off"
-   ],
-   "forms": {
-    "bunk": [
-     "bunk",
-     "bunks",
-     "bunked",
-     "bunking"
-    ]
-   },
-   "zh": "逃课；翘班",
-   "en": "to stay away from school or work without permission",
-   "ex": "Students bunked off school to play the new game.",
-   "exZh": "学生们逃课去玩新游戏。"
-  },
-  {
-   "p": "end up",
-   "pat": [
-    "end",
-    "up"
-   ],
-   "forms": {
-    "end": [
-     "end",
-     "ends",
-     "ended",
-     "ending"
-    ]
-   },
-   "zh": "最终成为；最后落得",
-   "en": "to finally be in a particular place or situation",
-   "ex": "What started as a small problem ended up being a medical emergency.",
-   "exZh": "起初的一个小问题最终变成了一场医疗紧急情况。"
-  },
-  {
-   "p": "fall into",
-   "pat": [
-    "fall",
-    "into"
-   ],
-   "forms": {
-    "fall": [
-     "fall",
-     "falls",
-     "fell",
-     "fallen",
-     "falling"
-    ]
-   },
-   "zh": "掉进；落入",
-   "en": "to go into something by falling",
-   "ex": "The hat fell into the hippo's enclosure.",
-   "exZh": "帽子掉进了河马的围栏里。"
-  },
-  {
-   "p": "hail from",
-   "pat": [
-    "hail",
-    "from"
-   ],
-   "forms": {
-    "hail": [
-     "hail",
-     "hails",
-     "hailed",
-     "hailing"
-    ]
-   },
-   "zh": "来自；出生于（某地）",
-   "en": "to come from a particular place",
-   "ex": "Jones hails from the Wrexham area in north-east Wales.",
-   "exZh": "琼斯来自威尔士东北部的雷克瑟姆地区。"
-  },
-  {
-   "p": "in the region of",
-   "pat": [
-    "in",
-    "the",
-    "region",
-    "of"
-   ],
-   "forms": {},
-   "zh": "大约；接近（某个数字）",
-   "en": "approximately; close to a particular figure",
-   "ex": "Fiona weighed in the region of 2,500lb.",
-   "exZh": "菲奥娜体重大约 2500 磅。"
-  },
-  {
-   "p": "pass through",
-   "pat": [
-    "pass",
-    "through"
-   ],
-   "forms": {
-    "pass": [
-     "pass",
-     "passes",
-     "passed",
-     "passing"
-    ]
-   },
-   "zh": "通过；穿过",
-   "en": "to go through a place or thing",
-   "ex": "Veterinarians tried to help the hat pass through her system.",
-   "exZh": "兽医们试图帮助帽子从她的体内排出来。"
-  },
-  {
-   "p": "screen out",
-   "pat": [
-    "screen",
-    "out"
-   ],
-   "forms": {
-    "screen": [
-     "screen",
-     "screens",
-     "screened",
-     "screening"
-    ]
-   },
-   "zh": "屏蔽；挡住",
-   "en": "to block something so it cannot get through",
-   "ex": "A gravitational signal cannot simply be screened out by ordinary material.",
-   "exZh": "引力信号无法简单地被普通材料屏蔽掉。"
-  },
-  {
-   "p": "set up",
-   "pat": [
-    "set",
-    "up"
-   ],
-   "forms": {
-    "set": [
-     "set",
-     "sets",
-     "setting"
-    ]
-   },
-   "zh": "安装；布置；建立",
-   "en": "to put something in place so it is ready for use",
-   "ex": "The gravimeter was set up on the floor of a men's bathroom.",
-   "exZh": "重力仪被安放在男洗手间的地板上。"
-  },
-  {
-   "p": "step up",
-   "pat": [
-    "step",
-    "up"
-   ],
-   "forms": {
-    "step": [
-     "step",
-     "steps",
-     "stepped",
-     "stepping"
-    ]
-   },
-   "zh": "加大；加强；提升",
-   "en": "to increase or improve something",
-   "ex": "He has stepped up efforts to appeal to younger voters.",
-   "exZh": "他加大了争取年轻选民的力度。"
-  },
-  {
-   "p": "walk away from",
-   "pat": [
-    "walk",
-    "away",
-    "from"
-   ],
-   "forms": {
-    "walk": [
-     "walk",
-     "walks",
-     "walked",
-     "walking"
-    ]
-   },
-   "zh": "退出；放弃（谈判、交易等）",
-   "en": "to leave or abandon a deal or situation",
-   "ex": "The UK could walk away from the deal on Friday.",
-   "exZh": "英国可能在周五退出这项协议。"
-  }
- ]
+  "version": 2,
+  "note": "Short-phrase dictionary for the reading tool. English definitions/examples checked against Free Dictionary API and Wiktionary; verb patterns like 'forget to do' are grammar constructions, not dictionary entries, so their glosses are standard textbook meanings. Grows over time: scripts/discover_phrases.py screens article text for new dictionary-listed phrases; reviewed entries are appended here.",
+  "items": [
+    {
+      "p": "forget to do",
+      "pat": [
+        "forget",
+        "to",
+        "DO"
+      ],
+      "forms": {
+        "forget": [
+          "forget",
+          "forgets",
+          "forgot",
+          "forgotten"
+        ]
+      },
+      "zh": "忘记做某事",
+      "en": "to not remember to do something that you should do",
+      "ex": "Don't forget to do your homework.",
+      "exZh": "别忘了做作业。"
+    },
+    {
+      "p": "forget doing",
+      "pat": [
+        "forget",
+        "DOING"
+      ],
+      "forms": {
+        "forget": [
+          "forget",
+          "forgets",
+          "forgot",
+          "forgotten"
+        ]
+      },
+      "zh": "忘记做过某事",
+      "en": "to not remember that you did something",
+      "ex": "I forgot meeting her before.",
+      "exZh": "我忘了以前见过她。"
+    },
+    {
+      "p": "remember to do",
+      "pat": [
+        "remember",
+        "to",
+        "DO"
+      ],
+      "forms": {
+        "remember": [
+          "remember",
+          "remembers",
+          "remembered"
+        ]
+      },
+      "zh": "记得要做某事",
+      "en": "to not forget to do something",
+      "ex": "Remember to do your homework.",
+      "exZh": "记得做作业。"
+    },
+    {
+      "p": "remember doing",
+      "pat": [
+        "remember",
+        "DOING"
+      ],
+      "forms": {
+        "remember": [
+          "remember",
+          "remembers",
+          "remembered"
+        ]
+      },
+      "zh": "记得做过某事",
+      "en": "to have a memory of doing something",
+      "ex": "I remember seeing this film before.",
+      "exZh": "我记得以前看过这部电影。"
+    },
+    {
+      "p": "keep doing",
+      "pat": [
+        "keep",
+        "DOING"
+      ],
+      "forms": {
+        "keep": [
+          "keep",
+          "keeps",
+          "kept"
+        ]
+      },
+      "zh": "一直做某事",
+      "en": "to continue doing something",
+      "ex": "Keep trying, and you will succeed.",
+      "exZh": "坚持下去，你会成功的。"
+    },
+    {
+      "p": "stop doing",
+      "pat": [
+        "stop",
+        "DOING"
+      ],
+      "forms": {
+        "stop": [
+          "stop",
+          "stops",
+          "stopped"
+        ]
+      },
+      "zh": "停止做某事",
+      "en": "to no longer do something",
+      "ex": "Please stop talking.",
+      "exZh": "请不要再说话了。"
+    },
+    {
+      "p": "stop to do",
+      "pat": [
+        "stop",
+        "to",
+        "DO"
+      ],
+      "forms": {
+        "stop": [
+          "stop",
+          "stops",
+          "stopped"
+        ]
+      },
+      "zh": "停下来去做某事",
+      "en": "to stop what you are doing in order to do something else",
+      "ex": "He stopped to talk with an old friend.",
+      "exZh": "他停下来和一位老朋友聊了几句。"
+    },
+    {
+      "p": "decide to do",
+      "pat": [
+        "decide",
+        "to",
+        "DO"
+      ],
+      "forms": {
+        "decide": [
+          "decide",
+          "decides",
+          "decided"
+        ]
+      },
+      "zh": "决定做某事",
+      "en": "to make a choice to do something",
+      "ex": "She decided to study abroad.",
+      "exZh": "她决定出国留学。"
+    },
+    {
+      "p": "plan to do",
+      "pat": [
+        "plan",
+        "to",
+        "DO"
+      ],
+      "forms": {
+        "plan": [
+          "plan",
+          "plans",
+          "planned"
+        ]
+      },
+      "zh": "计划做某事",
+      "en": "to intend to do something",
+      "ex": "We plan to visit Beijing next year.",
+      "exZh": "我们计划明年去北京。"
+    },
+    {
+      "p": "hope to do",
+      "pat": [
+        "hope",
+        "to",
+        "DO"
+      ],
+      "forms": {
+        "hope": [
+          "hope",
+          "hopes",
+          "hoped"
+        ]
+      },
+      "zh": "希望做某事",
+      "en": "to want something to happen or to be true",
+      "ex": "I hope to see you again soon.",
+      "exZh": "希望很快能再见到你。"
+    },
+    {
+      "p": "agree to do",
+      "pat": [
+        "agree",
+        "to",
+        "DO"
+      ],
+      "forms": {
+        "agree": [
+          "agree",
+          "agrees",
+          "agreed"
+        ]
+      },
+      "zh": "同意做某事",
+      "en": "to say yes to doing something",
+      "ex": "He agreed to help us.",
+      "exZh": "他同意帮助我们。"
+    },
+    {
+      "p": "refuse to do",
+      "pat": [
+        "refuse",
+        "to",
+        "DO"
+      ],
+      "forms": {
+        "refuse": [
+          "refuse",
+          "refuses",
+          "refused"
+        ]
+      },
+      "zh": "拒绝做某事",
+      "en": "to say no to doing something",
+      "ex": "She refused to answer the question.",
+      "exZh": "她拒绝回答这个问题。"
+    },
+    {
+      "p": "manage to do",
+      "pat": [
+        "manage",
+        "to",
+        "DO"
+      ],
+      "forms": {
+        "manage": [
+          "manage",
+          "manages",
+          "managed"
+        ]
+      },
+      "zh": "设法做成某事",
+      "en": "to succeed in doing something difficult",
+      "ex": "He managed to finish the work on time.",
+      "exZh": "他设法按时完成了工作。"
+    },
+    {
+      "p": "fail to do",
+      "pat": [
+        "fail",
+        "to",
+        "DO"
+      ],
+      "forms": {
+        "fail": [
+          "fail",
+          "fails",
+          "failed"
+        ]
+      },
+      "zh": "未能做某事",
+      "en": "to not succeed in doing something",
+      "ex": "He failed to pass the exam.",
+      "exZh": "他考试没通过。"
+    },
+    {
+      "p": "learn to do",
+      "pat": [
+        "learn",
+        "to",
+        "DO"
+      ],
+      "forms": {
+        "learn": [
+          "learn",
+          "learns",
+          "learned",
+          "learnt"
+        ]
+      },
+      "zh": "学会做某事",
+      "en": "to gain the skill to do something",
+      "ex": "Children learn to read at school.",
+      "exZh": "孩子们在学校学会阅读。"
+    },
+    {
+      "p": "try to do",
+      "pat": [
+        "try",
+        "to",
+        "DO"
+      ],
+      "forms": {
+        "try": [
+          "try",
+          "tries",
+          "tried"
+        ]
+      },
+      "zh": "设法做某事；努力做某事",
+      "en": "to attempt to do something",
+      "ex": "Try to arrive on time.",
+      "exZh": "尽量准时到。"
+    },
+    {
+      "p": "try doing",
+      "pat": [
+        "try",
+        "DOING"
+      ],
+      "forms": {
+        "try": [
+          "try",
+          "tries",
+          "tried"
+        ]
+      },
+      "zh": "试着做某事（换个方法试试）",
+      "en": "to do something as an experiment, to see if it works",
+      "ex": "If you can't sleep, try reading a book.",
+      "exZh": "如果你睡不着，试试看书。"
+    },
+    {
+      "p": "want to do",
+      "pat": [
+        "want",
+        "to",
+        "DO"
+      ],
+      "forms": {
+        "want": [
+          "want",
+          "wants",
+          "wanted"
+        ]
+      },
+      "zh": "想要做某事",
+      "en": "to wish to do something",
+      "ex": "I want to learn English.",
+      "exZh": "我想学英语。"
+    },
+    {
+      "p": "need to do",
+      "pat": [
+        "need",
+        "to",
+        "DO"
+      ],
+      "forms": {
+        "need": [
+          "need",
+          "needs",
+          "needed"
+        ]
+      },
+      "zh": "需要做某事",
+      "en": "to have to do something; to require doing something",
+      "ex": "You need to eat more vegetables.",
+      "exZh": "你需要多吃蔬菜。"
+    },
+    {
+      "p": "have to do",
+      "pat": [
+        "have",
+        "to",
+        "DO"
+      ],
+      "forms": {
+        "have": [
+          "have",
+          "has",
+          "had"
+        ]
+      },
+      "zh": "不得不做某事",
+      "en": "must; to be obliged to do something",
+      "ex": "I have to do my homework now.",
+      "exZh": "我现在必须做作业。"
+    },
+    {
+      "p": "have to do with",
+      "pat": [
+        "have",
+        "to",
+        "do",
+        "with"
+      ],
+      "forms": {
+        "have": [
+          "have",
+          "has",
+          "had"
+        ]
+      },
+      "zh": "与……有关",
+      "en": "Related to or relevant to; concerned with. Used directly after the verb have or have got.",
+      "ex": "As I recall, his book had to do with alien abductions.",
+      "exZh": ""
+    },
+    {
+      "p": "start to do",
+      "pat": [
+        "start",
+        "to",
+        "DO"
+      ],
+      "forms": {
+        "start": [
+          "start",
+          "starts",
+          "started"
+        ]
+      },
+      "zh": "开始做某事",
+      "en": "to begin to do something",
+      "ex": "It started to rain.",
+      "exZh": "开始下雨了。"
+    },
+    {
+      "p": "start doing",
+      "pat": [
+        "start",
+        "DOING"
+      ],
+      "forms": {
+        "start": [
+          "start",
+          "starts",
+          "started"
+        ]
+      },
+      "zh": "开始做某事",
+      "en": "to begin doing something",
+      "ex": "She started learning the piano at six.",
+      "exZh": "她六岁开始学钢琴。"
+    },
+    {
+      "p": "begin to do",
+      "pat": [
+        "begin",
+        "to",
+        "DO"
+      ],
+      "forms": {
+        "begin": [
+          "begin",
+          "begins",
+          "began",
+          "begun"
+        ]
+      },
+      "zh": "开始做某事",
+      "en": "to start to do something",
+      "ex": "He began to feel tired.",
+      "exZh": "他开始感到累了。"
+    },
+    {
+      "p": "enjoy doing",
+      "pat": [
+        "enjoy",
+        "DOING"
+      ],
+      "forms": {
+        "enjoy": [
+          "enjoy",
+          "enjoys",
+          "enjoyed"
+        ]
+      },
+      "zh": "喜欢做某事",
+      "en": "to get pleasure from doing something",
+      "ex": "I enjoy reading in the evening.",
+      "exZh": "我喜欢晚上看书。"
+    },
+    {
+      "p": "like doing",
+      "pat": [
+        "like",
+        "DOING"
+      ],
+      "forms": {
+        "like": [
+          "like",
+          "likes",
+          "liked"
+        ]
+      },
+      "zh": "喜欢做某事",
+      "en": "to find doing something pleasant",
+      "ex": "She likes swimming in summer.",
+      "exZh": "她喜欢夏天游泳。"
+    },
+    {
+      "p": "love doing",
+      "pat": [
+        "love",
+        "DOING"
+      ],
+      "forms": {
+        "love": [
+          "love",
+          "loves",
+          "loved"
+        ]
+      },
+      "zh": "喜爱做某事",
+      "en": "to like doing something very much",
+      "ex": "I love listening to music.",
+      "exZh": "我很喜欢听音乐。"
+    },
+    {
+      "p": "hate doing",
+      "pat": [
+        "hate",
+        "DOING"
+      ],
+      "forms": {
+        "hate": [
+          "hate",
+          "hates",
+          "hated"
+        ]
+      },
+      "zh": "讨厌做某事",
+      "en": "to dislike doing something very much",
+      "ex": "I hate waiting in line.",
+      "exZh": "我讨厌排队。"
+    },
+    {
+      "p": "mind doing",
+      "pat": [
+        "mind",
+        "DOING"
+      ],
+      "forms": {
+        "mind": [
+          "mind",
+          "minds",
+          "minded"
+        ]
+      },
+      "zh": "介意做某事",
+      "en": "to be annoyed or worried by doing something",
+      "ex": "Do you mind opening the window?",
+      "exZh": "你介意开一下窗吗？"
+    },
+    {
+      "p": "practice doing",
+      "pat": [
+        "practice",
+        "DOING"
+      ],
+      "forms": {
+        "practice": [
+          "practice",
+          "practices",
+          "practiced",
+          "practised"
+        ]
+      },
+      "zh": "练习做某事",
+      "en": "to do something repeatedly to improve",
+      "ex": "Practice speaking English every day.",
+      "exZh": "每天练习说英语。"
+    },
+    {
+      "p": "avoid doing",
+      "pat": [
+        "avoid",
+        "DOING"
+      ],
+      "forms": {
+        "avoid": [
+          "avoid",
+          "avoids",
+          "avoided"
+        ]
+      },
+      "zh": "避免做某事",
+      "en": "to keep away from doing something",
+      "ex": "Avoid eating too much sugar.",
+      "exZh": "避免吃太多糖。"
+    },
+    {
+      "p": "finish doing",
+      "pat": [
+        "finish",
+        "DOING"
+      ],
+      "forms": {
+        "finish": [
+          "finish",
+          "finishes",
+          "finished"
+        ]
+      },
+      "zh": "做完某事",
+      "en": "to complete doing something",
+      "ex": "Have you finished reading the book?",
+      "exZh": "你读完这本书了吗？"
+    },
+    {
+      "p": "suggest doing",
+      "pat": [
+        "suggest",
+        "DOING"
+      ],
+      "forms": {
+        "suggest": [
+          "suggest",
+          "suggests",
+          "suggested"
+        ]
+      },
+      "zh": "建议做某事",
+      "en": "to say that someone should do something",
+      "ex": "I suggest going by train.",
+      "exZh": "我建议坐火车去。"
+    },
+    {
+      "p": "give up doing",
+      "pat": [
+        "give",
+        "up",
+        "DOING"
+      ],
+      "forms": {
+        "give": [
+          "give",
+          "gives",
+          "gave",
+          "given"
+        ]
+      },
+      "zh": "放弃做某事",
+      "en": "to stop doing something, especially something you have done for a long time",
+      "ex": "He gave up smoking last year.",
+      "exZh": "他去年戒烟了。"
+    },
+    {
+      "p": "go on doing",
+      "pat": [
+        "go",
+        "on",
+        "DOING"
+      ],
+      "forms": {
+        "go": [
+          "go",
+          "goes",
+          "went",
+          "gone"
+        ]
+      },
+      "zh": "继续做某事",
+      "en": "to continue doing something",
+      "ex": "Go on reading, please.",
+      "exZh": "请继续读。"
+    },
+    {
+      "p": "be used to",
+      "pat": [
+        "be",
+        "used",
+        "to"
+      ],
+      "forms": {
+        "be": [
+          "be",
+          "am",
+          "is",
+          "are",
+          "was",
+          "were",
+          "been",
+          "being"
+        ]
+      },
+      "zh": "习惯于",
+      "en": "To be familiar with or accustomed to something or someone through repeated experience; to be acclimated to.",
+      "ex": "I'm used to this climate.",
+      "exZh": ""
+    },
+    {
+      "p": "get used to",
+      "pat": [
+        "get",
+        "used",
+        "to"
+      ],
+      "forms": {
+        "get": [
+          "get",
+          "gets",
+          "got",
+          "gotten"
+        ]
+      },
+      "zh": "逐渐习惯于",
+      "en": "To become accustomed to something; to acclimate; to adjust.",
+      "ex": "I'm getting used to this climate.",
+      "exZh": ""
+    },
+    {
+      "p": "used to do",
+      "pat": [
+        "used",
+        "to",
+        "DO"
+      ],
+      "forms": {},
+      "zh": "过去常常做某事",
+      "en": "to do something regularly in the past, but not now",
+      "ex": "I used to play football when I was young.",
+      "exZh": "我小时候常踢足球。"
+    },
+    {
+      "p": "look forward to",
+      "pat": [
+        "look",
+        "forward",
+        "to"
+      ],
+      "forms": {
+        "look": [
+          "look",
+          "looks",
+          "looked"
+        ]
+      },
+      "zh": "期待",
+      "en": "To anticipate, expect, or wait for, especially with a feeling of approval or pleasure. To be excited or eager to.",
+      "ex": "I look forward to seeing you.",
+      "exZh": "我期待见到你。"
+    },
+    {
+      "p": "be interested in",
+      "pat": [
+        "be",
+        "interested",
+        "in"
+      ],
+      "forms": {
+        "be": [
+          "be",
+          "am",
+          "is",
+          "are",
+          "was",
+          "were",
+          "been",
+          "being"
+        ]
+      },
+      "zh": "对……感兴趣",
+      "en": "to want to know or learn about something",
+      "ex": "She is interested in music.",
+      "exZh": "她对音乐感兴趣。"
+    },
+    {
+      "p": "be good at",
+      "pat": [
+        "be",
+        "good",
+        "at"
+      ],
+      "forms": {
+        "be": [
+          "be",
+          "am",
+          "is",
+          "are",
+          "was",
+          "were",
+          "been",
+          "being"
+        ]
+      },
+      "zh": "擅长",
+      "en": "to be skilled at doing something",
+      "ex": "He is good at maths.",
+      "exZh": "他数学很好。"
+    },
+    {
+      "p": "be afraid of",
+      "pat": [
+        "be",
+        "afraid",
+        "of"
+      ],
+      "forms": {
+        "be": [
+          "be",
+          "am",
+          "is",
+          "are",
+          "was",
+          "were",
+          "been",
+          "being"
+        ]
+      },
+      "zh": "害怕",
+      "en": "to feel fear of something",
+      "ex": "She is afraid of dogs.",
+      "exZh": "她怕狗。"
+    },
+    {
+      "p": "be able to",
+      "pat": [
+        "be",
+        "able",
+        "to"
+      ],
+      "forms": {
+        "be": [
+          "be",
+          "am",
+          "is",
+          "are",
+          "was",
+          "were",
+          "been",
+          "being"
+        ]
+      },
+      "zh": "能够",
+      "en": "Can, to have the ability to.",
+      "ex": "I am able to swim.",
+      "exZh": "我会游泳。"
+    },
+    {
+      "p": "be ready to do",
+      "pat": [
+        "be",
+        "ready",
+        "to",
+        "DO"
+      ],
+      "forms": {
+        "be": [
+          "be",
+          "am",
+          "is",
+          "are",
+          "was",
+          "were",
+          "been",
+          "being"
+        ]
+      },
+      "zh": "准备好做某事",
+      "en": "to be prepared to do something",
+      "ex": "Are you ready to go?",
+      "exZh": "你准备好走了吗？"
+    },
+    {
+      "p": "be busy doing",
+      "pat": [
+        "be",
+        "busy",
+        "DOING"
+      ],
+      "forms": {
+        "be": [
+          "be",
+          "am",
+          "is",
+          "are",
+          "was",
+          "were",
+          "been",
+          "being"
+        ]
+      },
+      "zh": "忙于做某事",
+      "en": "to be occupied with doing something",
+      "ex": "She is busy preparing dinner.",
+      "exZh": "她正忙着做晚饭。"
+    },
+    {
+      "p": "be worth doing",
+      "pat": [
+        "be",
+        "worth",
+        "DOING"
+      ],
+      "forms": {
+        "be": [
+          "be",
+          "am",
+          "is",
+          "are",
+          "was",
+          "were",
+          "been",
+          "being"
+        ]
+      },
+      "zh": "值得做某事",
+      "en": "to be good or important enough to do",
+      "ex": "This book is worth reading.",
+      "exZh": "这本书值得一读。"
+    },
+    {
+      "p": "spend time doing",
+      "pat": [
+        "spend",
+        "time",
+        "DOING"
+      ],
+      "forms": {
+        "spend": [
+          "spend",
+          "spends",
+          "spent"
+        ]
+      },
+      "zh": "花时间做某事",
+      "en": "to use time doing something",
+      "ex": "He spends a lot of time playing games.",
+      "exZh": "他花很多时间打游戏。"
+    },
+    {
+      "p": "have fun doing",
+      "pat": [
+        "have",
+        "fun",
+        "DOING"
+      ],
+      "forms": {
+        "have": [
+          "have",
+          "has",
+          "had"
+        ]
+      },
+      "zh": "做某事很开心",
+      "en": "to enjoy doing something",
+      "ex": "We had fun playing football.",
+      "exZh": "我们踢足球玩得很开心。"
+    },
+    {
+      "p": "would like to do",
+      "pat": [
+        "would",
+        "like",
+        "to",
+        "DO"
+      ],
+      "forms": {},
+      "zh": "想要做某事（客气说法）",
+      "en": "to want to do something (a polite way to say 'want')",
+      "ex": "I would like to visit London.",
+      "exZh": "我想去伦敦看看。"
+    },
+    {
+      "p": "help to do",
+      "pat": [
+        "help",
+        "to",
+        "DO"
+      ],
+      "forms": {
+        "help": [
+          "help",
+          "helps",
+          "helped"
+        ]
+      },
+      "zh": "帮助做某事",
+      "en": "to assist someone to do something",
+      "ex": "Can you help me to carry this box?",
+      "exZh": "你能帮我搬一下这个箱子吗？"
+    },
+    {
+      "p": "take part in",
+      "pat": [
+        "take",
+        "part",
+        "in"
+      ],
+      "forms": {
+        "take": [
+          "take",
+          "takes",
+          "took",
+          "taken"
+        ]
+      },
+      "zh": "参加",
+      "en": "to join in an activity",
+      "ex": "Many students took part in the sports meeting.",
+      "exZh": "很多学生参加了运动会。"
+    },
+    {
+      "p": "take care of",
+      "pat": [
+        "take",
+        "care",
+        "of"
+      ],
+      "forms": {
+        "take": [
+          "take",
+          "takes",
+          "took",
+          "taken"
+        ]
+      },
+      "zh": "照顾；小心",
+      "en": "To look after, to provide care for.",
+      "ex": "My elderly mother needs to be taken care of.",
+      "exZh": ""
+    },
+    {
+      "p": "pay attention to",
+      "pat": [
+        "pay",
+        "attention",
+        "to"
+      ],
+      "forms": {
+        "pay": [
+          "pay",
+          "pays",
+          "paid"
+        ]
+      },
+      "zh": "注意",
+      "en": "to listen to or watch something carefully",
+      "ex": "Pay attention to your teacher.",
+      "exZh": "注意听老师讲。"
+    },
+    {
+      "p": "make sure",
+      "pat": [
+        "make",
+        "sure"
+      ],
+      "forms": {
+        "make": [
+          "make",
+          "makes",
+          "made"
+        ]
+      },
+      "zh": "确保；一定要",
+      "en": "To ensure; to take care that something happens.",
+      "ex": "I'm going to make sure that I get to the interview on time.",
+      "exZh": ""
+    },
+    {
+      "p": "make a decision",
+      "pat": [
+        "make",
+        "a",
+        "decision"
+      ],
+      "forms": {
+        "make": [
+          "make",
+          "makes",
+          "made"
+        ]
+      },
+      "zh": "做决定",
+      "en": "To decide.",
+      "ex": "You need to make a decision whether or not to go.",
+      "exZh": ""
+    },
+    {
+      "p": "at the same time",
+      "pat": [
+        "at",
+        "the",
+        "same",
+        "time"
+      ],
+      "forms": {},
+      "zh": "同时",
+      "en": "At the same instant.",
+      "ex": "Their departures were at the same time.",
+      "exZh": ""
+    },
+    {
+      "p": "in the end",
+      "pat": [
+        "in",
+        "the",
+        "end"
+      ],
+      "forms": {},
+      "zh": "最后；终于",
+      "en": "Eventually, finally.",
+      "ex": "We had a great day at the beach and in the end we had ice cream.",
+      "exZh": ""
+    },
+    {
+      "p": "at first",
+      "pat": [
+        "at",
+        "first"
+      ],
+      "forms": {},
+      "zh": "起初",
+      "en": "Initially; at the start; originally.",
+      "ex": "If at first you don't succeed, try, try again.",
+      "exZh": ""
+    },
+    {
+      "p": "at last",
+      "pat": [
+        "at",
+        "last"
+      ],
+      "forms": {},
+      "zh": "最后；终于",
+      "en": "After a long time; eventually.",
+      "ex": "Now that the dog has stopped barking, perhaps we can at last get some rest.",
+      "exZh": ""
+    },
+    {
+      "p": "in fact",
+      "pat": [
+        "in",
+        "fact"
+      ],
+      "forms": {},
+      "zh": "事实上",
+      "en": "actually; in reality",
+      "ex": "People think he's rich, but in fact he's nearly penniless.",
+      "exZh": ""
+    },
+    {
+      "p": "for example",
+      "pat": [
+        "for",
+        "example"
+      ],
+      "forms": {},
+      "zh": "例如",
+      "en": "As an example.",
+      "ex": "For example, I like apples and bananas.",
+      "exZh": "例如，我喜欢苹果和香蕉。"
+    },
+    {
+      "p": "do something",
+      "pat": [
+        "do",
+        "something"
+      ],
+      "forms": {
+        "do": [
+          "do",
+          "does",
+          "did",
+          "done"
+        ]
+      },
+      "zh": "做某事",
+      "en": "to perform an action",
+      "ex": "Let's do something fun today.",
+      "exZh": "今天我们做点有趣的事吧。"
+    },
+    {
+      "p": "to do something",
+      "pat": [
+        "to",
+        "do",
+        "something"
+      ],
+      "forms": {},
+      "zh": "去做某事",
+      "en": "to perform an action (used after verbs like want, need, decide)",
+      "ex": "She wants to do something special.",
+      "exZh": "她想做点特别的事。"
+    },
+    {
+      "p": "turn into",
+      "pat": [
+        "turn",
+        "into"
+      ],
+      "forms": {
+        "turn": [
+          "turn",
+          "turns",
+          "turned"
+        ]
+      },
+      "zh": "变成",
+      "en": "To transform into; become.",
+      "ex": "The carriage turned into a pumpkin at midnight.",
+      "exZh": ""
+    },
+    {
+      "p": "grow up",
+      "pat": [
+        "grow",
+        "up"
+      ],
+      "forms": {
+        "grow": [
+          "grow",
+          "grows",
+          "grew",
+          "grown"
+        ]
+      },
+      "zh": "长大",
+      "en": "To mature and become an adult.",
+      "ex": "What do you want to be when you grow up?",
+      "exZh": ""
+    },
+    {
+      "p": "take place",
+      "pat": [
+        "take",
+        "place"
+      ],
+      "forms": {
+        "take": [
+          "take",
+          "takes",
+          "took",
+          "taken"
+        ]
+      },
+      "zh": "发生；举行",
+      "en": "To happen, to occur.",
+      "ex": "The planned meeting never took place.",
+      "exZh": ""
+    },
+    {
+      "p": "find out",
+      "pat": [
+        "find",
+        "out"
+      ],
+      "forms": {
+        "find": [
+          "find",
+          "finds",
+          "found"
+        ]
+      },
+      "zh": "发现；查明",
+      "en": "To discover, as by asking or investigating.",
+      "ex": "Please find out when the train leaves.",
+      "exZh": "请查一下火车什么时候开。"
+    },
+    {
+      "p": "look for",
+      "pat": [
+        "look",
+        "for"
+      ],
+      "forms": {
+        "look": [
+          "look",
+          "looks",
+          "looked"
+        ]
+      },
+      "zh": "寻找",
+      "en": "To search for; to seek.",
+      "ex": "He spent his life looking for the truth.",
+      "exZh": ""
+    },
+    {
+      "p": "look at",
+      "pat": [
+        "look",
+        "at"
+      ],
+      "forms": {
+        "look": [
+          "look",
+          "looks",
+          "looked"
+        ]
+      },
+      "zh": "看",
+      "en": "To observe or watch.",
+      "ex": "Look at the blackboard, please.",
+      "exZh": "请看黑板。"
+    },
+    {
+      "p": "talk about",
+      "pat": [
+        "talk",
+        "about"
+      ],
+      "forms": {
+        "talk": [
+          "talk",
+          "talks",
+          "talked"
+        ]
+      },
+      "zh": "谈论",
+      "en": "to speak about something; to discuss",
+      "ex": "Let's talk about your plan.",
+      "exZh": "我们来谈谈你的计划。"
+    },
+    {
+      "p": "think about",
+      "pat": [
+        "think",
+        "about"
+      ],
+      "forms": {
+        "think": [
+          "think",
+          "thinks",
+          "thought"
+        ]
+      },
+      "zh": "思考；考虑",
+      "en": "To ponder.",
+      "ex": "I've been thinking about human rights since watching that documentary.",
+      "exZh": ""
+    },
+    {
+      "p": "worry about",
+      "pat": [
+        "worry",
+        "about"
+      ],
+      "forms": {
+        "worry": [
+          "worry",
+          "worries",
+          "worried"
+        ]
+      },
+      "zh": "担心",
+      "en": "to feel troubled about something",
+      "ex": "Don't worry about the exam.",
+      "exZh": "别担心考试。"
+    },
+    {
+      "p": "learn from",
+      "pat": [
+        "learn",
+        "from"
+      ],
+      "forms": {
+        "learn": [
+          "learn",
+          "learns",
+          "learned",
+          "learnt"
+        ]
+      },
+      "zh": "向……学习；从……吸取教训",
+      "en": "to gain knowledge by studying or experiencing something",
+      "ex": "We can learn from our mistakes.",
+      "exZh": "我们可以从错误中吸取教训。"
+    },
+    {
+      "p": "come from",
+      "pat": [
+        "come",
+        "from"
+      ],
+      "forms": {
+        "come": [
+          "come",
+          "comes",
+          "came"
+        ]
+      },
+      "zh": "来自",
+      "en": "To have as one's birthplace or nationality.",
+      "ex": "Where do you come from?",
+      "exZh": "你来自哪里？"
+    },
+    {
+      "p": "arrive at",
+      "pat": [
+        "arrive",
+        "at"
+      ],
+      "forms": {
+        "arrive": [
+          "arrive",
+          "arrives",
+          "arrived"
+        ]
+      },
+      "zh": "到达（小地方）",
+      "en": "To reach (a destination)",
+      "ex": "We arrived at the station at nine.",
+      "exZh": "我们九点到达车站。"
+    },
+    {
+      "p": "arrive in",
+      "pat": [
+        "arrive",
+        "in"
+      ],
+      "forms": {
+        "arrive": [
+          "arrive",
+          "arrives",
+          "arrived"
+        ]
+      },
+      "zh": "到达（大地方）",
+      "en": "to reach a large place, such as a city or country",
+      "ex": "They arrived in London yesterday.",
+      "exZh": "他们昨天到达伦敦。"
+    },
+    {
+      "p": "get ready for",
+      "pat": [
+        "get",
+        "ready",
+        "for"
+      ],
+      "forms": {
+        "get": [
+          "get",
+          "gets",
+          "got",
+          "gotten"
+        ]
+      },
+      "zh": "为……做好准备",
+      "en": "to prepare for something",
+      "ex": "Get ready for school!",
+      "exZh": "准备好去上学！"
+    },
+    {
+      "en": "In front of; before.",
+      "ex": "A hill loomed ahead of them.",
+      "exZh": "一座小山出现在他们面前。",
+      "forms": {},
+      "p": "ahead of",
+      "pat": [
+        "ahead",
+        "of"
+      ],
+      "zh": "在……之前；领先于"
+    },
+    {
+      "en": "To be true; to be the situation.",
+      "ex": "If that is the case, we need a new plan.",
+      "exZh": "如果情况是这样，我们需要一个新计划。",
+      "forms": {
+        "be": [
+          "be",
+          "am",
+          "is",
+          "are",
+          "was",
+          "were",
+          "been",
+          "being"
+        ]
+      },
+      "p": "be the case",
+      "pat": [
+        "be",
+        "the",
+        "case"
+      ],
+      "zh": "情况是这样；事实如此"
+    },
+    {
+      "en": "To easily go past a limit or target.",
+      "ex": "I've just blown past my calorie limit for the day.",
+      "exZh": "我今天的卡路里摄入一下子就超标了。",
+      "forms": {
+        "blow": [
+          "blow",
+          "blows",
+          "blew",
+          "blown"
+        ]
+      },
+      "p": "blow past",
+      "pat": [
+        "blow",
+        "past"
+      ],
+      "zh": "轻易超过；一下子超过"
+    },
+    {
+      "en": "To cause something to fall; to defeat or remove from power.",
+      "ex": "The rebel forces are trying to bring down the president.",
+      "exZh": "反叛军正试图推翻总统。",
+      "forms": {
+        "bring": [
+          "bring",
+          "brings",
+          "brought"
+        ]
+      },
+      "p": "bring down",
+      "pat": [
+        "bring",
+        "down"
+      ],
+      "zh": "使倒下；推翻；击落"
+    },
+    {
+      "en": "To fetch something back; to return with something.",
+      "ex": "Could you bring me back some chocolate?",
+      "exZh": "你能给我带回一些巧克力吗？",
+      "forms": {
+        "bring": [
+          "bring",
+          "brings",
+          "brought"
+        ]
+      },
+      "p": "bring back",
+      "pat": [
+        "bring",
+        "back"
+      ],
+      "zh": "带回来；使恢复"
+    },
+    {
+      "en": "When a future event has happened.",
+      "ex": "I'll be an old man by the time you finish!",
+      "exZh": "等你做完，我都成老头子了！",
+      "forms": {},
+      "p": "by the time",
+      "pat": [
+        "by",
+        "the",
+        "time"
+      ],
+      "zh": "到……的时候"
+    },
+    {
+      "en": "To look after someone; to like something.",
+      "ex": "I cared for my ailing mother for five years.",
+      "exZh": "我照顾了生病的母亲五年。",
+      "forms": {
+        "care": [
+          "care",
+          "cares",
+          "cared"
+        ]
+      },
+      "p": "care for",
+      "pat": [
+        "care",
+        "for"
+      ],
+      "zh": "照顾；喜欢"
+    },
+    {
+      "en": "To bring down by cutting; to reduce.",
+      "ex": "They want to cut down several trees to make room for the parking lot.",
+      "exZh": "他们想砍掉几棵树来建停车场。",
+      "forms": {
+        "cut": [
+          "cut",
+          "cuts",
+          "cut"
+        ]
+      },
+      "p": "cut down",
+      "pat": [
+        "cut",
+        "down"
+      ],
+      "zh": "砍倒；削减"
+    },
+    {
+      "en": "A long way from; not at all.",
+      "ex": "Don't leave now: our task is far from complete!",
+      "exZh": "现在别走：我们的任务还远没有完成！",
+      "forms": {},
+      "p": "far from",
+      "pat": [
+        "far",
+        "from"
+      ],
+      "zh": "离……很远；远非"
+    },
+    {
+      "en": "To want to do something; to seem like.",
+      "ex": "I didn't feel like working yesterday, so I called in sick.",
+      "exZh": "我昨天不想工作，所以请了病假。",
+      "forms": {
+        "feel": [
+          "feel",
+          "feels",
+          "felt"
+        ]
+      },
+      "p": "feel like",
+      "pat": [
+        "feel",
+        "like"
+      ],
+      "zh": "想要；感觉像是"
+    },
+    {
+      "en": "To leave a place; (of a light or fire) to stop burning.",
+      "ex": "Please go out through the back door.",
+      "exZh": "请从后门出去。",
+      "forms": {
+        "go": [
+          "go",
+          "goes",
+          "went",
+          "gone"
+        ]
+      },
+      "p": "go out",
+      "pat": [
+        "go",
+        "out"
+      ],
+      "zh": "出去；熄灭"
+    },
+    {
+      "en": "To move upwards; to increase.",
+      "ex": "There are new offices going up in town.",
+      "exZh": "镇上正在建新的办公楼。",
+      "forms": {
+        "go": [
+          "go",
+          "goes",
+          "went",
+          "gone"
+        ]
+      },
+      "p": "go up",
+      "pat": [
+        "go",
+        "up"
+      ],
+      "zh": "上升；上涨"
+    },
+    {
+      "en": "As a means of achieving something; to.",
+      "ex": "In order to be fit, you've gotta train hard every day.",
+      "exZh": "为了保持健康，你必须每天刻苦训练。",
+      "forms": {},
+      "p": "in order to",
+      "pat": [
+        "in",
+        "order",
+        "to"
+      ],
+      "zh": "为了"
+    },
+    {
+      "en": "In development; in the process of being made.",
+      "ex": "You're witnessing a great reference work in the making.",
+      "exZh": "你正在见证一部伟大的参考著作的诞生。",
+      "forms": {},
+      "p": "in the making",
+      "pat": [
+        "in",
+        "the",
+        "making"
+      ],
+      "zh": "在筹备中；正在形成"
+    },
+    {
+      "en": "In place of; rather than.",
+      "ex": "He walked to school instead of taking the car.",
+      "exZh": "他走路去上学，而不是坐车。",
+      "forms": {},
+      "p": "instead of",
+      "pat": [
+        "instead",
+        "of"
+      ],
+      "zh": "而不是"
+    },
+    {
+      "en": "A type of; slightly, somewhat.",
+      "ex": "I'm getting kind of tired. Could we finish tomorrow?",
+      "exZh": "我有点累了，明天再做完行吗？",
+      "forms": {},
+      "p": "kind of",
+      "pat": [
+        "kind",
+        "of"
+      ],
+      "zh": "一种；有点"
+    },
+    {
+      "en": "To confuse two things.",
+      "ex": "He often mixes up two similar words.",
+      "exZh": "他常常混淆两个相似的词。",
+      "forms": {
+        "mix": [
+          "mix",
+          "mixes",
+          "mixed"
+        ]
+      },
+      "p": "mix up",
+      "pat": [
+        "mix",
+        "up"
+      ],
+      "zh": "混淆；弄混"
+    },
+    {
+      "en": "To use something in a playful or experimental way.",
+      "ex": "The children like to play with the new toy.",
+      "exZh": "孩子们喜欢玩这个新玩具。",
+      "forms": {
+        "play": [
+          "play",
+          "plays",
+          "played"
+        ]
+      },
+      "p": "play with",
+      "pat": [
+        "play",
+        "with"
+      ],
+      "zh": "玩弄；摆弄；试着用"
+    },
+    {
+      "en": "To put a lot of money or effort into something.",
+      "ex": "They poured a lot of money into the project.",
+      "exZh": "他们往这个项目里投了很多钱。",
+      "forms": {
+        "pour": [
+          "pour",
+          "pours",
+          "poured"
+        ]
+      },
+      "p": "pour into",
+      "pat": [
+        "pour",
+        "into"
+      ],
+      "zh": "大量投入（金钱、精力）"
+    },
+    {
+      "en": "To offer something for sale; to place something up.",
+      "ex": "The painting was put up for auction.",
+      "exZh": "这幅画被拿出来拍卖。",
+      "forms": {
+        "put": [
+          "put",
+          "puts",
+          "put"
+        ]
+      },
+      "p": "put up",
+      "pat": [
+        "put",
+        "up"
+      ],
+      "zh": "拿出来（拍卖）；张贴；举起"
+    },
+    {
+      "en": "To bring about; to lead to.",
+      "ex": "The protests resulted in widespread unrest.",
+      "exZh": "抗议导致了广泛的动乱。",
+      "forms": {
+        "result": [
+          "result",
+          "results",
+          "resulted"
+        ]
+      },
+      "p": "result in",
+      "pat": [
+        "result",
+        "in"
+      ],
+      "zh": "导致"
+    },
+    {
+      "en": "To explain something in detail; to start a journey.",
+      "ex": "This contract sets out all the terms of the agreement.",
+      "exZh": "这份合同详细列出了协议的所有条款。",
+      "forms": {
+        "set": [
+          "set",
+          "sets",
+          "set"
+        ]
+      },
+      "p": "set out",
+      "pat": [
+        "set",
+        "out"
+      ],
+      "zh": "详细说明；出发"
+    },
+    {
+      "en": "To go more slowly.",
+      "ex": "When approaching a bend in the road, slow down.",
+      "exZh": "接近弯道时减速。",
+      "forms": {
+        "slow": [
+          "slow",
+          "slows",
+          "slowed"
+        ]
+      },
+      "p": "slow down",
+      "pat": [
+        "slow",
+        "down"
+      ],
+      "zh": "放慢；减速"
+    },
+    {
+      "en": "To result; to end up being.",
+      "ex": "I had hoped our first meeting would turn out better.",
+      "exZh": "我本希望我们的第一次见面能更好一些。",
+      "forms": {
+        "turn": [
+          "turn",
+          "turns",
+          "turned"
+        ]
+      },
+      "p": "turn out",
+      "pat": [
+        "turn",
+        "out"
+      ],
+      "zh": "结果是；原来是"
+    },
+    {
+      "en": "Higher than a previous value; increased from.",
+      "ex": "The unemployment rate is 4.2%, up from 3.8% last quarter.",
+      "exZh": "失业率是 4.2%，高于上季度的 3.8%。",
+      "forms": {},
+      "p": "up from",
+      "pat": [
+        "up",
+        "from"
+      ],
+      "zh": "比……高；从……上升"
+    },
+    {
+      "en": "To walk along or down something.",
+      "ex": "You can walk down a narrow lane and hear only your own steps.",
+      "exZh": "你可以沿着一条小巷走下去，只听见自己的脚步声。",
+      "forms": {
+        "walk": [
+          "walk",
+          "walks",
+          "walked"
+        ]
+      },
+      "p": "walk down",
+      "pat": [
+        "walk",
+        "down"
+      ],
+      "zh": "沿着……走下去"
+    },
+    {
+      "p": "aim at",
+      "pat": [
+        "aim",
+        "at"
+      ],
+      "forms": {
+        "aim": [
+          "aim",
+          "aims",
+          "aimed",
+          "aiming"
+        ]
+      },
+      "zh": "以……为目标；旨在",
+      "en": "to have something as a goal or target",
+      "ex": "The summit is aimed at reaching new agreements on food trade rules.",
+      "exZh": "这次峰会旨在就食品贸易规则达成新协议。"
+    },
+    {
+      "p": "around the world",
+      "pat": [
+        "around",
+        "the",
+        "world"
+      ],
+      "forms": {},
+      "zh": "在世界各地；全世界",
+      "en": "in many different places all over the world",
+      "ex": "Grand Theft Auto fans around the world pulled all-nighters to play the new game.",
+      "exZh": "全球《侠盗猎车手》的粉丝们熬通宵玩这款新游戏。"
+    },
+    {
+      "p": "bunk off",
+      "pat": [
+        "bunk",
+        "off"
+      ],
+      "forms": {
+        "bunk": [
+          "bunk",
+          "bunks",
+          "bunked",
+          "bunking"
+        ]
+      },
+      "zh": "逃课；翘班",
+      "en": "to stay away from school or work without permission",
+      "ex": "Students bunked off school to play the new game.",
+      "exZh": "学生们逃课去玩新游戏。"
+    },
+    {
+      "p": "end up",
+      "pat": [
+        "end",
+        "up"
+      ],
+      "forms": {
+        "end": [
+          "end",
+          "ends",
+          "ended",
+          "ending"
+        ]
+      },
+      "zh": "最终成为；最后落得",
+      "en": "to finally be in a particular place or situation",
+      "ex": "What started as a small problem ended up being a medical emergency.",
+      "exZh": "起初的一个小问题最终变成了一场医疗紧急情况。"
+    },
+    {
+      "p": "fall into",
+      "pat": [
+        "fall",
+        "into"
+      ],
+      "forms": {
+        "fall": [
+          "fall",
+          "falls",
+          "fell",
+          "fallen",
+          "falling"
+        ]
+      },
+      "zh": "掉进；落入",
+      "en": "to go into something by falling",
+      "ex": "The hat fell into the hippo's enclosure.",
+      "exZh": "帽子掉进了河马的围栏里。"
+    },
+    {
+      "p": "hail from",
+      "pat": [
+        "hail",
+        "from"
+      ],
+      "forms": {
+        "hail": [
+          "hail",
+          "hails",
+          "hailed",
+          "hailing"
+        ]
+      },
+      "zh": "来自；出生于（某地）",
+      "en": "to come from a particular place",
+      "ex": "Jones hails from the Wrexham area in north-east Wales.",
+      "exZh": "琼斯来自威尔士东北部的雷克瑟姆地区。"
+    },
+    {
+      "p": "in the region of",
+      "pat": [
+        "in",
+        "the",
+        "region",
+        "of"
+      ],
+      "forms": {},
+      "zh": "大约；接近（某个数字）",
+      "en": "approximately; close to a particular figure",
+      "ex": "Fiona weighed in the region of 2,500lb.",
+      "exZh": "菲奥娜体重大约 2500 磅。"
+    },
+    {
+      "p": "pass through",
+      "pat": [
+        "pass",
+        "through"
+      ],
+      "forms": {
+        "pass": [
+          "pass",
+          "passes",
+          "passed",
+          "passing"
+        ]
+      },
+      "zh": "通过；穿过",
+      "en": "to go through a place or thing",
+      "ex": "Veterinarians tried to help the hat pass through her system.",
+      "exZh": "兽医们试图帮助帽子从她的体内排出来。"
+    },
+    {
+      "p": "screen out",
+      "pat": [
+        "screen",
+        "out"
+      ],
+      "forms": {
+        "screen": [
+          "screen",
+          "screens",
+          "screened",
+          "screening"
+        ]
+      },
+      "zh": "屏蔽；挡住",
+      "en": "to block something so it cannot get through",
+      "ex": "A gravitational signal cannot simply be screened out by ordinary material.",
+      "exZh": "引力信号无法简单地被普通材料屏蔽掉。"
+    },
+    {
+      "p": "set up",
+      "pat": [
+        "set",
+        "up"
+      ],
+      "forms": {
+        "set": [
+          "set",
+          "sets",
+          "setting"
+        ]
+      },
+      "zh": "安装；布置；建立",
+      "en": "to put something in place so it is ready for use",
+      "ex": "The gravimeter was set up on the floor of a men's bathroom.",
+      "exZh": "重力仪被安放在男洗手间的地板上。"
+    },
+    {
+      "p": "step up",
+      "pat": [
+        "step",
+        "up"
+      ],
+      "forms": {
+        "step": [
+          "step",
+          "steps",
+          "stepped",
+          "stepping"
+        ]
+      },
+      "zh": "加大；加强；提升",
+      "en": "to increase or improve something",
+      "ex": "He has stepped up efforts to appeal to younger voters.",
+      "exZh": "他加大了争取年轻选民的力度。"
+    },
+    {
+      "p": "walk away from",
+      "pat": [
+        "walk",
+        "away",
+        "from"
+      ],
+      "forms": {
+        "walk": [
+          "walk",
+          "walks",
+          "walked",
+          "walking"
+        ]
+      },
+      "zh": "退出；放弃（谈判、交易等）",
+      "en": "to leave or abandon a deal or situation",
+      "ex": "The UK could walk away from the deal on Friday.",
+      "exZh": "英国可能在周五退出这项协议。"
+    },
+    {
+      "p": "all over",
+      "pat": [
+        "all",
+        "over"
+      ],
+      "forms": {},
+      "zh": "到处；遍及",
+      "en": "over an entire area; everywhere",
+      "ex": "The hollows are dotted all over the surface of Mercury.",
+      "exZh": "这些洼地遍布水星表面。"
+    },
+    {
+      "p": "beat up",
+      "pat": [
+        "beat",
+        "up"
+      ],
+      "forms": {
+        "beat": [
+          "beat",
+          "beats",
+          "beating"
+        ]
+      },
+      "zh": "殴打；痛打",
+      "en": "to hit someone repeatedly",
+      "ex": "Three police officers were convicted of beating up a music producer.",
+      "exZh": "三名警察因殴打一名音乐制作人被定罪。"
+    },
+    {
+      "p": "blast off",
+      "pat": [
+        "blast",
+        "off"
+      ],
+      "forms": {
+        "blast": [
+          "blast",
+          "blasts",
+          "blasted",
+          "blasting"
+        ]
+      },
+      "zh": "（火箭）发射升空",
+      "en": "to take off into space under rocket power",
+      "ex": "The BepiColombo mission blasted off in 2018.",
+      "exZh": "贝皮科伦坡任务于 2018 年发射升空。"
+    },
+    {
+      "p": "down from",
+      "pat": [
+        "down",
+        "from"
+      ],
+      "forms": {},
+      "zh": "比……低；较……下降",
+      "en": "lower than a previous value",
+      "ex": "The index is trading at 10% or more down from a recent high.",
+      "exZh": "该指数较近期高点下跌 10% 或更多。"
+    },
+    {
+      "p": "go on to do",
+      "pat": [
+        "go",
+        "on",
+        "to",
+        "DO"
+      ],
+      "forms": {
+        "go": [
+          "go",
+          "goes",
+          "went",
+          "gone",
+          "going"
+        ]
+      },
+      "zh": "接下来做某事；继续",
+      "en": "to continue to do something next",
+      "ex": "He later went on to direct the first two Harry Potter films.",
+      "exZh": "他后来接着执导了前两部《哈利·波特》电影。"
+    },
+    {
+      "p": "get into",
+      "pat": [
+        "get",
+        "into"
+      ],
+      "forms": {
+        "get": [
+          "get",
+          "gets",
+          "got",
+          "gotten",
+          "getting"
+        ]
+      },
+      "zh": "进入；到达（某种状态）",
+      "en": "to move into a place or state",
+      "ex": "The spacecraft is about to get into orbit around Mercury.",
+      "exZh": "探测器即将进入环绕水星的轨道。"
+    },
+    {
+      "p": "meet with",
+      "pat": [
+        "meet",
+        "with"
+      ],
+      "forms": {
+        "meet": [
+          "meet",
+          "meets",
+          "met",
+          "meeting"
+        ]
+      },
+      "zh": "与……会面；会见",
+      "en": "to have a meeting with someone",
+      "ex": "Culkin met with Disney executives earlier this year.",
+      "exZh": "卡尔金今年早些时候与迪士尼高管见了面。"
+    },
+    {
+      "p": "on the case",
+      "pat": [
+        "on",
+        "the",
+        "case"
+      ],
+      "forms": {},
+      "zh": "在办案；着手处理",
+      "en": "actively working on a task or investigation",
+      "ex": "PET worked with police on the case.",
+      "exZh": "PET 与警方一起办案。"
+    },
+    {
+      "p": "pay off",
+      "pat": [
+        "pay",
+        "off"
+      ],
+      "forms": {
+        "pay": [
+          "pay",
+          "pays",
+          "paid",
+          "paying"
+        ]
+      },
+      "zh": "取得回报；见效",
+      "en": "to produce good results or profit",
+      "ex": "Investors wonder whether AI investments will pay off.",
+      "exZh": "投资者质疑 AI 投资是否会带来回报。"
+    },
+    {
+      "p": "sell off",
+      "pat": [
+        "sell",
+        "off"
+      ],
+      "forms": {
+        "sell": [
+          "sell",
+          "sells",
+          "sold",
+          "selling"
+        ]
+      },
+      "zh": "抛售；清仓出售",
+      "en": "to sell assets quickly, often at a low price",
+      "ex": "Investors sold off tech stocks as the market fell.",
+      "exZh": "市场下跌时，投资者抛售了科技股。"
+    },
+    {
+      "p": "speak out",
+      "pat": [
+        "speak",
+        "out"
+      ],
+      "forms": {
+        "speak": [
+          "speak",
+          "speaks",
+          "spoke",
+          "spoken",
+          "speaking"
+        ]
+      },
+      "zh": "公开表态；直言",
+      "en": "to say publicly what you think about something",
+      "ex": "The director has spoken out about a possible sequel.",
+      "exZh": "这位导演已就可能的续集公开表态。"
+    },
+    {
+      "p": "weigh on",
+      "pat": [
+        "weigh",
+        "on"
+      ],
+      "forms": {
+        "weigh": [
+          "weigh",
+          "weighs",
+          "weighed",
+          "weighing"
+        ]
+      },
+      "zh": "拖累；使人担忧",
+      "en": "to be a burden on something; to trouble",
+      "ex": "Those pressures combined to weigh on US markets.",
+      "exZh": "这些压力共同拖累了美国市场。"
+    }
+  ]
 }
