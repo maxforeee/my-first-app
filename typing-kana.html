@@ -65,6 +65,18 @@ h1,h2{font-family:inherit;letter-spacing:.025em}h1:before{content:'> ';color:var
 a{color:var(--ac)}
 ::selection{background:rgba(0,255,120,.3);color:#fff}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+/* Force dark terminal form controls across mobile browser native styles. */
+input, textarea, select {
+  background-color: #121318 !important;
+  color: #00ff66 !important;
+  border: 1px solid rgba(0, 255, 102, 0.3) !important;
+  -webkit-appearance: none;
+  appearance: none;
+  accent-color: #00ff66;
+  caret-color: #00ff66;
+}
+input::placeholder, textarea::placeholder { color: rgba(0, 255, 102, 0.4) !important; opacity: 1; }
 </style>
 </head>
 <body>
