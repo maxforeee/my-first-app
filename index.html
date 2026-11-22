@@ -84,6 +84,15 @@
     .grid { grid-template-columns: repeat(3, 1fr); max-width: 720px; margin: 0 auto; }
     header { max-width: 720px; margin: 0 auto; }
   }
+  :root{--bg:#080b0d;--card:#0e1412;--text:#d7f5e5;--sub:#78a48b;--accent:#00ff78;--accent-soft:#102519;--border:#1d4432}
+  body{font-family:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;background-color:var(--bg);background-image:linear-gradient(rgba(0,255,120,.018) 1px,transparent 1px);background-size:100% 4px;color:var(--text);padding-bottom:calc(32px + env(safe-area-inset-bottom))}
+  header{padding-top:calc(28px + env(safe-area-inset-top))}
+  .card{border-radius:8px;background:linear-gradient(145deg,#101816,#0c1110);transition:transform .16s,border-color .16s,box-shadow .16s}
+  .card:hover{border-color:var(--accent);box-shadow:0 0 16px rgba(0,255,120,.12)}
+  .card:active{transform:scale(.985)}.card .icon{background:var(--accent-soft);border:1px solid var(--border);border-radius:8px}
+  .cats .chip{min-height:44px;background:var(--card);color:var(--text);border-color:var(--border);font-family:inherit}
+  .cats .chip.on{background:var(--accent-soft);color:var(--accent);border-color:var(--accent)}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 </style>
 </head>
 <body>

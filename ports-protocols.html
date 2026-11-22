@@ -44,6 +44,22 @@ h1{font-size:19px;margin:6px 0}
 #toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom));transform:translateX(-50%);background:var(--s2);border:1px solid var(--ok);padding:8px 14px;border-radius:10px;box-shadow:var(--sh);opacity:0;pointer-events:none;transition:opacity .2s;z-index:9}
 #toast.show{opacity:1}#toast.bad{border-color:var(--er)}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* TERMINAL THEME */
+:root{--bg:#080b0d;--s1:#0e1416;--s2:#121b1d;--tx:#d7f5e5;--mu:#78a48b;--ac:#00ff78;--ok:#00ff78;--er:#ff5c69;--bd:#1d4432;--sh:0 0 0 1px rgba(0,255,120,.035),0 8px 28px rgba(0,0,0,.55);--in:inset 0 0 12px rgba(0,0,0,.5);color-scheme:dark}
+html{background:#080b0d}
+body{font-family:ui-monospace,"SFMono-Regular",Menlo,Consolas,"Liberation Mono",monospace;background-color:var(--bg);background-image:linear-gradient(rgba(0,255,120,.018) 1px,transparent 1px);background-size:100% 4px}
+button,.btn,input,select,textarea{font-family:inherit;border-radius:7px;transition:border-color .16s ease,box-shadow .16s ease,transform .12s ease,background-color .16s ease}
+button,.btn{min-height:44px;border-color:#24583d;background:linear-gradient(180deg,#14201a,#0d1511)}
+button:hover,.btn:hover{border-color:var(--ac);box-shadow:0 0 14px rgba(0,255,120,.14)}
+button:active{transform:translateY(1px);box-shadow:inset 0 0 12px rgba(0,255,120,.16)}
+input,select,textarea{border-color:#24583d;background:#080e0b}
+input:focus,select:focus,textarea:focus{border-color:var(--ac);box-shadow:0 0 0 2px rgba(0,255,120,.12)}
+.card{border-radius:8px;border-color:#1d4432;box-shadow:var(--sh);background:linear-gradient(145deg,#101816,#0c1110)}
+h1,h2{font-family:inherit;letter-spacing:.025em}h1:before{content:'> ';color:var(--ac)}
+a{color:var(--ac)}
+::selection{background:rgba(0,255,120,.3);color:#fff}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
 </style>
 </head>
 <body>
@@ -53,6 +69,7 @@ h1{font-size:19px;margin:6px 0}
     <button id="copyAll" type="button">复制</button>
     <button id="theme" type="button" aria-label="切换明暗模式">☾</button>
   </div>
+<button type="button" class="sfx-toggle" aria-pressed="false" title="按键音效开关">♪ 音效</button>
 </header>
 <main>
 <h1>网络端口与协议速查手册</h1>
@@ -148,6 +165,9 @@ $('#copyAll').onclick=()=>{
   copy(s?entryText(s):r.map(d=>d.n+' — '+d.port+'（'+d.tr+'）').join('\n')+'\n※ 常见默认值，部署可变');
 };
 render();
+
+/* Synthesized tactile UI click; no external assets. */
+(()=>{let enabled=false,ctx;const toggle=document.querySelector('.sfx-toggle');if(!toggle)return;toggle.style.color='var(--mu)';toggle.addEventListener('click',()=>{enabled=!enabled;toggle.setAttribute('aria-pressed',String(enabled));toggle.textContent=enabled?'♪ 音效开':'♪ 音效';toggle.style.color=enabled?'var(--ac)':'var(--mu)';if(enabled)try{ctx=ctx||new(window.AudioContext||window.webkitAudioContext)()}catch(e){enabled=false}});document.addEventListener('click',e=>{if(!enabled||e.target===toggle||!e.target.closest('button'))return;try{ctx=ctx||new(window.AudioContext||window.webkitAudioContext)();const o=ctx.createOscillator(),g=ctx.createGain();o.type='square';o.frequency.setValueAtTime(880,ctx.currentTime);g.gain.setValueAtTime(.025,ctx.currentTime);g.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+.035);o.connect(g);g.connect(ctx.destination);o.start();o.stop(ctx.currentTime+.04)}catch(e){}})})();
 </script>
 </body>
 </html>
