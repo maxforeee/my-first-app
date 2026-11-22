@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>网络端口与协议速查手册</title>
+<style>
+*{box-sizing:border-box}
+:root{--bg:#121418;--s1:#1a1d23;--s2:#22262e;--tx:#e6e8ec;--mu:#98a0ac;--ac:#7aa2f7;--ok:#6fcf97;--er:#f2777a;--bd:#2b303a;--sh:0 6px 16px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.05);--in:inset 0 2px 6px rgba(0,0,0,.5);color-scheme:dark}
+[data-theme=light]{--bg:#e8ebf0;--s1:#f3f5f8;--s2:#fff;--tx:#1b1f27;--mu:#566070;--ac:#2f58c4;--ok:#17814b;--er:#bf3438;--bd:#cfd5de;--sh:0 4px 12px rgba(40,50,70,.15),inset 0 1px 0 #fff;--in:inset 0 2px 5px rgba(40,50,70,.18);color-scheme:light}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.55 system-ui,-apple-system,"PingFang SC","Noto Sans SC","Microsoft YaHei",sans-serif;padding:0 max(12px,env(safe-area-inset-right)) calc(28px + env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left))}
+main{max-width:760px;margin:0 auto}
+.top{position:sticky;top:0;z-index:5;display:flex;justify-content:space-between;align-items:center;gap:8px;padding:calc(8px + env(safe-area-inset-top)) 0 8px;background:var(--bg)}
+.act{display:flex;gap:8px}
+a{color:var(--ac)}
+button,.btn{font:inherit;color:inherit;background:var(--s2);border:1px solid var(--bd);border-radius:10px;padding:8px 12px;min-height:40px;box-shadow:var(--sh);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center}
+button:active{box-shadow:var(--in)}
+button[aria-pressed=true]{border-color:var(--ac);color:var(--ac);box-shadow:var(--in)}
+:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+input{font:inherit;font-size:16px;color:inherit;background:var(--s1);border:1px solid var(--bd);border-radius:10px;padding:9px 11px;min-height:42px;box-shadow:var(--in);width:100%}
+h1{font-size:19px;margin:6px 0}
+.mu{color:var(--mu);font-size:13px}.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.srch{display:flex;gap:8px}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:10px 2px 4px;scrollbar-width:none}
+.chips button{flex:none;min-height:34px;padding:4px 12px;font-size:14px}
+.tools{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:6px 0}
+.card{background:var(--s1);border:1px solid var(--bd);border-radius:14px;box-shadow:var(--sh);margin:10px 0;overflow:hidden}
+.card.sel{border-color:var(--ac)}
+.hd{all:unset;box-sizing:border-box;display:block;width:100%;padding:12px 14px;cursor:pointer}
+.hd:focus-visible{outline:2px solid var(--ac);outline-offset:-2px}
+.l1{display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.nm{font-weight:700;font-size:16px}.pt{color:var(--ac);font-size:14px;text-align:right}
+.l2{color:var(--mu);font-size:13px;margin-top:2px}
+.dt{padding:0 14px 14px;border-top:1px dashed var(--bd)}
+.dt h3{font-size:13px;margin:12px 0 4px;color:var(--mu);font-weight:600}
+.dt p{margin:0;font-size:14px}
+.code{display:flex;gap:8px;align-items:center;background:var(--s2);border-radius:8px;box-shadow:var(--in);padding:6px 8px;margin-top:6px}
+.code code{flex:1;word-break:break-all;font-size:13px}
+.code button{min-height:30px;padding:2px 9px;font-size:13px}
+.tag{display:inline-block;border:1px solid var(--bd);border-radius:6px;padding:0 6px;font-size:12px;margin-left:6px;color:var(--mu)}
+.empty{text-align:center;padding:28px 10px;color:var(--mu)}
+.foot{margin-top:18px;padding:10px 12px;border-left:3px solid var(--ac);background:var(--s1);border-radius:8px;font-size:13px;color:var(--mu)}
+#toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom));transform:translateX(-50%);background:var(--s2);border:1px solid var(--ok);padding:8px 14px;border-radius:10px;box-shadow:var(--sh);opacity:0;pointer-events:none;transition:opacity .2s;z-index:9}
+#toast.show{opacity:1}#toast.bad{border-color:var(--er)}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header class="top">
+  <a id="home" class="btn" href="./index.html">‹ 返回首页</a>
+  <div class="act">
+    <button id="copyAll" type="button">复制</button>
+    <button id="theme" type="button" aria-label="切换明暗模式">☾</button>
+  </div>
+</header>
+<main>
+<h1>网络端口与协议速查手册</h1>
+<p class="mu">以下均为“常见默认值，部署可变”。</p>
+<div class="srch">
+  <input id="q" type="search" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="搜索端口、协议名、别名、tcp/udp、关键词" aria-label="搜索">
+  <button id="clr" type="button" aria-label="清空搜索">清空</button>
+</div>
+<div id="chips" class="chips" role="group" aria-label="类别筛选"></div>
+<div class="tools">
+  <span id="cnt" class="mu" aria-live="polite"></span>
+  <button id="scope" type="button" aria-pressed="false">仅常见</button>
+</div>
+<div id="list"></div>
+<div class="foot">端口、协议号与过滤器均为常见默认值，实际部署可能被修改（自定义端口、端口转发、隧道封装）。排障请以设备实际配置与真实抓包为准；Wireshark 过滤器语法随版本略有差异，端口并非绝对判断依据。</div>
+</main>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script>
+'use strict';
+const HOME_HREF='./index.html'; // 返回首页链接，可按需修改
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+$('#home').href=HOME_HREF;
+const root=document.documentElement;
+function setTheme(t){root.dataset.theme=t;$('#theme').textContent=t==='dark'?'☾':'☀';try{localStorage.setItem('mfa_theme',t)}catch(e){}}
+try{const t=localStorage.getItem('mfa_theme');if(t)setTheme(t)}catch(e){}
+$('#theme').onclick=()=>setTheme(root.dataset.theme==='dark'?'light':'dark');
+function toast(m,bad){const t=$('#toast');t.textContent=m;t.className='show'+(bad?' bad':'');clearTimeout(toast.t);toast.t=setTimeout(()=>t.className='',1800)}
+async function copy(text){
+  try{await navigator.clipboard.writeText(text);toast('已复制');return}catch(e){}
+  try{const a=document.createElement('textarea');a.value=text;a.style.cssText='position:fixed;top:0;opacity:0';document.body.appendChild(a);a.select();const ok=document.execCommand('copy');a.remove();ok?toast('已复制'):toast('复制失败，请手动选择文本',1)}
+  catch(e){toast('复制失败，请手动选择文本',1)}
+}
+
+/* ---- 本地资料库（离线）：port 为显示文本，kw 为额外搜索词 ---- */
+const DATA=[
+{id:'ssh',n:'SSH',al:['Secure Shell'],cat:'远程管理',c:1,port:'TCP/22',tr:'TCP',use:'加密远程登录、命令执行、隧道转发。',clue:'连接建立后双方先交换明文版本串（如 SSH-2.0-…），随后进入加密。',note:'常被改到非 22 端口；SFTP 与 scp 也复用该端口。',f:'tcp.port == 22 || ssh',kw:'登录 shell 隧道'},
+{id:'dns',n:'DNS',al:['域名系统','DoT'],cat:'名称与地址',c:1,port:'UDP/TCP 53',tr:'UDP 为主，TCP 备用',use:'域名解析。',clue:'常规查询为小型 UDP 报文；响应被截断、区域传送或大响应时改用 TCP。DoT 使用 TCP/853。',note:'DoH 走 HTTPS(443)，看不到 53 端口。',f:'dns',kw:'域名 解析 853'},
+{id:'dhcp',n:'DHCP',al:['BOOTP','DHCPv4'],cat:'名称与地址',c:1,port:'UDP/67（服务端）、UDP/68（客户端）',tr:'UDP',use:'自动分配 IPv4 地址与网络参数。',clue:'客户端以 0.0.0.0 → 255.255.255.255 广播 Discover，随后 Offer/Request/Ack。',note:'DHCPv6 使用 UDP/546、547。中继场景下源地址为中继设备。',f:'dhcp（旧版本为 bootp）',kw:'地址分配 广播 discover'},
+{id:'http',n:'HTTP',al:['超文本传输'],cat:'Web',c:1,port:'TCP/80',tr:'TCP',use:'明文网页与 API 传输。',clue:'请求行（GET / POST）与状态行明文可见，可直接读到 Host、User-Agent。',note:'8080、8000 等常作为备用或代理端口。',f:'http || tcp.port == 80',kw:'网页 web 8080'},
+{id:'https',n:'HTTPS',al:['TLS','HTTP/3','QUIC'],cat:'Web',c:1,port:'TCP/443（HTTP/3 为 UDP/443）',tr:'TCP；QUIC 为 UDP',use:'TLS 加密的网页与 API。',clue:'TCP 握手后出现 TLS ClientHello（可见 SNI，ECH 启用时除外）；HTTP/3 为 UDP 上的 QUIC。',note:'443 上也可能跑其他 TLS 或 VPN 流量，不能只看端口。',f:'tls.handshake.type == 1  |  quic',kw:'tls ssl sni 加密'},
+{id:'ntp',n:'NTP',al:['网络时间协议'],cat:'监控与时间',c:1,port:'UDP/123',tr:'UDP',use:'时钟同步。',clue:'固定 48 字节左右的小报文，客户端与服务器往返，源目的端口通常均为 123。',note:'暴露的 NTP 服务可能被用于放大攻击，应限制访问。',f:'ntp',kw:'时间 同步 时钟'},
+{id:'snmp',n:'SNMP',al:['简单网络管理'],cat:'监控与时间',c:0,port:'UDP/161（查询）、UDP/162（Trap）',tr:'UDP',use:'设备监控与管理。',clue:'报文内含版本号与 community 字符串（v1/v2c 明文）；v3 具备认证与加密。',note:'v1/v2c 的 community 明文传输，应避免使用默认 public/private。',f:'snmp',kw:'监控 trap community mib'},
+{id:'smtp',n:'SMTP',al:['邮件发送','SMTPS','Submission'],cat:'邮件',c:1,port:'TCP/25（服务器间）、TCP/587（提交）、TCP/465（隐式 TLS）',tr:'TCP',use:'邮件发送与服务器间投递。',clue:'明文会话可见 220 欢迎语、EHLO、MAIL FROM；587 通常经 STARTTLS 升级为加密。',note:'许多云服务商默认封锁出站 25。',f:'smtp || tcp.port == 587',kw:'邮件 发信 starttls'},
+{id:'imap',n:'IMAP',al:['邮件收取','IMAPS'],cat:'邮件',c:0,port:'TCP/143、TCP/993（隐式 TLS）',tr:'TCP',use:'邮箱同步与收取。',clue:'明文会话可见 * OK 欢迎语与带标签的命令（如 a001 LOGIN）。',note:'POP3 为 TCP/110、995，请勿混淆。',f:'imap || tcp.port == 993',kw:'邮件 收信 mailbox'},
+{id:'rdp',n:'RDP',al:['远程桌面','Remote Desktop'],cat:'远程管理',c:1,port:'TCP/3389（也可用 UDP/3389）',tr:'TCP，可附带 UDP',use:'Windows 远程桌面。',clue:'连接开始为 TPKT/X.224 请求，随后协商安全层（TLS/CredSSP）。',note:'直接暴露公网风险高，建议经 VPN 或网关访问。',f:'rdp || tcp.port == 3389',kw:'windows 远程 桌面'},
+{id:'ftp',n:'FTP',al:['文件传输协议'],cat:'文件传输',c:0,port:'TCP/21（控制）、数据连接 TCP/20 或动态端口',tr:'TCP',use:'明文文件传输。',clue:'控制通道明文可见 USER/PASS 命令；被动模式（PASV）数据端口随机。',note:'凭据明文，仅在隔离网络使用；防火墙需要 FTP 辅助模块。',f:'ftp || ftp-data',kw:'上传 下载 pasv'},
+{id:'sftp',n:'SFTP',al:['SSH File Transfer'],cat:'文件传输',c:1,port:'TCP/22（基于 SSH）',tr:'TCP',use:'经 SSH 加密的文件传输。',clue:'流量与 SSH 难以区分，需端点日志确认子系统。',note:'与 FTPS（FTP over TLS）是不同协议，不要混淆。',f:'ssh',kw:'文件 传输 scp'},
+{id:'telnet',n:'Telnet',al:[],cat:'远程管理',c:0,port:'TCP/23',tr:'TCP',use:'明文远程终端，现多见于老旧设备。',clue:'用户名、密码和输入内容逐字符明文传输。',note:'应尽量以 SSH 取代；实验排障时需注意 Wireshark 会看到完整口令。',f:'telnet',kw:'终端 明文 老设备'},
+{id:'ospf',n:'OSPF',al:['开放最短路径优先'],cat:'路由',c:1,port:'IP 协议号 89（无 TCP/UDP 端口）',tr:'直接封装于 IP',use:'链路状态内部网关路由协议。',clue:'组播 224.0.0.5（所有 OSPF 路由器）与 224.0.0.6（DR/BDR），Hello 包周期出现。',note:'它不是端口号 89，按端口过滤会漏掉；IPv6 对应 OSPFv3。',f:'ospf || ip.proto == 89',kw:'路由 协议号 组播 hello lsa'},
+{id:'bgp',n:'BGP',al:['边界网关协议'],cat:'路由',c:1,port:'TCP/179',tr:'TCP',use:'自治系统间路由交换。',clue:'邻居间长期 TCP 连接，可见 OPEN、KEEPALIVE、UPDATE 报文。',note:'多使用 TCP-AO 或 MD5 选项保护；一端使用 179，另一端为临时端口。',f:'bgp || tcp.port == 179',kw:'路由 邻居 as update'},
+{id:'wg',n:'WireGuard',al:['WG'],cat:'VPN',c:1,port:'UDP/51820（可配置）',tr:'UDP',use:'轻量级 VPN 隧道。',clue:'无明文协议标识；常见握手报文为固定长度（发起约 148 字节、应答约 92 字节），空闲时有小的保活包。',note:'监听端口由配置决定，未必是 51820；按端口过滤可能漏判。',f:'wg || udp.port == 51820',kw:'vpn 隧道 udp'}
+];
+const cats=['全部',...new Set(DATA.map(d=>d.cat))];
+let cat='全部',onlyCommon=true,query='',open=null,sel=null;
+
+/* 搜索：把名称/别名/端口/传输/类别/关键词拼成一串小写文本做包含匹配；多个词需同时命中 */
+const hay=d=>(d.n+' '+d.al.join(' ')+' '+d.port+' '+d.tr+' '+d.cat+' '+d.kw+' '+d.use).toLowerCase();
+function filtered(){
+  const ws=query.toLowerCase().split(/\s+/).filter(Boolean);
+  return DATA.filter(d=>(cat==='全部'||d.cat===cat)&&(!onlyCommon||d.c)&&ws.every(w=>hay(d).includes(w.replace('/',''))||hay(d).includes(w)));
+}
+function entryText(d){return d.n+'（'+d.cat+'）\n端口/协议号: '+d.port+'\n传输: '+d.tr+'\n用途: '+d.use+'\n抓包线索: '+d.clue+'\n注意: '+d.note+'\nWireshark 过滤器: '+d.f+'\n※ 常见默认值，部署可变，以实际配置与抓包为准'}
+function render(){
+  const r=filtered();
+  $('#cnt').textContent='共 '+r.length+' 条'+(onlyCommon?'（常见）':'（全部）');
+  $('#chips').innerHTML=cats.map(c=>'<button type="button" data-cat="'+c+'" aria-pressed="'+(c===cat)+'">'+c+'</button>').join('');
+  $('#scope').textContent=onlyCommon?'仅常见':'显示全部';$('#scope').setAttribute('aria-pressed',onlyCommon);
+  if(!r.length){$('#list').innerHTML='<div class="empty">没有匹配的条目<br><br><button type="button" id="clr2">清除搜索与筛选</button></div>';return}
+  $('#list').innerHTML=r.map(d=>{
+    const o=open===d.id;
+    return '<article class="card'+(sel===d.id?' sel':'')+'"><button class="hd" type="button" data-id="'+d.id+'" aria-expanded="'+o+'"><div class="l1"><span class="nm">'+esc(d.n)+(d.c?'':'<span class="tag">非常见</span>')+'</span><span class="pt mono">'+esc(d.port.split('（')[0])+'</span></div><div class="l2">'+esc(d.tr)+'｜'+esc(d.use)+'</div></button>'
+    +(o?'<div class="dt"><h3>完整端口 / 协议号</h3><p>'+esc(d.port)+'</p><h3>抓包识别线索</h3><p>'+esc(d.clue)+'</p><h3>注意事项</h3><p>'+esc(d.note)+'</p><h3>Wireshark 显示过滤器示例（需结合实际流量与版本）</h3><div class="code"><code class="mono">'+esc(d.f)+'</code><button type="button" data-cf="'+d.id+'">复制过滤器</button></div><div class="code"><span class="mu" style="flex:1">复制本条摘要</span><button type="button" data-ce="'+d.id+'">复制摘要</button></div></div>':'')+'</article>';
+  }).join('');
+}
+$('#list').addEventListener('click',e=>{
+  const b=e.target.closest('button');if(!b){return}
+  if(b.id==='clr2'){query='';cat='全部';$('#q').value='';render();return}
+  const get=id=>DATA.find(d=>d.id===id);
+  if(b.dataset.cf){copy(get(b.dataset.cf).f.split('  |  ')[0].split('（')[0]);return}
+  if(b.dataset.ce){copy(entryText(get(b.dataset.ce)));return}
+  if(b.dataset.id){open=open===b.dataset.id?null:b.dataset.id;if(open)sel=open;render()}
+});
+$('#chips').addEventListener('click',e=>{const b=e.target.closest('[data-cat]');if(b){cat=b.dataset.cat;render()}});
+$('#scope').onclick=()=>{onlyCommon=!onlyCommon;render()};
+$('#q').addEventListener('input',e=>{query=e.target.value;render()});
+$('#clr').onclick=()=>{query='';$('#q').value='';render();$('#q').focus({preventScroll:true})};
+/* 复制：有选中（最近展开）的条目则复制该条，否则复制当前结果列表 */
+$('#copyAll').onclick=()=>{
+  const r=filtered();if(!r.length){toast('当前没有可复制的结果',1);return}
+  const s=r.find(d=>d.id===sel);
+  copy(s?entryText(s):r.map(d=>d.n+' — '+d.port+'（'+d.tr+'）').join('\n')+'\n※ 常见默认值，部署可变');
+};
+render();
+</script>
+</body>
+</html>

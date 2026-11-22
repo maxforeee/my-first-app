@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>打字 / 假名极速练习器</title>
+<style>
+*{box-sizing:border-box}
+:root{--bg:#121418;--s1:#1a1d23;--s2:#22262e;--tx:#e6e8ec;--mu:#7d8593;--ac:#7aa2f7;--ok:#6fcf97;--er:#f2777a;--bd:#2b303a;--sh:0 6px 16px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.05);--in:inset 0 2px 6px rgba(0,0,0,.5);color-scheme:dark}
+[data-theme=light]{--bg:#e8ebf0;--s1:#f3f5f8;--s2:#fff;--tx:#1b1f27;--mu:#667080;--ac:#2f58c4;--ok:#17814b;--er:#bf3438;--bd:#cfd5de;--sh:0 4px 12px rgba(40,50,70,.15),inset 0 1px 0 #fff;--in:inset 0 2px 5px rgba(40,50,70,.18);color-scheme:light}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.55 system-ui,-apple-system,"PingFang SC","Noto Sans SC","Hiragino Sans","Yu Gothic","Microsoft YaHei",sans-serif;padding:0 max(12px,env(safe-area-inset-right)) calc(28px + env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left))}
+main{max-width:760px;margin:0 auto}
+.top{position:sticky;top:0;z-index:5;display:flex;justify-content:space-between;align-items:center;gap:8px;padding:calc(8px + env(safe-area-inset-top)) 0 8px;background:var(--bg)}
+.act{display:flex;gap:8px}
+a{color:var(--ac)}
+button,.btn,select{font:inherit;color:inherit;background:var(--s2);border:1px solid var(--bd);border-radius:10px;padding:8px 12px;min-height:40px;box-shadow:var(--sh);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center}
+select{display:block;appearance:auto;font-size:15px}
+button:active{box-shadow:var(--in)}
+button[aria-pressed=true]{border-color:var(--ac);color:var(--ac);box-shadow:var(--in)}
+:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+h1{font-size:19px;margin:6px 0}
+.mu{color:var(--mu);font-size:13px}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0;align-items:center}
+.grp{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.card{background:var(--s1);border:1px solid var(--bd);border-radius:14px;box-shadow:var(--sh);padding:14px;margin:12px 0}
+.hud{display:flex;justify-content:space-between;font-size:20px;margin-bottom:8px}
+.hud b{color:var(--ac)}
+.area{min-height:132px;max-height:132px;overflow:hidden;font-size:22px;line-height:1.75;border-radius:10px;background:var(--s2);box-shadow:var(--in);padding:10px 12px;cursor:text;word-break:break-word}
+.w{display:inline-block;margin-right:.55em}
+.w.cur{border-bottom:2px solid var(--ac)}
+.w.bad{text-decoration:underline wavy var(--er)}
+.c-ok{color:var(--tx)}.c-er{color:var(--er);text-decoration:underline}.c-un{color:var(--mu)}
+.kq{display:flex;flex-wrap:wrap;gap:10px;align-items:baseline;justify-content:center;min-height:132px;align-content:center}
+.kq span{font-size:28px;color:var(--mu)}.kq span.cur{font-size:64px;color:var(--tx);border-bottom:3px solid var(--ac);line-height:1.2}
+.kq span.done{color:var(--ok)}
+.hint{text-align:center;min-height:1.6em;font-size:15px}
+#inp{width:100%;margin-top:10px;font:inherit;font-size:18px;color:inherit;background:var(--s2);border:1px solid var(--bd);border-radius:10px;padding:10px 12px;min-height:46px;box-shadow:var(--in)}
+.fb{min-height:1.6em;margin-top:6px;font-size:14px}
+.ok{color:var(--ok)}.er{color:var(--er)}
+.res{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:10px}
+.res div{background:var(--s2);border-radius:10px;padding:8px 10px;box-shadow:var(--in)}
+.res b{display:block;font-size:22px}
+details{margin-top:8px;font-size:13px;color:var(--mu)}
+summary{cursor:pointer;min-height:32px}
+label.chk{display:flex;gap:6px;align-items:center;font-size:14px}
+label.chk input{width:18px;height:18px;accent-color:var(--ac)}
+#toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom));transform:translateX(-50%);background:var(--s2);border:1px solid var(--ok);padding:8px 14px;border-radius:10px;box-shadow:var(--sh);opacity:0;pointer-events:none;transition:opacity .2s;z-index:9}
+#toast.show{opacity:1}#toast.bad{border-color:var(--er)}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header class="top">
+  <a id="home" class="btn" href="./index.html">‹ 返回首页</a>
+  <div class="act">
+    <button id="copyAll" type="button">复制成绩</button>
+    <button id="theme" type="button" aria-label="切换明暗模式">☾</button>
+  </div>
+</header>
+<main>
+<h1>打字 / 假名极速练习器</h1>
+
+<div class="card">
+  <div class="row" role="group" aria-label="模式"><button id="mEn" type="button" aria-pressed="true">English</button><button id="mKa" type="button" aria-pressed="false">假名 かな</button>
+  <span class="mu">时长</span><div class="grp" id="durs" role="group" aria-label="时长"></div></div>
+  <div id="enOpt" class="row"><label class="chk"><input type="checkbox" id="oCap">大写</label><label class="chk"><input type="checkbox" id="oPun">标点</label></div>
+  <div id="kaOpt" class="row" hidden>
+    <select id="kScript" aria-label="文字"><option value="h">平假名</option><option value="k">片假名</option><option value="m">混合</option></select>
+    <select id="kSet" aria-label="练习范围"></select>
+    <label class="chk"><input type="checkbox" id="oHint" checked>显示罗马字提示</label>
+  </div>
+</div>
+
+<div class="card">
+  <div class="hud mono"><span id="tm">--</span><span id="pg"></span></div>
+  <div id="area" class="area" role="presentation"></div>
+  <div id="kq" class="kq" hidden></div>
+  <div id="hint" class="hint mono" hidden></div>
+  <input id="inp" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="done" aria-label="在此输入">
+  <div id="fb" class="fb" role="status" aria-live="polite"></div>
+  <div class="row"><button id="bRe" type="button">重新开始</button><button id="bPa" type="button" disabled>暂停</button></div>
+</div>
+
+<div id="resCard" class="card" hidden aria-live="polite">
+  <div id="resT" style="font-weight:700"></div>
+  <div id="res" class="res mono"></div>
+  <p id="resN" class="mu"></p>
+</div>
+
+<div class="card">
+  <label class="chk"><input type="checkbox" id="oSave">把本机最佳成绩保存到 LocalStorage</label>
+  <div id="best" class="mu" style="margin-top:6px"></div>
+  <div class="row"><button id="bClr" type="button">清除已保存成绩</button></div>
+  <p class="mu">数据仅保存在本机浏览器，不上传；练习输入不会被发送到任何地方。</p>
+  <details><summary>罗马字规则与速度口径</summary>
+    <p>假名模式按“一个假名一个罗马字”判定，输入完整拼法即自动通过，打错则清空重输。接受的常见拼法：し shi/si，ち chi/ti，つ tsu/tu，ふ fu/hu，じ ji/zi，ぢ ji/di/zi，づ zu/du，を wo/o，ん n/nn；拗音如 しゃ sha/sya，ちゃ cha/tya/cya，じゃ ja/jya/zya。ん 输入 n 即通过；若下一个假名不以 n 开头，多输入的第二个 n 会被忽略。</p>
+    <p>English：WPM = 正确字符数 ÷ 5 ÷ 分钟（每个正确单词的空格计入）。假名：KPM = 每分钟答对的假名数；准确率 = 正确按键组 ÷ 总提交组数（一次完整提交算一次）。</p>
+  </details>
+</div>
+</main>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script>
+'use strict';
+const HOME_HREF='./index.html'; // 返回首页链接，可按需修改
+const $=s=>document.querySelector(s);
+$('#home').href=HOME_HREF;
+const root=document.documentElement;
+function setTheme(t){root.dataset.theme=t;$('#theme').textContent=t==='dark'?'☾':'☀';try{localStorage.setItem('mfa_theme',t)}catch(e){}}
+try{const t=localStorage.getItem('mfa_theme');if(t)setTheme(t)}catch(e){}
+$('#theme').onclick=()=>setTheme(root.dataset.theme==='dark'?'light':'dark');
+function toast(m,bad){const t=$('#toast');t.textContent=m;t.className='show'+(bad?' bad':'');clearTimeout(toast.t);toast.t=setTimeout(()=>t.className='',1800)}
+async function copy(text){
+  try{await navigator.clipboard.writeText(text);toast('已复制');return}catch(e){}
+  try{const a=document.createElement('textarea');a.value=text;a.style.cssText='position:fixed;top:0;opacity:0';document.body.appendChild(a);a.select();const ok=document.execCommand('copy');a.remove();ok?toast('已复制'):toast('复制失败，请手动选择文本',1)}
+  catch(e){toast('复制失败，请手动选择文本',1)}
+}
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+/* ---- 词库 ---- */
+const WORDS='the be to of and a in that have I it for not on with he as you do at this but his by from they we say her she or an will my one all would there their what so up out if about who get which go me when make can like time no just him know take people into year your good some could them see other than then now look only come its over think also back after use two how our work first well way even new want because any these give day most us'.split(' ');
+
+/* ---- 假名数据：[平假名, [罗马字拼法...]] ----
+ 片假名由平假名码位 +0x60 得到，罗马字相同。 */
+const SEI=[['あいうえお',[['a'],['i'],['u'],['e'],['o']]],
+ ['かきくけこ',[['ka'],['ki'],['ku'],['ke'],['ko']]],
+ ['さしすせそ',[['sa'],['shi','si'],['su'],['se'],['so']]],
+ ['たちつてと',[['ta'],['chi','ti'],['tsu','tu'],['te'],['to']]],
+ ['なにぬねの',[['na'],['ni'],['nu'],['ne'],['no']]],
+ ['はひふへほ',[['ha'],['hi'],['fu','hu'],['he'],['ho']]],
+ ['まみむめも',[['ma'],['mi'],['mu'],['me'],['mo']]],
+ ['やゆよ',[['ya'],['yu'],['yo']]],
+ ['らりるれろ',[['ra'],['ri'],['ru'],['re'],['ro']]],
+ ['わをん',[['wa'],['wo','o'],['n','nn']]]];
+const DAKU=[['がぎぐげご',[['ga'],['gi'],['gu'],['ge'],['go']]],
+ ['ざじずぜぞ',[['za'],['ji','zi'],['zu'],['ze'],['zo']]],
+ ['だぢづでど',[['da'],['ji','di','zi'],['zu','du'],['de'],['do']]],
+ ['ばびぶべぼ',[['ba'],['bi'],['bu'],['be'],['bo']]],
+ ['ぱぴぷぺぽ',[['pa'],['pi'],['pu'],['pe'],['po']]]];
+const YOU=[['きゃきゅきょ',[['kya'],['kyu'],['kyo']]],['しゃしゅしょ',[['sha','sya'],['shu','syu'],['sho','syo']]],
+ ['ちゃちゅちょ',[['cha','tya','cya'],['chu','tyu','cyu'],['cho','tyo','cyo']]],['にゃにゅにょ',[['nya'],['nyu'],['nyo']]],
+ ['ひゃひゅひょ',[['hya'],['hyu'],['hyo']]],['みゃみゅみょ',[['mya'],['myu'],['myo']]],['りゃりゅりょ',[['rya'],['ryu'],['ryo']]],
+ ['ぎゃぎゅぎょ',[['gya'],['gyu'],['gyo']]],['じゃじゅじょ',[['ja','jya','zya'],['ju','jyu','zyu'],['jo','jyo','zyo']]],
+ ['びゃびゅびょ',[['bya'],['byu'],['byo']]],['ぴゃぴゅぴょ',[['pya'],['pyu'],['pyo']]]];
+/* 拗音由 2 个字符组成，按 3 个一组拆分为 き+ゃ 的组合 */
+function expand(rows,you){const out=[];rows.forEach(([ks,rs],ri)=>{const n=you?2:1,cs=[...ks];for(let i=0;i<rs.length;i++)out.push({h:cs.slice(i*n,i*n+n).join(''),r:rs[i],row:ri})});return out}
+const G={sei:SEI.map(r=>expand([r])),daku:DAKU.map(r=>expand([r])),you:YOU.map(r=>expand([r],1))};
+const toK=s=>[...s].map(c=>{const n=c.codePointAt(0);return n>=0x3041&&n<=0x3096?String.fromCodePoint(n+0x60):c}).join('');
+const SETS=[['sei','清音（全部）',G.sei.flat()],['daku','浊音 / 半浊音',G.daku.flat()],['you','拗音',G.you.flat()],['all','全部随机',[...G.sei.flat(),...G.daku.flat(),...G.you.flat()]]];
+SEI.forEach((r,i)=>SETS.push(['s'+i,'清音 · '+r[0][0]+'行',G.sei[i]]));
+DAKU.forEach((r,i)=>SETS.push(['d'+i,'浊/半浊 · '+r[0][0]+'行',G.daku[i]]));
+
+/* ---- 状态 ---- */
+let mode='en',dur=30,run=null; // run: 一次练习的全部状态
+const DURS=[15,30,60];
+$('#durs').innerHTML=DURS.map(d=>'<button type="button" data-d="'+d+'" aria-pressed="'+(d===dur)+'">'+d+'s</button>').join('');
+$('#kSet').innerHTML=SETS.map(s=>'<option value="'+s[0]+'">'+s[1]+'</option>').join('');
+const rnd=a=>a[Math.floor(Math.random()*a.length)];
+const now=()=>performance.now();
+
+function newRun(){
+  const base={mode,dur,started:false,paused:false,over:false,t0:0,acc:0,left:dur,total:0,err:0,okC:0,done:0};
+  if(mode==='en'){
+    if(!WORDS.length){$('#fb').textContent='词库为空，无法开始。';return null}
+    Object.assign(base,{words:[],idx:0,typed:'',wr:0,wc:0});
+    for(let i=0;i<60;i++)base.words.push(nextWord());
+  }else{
+    const set=SETS.find(s=>s[0]===$('#kSet').value)||SETS[0];
+    if(!set[2].length){$('#fb').textContent='所选范围没有内容。';return null}
+    Object.assign(base,{pool:set[2],q:[],idx:0,script:$('#kScript').value,lastN:false,setName:set[1]});
+    for(let i=0;i<14;i++)base.q.push(nextKana(base));
+  }
+  return base;
+}
+function nextWord(){
+  let w=rnd(WORDS);
+  if($('#oCap').checked&&Math.random()<.3)w=w[0].toUpperCase()+w.slice(1);
+  if($('#oPun').checked&&Math.random()<.25)w+=rnd([',','.','?','!',';']);
+  return w;
+}
+function nextKana(r){
+  const k=rnd(r.pool),sc=r.script==='m'?rnd(['h','k']):r.script;
+  return{c:sc==='k'?toK(k.h):k.h,r:k.r,st:0}; // st: 0 待输入, 1 已答对
+}
+
+/* ---- 渲染 ---- */
+function render(){
+  const r=run;if(!r)return;
+  $('#tm').textContent=Math.max(0,Math.ceil(r.left))+'s';
+  if(r.mode==='en'){
+    $('#area').innerHTML=r.words.slice(Math.max(0,r.idx-4),r.idx+30).map((w,i)=>{
+      const gi=Math.max(0,r.idx-4)+i;
+      if(gi<r.idx)return'<span class="w c-ok">'+esc(w)+'</span>';
+      if(gi>r.idx)return'<span class="w c-un">'+esc(w)+'</span>';
+      let h='';[...w].forEach((ch,j)=>{const t=r.typed[j];h+='<span class="'+(t==null?'c-un':t===ch?'c-ok':'c-er')+'">'+esc(ch)+'</span>'});
+      for(let j=w.length;j<r.typed.length;j++)h+='<span class="c-er">'+esc(r.typed[j])+'</span>';
+      return'<span class="w cur">'+h+'</span>';
+    }).join('');
+    $('#pg').textContent='WPM '+wpm(r);
+  }else{
+    $('#kq').innerHTML=r.q.slice(r.idx,r.idx+8).map((k,i)=>'<span class="'+(i===0?'cur':'')+'">'+esc(k.c)+'</span>').join('');
+    $('#hint').textContent=$('#oHint').checked&&r.q[r.idx]?r.q[r.idx].r.join(' / '):'';
+    $('#pg').textContent='已答 '+r.done+'  KPM '+kpm(r);
+  }
+}
+function elapsed(r){return(r.acc+(r.started&&!r.paused&&!r.over?now()-r.t0:0))/1000}
+const wpm=r=>{const e=elapsed(r);return e>0?Math.round(r.okC/5/(e/60)):0};
+const kpm=r=>{const e=elapsed(r);return e>0?Math.round(r.done/(e/60)):0};
+const accOf=r=>r.total?Math.round((r.total-r.err)/r.total*1000)/10:100;
+
+/* ---- 计时：以真实时间差计算剩余时间，不依赖回调是否准时 ---- */
+let timer=null;
+function tick(){
+  const r=run;if(!r||!r.started||r.paused||r.over)return;
+  r.left=r.dur-elapsed(r);
+  if(r.left<=0){finish();return}
+  $('#tm').textContent=Math.ceil(r.left)+'s';
+}
+function start(){const r=run;if(r.started)return;r.started=true;r.t0=now();$('#bPa').disabled=false;clearInterval(timer);timer=setInterval(tick,100)}
+function pause(on){
+  const r=run;if(!r||!r.started||r.over||r.paused===on)return;
+  if(on){r.acc+=now()-r.t0;r.paused=true;$('#bPa').textContent='继续';$('#inp').disabled=true;$('#fb').textContent='已暂停'}
+  else{r.t0=now();r.paused=false;$('#bPa').textContent='暂停';$('#inp').disabled=false;$('#fb').textContent='';$('#inp').focus({preventScroll:true})}
+}
+document.addEventListener('visibilitychange',()=>{if(document.hidden)pause(true)}); // 切到后台自动暂停
+
+/* ---- 输入处理 ---- */
+$('#inp').addEventListener('input',e=>{
+  const r=run;if(!r||r.over||r.paused)return;
+  if(!r.started)start();
+  r.mode==='en'?inEn(e.target):inKa(e.target);
+  render();
+});
+function inEn(el){
+  const r=run,v=el.value;
+  if(v.endsWith(' ')){ // 空格提交当前单词
+    const typed=v.trim(),w=r.words[r.idx];
+    if(typed.length){
+      if(typed===w){r.okC+=w.length+1;r.done++;$('#fb').innerHTML='<span class="ok">✓ 正确</span>'}
+      else{$('#fb').innerHTML='<span class="er">✗ 单词错误：应为 '+esc(w)+'</span>'}
+      r.idx++;if(r.idx>r.words.length-25)for(let i=0;i<30;i++)r.words.push(nextWord());
+    }
+    el.value='';r.typed='';return;
+  }
+  if(v.length>r.typed.length){ // 新增字符：逐字符统计按键对错
+    for(let j=r.typed.length;j<v.length;j++){r.total++;if(v[j]!==r.words[r.idx][j])r.err++}
+  }
+  r.typed=v;
+}
+function inKa(el){
+  const r=run,v=el.value.toLowerCase().trim(),k=r.q[r.idx];if(!v)return;
+  // ん 之后的多余 n：下一个假名不以 n 开头时忽略
+  if(r.lastN&&v==='n'&&!k.r.some(x=>x.startsWith('n'))){el.value='';r.lastN=false;return}
+  if(k.r.includes(v)){
+    r.total++;r.done++;r.okC++;r.lastN=(k.c==='ん'||k.c==='ン')&&v==='n';
+    $('#fb').innerHTML='<span class="ok">✓ '+esc(k.c)+' = '+esc(v)+'</span>';
+    r.idx++;if(r.idx>r.q.length-8)for(let i=0;i<10;i++)r.q.push(nextKana(r));
+    el.value='';
+  }else if(!k.r.some(x=>x.startsWith(v))){ // 不是任何拼法的前缀：判错并清空
+    r.total++;r.err++;r.lastN=false;
+    $('#fb').innerHTML='<span class="er">✗ '+esc(v)+'：'+esc(k.c)+' 应为 '+esc(k.r.join(' / '))+'</span>';
+    el.value='';
+  }
+}
+
+/* ---- 结束与成绩 ---- */
+function summaryText(){
+  const r=run;if(!r||!r.over)return'';
+  const sp=r.mode==='en'?'WPM '+wpm(r):'KPM '+kpm(r);
+  return(r.mode==='en'?'英文打字':'假名练习（'+r.setName+'）')+' '+r.dur+'s\n'+sp+'｜准确率 '+accOf(r)+'%｜错误 '+r.err+'｜用时 '+r.dur+'s'+(r.mode==='en'?'｜单词 '+r.done:'｜假名 '+r.done);
+}
+function finish(){
+  const r=run;r.acc+=r.paused?0:now()-r.t0;r.over=true;r.left=0;clearInterval(timer);
+  $('#tm').textContent='0s';$('#inp').disabled=true;$('#bPa').disabled=true;$('#fb').textContent='';
+  const sp=r.mode==='en'?wpm(r):kpm(r),lb=r.mode==='en'?'WPM':'KPM';
+  $('#resCard').hidden=false;$('#resT').textContent='练习结束';
+  $('#res').innerHTML='<div>'+lb+'<b>'+sp+'</b></div><div>准确率<b>'+accOf(r)+'%</b></div><div>错误数<b>'+r.err+'</b></div><div>时长<b>'+r.dur+'s</b></div>';
+  $('#resN').textContent=r.mode==='en'?'WPM = 正确字符数 ÷ 5 ÷ 分钟。':'KPM = 每分钟答对的假名数；准确率按提交次数计算。';
+  saveBest(r,sp);
+}
+const BK='kt_best_v1';
+function readBest(){try{return JSON.parse(localStorage.getItem(BK))||{}}catch(e){return{}}}
+function saveBest(r,sp){
+  if(!$('#oSave').checked)return;
+  const k=r.mode+r.dur,b=readBest();
+  if(!b[k]||sp>b[k].v){b[k]={v:sp,a:accOf(r)};try{localStorage.setItem(BK,JSON.stringify(b))}catch(e){toast('本地存储不可用，成绩未保存',1)}}
+  showBest();
+}
+function showBest(){
+  const b=readBest(),ks=Object.keys(b);
+  $('#best').textContent=ks.length?'本机最佳：'+ks.map(k=>(k.startsWith('en')?'EN ':'かな ')+k.replace(/\D*/,'')+'s '+b[k].v+(k.startsWith('en')?' WPM':' KPM')+'（'+b[k].a+'%）').join('；'):'暂无已保存成绩。';
+}
+$('#bClr').onclick=()=>{try{localStorage.removeItem(BK)}catch(e){}showBest();toast('已清除已保存成绩')};
+$('#oSave').addEventListener('change',e=>{try{localStorage.setItem('kt_save',e.target.checked?'1':'0')}catch(x){}});
+$('#copyAll').onclick=()=>{const t=summaryText();t?copy(t):toast('先完成一次练习再复制成绩',1)};
+
+/* ---- 控制 ---- */
+function restart(){
+  clearInterval(timer);$('#resCard').hidden=true;$('#fb').textContent='';
+  $('#inp').value='';$('#inp').disabled=false;$('#bPa').disabled=true;$('#bPa').textContent='暂停';
+  const en=mode==='en';
+  $('#area').hidden=!en;$('#kq').hidden=en;$('#hint').hidden=en;$('#enOpt').hidden=!en;$('#kaOpt').hidden=en;
+  $('#mEn').setAttribute('aria-pressed',en);$('#mKa').setAttribute('aria-pressed',!en);
+  $('#inp').setAttribute('aria-label',en?'在此输入英文单词，空格提交':'在此输入当前假名的罗马字');
+  run=newRun();$('#pg').textContent='';
+  if(run){render();$('#inp').focus({preventScroll:true})}else $('#tm').textContent='--';
+}
+$('#bRe').onclick=restart;
+$('#bPa').onclick=()=>pause(!run.paused);
+$('#mEn').onclick=()=>{mode='en';restart()};
+$('#mKa').onclick=()=>{mode='ka';restart()};
+$('#durs').addEventListener('click',e=>{const b=e.target.closest('[data-d]');if(!b)return;dur=+b.dataset.d;$('#durs').querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));restart()});
+['#oCap','#oPun','#kScript','#kSet'].forEach(s=>$(s).addEventListener('change',restart));
+$('#oHint').addEventListener('change',render);
+$('#area').addEventListener('click',()=>$('#inp').focus({preventScroll:true}));
+$('#kq').addEventListener('click',()=>$('#inp').focus({preventScroll:true}));
+try{$('#oSave').checked=localStorage.getItem('kt_save')==='1'}catch(e){}
+showBest();restart();
+</script>
+</body>
+</html>

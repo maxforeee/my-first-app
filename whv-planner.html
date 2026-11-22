@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>澳洲 WHV 资料清单与预算看板</title>
+<style>
+*{box-sizing:border-box}
+:root{--bg:#121418;--s1:#1a1d23;--s2:#22262e;--tx:#e6e8ec;--mu:#98a0ac;--ac:#7aa2f7;--ok:#6fcf97;--er:#f2777a;--bd:#2b303a;--sh:0 6px 16px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.05);--in:inset 0 2px 6px rgba(0,0,0,.5);color-scheme:dark}
+[data-theme=light]{--bg:#e8ebf0;--s1:#f3f5f8;--s2:#fff;--tx:#1b1f27;--mu:#566070;--ac:#2f58c4;--ok:#17814b;--er:#bf3438;--bd:#cfd5de;--sh:0 4px 12px rgba(40,50,70,.15),inset 0 1px 0 #fff;--in:inset 0 2px 5px rgba(40,50,70,.18);color-scheme:light}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.55 system-ui,-apple-system,"PingFang SC","Noto Sans SC","Microsoft YaHei",sans-serif;padding:0 max(12px,env(safe-area-inset-right)) calc(28px + env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left))}
+main{max-width:760px;margin:0 auto}
+.top{position:sticky;top:0;z-index:5;display:flex;justify-content:space-between;align-items:center;gap:8px;padding:calc(8px + env(safe-area-inset-top)) 0 8px;background:var(--bg)}
+.act{display:flex;gap:8px}
+a{color:var(--ac)}
+button,.btn{font:inherit;color:inherit;background:var(--s2);border:1px solid var(--bd);border-radius:10px;padding:8px 12px;min-height:40px;box-shadow:var(--sh);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center}
+button:active{box-shadow:var(--in)}
+:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+input,textarea{font:inherit;font-size:16px;color:inherit;background:var(--s1);border:1px solid var(--bd);border-radius:10px;padding:9px 11px;min-height:42px;box-shadow:var(--in);width:100%}
+input[type=checkbox]{width:22px;height:22px;min-height:0;flex:none;accent-color:var(--ac);box-shadow:none}
+textarea{min-height:90px;font-size:13px}
+h1{font-size:19px;margin:6px 0}h2{font-size:16px;margin:0 0 8px}h3{font-size:15px;margin:0}
+.card{background:var(--s1);border:1px solid var(--bd);border-radius:14px;box-shadow:var(--sh);padding:14px;margin:12px 0}
+.mu{color:var(--mu);font-size:13px}.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.warn{border-left:3px solid var(--er);background:var(--s1);padding:8px 10px;border-radius:8px;font-size:13px;margin:10px 0}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;align-items:center}.row>input{flex:1 1 140px}
+.bar{height:8px;border-radius:6px;background:var(--s2);box-shadow:var(--in);overflow:hidden;margin:6px 0}
+.bar i{display:block;height:100%;background:var(--ac)}
+.stg{margin-top:14px;padding-top:10px;border-top:1px dashed var(--bd)}
+.hd{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.it{padding:6px 0}.it .l{display:flex;gap:10px;align-items:center}
+.it label{flex:1;word-break:break-word}.it.done label{text-decoration:line-through;color:var(--mu)}
+.it button{min-height:34px;padding:2px 9px;font-size:13px}
+.it input.nt{margin-top:6px;min-height:36px;font-size:14px}
+.br{display:grid;grid-template-columns:1fr 110px 40px;gap:8px;margin-top:8px}.br button{padding:0;justify-content:center}
+.sm{display:grid;grid-template-columns:auto 1fr;gap:3px 12px;margin-top:12px;font-size:14px}.sm span:nth-child(odd){color:var(--mu)}.sm span:nth-child(even){text-align:right}
+.big{font-size:24px;font-weight:700;margin:6px 0}
+.over{color:var(--er)}.good{color:var(--ok)}
+.cf{border:1px solid var(--er);border-radius:10px;padding:10px;margin-top:10px;background:var(--s2)}
+#toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom));transform:translateX(-50%);background:var(--s2);border:1px solid var(--ok);padding:8px 14px;border-radius:10px;box-shadow:var(--sh);opacity:0;pointer-events:none;transition:opacity .2s;z-index:9;max-width:90vw}
+#toast.show{opacity:1}#toast.bad{border-color:var(--er)}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header class="top">
+  <a id="home" class="btn" href="./index.html">‹ 返回首页</a>
+  <div class="act">
+    <button id="copyAll" type="button">复制摘要</button>
+    <button id="theme" type="button" aria-label="切换明暗模式">☾</button>
+  </div>
+</header>
+<main>
+<h1>澳洲 WHV 资料清单与预算看板</h1>
+<div class="warn">签证政策、要求及费用可能变化，请以澳大利亚政府官方信息及个人情况为准。本工具仅供规划，不构成移民或法律建议。</div>
+<div id="stor" class="warn" hidden>当前环境无法使用本地存储，数据仅在本次会话内保留，刷新后会丢失。可先用“导出 JSON”备份。</div>
+
+<section class="card" aria-labelledby="hc"><h2 id="hc">出发倒计时</h2>
+  <label for="dep" class="mu">出发日期时间</label>
+  <div class="row"><input id="dep" type="datetime-local"></div>
+  <div id="cd" class="big mono" aria-live="off"></div>
+  <p id="tz" class="mu"></p>
+</section>
+
+<section class="card" aria-labelledby="hl"><h2 id="hl">资料与准备清单</h2>
+  <div id="tp" class="mu"></div><div class="bar"><i id="tb" style="width:0"></i></div>
+  <div id="stages"></div>
+</section>
+
+<section class="card" aria-labelledby="hb"><h2 id="hb">开销预算（AUD）</h2>
+  <div id="bl"></div>
+  <div class="row"><button id="addB" type="button">＋ 添加预算项</button></div>
+  <div class="row">
+    <label class="mu" for="cap" style="flex:none">预算上限 AUD</label><input id="cap" inputmode="decimal" placeholder="不设置则留空">
+  </div>
+  <div class="row">
+    <label class="mu" for="cur" style="flex:none">换算币种</label><input id="cur" maxlength="3" placeholder="CNY" style="flex:0 0 80px">
+    <label class="mu" for="rate" style="flex:none">1 AUD =</label><input id="rate" inputmode="decimal" placeholder="手动输入汇率">
+  </div>
+  <p class="mu">手动汇率，仅供规划；不请求外部汇率，也不代表实时汇率。</p>
+  <div id="bsum" aria-live="polite"></div>
+</section>
+
+<section class="card" aria-labelledby="hd"><h2 id="hd">数据管理</h2>
+  <p class="mu">所有数据仅保存在当前浏览器与设备的 LocalStorage，不会上传，换设备或清除浏览器数据后不会保留。</p>
+  <div class="row">
+    <button id="ex" type="button">导出 JSON</button><button id="im" type="button">导入 JSON</button>
+    <button id="sample" type="button">载入示例数据</button><button id="def" type="button">恢复默认</button><button id="clr" type="button">清空本地数据</button>
+  </div>
+  <label for="js" class="mu" style="display:block;margin-top:10px">JSON（导出结果显示在此；导入时粘贴到此处）</label>
+  <textarea id="js" spellcheck="false" class="mono"></textarea>
+  <p id="jerr" class="over" role="alert"></p>
+  <div id="cf" class="cf" hidden></div>
+</section>
+</main>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script>
+'use strict';
+const HOME_HREF='./index.html'; // 返回首页链接，可按需修改
+const $=s=>document.querySelector(s);
+$('#home').href=HOME_HREF;
+const root=document.documentElement;
+function setTheme(t){root.dataset.theme=t;$('#theme').textContent=t==='dark'?'☾':'☀';try{localStorage.setItem('mfa_theme',t)}catch(e){}}
+try{const t=localStorage.getItem('mfa_theme');if(t)setTheme(t)}catch(e){}
+$('#theme').onclick=()=>setTheme(root.dataset.theme==='dark'?'light':'dark');
+function toast(m,bad){const t=$('#toast');t.textContent=m;t.className='show'+(bad?' bad':'');clearTimeout(toast.t);toast.t=setTimeout(()=>t.className='',2200)}
+async function copy(text){
+  try{await navigator.clipboard.writeText(text);toast('已复制');return}catch(e){}
+  try{const a=document.createElement('textarea');a.value=text;a.style.cssText='position:fixed;top:0;opacity:0';document.body.appendChild(a);a.select();const ok=document.execCommand('copy');a.remove();ok?toast('已复制'):toast('复制失败，请手动选择文本',1)}
+  catch(e){toast('复制失败，请手动选择文本',1)}
+}
+/* 安全渲染：所有用户文本只经 textContent / setAttribute，不使用 innerHTML */
+function h(t,a={},...c){const e=document.createElement(t);for(const k in a){const v=a[k];if(k==='class')e.className=v;else if(k.startsWith('on'))e.addEventListener(k.slice(2),v);else if(v===true)e.setAttribute(k,'');else if(v!==false&&v!=null)e.setAttribute(k,v)}c.flat().forEach(x=>e.append(x));return e}
+const uid=()=>Math.random().toString(36).slice(2,9);
+
+/* ---- 数据模型与持久化 ---- */
+const KEY='whv_planner_v1';
+const STG=[['申请前',['确认年龄与国籍符合官方资格','护照有效期满足要求','准备常用邮箱与支付方式','阅读澳大利亚政府官方签证说明']],
+ ['获批后',['保存批准信/电子签证记录','核对有效期与入境条件','规划首次入境时间']],
+ ['出发前',['购买机票','购买海外医疗保险','准备应急资金','离线保存重要文件副本','确认银行卡可海外使用']],
+ ['抵达后',['办理当地手机卡','开立银行账户','办理税号（TFN）','确定住宿与交通']]];
+const BN=['签证/申请相关','机票','保险','住宿','交通','餐饮','通讯','应急金'];
+const mkDefault=()=>({v:1,stages:STG.map(([n,l])=>({id:uid(),name:n,items:l.map(t=>({id:uid(),t,d:false,n:'',c:false}))})),budget:{cap:'',items:BN.map(n=>({id:uid(),n,a:''}))},set:{cur:'CNY',rate:'',dep:''}});
+const mkBlank=()=>({v:1,stages:STG.map(([n])=>({id:uid(),name:n,items:[]})),budget:{cap:'',items:[]},set:{cur:'',rate:'',dep:''}});
+let S,storeOk=true;
+const lim=(x,n=200)=>String(x==null?'':x).slice(0,n);
+/* 导入校验：返回错误列表；通过后 normalize 重新生成 id 并限制长度 */
+function validate(o){
+  const e=[];
+  if(!o||typeof o!=='object'||Array.isArray(o))return['根节点必须是对象'];
+  if(o.v!==1)e.push('字段 v 必须为 1');
+  if(!Array.isArray(o.stages))e.push('stages 必须是数组');
+  else o.stages.forEach((s,i)=>{
+    if(!s||typeof s.name!=='string')e.push('stages['+i+'].name 必须是字符串');
+    if(!s||!Array.isArray(s.items))e.push('stages['+i+'].items 必须是数组');
+    else s.items.forEach((it,j)=>{if(!it||typeof it.t!=='string')e.push('stages['+i+'].items['+j+'].t 必须是字符串')});
+  });
+  if(!o.budget||!Array.isArray(o.budget.items))e.push('budget.items 必须是数组');
+  else o.budget.items.forEach((it,j)=>{if(!it||typeof it.n!=='string')e.push('budget.items['+j+'].n 必须是字符串');else if(typeof it.a!=='string'&&typeof it.a!=='number')e.push('budget.items['+j+'].a 必须是字符串或数字')});
+  if(o.set!=null&&typeof o.set!=='object')e.push('set 必须是对象');
+  return e.slice(0,6);
+}
+function normalize(o){const st=o.set||{};return{v:1,
+  stages:o.stages.map(s=>({id:uid(),name:lim(s.name,40),items:s.items.map(it=>({id:uid(),t:lim(it.t),d:it.d===true,n:lim(it.n),c:it.c===true}))})),
+  budget:{cap:lim(o.budget.cap,20),items:o.budget.items.map(it=>({id:uid(),n:lim(it.n,60),a:lim(it.a,20)}))},
+  set:{cur:lim(st.cur,3).toUpperCase(),rate:lim(st.rate,20),dep:lim(st.dep,20)}}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){storeOk=false;$('#stor').hidden=false}}
+function load(){
+  try{const raw=localStorage.getItem(KEY);if(raw){const o=JSON.parse(raw);if(!validate(o).length)return normalize(o)}}
+  catch(e){if(e&&e.name==='SecurityError')storeOk=false}
+  try{localStorage.setItem('__t','1');localStorage.removeItem('__t')}catch(e){storeOk=false}
+  return mkDefault();
+}
+
+/* ---- 金额：以“分”为整数求和，避免浮点误差；空值=0，负数/非数字视为无效（计 0 并提示） ---- */
+function cents(v){const s=String(v).trim();if(s==='')return{c:0};const n=Number(s);if(!isFinite(n)||n<0)return{c:0,bad:true};return{c:Math.round(n*100)}}
+const money=c=>(c/100).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+const rateOf=()=>{const r=Number(String(S.set.rate).trim());return S.set.rate!==''&&isFinite(r)&&r>0?r:0};
+const conv=c=>{const r=rateOf();return r?(Math.round(c*r)/100).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}):null};
+
+/* ---- 清单 ---- */
+const openNotes=new Set();
+function counts(){let d=0,t=0;S.stages.forEach(s=>{t+=s.items.length;d+=s.items.filter(i=>i.d).length});return{d,t}}
+function progress(){const{d,t}=counts();$('#tp').textContent='总进度 '+d+' / '+t+'（'+(t?Math.round(d/t*100):0)+'%）';$('#tb').style.width=(t?d/t*100:0)+'%'}
+function renderStages(){
+  const box=$('#stages');
+  box.replaceChildren(...S.stages.map(s=>{
+    const d=s.items.filter(i=>i.d).length,t=s.items.length;
+    const add=h('input',{'aria-label':'为“'+s.name+'”添加自定义项',placeholder:'添加自定义项',maxlength:'200'});
+    const doAdd=()=>{const v=add.value.trim();if(!v)return;s.items.push({id:uid(),t:v,d:false,n:'',c:true});save();renderStages()};
+    add.addEventListener('keydown',e=>{if(e.key==='Enter')doAdd()});
+    return h('div',{class:'stg'},
+      h('div',{class:'hd'},h('h3',{},s.name),h('span',{class:'mu'},d+' / '+t+'（'+(t?Math.round(d/t*100):0)+'%）')),
+      h('div',{class:'bar'},h('i',{style:'width:'+(t?d/t*100:0)+'%'})),
+      s.items.map(it=>{
+        const cid='c'+it.id,showN=openNotes.has(it.id)||it.n;
+        return h('div',{class:'it'+(it.d?' done':'')},
+          h('div',{class:'l'},
+            h('input',{type:'checkbox',id:cid,checked:it.d,onchange:e=>{it.d=e.target.checked;save();renderStages()}}),
+            h('label',{for:cid},it.t),
+            h('button',{type:'button','aria-label':'编辑备注：'+it.t,onclick:()=>{openNotes.has(it.id)?openNotes.delete(it.id):openNotes.add(it.id);renderStages()}},'备注'),
+            h('button',{type:'button','aria-label':'删除：'+it.t,onclick:()=>{s.items=s.items.filter(x=>x!==it);save();renderStages()}},'删除')),
+          showN?h('input',{class:'nt','aria-label':'备注：'+it.t,placeholder:'备注',value:it.n,maxlength:'200',oninput:e=>{it.n=e.target.value;save()}}):null);
+      }),
+      h('div',{class:'row'},add,h('button',{type:'button',onclick:doAdd},'添加')));
+  }));
+  progress();
+}
+
+/* ---- 预算 ---- */
+function renderBudget(){
+  $('#bl').replaceChildren(...S.budget.items.map((it,i)=>h('div',{class:'br'},
+    h('input',{'aria-label':'预算项名称 '+(i+1),value:it.n,maxlength:'60',placeholder:'项目',oninput:e=>{it.n=e.target.value;save();sum()}}),
+    h('input',{'aria-label':'预算金额 AUD '+(i+1),inputmode:'decimal',value:it.a,placeholder:'0.00',oninput:e=>{it.a=e.target.value;save();sum()}}),
+    h('button',{type:'button','aria-label':'删除预算项 '+(it.n||i+1),onclick:()=>{S.budget.items.splice(i,1);save();renderBudget();sum()}},'✕'))));
+  sum();
+}
+let lastSum=null;
+function sum(){
+  let total=0;const bad=[];
+  S.budget.items.forEach((it,i)=>{const r=cents(it.a);total+=r.c;if(r.bad)bad.push(it.n||'第 '+(i+1)+' 项')});
+  const cr=cents(S.budget.cap),cap=cr.c,hasCap=cap>0,bal=cap-total,over=hasCap&&bal<0,cur=S.set.cur||'外币',cv=conv;
+  lastSum={total,cap,hasCap,bal,over,bad};
+  const rows=[['预计支出','AUD '+money(total)+(cv(total)!==null?' ≈ '+cur+' '+cv(total):'')]];
+  if(hasCap){rows.push(['预算上限','AUD '+money(cap)+(cv(cap)!==null?' ≈ '+cur+' '+cv(cap):'')]);rows.push([over?'已超支':'剩余额度','AUD '+money(Math.abs(bal))+(cv(Math.abs(bal))!==null?' ≈ '+cur+' '+cv(Math.abs(bal)):'')])}
+  const box=$('#bsum');
+  box.replaceChildren(
+    h('div',{class:'sm mono'},rows.map(r=>[h('span',{},r[0]),h('span',{class:r[0]==='已超支'?'over':''},r[1])])),
+    over?h('p',{class:'over',role:'alert'},'⚠ 超支：预计支出比上限多 AUD '+money(-bal)+'。'):(hasCap?h('p',{class:'good'},'✓ 预计支出在上限内。'):h('p',{class:'mu'},'未设置预算上限。')),
+    cr.bad?h('p',{class:'over',role:'alert'},'预算上限无效（须为不小于 0 的数字），已忽略。'):null,
+    bad.length?h('p',{class:'over',role:'alert'},'以下金额无效（须为不小于 0 的数字），已按 0 计算：'+bad.join('、')):null,
+    (S.set.rate!==''&&!rateOf())?h('p',{class:'over',role:'alert'},'汇率须为大于 0 的数字，已不显示换算。'):(rateOf()?h('p',{class:'mu'},'换算使用手动汇率 1 AUD = '+rateOf()+' '+cur+'，仅供规划。'):h('p',{class:'mu'},'填写币种与汇率后可显示换算。')));
+}
+
+/* ---- 倒计时：使用设备本地时间 ---- */
+function depDate(){const v=S.set.dep;if(!v)return null;const d=new Date(v);return isNaN(d)?null:d}
+function cdText(){
+  const d=depDate();
+  if(!d)return'尚未设置：请在上方选择出发日期时间';
+  let ms=d-Date.now(),past=ms<0;ms=Math.abs(ms);
+  const day=Math.floor(ms/864e5),hr=Math.floor(ms%864e5/36e5),mi=Math.floor(ms%36e5/6e4),se=Math.floor(ms%6e4/1e3);
+  return(past?'已过出发时间 ':'还有 ')+day+' 天 '+hr+' 时 '+mi+' 分 '+se+' 秒';
+}
+function tick(){$('#cd').textContent=cdText()}
+$('#tz').textContent='按设备本地时间计算（当前时区：'+(Intl.DateTimeFormat().resolvedOptions().timeZone||'未知')+'）。若在其他时区出发，请换算成本机时间后填写。';
+setInterval(tick,1000);
+
+/* ---- 摘要 ---- */
+function summary(){
+  const{d,t}=counts();
+  let o='澳洲 WHV 规划摘要\n出发：'+(depDate()?$('#dep').value.replace('T',' ')+'（'+cdText()+'）':'未设置')+'\n清单总进度：'+d+'/'+t+'（'+(t?Math.round(d/t*100):0)+'%）\n';
+  S.stages.forEach(s=>{o+='  '+s.name+'：'+s.items.filter(i=>i.d).length+'/'+s.items.length+'\n'});
+  o+='\n预算（AUD）\n';
+  S.budget.items.forEach(it=>{const c=cents(it.a).c;o+='  '+(it.n||'未命名')+'：'+money(c)+(conv(c)!==null?'（≈'+S.set.cur+' '+conv(c)+'）':'')+'\n'});
+  const s=lastSum;o+='预计支出：'+money(s.total)+(conv(s.total)!==null?'（≈'+S.set.cur+' '+conv(s.total)+'）':'')+'\n';
+  if(s.hasCap)o+='预算上限：'+money(s.cap)+'\n'+(s.over?'超支：':'剩余：')+money(Math.abs(s.bal))+'\n';
+  if(rateOf())o+='汇率：1 AUD = '+rateOf()+' '+S.set.cur+'（手动汇率，仅供规划）\n';
+  return o+'\n※ 签证政策与费用以澳大利亚政府官方信息为准，仅供规划，不构成移民或法律建议。';
+}
+$('#copyAll').onclick=()=>copy(summary());
+
+/* ---- 设置输入 ---- */
+$('#dep').addEventListener('input',e=>{S.set.dep=e.target.value;save();tick()});
+$('#cap').addEventListener('input',e=>{S.budget.cap=e.target.value;save();sum()});
+$('#cur').addEventListener('input',e=>{e.target.value=e.target.value.replace(/[^a-zA-Z]/g,'').toUpperCase();S.set.cur=e.target.value;save();sum()});
+$('#rate').addEventListener('input',e=>{S.set.rate=e.target.value;save();sum()});
+$('#addB').onclick=()=>{S.budget.items.push({id:uid(),n:'',a:''});save();renderBudget();const l=$('#bl').querySelectorAll('input');l[l.length-2].focus({preventScroll:true})};
+
+/* ---- 数据管理（危险操作需二次确认） ---- */
+function renderAll(){
+  $('#dep').value=S.set.dep;$('#cap').value=S.budget.cap;$('#cur').value=S.set.cur;$('#rate').value=S.set.rate;
+  renderStages();renderBudget();tick();
+}
+function confirmBar(msg,fn){
+  const b=$('#cf');b.hidden=false;
+  b.replaceChildren(h('p',{},msg),h('div',{class:'row'},h('button',{type:'button',onclick:()=>{b.hidden=true;fn()}},'确认'),h('button',{type:'button',onclick:()=>{b.hidden=true}},'取消')));
+  b.querySelector('button').focus({preventScroll:true});
+}
+$('#ex').onclick=()=>{
+  const txt=JSON.stringify(S,null,2);$('#js').value=txt;$('#jerr').textContent='';
+  try{const a=h('a',{href:URL.createObjectURL(new Blob([txt],{type:'application/json'})),download:'whv-planner.json'});document.body.append(a);a.click();a.remove();toast('已导出，JSON 同时显示在文本框')}
+  catch(e){toast('下载不可用，请复制文本框中的 JSON',1)}
+};
+$('#im').onclick=()=>{
+  const raw=$('#js').value.trim();
+  if(!raw){$('#jerr').textContent='请先把 JSON 粘贴到文本框。';return}
+  let o;try{o=JSON.parse(raw)}catch(e){$('#jerr').textContent='不是有效的 JSON：'+e.message;return}
+  const er=validate(o);
+  if(er.length){$('#jerr').textContent='结构无效：'+er.join('；');return}
+  $('#jerr').textContent='';
+  confirmBar('导入会覆盖当前清单、预算和设置。确认继续？',()=>{S=normalize(o);save();renderAll();toast('导入成功')});
+};
+$('#sample').onclick=()=>confirmBar('示例数据会覆盖当前内容（金额为示例，仅用于演示）。确认继续？',()=>{
+  S=mkDefault();const am=[500,1200,600,2000,300,1500,100,3000];
+  S.budget.items.forEach((it,i)=>it.a=String(am[i]));S.budget.cap='10000';S.set.rate='4.7';
+  S.stages[0].items.slice(0,2).forEach(i=>i.d=true);
+  const d=new Date(Date.now()+30*864e5),p=n=>String(n).padStart(2,'0');
+  S.set.dep=d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate())+'T10:00';
+  save();renderAll();toast('已载入示例');
+});
+$('#def').onclick=()=>confirmBar('恢复默认会清除你的勾选、备注、自定义项与预算。确认继续？',()=>{S=mkDefault();save();renderAll();toast('已恢复默认')});
+$('#clr').onclick=()=>confirmBar('清空会删除本浏览器中保存的全部数据，且无法撤销（建议先导出）。确认继续？',()=>{
+  try{localStorage.removeItem(KEY)}catch(e){}
+  S=mkBlank();renderAll();$('#js').value='';toast('已清空本地数据');
+});
+
+S=load();if(!storeOk)$('#stor').hidden=false;
+renderAll();
+</script>
+</body>
+</html>
