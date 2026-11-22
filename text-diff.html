@@ -7,7 +7,7 @@
 <style>
 *{box-sizing:border-box}
 body{margin:0;background:#f2f2f7;color:#1c1c1e;font-family:-apple-system,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;line-height:1.5;-webkit-text-size-adjust:100%}
-.wrap{max-width:720px;margin:0 auto;padding:24px 16px 56px}
+.wrap{max-width:720px;margin:0 auto;padding:24px 16px calc(100px + env(safe-area-inset-bottom))}
 .back{color:#007aff;text-decoration:none;font-size:15px;font-weight:600;display:inline-block;margin-bottom:10px}
 h1{font-size:28px;margin:8px 0 4px;font-weight:700}
 .sub{color:#8e8e93;margin:0 0 22px;font-size:15px}
@@ -53,18 +53,6 @@ input, textarea, select {
   caret-color: #00ff66;
 }
 input::placeholder, textarea::placeholder { color: rgba(0, 255, 102, 0.4) !important; opacity: 1; }
-</style>
-<script>
-const $=id=>document.getElementById(id);
-const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-async function copyText(t,btn){
-  try{await navigator.clipboard.writeText(t)}catch(e){const a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy')}catch(_){}a.remove()}
-  if(btn){const o=btn.dataset.o||btn.textContent;btn.dataset.o=o;btn.textContent='已复制';clearTimeout(btn._t);btn._t=setTimeout(()=>btn.textContent=o,1200)}
-}
-</script>
-</head>
-<body>
-<style>
 .dl{padding:3px 10px;white-space:pre-wrap;word-break:break-word;font:14px/1.6 ui-monospace,Menlo,Consolas,"PingFang SC","Microsoft YaHei",monospace;min-height:24px}
 .dl.del{background:#ffe5e5}.dl.add{background:#e3f7e8}.dl.empty{background:#f2f2f7}
 mark{color:inherit;border-radius:3px}mark.d{background:#ff9f9f}mark.a{background:#8fe0a4}
@@ -72,17 +60,6 @@ mark{color:inherit;border-radius:3px}mark.d{background:#ff9f9f}mark.a{background
 .sbs>.dl:nth-child(odd){border-right:1px solid #e5e5ea}
 .uni{border:1px solid #e5e5ea;border-radius:12px;overflow:hidden}
 
-/* Force dark terminal form controls across mobile browser native styles. */
-input, textarea, select {
-  background-color: #121318 !important;
-  color: #00ff66 !important;
-  border: 1px solid rgba(0, 255, 102, 0.3) !important;
-  -webkit-appearance: none;
-  appearance: none;
-  accent-color: #00ff66;
-  caret-color: #00ff66;
-}
-input::placeholder, textarea::placeholder { color: rgba(0, 255, 102, 0.4) !important; opacity: 1; }
 </style>
 <div class="wrap">
 <a class="back" href="index.html" onclick="if(history.length>1){history.back();return false}">‹ 返回</a>
