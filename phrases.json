@@ -2412,6 +2412,159 @@
    "en": "To argue against something; to resist or oppose a proposal.",
    "ex": "The EU and Pacific island nations are pushing back against the latest draft agreement.",
    "exZh": "欧盟和太平洋岛国等国家正在反对最新草案。"
+  },
+  {
+   "p": "break the deadlock",
+   "pat": [
+    "break",
+    "the",
+    "deadlock"
+   ],
+   "forms": {
+    "break": [
+     "break",
+     "breaks",
+     "broke",
+     "broken"
+    ]
+   },
+   "zh": "打破僵局",
+   "en": "to end a situation in which no progress can be made because people cannot agree",
+   "ex": "The new draft deal was presented to try to break the deadlock.",
+   "exZh": "新的协议草案被提出，试图打破僵局。"
+  },
+  {
+   "p": "dish out",
+   "pat": [
+    "dish",
+    "out"
+   ],
+   "forms": {
+    "dish": [
+     "dish",
+     "dishes",
+     "dished",
+     "dishing"
+    ]
+   },
+   "zh": "大把分发；慷慨给予",
+   "en": "to give something out freely, often in large amounts",
+   "ex": "The company is dishing out millions of dollars to solve the problem.",
+   "exZh": "这家公司正大把花钱来解决问题。"
+  },
+  {
+   "p": "in search of",
+   "pat": [
+    "in",
+    "search",
+    "of"
+   ],
+   "forms": {},
+   "zh": "寻找；寻求",
+   "en": "looking for; seeking",
+   "ex": "Negotiations ran late into Sunday in search of common ground.",
+   "exZh": "谈判一直拖到周日，仍在寻求共识。"
+  },
+  {
+   "p": "in the distance",
+   "pat": [
+    "in",
+    "the",
+    "distance"
+   ],
+   "forms": {},
+   "zh": "在远处",
+   "en": "far away; a long distance away",
+   "ex": "They heard explosions in the distance.",
+   "exZh": "他们听到远处传来爆炸声。"
+  },
+  {
+   "p": "roll out",
+   "pat": [
+    "roll",
+    "out"
+   ],
+   "forms": {
+    "roll": [
+     "roll",
+     "rolls",
+     "rolled",
+     "rolling"
+    ]
+   },
+   "zh": "推出；实施",
+   "en": "to introduce or launch something new",
+   "ex": "Officials scrambled to roll out a slew of preventive measures.",
+   "exZh": "官员们匆忙推出了一系列预防措施。"
+  },
+  {
+   "p": "short of",
+   "pat": [
+    "short",
+    "of"
+   ],
+   "forms": {},
+   "zh": "缺乏；不足",
+   "en": "not having enough of something; lacking",
+   "ex": "Dozens of hospitals are so short of money they may not be able to continue caring for patients.",
+   "exZh": "数十家医院资金极度短缺，可能无法继续照护病人。"
+  },
+  {
+   "p": "step down",
+   "pat": [
+    "step",
+    "down"
+   ],
+   "forms": {
+    "step": [
+     "step",
+     "steps",
+     "stepped",
+     "stepping"
+    ]
+   },
+   "zh": "辞职；卸任",
+   "en": "to resign from an important job or position",
+   "ex": "He will step down as secretary general next year.",
+   "exZh": "他将于明年卸任秘书长。"
+  },
+  {
+   "p": "turn in",
+   "pat": [
+    "turn",
+    "in"
+   ],
+   "forms": {
+    "turn": [
+     "turn",
+     "turns",
+     "turned",
+     "turning"
+    ]
+   },
+   "zh": "交出；上交；告发",
+   "en": "to give something or someone to the authorities; to hand in",
+   "ex": "Those who turned in their accomplices would get reduced penalties.",
+   "exZh": "交出同伙的人将获得减刑。"
+  },
+  {
+   "p": "turn up",
+   "pat": [
+    "turn",
+    "up"
+   ],
+   "forms": {
+    "turn": [
+     "turn",
+     "turns",
+     "turned",
+     "turning"
+    ]
+   },
+   "zh": "出现；到场",
+   "en": "to arrive or appear, especially unexpectedly",
+   "ex": "Students were told to turn up with pencils only.",
+   "exZh": "学生们被告知只能带铅笔进场。"
   }
  ]
 }

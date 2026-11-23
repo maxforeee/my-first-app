@@ -1,245 +1,266 @@
 {
-  "date": "2026-11-22",
+  "date": "2026-11-23",
   "items": [
     {
+      "id": "news-20261123-cop31-fails",
+      "title": "COP31 fails to reach major climate deal as talks expose deep divisions",
       "cat": "新闻",
-      "desc": "联合国 COP31 气候峰会因化石燃料措辞陷入僵局，谈判暂停，协议可能推迟到明年。",
-      "id": "news-20261122-cop31-deadlock",
       "level": "B2",
       "minutes": 4,
+      "desc": "COP31 气候峰会因化石燃料措辞和资金承诺谈崩，谈判无果而终。",
+      "source": "BBC News",
+      "sourceUrl": "https://www.bbc.co.uk/news/articles/cqwy06zrd26lo",
+      "published": "2026-11-23",
+      "vocab": [
+        {
+          "w": "division",
+          "ph": "/dɪˈvɪʒn/",
+          "pos": "n.",
+          "zh": "分歧；分裂",
+          "en": "a disagreement between people or groups",
+          "ex": "Deep divisions over fossil fuels emerged at the COP31 talks.",
+          "exZh": "COP31 谈判中出现了围绕化石燃料的严重分歧。"
+        },
+        {
+          "w": "tackle",
+          "ph": "/ˈtækl/",
+          "pos": "v.",
+          "zh": "处理；应对",
+          "en": "to deal with a difficult problem",
+          "ex": "Countries failed to reach a deal to tackle climate change.",
+          "exZh": "各国未能就应对气候变化达成协议。"
+        },
+        {
+          "w": "commitment",
+          "ph": "/kəˈmɪtmənt/",
+          "pos": "n.",
+          "zh": "承诺；保证",
+          "en": "a promise to do something",
+          "ex": "Poorer countries objected to the absence of clear financial commitments.",
+          "exZh": "较贫穷的国家反对协议中缺少明确的资金承诺。"
+        },
+        {
+          "w": "deadlock",
+          "ph": "/ˈdedlɒk/",
+          "pos": "n.",
+          "zh": "僵局；停滞",
+          "en": "a situation in which no progress can be made because the people involved cannot agree",
+          "ex": "The new draft deal was presented to try to break the deadlock.",
+          "exZh": "新的协议草案被提出，试图打破僵局。"
+        },
+        {
+          "w": "ambition",
+          "ph": "/æmˈbɪʃn/",
+          "pos": "n.",
+          "zh": "雄心；抱负",
+          "en": "a strong desire to achieve something; the level of effort aimed for",
+          "ex": "The EU said the decisions go nowhere near the level of ambition needed.",
+          "exZh": "欧盟表示，这些决定远远达不到应对气候变化所需的雄心水平。"
+        },
+        {
+          "w": "fossil",
+          "ph": "/ˈfɒsl/",
+          "pos": "adj.",
+          "zh": "化石的；化石燃料的",
+          "en": "relating to fuels such as coal, oil and gas formed from ancient plants and animals",
+          "ex": "The final deal failed to directly mention fossil fuels.",
+          "exZh": "最终协议没有直接提及化石燃料。"
+        }
+      ],
       "paras": [
         {
           "en": [
-            "Negotiations at the COP31 UN climate summit in Turkey are in deadlock and have been suspended for the night, after running more than a day over time, as countries have been unable to agree on a new global climate deal.",
-            "The EU and Pacific island nations are amongst a group pushing back against the latest draft agreement which included no reference to reducing the world's demand for fossil fuels.",
-            "A second sticking point involves a push from the Africa Group to get commitments on more money for adaptation, but the EU has previously said it would not support this."
+            "Countries have failed to reach a major new deal to tackle climate change after deep divisions over fossil fuels and money emerged at the UN COP31 talks in Turkey.",
+            "Negotiations were due to finish on Friday but ran late into Sunday in search of common ground, becoming the longest UN climate conference in history.",
+            "But the final deal proved unacceptable to the EU, Pacific island nations and others because it failed to directly mention fossil fuels, the main cause of global warming."
           ],
           "zh": [
-            "土耳其 COP31 联合国气候峰会的谈判陷入僵局，已暂停至夜间，因为会议已超时一天多，各国仍未能就新的全球气候协议达成一致。",
-            "欧盟和太平洋岛国等国家正在反对最新草案，该草案完全没有提及减少全球对化石燃料的需求。",
-            "第二个症结是非洲集团要求就适应气候变化提供更多资金作出承诺，但欧盟此前表示不会支持这一点。"
+            "各国在土耳其举行的联合国 COP31 气候峰会上，因化石燃料和资金问题分歧严重，未能就应对气候变化达成新的重大协议。",
+            "谈判原定周五结束，却一直拖到周日仍在寻找共识，成为历时最长的联合国气候大会。",
+            "但最终协议令欧盟、太平洋岛国等国家无法接受，因为它没有直接提及化石燃料——全球变暖的主要原因。"
           ]
         },
         {
           "en": [
-            "Negotiating teams due to fly out on Sunday morning are now moving their flights to Monday in a sign that a deal is not yet in sight.",
-            "If countries cannot reach consensus, which is required by the UN's climate talks process, the negotiations could be suspended.",
-            "In that case the summit would end with no deal and be reconvened next year."
+            "Meanwhile, many poorer countries objected to the absence of any clear financial commitments from richer nations to help them adapt to the impacts of rising temperatures.",
+            "The last time a COP's main political agreement collapsed like this was in 2009 in Copenhagen.",
+            "UN secretary general Antonio Guterres, in his last COP before he steps down, said he was \"deeply disappointed\"."
           ],
           "zh": [
-            "原定周日早上返程的谈判团队现已把航班改到周一，这表明协议仍遥遥无期。",
-            "如果各国无法达成共识——联合国气候谈判程序要求必须达成共识——谈判可能会被暂停。",
-            "那样的话，本届峰会将以无协议收场，并于明年重新召开。"
+            "与此同时，许多较贫穷的国家反对协议中缺少富裕国家明确的资金承诺，而这些资金本应用于帮助它们适应气温上升带来的影响。",
+            "上一次 COP 主要政治协议如此崩盘还是在 2009 年的哥本哈根。",
+            "联合国秘书长安东尼奥·古特雷斯在他任内最后一次 COP 上表示，他“深感失望”。"
           ]
         },
         {
           "en": [
-            "Ministers from Panama, Solomon Islands, Cote d'Ivoire and the EU are fighting to get a commitment to move away from oil, gas and coal back into the final agreement after fossil fuel producers led by Saudi Arabia pushed for its removal.",
-            "For the first time at a COP the agreement, known officially as the Antalya Accords, could acknowledge that the goal of keeping global temperature rise below 1.5C has been missed.",
-            "Away from COP, renewable energy is growing at unprecedented rates."
+            "After two weeks of negotiations, exhausted delegates were presented with a new, draft deal in the early hours of Sunday morning to try to break the deadlock.",
+            "But the words \"fossil fuels\" did not appear anywhere in the text.",
+            "The only indirect reference to coal, oil and gas was a nod to a deal agreed at COP28 in 2023, when countries agreed to \"transition away\" from fossil fuels in energy systems."
           ],
           "zh": [
-            "巴拿马、所罗门群岛、科特迪瓦和欧盟的部长们正在努力，争取把逐步摆脱石油、天然气和煤炭的承诺重新写进最终协议，此前以沙特阿拉伯为首的化石燃料生产国推动删除了这一内容。",
-            "峰会协议（正式名称为《安塔利亚协定》）可能首次承认，将全球升温控制在 1.5 摄氏度以内的目标已经落空。",
-            "峰会之外，可再生能源正以前所未有的速度增长。"
+            "经过两周谈判，筋疲力尽的代表们在周日凌晨收到一份新的协议草案，试图打破僵局。",
+            "但“化石燃料”这几个字在文本中一次也没有出现。",
+            "文中对煤炭、石油和天然气唯一的间接提及，是呼应 2023 年 COP28 达成的协议——当时各国同意在能源系统中“逐步摆脱”化石燃料。"
           ]
-        }
-      ],
-      "published": "2026-11-22",
-      "source": "BBC News",
-      "sourceUrl": "https://www.bbc.co.uk/news/articles/c6ly5w40eg07o",
-      "title": "Fight over fossil fuels leaves COP31 climate talks in deadlock",
-      "vocab": [
-        {
-          "en": "a situation in which no progress can be made because the people involved cannot agree",
-          "ex": "Negotiations at the COP31 UN climate summit are in deadlock.",
-          "exZh": "COP31 联合国气候峰会的谈判陷入僵局。",
-          "ph": "/ˈdedlɒk/",
-          "pos": "n.",
-          "w": "deadlock",
-          "zh": "僵局；停滞"
-        },
-        {
-          "en": "general agreement among a group of people",
-          "ex": "If countries cannot reach consensus, the negotiations could be suspended.",
-          "exZh": "如果各国无法达成共识，谈判可能会被暂停。",
-          "ph": "/kənˈsensəs/",
-          "pos": "n.",
-          "w": "consensus",
-          "zh": "共识；一致意见"
-        },
-        {
-          "en": "the process of changing to suit new conditions",
-          "ex": "The Africa Group wants more money for adaptation.",
-          "exZh": "非洲集团希望为适应气候变化争取更多资金。",
-          "ph": "/ˌædæpˈteɪʃn/",
-          "pos": "n.",
-          "w": "adaptation",
-          "zh": "适应；调整"
-        },
-        {
-          "en": "formal discussion between people who are trying to reach an agreement",
-          "ex": "These are difficult negotiations, but discussions remain productive.",
-          "exZh": "这些谈判很艰难，但讨论仍富有成效。",
-          "ph": "/nɪˌɡəʊʃiˈeɪʃn/",
-          "pos": "n.",
-          "w": "negotiation",
-          "zh": "谈判；协商"
-        },
-        {
-          "en": "never having happened before",
-          "ex": "Renewable energy is growing at unprecedented rates.",
-          "exZh": "可再生能源正以前所未有的速度增长。",
-          "ph": "/ʌnˈpresɪdentɪd/",
-          "pos": "adj.",
-          "w": "unprecedented",
-          "zh": "前所未有的；史无前例的"
-        },
-        {
-          "en": "relating to fuels such as coal, oil and gas that were formed from ancient plants and animals",
-          "ex": "The draft included no reference to reducing demand for fossil fuels.",
-          "exZh": "草案没有提及减少对化石燃料的需求。",
-          "ph": "/ˈfɒsl/",
-          "pos": "adj.",
-          "w": "fossil",
-          "zh": "化石的；化石燃料的"
         }
       ],
       "phrases": [
         {
-          "p": "push back",
+          "p": "fail to do",
           "surf": [
-            "pushing back"
+            "failed to directly",
+            "failed to reach"
           ],
-          "zh": "反对；抵制；反驳",
-          "en": "To argue against something; to resist or oppose a proposal.",
-          "ex": "The EU and Pacific island nations are pushing back against the latest draft agreement.",
-          "exZh": "欧盟和太平洋岛国等国家正在反对最新草案。"
+          "zh": "未能做某事",
+          "en": "to not succeed in doing something",
+          "ex": "He failed to pass the exam.",
+          "exZh": "他考试没通过。"
         },
         {
-          "p": "fly out",
+          "p": "in search of",
           "surf": [
-            "fly out"
+            "in search of"
           ],
-          "zh": "乘飞机前往；飞离",
-          "en": "To travel by airplane to a destination.",
-          "ex": "Negotiating teams due to fly out on Sunday morning are now moving their flights to Monday.",
-          "exZh": "原定周日早上返程的谈判团队现已把航班改到周一。"
+          "zh": "寻找；寻求",
+          "en": "looking for; seeking",
+          "ex": "Negotiations ran late into Sunday in search of common ground.",
+          "exZh": "谈判一直拖到周日，仍在寻求共识。"
         },
         {
-          "p": "move away",
+          "p": "step down",
           "surf": [
-            "move away"
+            "steps down"
           ],
-          "zh": "摆脱；远离；不再依赖",
-          "en": "To go away from something; to stop using or relying on something.",
-          "ex": "Ministers are fighting to get a commitment to move away from oil, gas and coal back into the final agreement.",
-          "exZh": "部长们正在努力，争取把逐步摆脱石油、天然气和煤炭的承诺重新写进最终协议。"
+          "zh": "辞职；卸任",
+          "en": "to resign from an important job or position",
+          "ex": "He will step down as secretary general next year.",
+          "exZh": "他将于明年卸任秘书长。"
+        },
+        {
+          "p": "try to do",
+          "surf": [
+            "try to break"
+          ],
+          "zh": "设法做某事；努力做某事",
+          "en": "to attempt to do something",
+          "ex": "Try to arrive on time.",
+          "exZh": "尽量准时到。"
+        },
+        {
+          "p": "agree to do",
+          "surf": [
+            "agreed to transition"
+          ],
+          "zh": "同意做某事",
+          "en": "to say yes to doing something",
+          "ex": "He agreed to help us.",
+          "exZh": "他同意帮助我们。"
         }
       ]
     },
     {
+      "id": "news-20261123-riemann-claude",
+      "title": "Two groups verify mathematician’s claim that Claude helped prove mathematics problem",
       "cat": "新闻",
-      "desc": "Anthropic 数学家称 AI 软件 Claude 帮助证明了黎曼猜想，两个机构已独立核实。",
-      "id": "news-20261122-riemann-claude",
       "level": "B2",
       "minutes": 4,
+      "desc": "AI 软件 Claude 协助证明黎曼猜想，两家机构独立验证通过。",
+      "source": "The Guardian",
+      "sourceUrl": "https://www.theguardian.com/technology/2026/nov/21/anthropic-riemann-hypothesis-solved-claude-ai",
+      "published": "2026-11-23",
+      "vocab": [
+        {
+          "w": "crack",
+          "ph": "/kræk/",
+          "pos": "v.",
+          "zh": "破解；解开",
+          "en": "to solve a difficult problem",
+          "ex": "The AI software helped crack one of the most important unsolved problems in mathematics.",
+          "exZh": "这款 AI 软件帮助破解了数学中最重要的未解难题之一。"
+        },
+        {
+          "w": "verify",
+          "ph": "/ˈverɪfaɪ/",
+          "pos": "v.",
+          "zh": "验证；证实",
+          "en": "to check that something is true or correct",
+          "ex": "Two organizations announced that they had independently verified the claim.",
+          "exZh": "两个机构宣布，他们已独立验证了这一说法。"
+        },
+        {
+          "w": "breakthrough",
+          "ph": "/ˈbreɪkθruː/",
+          "pos": "n.",
+          "zh": "突破；重大进展",
+          "en": "an important discovery or development",
+          "ex": "The proof marks another breakthrough in the use of AI for complicated math problems.",
+          "exZh": "这一证明标志着 AI 在解决复杂数学问题上的又一次突破。"
+        },
+        {
+          "w": "uneasiness",
+          "ph": "/ʌnˈiːzinəs/",
+          "pos": "n.",
+          "zh": "不安；不自在",
+          "en": "a feeling of worry or discomfort",
+          "ex": "Mathematicians express uneasiness around private companies paying millions to solve problems.",
+          "exZh": "数学家们对私营公司花数百万美元解题感到不安。"
+        },
+        {
+          "w": "lucrative",
+          "ph": "/ˈluːkrətɪv/",
+          "pos": "adj.",
+          "zh": "赚钱的；获利丰厚的",
+          "en": "producing a lot of money",
+          "ex": "Mathematicians worry about extremely lucrative private companies using AI to solve problems.",
+          "exZh": "数学家们担心极其赚钱的私营公司用 AI 来解题。"
+        },
+        {
+          "w": "hypothesis",
+          "ph": "/haɪˈpɒθəsɪs/",
+          "pos": "n.",
+          "zh": "假说；猜想",
+          "en": "an idea that is suggested as a possible explanation, to be tested",
+          "ex": "The Riemann hypothesis is a nearly 170-year-old math problem.",
+          "exZh": "黎曼猜想是一个近 170 年历史的数学难题。"
+        }
+      ],
       "paras": [
         {
           "en": [
-            "A mathematician at Anthropic has said that the San Francisco-based artificial intelligence company's software has helped crack one of the most important unsolved problems in mathematics, and experts say the claim checks out.",
+            "A mathematician at Anthropic has said that the San Francisco-based artificial intelligence (AI) company’s software has helped crack one of the most important unsolved problems in mathematics – and experts say the claim checks out.",
             "Levent Alpöge, a Turkish American mathematician, on Friday posted a note on his personal website saying that Claude, the AI software, had helped prove the Riemann hypothesis.",
             "He says that Claude helped develop a solution to the problem during the course of about six weeks."
           ],
           "zh": [
-            "Anthropic 公司的一位数学家表示，这家位于旧金山的 AI 公司的软件帮助破解了数学中最重要的未解难题之一，专家表示这一说法经得起检验。",
+            "Anthropic 公司的一位数学家表示，这家位于旧金山的 AI 公司的软件帮助破解了数学中最重要的未解难题之一——专家称，这一说法经得起检验。",
             "土耳其裔美国数学家莱文特·阿尔珀格周五在个人网站上发文称，AI 软件 Claude 帮助证明了黎曼猜想。",
             "他说，Claude 在大约六周的时间里帮助找到了这个问题的解法。"
           ]
         },
         {
           "en": [
-            "On Saturday afternoon, two organizations announced that they had independently verified Alpöge's claim after reviewing the programming language he used to share the solution.",
-            "“We have full confidence that Alpöge's proof of the Riemann hypothesis is correct, and we congratulate him on this achievement,” the groups announced.",
-            "The Riemann hypothesis is a nearly 170-year-old math problem named after Bernhard Riemann, a German mathematician who proposed it in 1859."
+            "On Saturday afternoon, two organizations announced that they had independently verified Alpöge’s claim after reviewing the programming language he used to share the solution.",
+            "The proof evidently marks another breakthrough in the use of AI for complicated math problems – even as mathematicians express uneasiness around extremely lucrative private companies dishing out millions of dollars for the technology to solve problems.",
+            "Alpöge linked to computer code – written in a language called Lean – that he maintained could verify the findings."
           ],
           "zh": [
-            "周六下午，两个组织宣布，在审查了他用来分享解法的编程语言后，他们已独立核实了阿尔珀格的说法。",
-            "这两个组织宣布：“我们完全相信阿尔珀格对黎曼猜想的证明是正确的，并祝贺他取得这一成就。”",
-            "黎曼猜想是一个有近 170 年历史的数学难题，以 1859 年提出它的德国数学家伯恩哈德·黎曼命名。"
+            "周六下午，两个机构宣布，在审阅了阿尔珀格分享解法时使用的编程语言后，他们已独立验证了他的说法。",
+            "这一证明显然标志着 AI 在解决复杂数学问题上的又一次突破——尽管数学家们对极其赚钱的私营公司花数百万美元用这项技术解题感到不安。",
+            "阿尔珀格附上了计算机代码链接——用一种叫作 Lean 的语言编写——他坚称这些代码可以验证他的发现。"
           ]
         },
         {
           "en": [
-            "The hypothesis deals with prime numbers, whole numbers greater than 1 that can only be divided by themselves and 1.",
-            "Riemann questioned how often prime numbers appear and how they are distributed along the number line.",
-            "The Riemann hypothesis is one of the seven Millennium prize math problems selected in 2000 by the Clay Mathematics Institute, and the institute has offered $1m for each problem solved."
+            "The Riemann hypothesis is a nearly 170-year-old math problem named after Bernhard Riemann, a German mathematician who proposed it in 1859.",
+            "The hypothesis deals with prime numbers – whole numbers greater than 1 that can only be divided by themselves and 1.",
+            "The Riemann hypothesis is one of the seven Millennium prize math problems selected in 2000 by the Clay Mathematics Institute."
           ],
           "zh": [
-            "这一猜想涉及质数，即大于 1、只能被自身和 1 整除的整数。",
-            "黎曼追问质数出现的频率，以及它们沿数轴如何分布。",
-            "黎曼猜想是克莱数学研究所于 2000 年选出的七大千禧年数学难题之一，该研究所为每个解出的难题悬赏 100 万美元。"
+            "黎曼猜想是一个近 170 年历史的数学难题，以 1859 年提出它的德国数学家伯恩哈德·黎曼命名。",
+            "这一猜想涉及质数——大于 1、只能被自身和 1 整除的整数。",
+            "黎曼猜想是克雷数学研究所于 2000 年选出的七大千禧年数学难题之一。"
           ]
-        }
-      ],
-      "published": "2026-11-22",
-      "source": "The Guardian",
-      "sourceUrl": "https://www.theguardian.com/technology/2026/nov/21/anthropic-riemann-hypothesis-solved-claude-ai",
-      "title": "Two groups verify mathematician's claim that Claude helped prove mathematics problem",
-      "vocab": [
-        {
-          "en": "to solve a difficult problem",
-          "ex": "The software has helped crack one of the most important unsolved problems in mathematics.",
-          "exZh": "这款软件帮助破解了数学中最重要的未解难题之一。",
-          "ph": "/kræk/",
-          "pos": "v.",
-          "w": "crack",
-          "zh": "破解；解开（难题）"
-        },
-        {
-          "en": "evidence or an argument that shows something is true",
-          "ex": "We have full confidence that Alpöge's proof of the Riemann hypothesis is correct.",
-          "exZh": "我们完全相信阿尔珀格对黎曼猜想的证明是正确的。",
-          "ph": "/pruːf/",
-          "pos": "n.",
-          "w": "proof",
-          "zh": "证明；证据"
-        },
-        {
-          "en": "an idea that is suggested as a possible explanation but has not yet been proved",
-          "ex": "The Riemann hypothesis is a nearly 170-year-old math problem.",
-          "exZh": "黎曼猜想是一个有近 170 年历史的数学难题。",
-          "ph": "/haɪˈpɒθəsɪs/",
-          "pos": "n.",
-          "w": "hypothesis",
-          "zh": "假说；猜想"
-        },
-        {
-          "en": "relating to a number that can only be divided by itself and 1",
-          "ex": "The hypothesis deals with prime numbers.",
-          "exZh": "这一猜想涉及质数。",
-          "ph": "/praɪm/",
-          "pos": "adj.",
-          "w": "prime",
-          "zh": "质数的；首要的"
-        },
-        {
-          "en": "a person who studies mathematics",
-          "ex": "A mathematician at Anthropic has said the software helped crack the problem.",
-          "exZh": "Anthropic 的一位数学家表示，这款软件帮助破解了这一难题。",
-          "ph": "/ˌmæθəməˈtɪʃn/",
-          "pos": "n.",
-          "w": "mathematician",
-          "zh": "数学家"
-        },
-        {
-          "en": "a statement that something is true, although it has not been proved",
-          "ex": "Experts say the claim checks out.",
-          "exZh": "专家表示这一说法经得起检验。",
-          "ph": "/kleɪm/",
-          "pos": "n.",
-          "w": "claim",
-          "zh": "说法；主张；声称"
         }
       ],
       "phrases": [
@@ -264,6 +285,16 @@
           "exZh": "我小时候常踢足球。"
         },
         {
+          "p": "dish out",
+          "surf": [
+            "dishing out"
+          ],
+          "zh": "大把分发；慷慨给予",
+          "en": "to give something out freely, often in large amounts",
+          "ex": "The company is dishing out millions of dollars to solve the problem.",
+          "exZh": "这家公司正大把花钱来解决问题。"
+        },
+        {
           "p": "deal with",
           "surf": [
             "deals with"
@@ -276,368 +307,515 @@
       ]
     },
     {
+      "id": "news-20261123-korea-ai-cheating",
+      "title": "South Korean minister quits after AI cheating scandal engulfs university exams",
       "cat": "新闻",
-      "desc": "讽刺木偶剧《Spitting Image》联合创作者彼得·弗拉克去世，享年 85 岁。",
-      "id": "news-20261122-spitting-image",
       "level": "B2",
       "minutes": 4,
-      "paras": [
-        {
-          "en": [
-            "Peter Fluck, co-creator of award-winning satirical puppet show Spitting Image, has died aged 85.",
-            "His family said he died in the early hours of Saturday at home in Cornwall, following a recent illness.",
-            "Spitting Image was immensely popular and sometimes controversial, running from 1984 to 1996 across 18 seasons, and featured puppet caricatures of celebrities, politicians and royals, including former Prime Minister Margaret Thatcher and Queen Elizabeth the Queen Mother."
-          ],
-          "zh": [
-            "获奖讽刺木偶剧《Spitting Image》的联合创作者彼得·弗拉克去世，享年 85 岁。",
-            "他的家人说，他在周六凌晨于康沃尔的家中去世，此前不久患病。",
-            "《Spitting Image》极受欢迎，有时也颇具争议，从 1984 年播到 1996 年，共 18 季，节目中有名人、政客和王室成员的木偶漫画形象，包括前首相玛格丽特·撒切尔和伊丽莎白王太后。"
-          ]
-        },
-        {
-          "en": [
-            "The show won several awards, including one Bafta TV award and two Emmys, and at its peak drew an audience of 15 million.",
-            "Fluck was born in Cambridge in 1941, and created the show alongside childhood friend Roger Law, who he met while studying at Cambridge School of Art.",
-            "Following school, both Fluck and Law moved to London and set up as freelance illustrators, and in 1976 set up their partnership “Luck and Flaw” back in Cambridge."
-          ],
-          "zh": [
-            "该节目赢得了多个奖项，包括一项英国电影电视艺术学院电视奖和两项艾美奖，巅峰时期吸引了 1500 万观众。",
-            "弗拉克 1941 年出生于剑桥，与儿时好友罗杰·劳一起创作了这档节目，两人是在剑桥艺术学院求学时相识的。",
-            "毕业后，弗拉克和劳都搬到伦敦当自由插画师，并于 1976 年回到剑桥成立了名为“运气与缺陷”的合伙工作室。"
-          ]
-        },
-        {
-          "en": [
-            "“You could say we took the traditional newspaper editorial cartoon and put it on the screen,” Fluck told ArtCornwall in an interview in 2006.",
-            "“We did get quite a lot of approaches from politicians for their puppet to be made, because if you didn't appear as a puppet on Spitting Image you hadn't made it as a politician,” Fluck said in an interview in 2011.",
-            "When he stepped away from the show, Fluck moved to Cornwall and focused his art on ceramics, printmaking and mobiles."
-          ],
-          "zh": [
-            "“可以说，我们把传统的报纸社论漫画搬上了电视屏幕，”弗拉克在 2006 年接受 ArtCornwall 采访时说。",
-            "“确实有不少政客找上门来，希望为他们制作木偶，因为如果你没有以木偶形象出现在《Spitting Image》里，就不算真正出人头地，”弗拉克在 2011 年的一次采访中说。",
-            "离开节目后，弗拉克搬到康沃尔，专注于陶瓷、版画和动态雕塑艺术。"
-          ]
-        }
-      ],
-      "published": "2026-11-22",
-      "source": "BBC News",
-      "sourceUrl": "https://www.bbc.co.uk/news/articles/cm3vg9dqr6zyo",
-      "title": "Spitting Image co-creator Peter Fluck dies aged 85",
-      "vocab": [
-        {
-          "en": "using humour to criticize people or ideas",
-          "ex": "Spitting Image was an award-winning satirical puppet show.",
-          "exZh": "《Spitting Image》是一档获奖讽刺木偶剧。",
-          "ph": "/səˈtɪrɪkl/",
-          "pos": "adj.",
-          "w": "satirical",
-          "zh": "讽刺的"
-        },
-        {
-          "en": "a funny drawing that makes a person's features look bigger or more noticeable than they really are",
-          "ex": "The show featured puppet caricatures of celebrities and politicians.",
-          "exZh": "节目中有名人和政客的木偶漫画形象。",
-          "ph": "/ˈkærɪkətʃʊə(r)/",
-          "pos": "n.",
-          "w": "caricature",
-          "zh": "漫画；讽刺画"
-        },
-        {
-          "en": "causing a lot of disagreement among people",
-          "ex": "Spitting Image was immensely popular and sometimes controversial.",
-          "exZh": "《Spitting Image》极受欢迎，有时也颇具争议。",
-          "ph": "/ˌkɒntrəˈvɜːʃl/",
-          "pos": "adj.",
-          "w": "controversial",
-          "zh": "有争议的；引起争论的"
-        },
-        {
-          "en": "working for different companies rather than being employed by one company",
-          "ex": "Both Fluck and Law moved to London and set up as freelance illustrators.",
-          "exZh": "弗拉克和劳都搬到伦敦当自由插画师。",
-          "ph": "/ˈfriːlɑːns/",
-          "pos": "adj.",
-          "w": "freelance",
-          "zh": "自由职业的"
-        },
-        {
-          "en": "a person who draws pictures for books, magazines or advertisements",
-          "ex": "They worked as freelance illustrators before creating the show.",
-          "exZh": "在创作这档节目之前，他们当自由插画师。",
-          "ph": "/ˈɪləstreɪtə(r)/",
-          "pos": "n.",
-          "w": "illustrator",
-          "zh": "插画师；插图画家"
-        },
-        {
-          "en": "the highest point or level of something",
-          "ex": "At its peak the show drew an audience of 15 million.",
-          "exZh": "巅峰时期，该节目吸引了 1500 万观众。",
-          "ph": "/piːk/",
-          "pos": "n.",
-          "w": "peak",
-          "zh": "巅峰；高峰"
-        }
-      ],
-      "phrases": [
-        {
-          "p": "set up",
-          "surf": [
-            "set up"
-          ],
-          "zh": "安装；布置；建立",
-          "en": "to put something in place so it is ready for use",
-          "ex": "The gravimeter was set up on the floor of a men's bathroom.",
-          "exZh": "重力仪被安放在男洗手间的地板上。"
-        }
-      ]
-    },
-    {
-      "cat": "新闻",
-      "desc": "萨福克村庄以 94% 的赞成票象征性投票“脱离英国”，抗议在前空军基地安置寻求庇护者。",
-      "id": "news-20261122-barnham-vote",
-      "level": "B2",
-      "minutes": 4,
-      "paras": [
-        {
-          "en": [
-            "Villagers vowed “this is only the beginning” after voting overwhelmingly to “leave the UK” in protest at plans to house migrants at a former airbase.",
-            "Residents in Barnham, Suffolk, held a symbolic poll on Saturday to decide whether or not to declare independence.",
-            "The referendum was called after RAF Barnham, near Bury St Edmunds, Suffolk and Thetford, in Norfolk, was earmarked by the government as a site to house up to 931 male asylum seekers."
-          ],
-          "zh": [
-            "村民们以压倒性多数投票“脱离英国”，抗议政府在前空军基地安置移民的计划，随后他们发誓“这仅仅是个开始”。",
-            "萨福克郡巴纳姆村的居民周六举行了一次象征性投票，决定是否宣布独立。",
-            "这次公投是在政府把位于萨福克郡贝里圣埃德蒙兹和诺福克郡塞特福德附近的皇家空军巴纳姆基地指定为安置多达 931 名男性寻求庇护者的地点后发起的。"
-          ]
-        },
-        {
-          "en": [
-            "Two-hundred-and-fifty-seven people, 94% of those who took part, voted in favour of leaving, 16 voted against and one vote was spoiled.",
-            "Following the result, which is not legally binding, residents unveiled a flag, a Stone-curlew against a Suffolk blue background, to celebrate the village's newfound “independence”.",
-            "Barnham is the second village to hold a symbolic poll over migrant housing plans, after residents of Piddington in Oxfordshire voted to leave the UK in September."
-          ],
-          "zh": [
-            "257 人——占投票者的 94%——投票赞成脱离，16 人反对，1 票作废。",
-            "投票结果不具有法律约束力，随后村民们揭开了一面旗帜——萨福克蓝底上一只石鸻——庆祝村庄新获得的“独立”。",
-            "巴纳姆是第二个就移民安置计划举行象征性投票的村庄，此前牛津郡皮丁顿的居民已于 9 月投票脱离英国。"
-          ]
-        },
-        {
-          "en": [
-            "The government first put forward plans to house “single adult male” asylum seekers at RAF Barnham back in June.",
-            "It is part of the government's drive to end the use of hotels to house asylum seekers, a scheme which, at its peak, was reportedly costing £9m per day.",
-            "A Home Office spokesperson said: “We recognise the strength of feeling in local communities and are listening carefully to the concerns being raised.”"
-          ],
-          "zh": [
-            "政府早在 6 月就首次提出计划，在皇家空军巴纳姆基地安置“单身成年男性”寻求庇护者。",
-            "这是政府推动结束用酒店安置寻求庇护者的一部分，据报道，该计划在高峰期每天耗资 900 万英镑。",
-            "内政部发言人表示：“我们认识到当地社区的强烈情绪，正在认真倾听大家提出的关切。”"
-          ]
-        }
-      ],
-      "published": "2026-11-22",
-      "source": "BBC News",
-      "sourceUrl": "https://www.bbc.co.uk/news/articles/cvze71y6g85yo",
-      "title": "Village votes to 'leave UK' over migrant plan",
-      "vocab": [
-        {
-          "en": "representing an idea rather than having a direct practical effect",
-          "ex": "Residents held a symbolic poll to decide whether to declare independence.",
-          "exZh": "居民们举行了一次象征性投票，决定是否宣布独立。",
-          "ph": "/sɪmˈbɒlɪk/",
-          "pos": "adj.",
-          "w": "symbolic",
-          "zh": "象征性的"
-        },
-        {
-          "en": "a vote in which all the people in a country or area decide on an important question",
-          "ex": "The referendum was called after the site was earmarked for asylum seekers.",
-          "exZh": "这次公投是在该地点被指定安置寻求庇护者后发起的。",
-          "ph": "/ˌrefəˈrendəm/",
-          "pos": "n.",
-          "w": "referendum",
-          "zh": "公投；全民投票"
-        },
-        {
-          "en": "by a very large amount, in a way that is difficult to argue against",
-          "ex": "Villagers voted overwhelmingly to leave the UK.",
-          "exZh": "村民们以压倒性多数投票脱离英国。",
-          "ph": "/ˌəʊvəˈwelmɪŋli/",
-          "pos": "adv.",
-          "w": "overwhelmingly",
-          "zh": "压倒性地；以极大优势"
-        },
-        {
-          "en": "protection given by a government to a person who has left their own country for political reasons",
-          "ex": "The site was earmarked to house up to 931 male asylum seekers.",
-          "exZh": "该地点被指定安置多达 931 名男性寻求庇护者。",
-          "ph": "/əˈsaɪləm/",
-          "pos": "n.",
-          "w": "asylum",
-          "zh": "庇护；避难"
-        },
-        {
-          "en": "a person who lives in a particular place",
-          "ex": "Residents in Barnham, Suffolk, held a symbolic poll on Saturday.",
-          "exZh": "萨福克郡巴纳姆村的居民周六举行了一次象征性投票。",
-          "ph": "/ˈrezɪdənt/",
-          "pos": "n.",
-          "w": "resident",
-          "zh": "居民；住户"
-        },
-        {
-          "en": "that must be obeyed because it is part of an agreement or law",
-          "ex": "The result is not legally binding.",
-          "exZh": "投票结果不具有法律约束力。",
-          "ph": "/ˈbaɪndɪŋ/",
-          "pos": "adj.",
-          "w": "binding",
-          "zh": "有约束力的"
-        }
-      ],
-      "phrases": [
-        {
-          "p": "plan to do",
-          "surf": [
-            "plans to house"
-          ],
-          "zh": "计划做某事",
-          "en": "to intend to do something",
-          "ex": "We plan to visit Beijing next year.",
-          "exZh": "我们计划明年去北京。"
-        },
-        {
-          "p": "in favour of",
-          "surf": [
-            "in favour of"
-          ],
-          "zh": "赞成；支持",
-          "en": "In support of; approving something.",
-          "ex": "Two-hundred-and-fifty-seven people, 94% of those who took part, voted in favour of leaving, 16 voted against and one vote was spoiled.",
-          "exZh": "257 人——占投票者的 94%——投票赞成脱离，16 人反对，1 票作废。"
-        }
-      ]
-    },
-    {
-      "cat": "新闻",
-      "desc": "联合国自主武器条约谈判在通宵磋商后破裂，未能达成具有法律约束力的授权。",
-      "id": "news-20261122-autonomous-weapons",
-      "level": "B2",
-      "minutes": 4,
-      "paras": [
-        {
-          "en": [
-            "Week-long efforts to agree a negotiating mandate for a legally binding international treaty to control the use of autonomous weapons collapsed just before 5am after all-night talks failed to overcome Russian objections.",
-            "Despite an overwhelming majority of states at the UN's Convention on Certain Conventional Weapons in Geneva wanting to agree a negotiating mandate leading to a legally binding treaty, the need for consensus forced the conference to adopt a much weaker option.",
-            "The mandate asked countries “to elaborate by consensus”, an instrument that may not carry any legal obligations."
-          ],
-          "zh": [
-            "为期一周的努力宣告失败——各方未能就一项具有法律约束力的国际条约谈判授权达成一致，该条约旨在控制自主武器的使用，谈判在凌晨 5 点前破裂。",
-            "尽管日内瓦联合国《特定常规武器公约》会议上绝大多数国家都希望达成一项通向具有法律约束力条约的谈判授权，但共识要求迫使会议采纳了一个弱得多的方案。",
-            "该授权要求各国“通过共识加以拟定”，而这一文书可能不带有任何法律义务。"
-          ]
-        },
-        {
-          "en": [
-            "Although Russia led the objections using obstructive stalling tactics, other military powers invested in AI warfare, such as the US, were reluctant to commit to a legally binding protocol protecting civilians from robot drones and other autonomous weapons.",
-            "Some argued that international humanitarian law was sufficient.",
-            "More than 100 states had been pushing for a new law, saying the weapons raised entirely new challenges."
-          ],
-          "zh": [
-            "尽管俄罗斯带头使用阻挠拖延战术提出反对，但美国等其他投入 AI 战争的军事大国也不愿承诺签署一项保护平民免受机器人无人机和其他自主武器伤害的具有法律约束力的议定书。",
-            "有人认为，国际人道法已经足够。",
-            "100 多个国家一直在推动制定新法律，称这些武器带来了全新的挑战。"
-          ]
-        },
-        {
-          "en": [
-            "The CCW is a UN forum that operates via consensus, meaning all 128 parties to the convention have to agree unanimously to pass a statement.",
-            "The high threshold has resulted in the CCW failing to pass any new laws regulating weapons in the past 30 years and states seeking pathways elsewhere to pass treaties, such as the 2008 ban on cluster munitions.",
-            "Critics said this outcome was a missed opportunity, noting that states had been discussing the issue of autonomous weapons, their dangers, and the need for international rules on how to restrict and regulate them for 13 years."
-          ],
-          "zh": [
-            "《特定常规武器公约》是一个以共识方式运作的联合国论坛，这意味着公约的全部 128 个缔约方必须一致同意才能通过一项声明。",
-            "这一高门槛导致该公约在过去 30 年里未能通过任何新的武器管制法律，各国转而寻求其他途径通过条约，例如 2008 年的集束弹药禁令。",
-            "批评者称，这一结果错失了良机，并指出各国讨论自主武器问题、其危险以及制定国际规则来限制和规范它们的必要性，已经有 13 年了。"
-          ]
-        }
-      ],
-      "published": "2026-11-22",
+      "desc": "韩国大学入学考试爆出 AI 作弊丑闻，教育部长引咎辞职。",
       "source": "The Guardian",
-      "sourceUrl": "https://www.theguardian.com/technology/2026/nov/21/international-talks-control-ai-autonomous-weapons-collapse",
-      "title": "International UN talks on controlling use of autonomous weapons collapse",
+      "sourceUrl": "https://www.theguardian.com/world/2026/nov/22/south-korea-education-minister-resigns-after-ai-cheating-scandal-engulfs-university-exams",
+      "published": "2026-11-23",
       "vocab": [
         {
-          "en": "able to act independently without being controlled by a person",
-          "ex": "The treaty would control the use of autonomous weapons.",
-          "exZh": "该条约将控制自主武器的使用。",
-          "ph": "/ɔːˈtɒnəməs/",
+          "w": "resign",
+          "ph": "/rɪˈzaɪn/",
+          "pos": "v.",
+          "zh": "辞职；辞去职务",
+          "en": "to leave a job or position officially",
+          "ex": "South Korea’s education minister has resigned after the cheating scandal.",
+          "exZh": "韩国教育部长在作弊丑闻后辞职。"
+        },
+        {
+          "w": "scandal",
+          "ph": "/ˈskændl/",
+          "pos": "n.",
+          "zh": "丑闻",
+          "en": "an event that shocks people because it involves wrong behaviour",
+          "ex": "The minister quit after an AI-assisted cheating scandal.",
+          "exZh": "这位部长在一场 AI 辅助作弊丑闻后辞职。"
+        },
+        {
+          "w": "confess",
+          "ph": "/kənˈfes/",
+          "pos": "v.",
+          "zh": "承认；坦白",
+          "en": "to admit that you have done something wrong",
+          "ex": "The top scorer confessed to using a miniature camera and smartphone.",
+          "exZh": "这名状元承认自己使用了微型摄像头和智能手机。"
+        },
+        {
+          "w": "crackdown",
+          "ph": "/ˈkrækdaʊn/",
+          "pos": "n.",
+          "zh": "严打；严厉打击",
+          "en": "strong action taken to stop something bad",
+          "ex": "The unprecedented crackdown included doubling the number of supervisors.",
+          "exZh": "这次前所未有的严打包括把监考员人数翻倍。"
+        },
+        {
+          "w": "preventive",
+          "ph": "/prɪˈventɪv/",
           "pos": "adj.",
-          "w": "autonomous",
-          "zh": "自主的；自动的"
+          "zh": "预防的；防止的",
+          "en": "intended to stop something bad from happening",
+          "ex": "Officials rolled out a slew of preventive measures for the exams.",
+          "exZh": "官员们为考试推出了一系列预防措施。"
         },
         {
-          "en": "a reason for disagreeing with something",
-          "ex": "All-night talks failed to overcome Russian objections.",
-          "exZh": "通宵谈判未能克服俄罗斯的反对。",
-          "ph": "/əbˈdʒekʃn/",
+          "w": "misconduct",
+          "ph": "/ˌmɪsˈkɒndʌkt/",
           "pos": "n.",
-          "w": "objection",
-          "zh": "反对；异议"
+          "zh": "不当行为；违规",
+          "en": "behaviour that is wrong or against the rules",
+          "ex": "Officials said 111 cases of misconduct were identified during the exam.",
+          "exZh": "官员们表示，考试期间查出了 111 起违规行为。"
+        }
+      ],
+      "paras": [
+        {
+          "en": [
+            "South Korea’s education minister has resigned after an AI-assisted cheating scandal that erupted in the lead-up to key university entrance exams last week.",
+            "The country has been gripped by fears of AI-assisted exam cheating since last Sunday, when the top scorer in a national tax accountancy exam confessed to using a miniature camera and smartphone to achieve a near-perfect score, just four days before the crucial university entrance exam, known as the suneung.",
+            "The cheat’s confession sent officials scrambling to roll out a slew of preventive measures for the university entrance exams, including blocking public wifi in testing areas."
+          ],
+          "zh": [
+            "韩国教育部长在一场 AI 辅助作弊丑闻爆发后辞职，这场丑闻发生在上周关键大学入学考试前夕。",
+            "自上周日以来，韩国一直笼罩在 AI 辅助考试作弊的恐惧中——当时一名全国税务师考试的状元承认，他用微型摄像头和智能手机考出了接近满分的成绩，而此时距离至关重要的大学入学考试（即“修能”考试）仅剩四天。",
+            "这名作弊者的供认让官员们匆忙推出一系列预防措施，包括在考场区域屏蔽公共 Wi-Fi。"
+          ]
         },
         {
-          "en": "official permission to do something",
-          "ex": "States wanted to agree a negotiating mandate for a binding treaty.",
-          "exZh": "各国希望就一项具有约束力条约的谈判授权达成一致。",
-          "ph": "/ˈmændeɪt/",
-          "pos": "n.",
-          "w": "mandate",
-          "zh": "授权；任务"
+          "en": [
+            "The unprecedented crackdown included doubling the number of supervisors and sending emergency alerts to detect any smartphones illegally smuggled into the exam centres.",
+            "Students were also told to turn up with pencils only.",
+            "Erasers were provided by the test centres, as authorities tried to reduce the chances of concealed digital devices disguised as stationery."
+          ],
+          "zh": [
+            "这次前所未有的严打包括把监考员人数翻倍，并发送紧急警报，以查出被非法带进考场的智能手机。",
+            "学生们还被告知只能带铅笔进场。",
+            "考场提供橡皮，因为当局想减少伪装成文具的隐藏电子设备被带入的机会。"
+          ]
         },
         {
-          "en": "not willing to do something",
-          "ex": "Other military powers were reluctant to commit to a legally binding protocol.",
-          "exZh": "其他军事大国不愿承诺签署具有法律约束力的议定书。",
-          "ph": "/rɪˈlʌktənt/",
-          "pos": "adj.",
-          "w": "reluctant",
-          "zh": "不情愿的；勉强的"
-        },
-        {
-          "en": "a formal agreement between two or more countries",
-          "ex": "The talks aimed at a legally binding international treaty.",
-          "exZh": "谈判旨在达成一项具有法律约束力的国际条约。",
-          "ph": "/ˈtriːti/",
-          "pos": "n.",
-          "w": "treaty",
-          "zh": "条约；协定"
-        },
-        {
-          "en": "a person who is not a member of the armed forces",
-          "ex": "The protocol would protect civilians from robot drones.",
-          "exZh": "该议定书将保护平民免受机器人无人机的伤害。",
-          "ph": "/sɪˈvɪliən/",
-          "pos": "n.",
-          "w": "civilian",
-          "zh": "平民；百姓"
+          "en": [
+            "The government promised a reward of at least $75,000 (£57,300) for anyone reporting cheating or misconduct, with reduced penalties for those who turned in their accomplices.",
+            "But the education minister, Choi Kyo-jin, struggled to reassure the public, and teachers’ unions criticised the government response as belated.",
+            "The president, Lee Jae Myung, accepted his resignation, the presidential office said."
+          ],
+          "zh": [
+            "政府承诺，对举报作弊或违规行为者至少奖励 7.5 万美元，对交出同伙者减轻处罚。",
+            "但教育部长崔教振难以安抚公众，教师工会批评政府的应对姗姗来迟。",
+            "总统府表示，总统李在明已接受他的辞呈。"
+          ]
         }
       ],
       "phrases": [
         {
-          "p": "fail to do",
+          "p": "roll out",
           "surf": [
-            "failed to overcome"
+            "roll out"
           ],
-          "zh": "未能做某事",
-          "en": "to not succeed in doing something",
-          "ex": "He failed to pass the exam.",
-          "exZh": "他考试没通过。"
+          "zh": "推出；实施",
+          "en": "to introduce or launch something new",
+          "ex": "Officials scrambled to roll out a slew of preventive measures.",
+          "exZh": "官员们匆忙推出了一系列预防措施。"
+        },
+        {
+          "p": "turn up",
+          "surf": [
+            "turn up"
+          ],
+          "zh": "出现；到场",
+          "en": "to arrive or appear, especially unexpectedly",
+          "ex": "Students were told to turn up with pencils only.",
+          "exZh": "学生们被告知只能带铅笔进场。"
+        },
+        {
+          "p": "try to do",
+          "surf": [
+            "tried to reduce"
+          ],
+          "zh": "设法做某事；努力做某事",
+          "en": "to attempt to do something",
+          "ex": "Try to arrive on time.",
+          "exZh": "尽量准时到。"
+        },
+        {
+          "p": "turn in",
+          "surf": [
+            "turned in"
+          ],
+          "zh": "交出；上交；告发",
+          "en": "to give something or someone to the authorities; to hand in",
+          "ex": "Those who turned in their accomplices would get reduced penalties.",
+          "exZh": "交出同伙的人将获得减刑。"
+        }
+      ]
+    },
+    {
+      "id": "news-20261123-hormuz-swim",
+      "title": "Briton swims length of strait of Hormuz to highlight environmental cost of war",
+      "cat": "新闻",
+      "level": "B2",
+      "minutes": 4,
+      "desc": "英国游泳者横渡霍尔木兹海峡，呼吁关注战争对海洋环境的破坏。",
+      "source": "The Guardian",
+      "sourceUrl": "https://www.theguardian.com/world/2026/nov/22/briton-lewis-pugh-swims-strait-of-hormuz-environment-war",
+      "published": "2026-11-23",
+      "vocab": [
+        {
+          "w": "endurance",
+          "ph": "/ɪnˈdjʊərəns/",
+          "pos": "n.",
+          "zh": "耐力；持久力",
+          "en": "the ability to keep doing something difficult for a long time",
+          "ex": "A British endurance swimmer has completed a three-day swim through the strait.",
+          "exZh": "一名英国耐力游泳运动员完成了为期三天的横渡海峡。"
+        },
+        {
+          "w": "highlight",
+          "ph": "/ˈhaɪlaɪt/",
+          "pos": "v.",
+          "zh": "强调；凸显",
+          "en": "to draw attention to something",
+          "ex": "He swam the strait to highlight the environmental cost of the war.",
+          "exZh": "他游过海峡，是为了凸显战争带来的环境代价。"
+        },
+        {
+          "w": "witness",
+          "ph": "/ˈwɪtnəs/",
+          "pos": "v.",
+          "zh": "目睹；亲眼看到",
+          "en": "to see something happen",
+          "ex": "He witnessed several attacks on commercial shipping during the swim.",
+          "exZh": "他在游泳期间目睹了针对商船的多次袭击。"
+        },
+        {
+          "w": "projectile",
+          "ph": "/prəˈdʒektaɪl/",
+          "pos": "n.",
+          "zh": "抛射物；炮弹",
+          "en": "an object that is thrown or fired, such as a bullet or shell",
+          "ex": "An oil tanker was struck by a projectile about 2.5 miles from where he was swimming.",
+          "exZh": "一艘油轮在他游泳地点约 2.5 英里外被一枚炮弹击中。"
+        },
+        {
+          "w": "immense",
+          "ph": "/ɪˈmens/",
+          "pos": "adj.",
+          "zh": "巨大的；极大的",
+          "en": "extremely large",
+          "ex": "Pugh said war causes immense human suffering.",
+          "exZh": "皮尤说，战争造成了巨大的人员伤亡。"
+        },
+        {
+          "w": "contamination",
+          "ph": "/kənˌtæmɪˈneɪʃn/",
+          "pos": "n.",
+          "zh": "污染",
+          "en": "the process of making something dirty or harmful by adding a substance",
+          "ex": "Oil spills and other contamination could harm marine ecosystems.",
+          "exZh": "石油泄漏和其他污染可能危害海洋生态系统。"
+        }
+      ],
+      "paras": [
+        {
+          "en": [
+            "A British endurance swimmer has completed a three-day swim through the strait of Hormuz to highlight the environmental cost of the Iran war.",
+            "Lewis Pugh, a UN patron of the oceans, swam the 9.3-mile (15km) length of the waterway, which is a key route for oil shipments from the Middle East.",
+            "According to the Lewis Pugh Foundation, he witnessed several attacks on commercial shipping, explosions in the distance and fighter jets overhead."
+          ],
+          "zh": [
+            "一名英国耐力游泳运动员完成了为期三天的横渡霍尔木兹海峡，以凸显伊朗战争带来的环境代价。",
+            "联合国海洋守护者刘易斯·皮尤游完了这条 9.3 英里（15 公里）长的水道，它是中东石油运输的关键通道。",
+            "据刘易斯·皮尤基金会称，他目睹了针对商船的多次袭击、远处的爆炸和头顶飞过的战斗机。"
+          ]
+        },
+        {
+          "en": [
+            "An oil tanker was struck by a projectile about 2.5 miles from where he was swimming on the first day.",
+            "On the second, he saw flames rising above a headland separating him from a burning liquefied petroleum gas carrier, Tara Gas, and later he passed close to the vessel while it was still on fire.",
+            "The 56-year-old undertook his first swim in a conflict zone to urge an end to the fighting, the reopening of the strait and action to address environmental damage caused by the conflict."
+          ],
+          "zh": [
+            "第一天，一艘油轮在他游泳地点约 2.5 英里外被一枚炮弹击中。",
+            "第二天，他看到火焰从一处海角上升起，海角另一边是一艘正在燃烧的液化石油气运输船“塔拉天然气号”，后来他在船只仍在燃烧时从附近游过。",
+            "这位 56 岁的游泳者首次在冲突地区游泳，呼吁结束战斗、重新开放海峡，并采取行动应对冲突造成的环境破坏。"
+          ]
+        },
+        {
+          "en": [
+            "Pugh said environmental damage caused by conflict often received less attention than the human cost.",
+            "According to the UN, at least 175 vessels have been attacked since fighting began, and about 30 attacks have caused significant pollution.",
+            "Pugh, who was born in Plymouth, said oil spills and other contamination could have long-term consequences for marine ecosystems including coral reefs, seagrass meadows and mangrove forests."
+          ],
+          "zh": [
+            "皮尤表示，冲突造成的环境破坏往往比人员伤亡受到的关注更少。",
+            "据联合国称，自战斗开始以来，至少有 175 艘船只遭到袭击，其中约 30 起袭击造成了严重污染。",
+            "出生于普利茅斯的皮尤说，石油泄漏和其他污染可能对包括珊瑚礁、海草床和红树林在内的海洋生态系统造成长期影响。"
+          ]
+        }
+      ],
+      "phrases": [
+        {
+          "p": "in the distance",
+          "surf": [
+            "in the distance"
+          ],
+          "zh": "在远处",
+          "en": "far away; a long distance away",
+          "ex": "They heard explosions in the distance.",
+          "exZh": "他们听到远处传来爆炸声。"
+        }
+      ]
+    },
+    {
+      "id": "news-20261123-ai-reskinning",
+      "title": "The real people finding their work copied and stolen by AI characters",
+      "cat": "新闻",
+      "level": "B2",
+      "minutes": 4,
+      "desc": "AI“换皮”视频克隆真人创作者的表演，引发原创者愤怒。",
+      "source": "BBC News",
+      "sourceUrl": "https://www.bbc.co.uk/news/articles/cm7527kp4qrpo",
+      "published": "2026-11-23",
+      "vocab": [
+        {
+          "w": "manipulation",
+          "ph": "/məˌnɪpjʊˈleɪʃn/",
+          "pos": "n.",
+          "zh": "操纵；篡改",
+          "en": "changing something in a dishonest way to gain an advantage",
+          "ex": "There is a new trend when it comes to digital manipulation.",
+          "exZh": "在数字造假方面出现了一种新趋势。"
+        },
+        {
+          "w": "clone",
+          "ph": "/kləʊn/",
+          "pos": "v.",
+          "zh": "克隆；复制",
+          "en": "to make an exact copy of something",
+          "ex": "Content creators are finding their performances cloned by AI characters.",
+          "exZh": "内容创作者发现自己的表演被 AI 角色克隆了。"
+        },
+        {
+          "w": "realistic",
+          "ph": "/ˌrɪəˈlɪstɪk/",
+          "pos": "adj.",
+          "zh": "逼真的；现实的",
+          "en": "looking or seeming like real life",
+          "ex": "The AI characters are designed to look funny, realistic, or hypersexualised.",
+          "exZh": "这些 AI 角色被设计得滑稽、逼真，或过度性感。"
+        },
+        {
+          "w": "eventually",
+          "ph": "/ɪˈventʃuəli/",
+          "pos": "adv.",
+          "zh": "最终；到头来",
+          "en": "in the end, after a long time",
+          "ex": "The accounts use the videos to get views and likes, and to eventually make money.",
+          "exZh": "这些账号利用视频获取观看量和点赞，最终赚钱。"
+        },
+        {
+          "w": "anger",
+          "ph": "/ˈæŋɡə(r)/",
+          "pos": "v.",
+          "zh": "激怒；使生气",
+          "en": "to make someone feel very annoyed",
+          "ex": "The practice has angered content creators who say their work is being stolen.",
+          "exZh": "这种做法激怒了内容创作者，他们说自己的作品正在被偷走。"
+        },
+        {
+          "w": "original",
+          "ph": "/əˈrɪdʒənl/",
+          "pos": "adj.",
+          "zh": "原创的；最初的",
+          "en": "made or created first, not a copy",
+          "ex": "Sometimes the AI version has millions more views than the original.",
+          "exZh": "有时 AI 版本的观看量比原版还要多出数百万。"
+        }
+      ],
+      "paras": [
+        {
+          "en": [
+            "But there is a new trend when it comes to digital manipulation.",
+            "Across social media, AI-generated characters are appearing in videos that look remarkably similar to those posted by real people.",
+            "From musicians to dancers and comedians, content creators are finding their performances cloned by these characters that are designed to look funny, realistic, or hypersexualised."
+          ],
+          "zh": [
+            "但在数字造假方面出现了一种新趋势。",
+            "在社交媒体上，AI 生成的角色出现在视频中，看起来与真人发布的视频非常相似。",
+            "从音乐家、舞者到喜剧演员，内容创作者发现自己的表演被这些角色克隆了，而这些角色被设计得滑稽、逼真，或过度性感。"
+          ]
+        },
+        {
+          "en": [
+            "Experts call the practice \"reskinning\" and say it is made possible by cheap, easy-to-use AI tools.",
+            "People can discover their work has been copied by seeing a video of a character making the same joke or doing the same dance, even with the same background.",
+            "Sometimes the AI version has millions more views than the original."
+          ],
+          "zh": [
+            "专家称这种做法为“换皮”，并表示这是廉价易用的 AI 工具让它成为可能。",
+            "人们发现自己的作品被抄袭，是因为看到某个角色讲着同样的笑话、跳着同样的舞，甚至背景都一模一样。",
+            "有时 AI 版本的观看量比原版还要多出数百万。"
+          ]
+        },
+        {
+          "en": [
+            "Some of the accounts identified by BBC Verify appear to be using these AI-generated videos to get views and likes, and to eventually make money.",
+            "Others appear to be experimenting with AI to make people laugh or simply for the attention that comes with going viral.",
+            "But the practice has angered content creators who say their original work is being stolen."
+          ],
+          "zh": [
+            "BBC 核查团队发现的一些账号似乎在利用这些 AI 生成的视频来获取观看量和点赞，最终赚钱。",
+            "另一些账号似乎只是在试验 AI，想让人发笑，或者单纯为了走红带来的关注。",
+            "但这种做法激怒了内容创作者，他们说自己的原创作品正在被偷走。"
+          ]
+        }
+      ],
+      "phrases": [
+        {
+          "p": "practice doing",
+          "surf": [
+            "practice reskinning"
+          ],
+          "zh": "练习做某事",
+          "en": "to do something repeatedly to improve",
+          "ex": "Practice speaking English every day.",
+          "exZh": "每天练习说英语。"
+        }
+      ]
+    },
+    {
+      "id": "news-20261123-nhs-cuts",
+      "title": "NHS savings drive leaves hospitals in England facing ‘unpalatable’ cuts",
+      "cat": "新闻",
+      "level": "B2",
+      "minutes": 4,
+      "desc": "英格兰数十家医院资金告急，被迫大幅削减服务与人手。",
+      "source": "The Guardian",
+      "sourceUrl": "https://www.theguardian.com/society/2026/nov/22/nhs-savings-hospitals-trusts-england-cuts",
+      "published": "2026-11-23",
+      "vocab": [
+        {
+          "w": "unpalatable",
+          "ph": "/ʌnˈpælətəbl/",
+          "pos": "adj.",
+          "zh": "难以接受的；令人不快的",
+          "en": "unpleasant and difficult to accept",
+          "ex": "Hospitals are being forced to make ‘unpalatable’ cuts to services and staff.",
+          "exZh": "医院被迫对服务和人员做出“难以接受”的削减。"
+        },
+        {
+          "w": "stark",
+          "ph": "/stɑːk/",
+          "pos": "adj.",
+          "zh": "严厉的；鲜明的",
+          "en": "very clear and obvious, often in an unpleasant way",
+          "ex": "Thirty-one trusts have issued stark warnings about budget savings.",
+          "exZh": "31 家信托机构已就预算削减发出严厉警告。"
+        },
+        {
+          "w": "dire",
+          "ph": "/ˈdaɪə(r)/",
+          "pos": "adj.",
+          "zh": "可怕的；极其严重的",
+          "en": "extremely serious or bad",
+          "ex": "Twenty-seven trusts are in such dire financial straits.",
+          "exZh": "27 家信托机构的财务状况如此糟糕。"
+        },
+        {
+          "w": "precarious",
+          "ph": "/prɪˈkeəriəs/",
+          "pos": "adj.",
+          "zh": "不稳定的；岌岌可危的",
+          "en": "in a dangerous state and likely to get worse",
+          "ex": "Trust bosses say their finances are in a ‘precarious’ and ‘severe’ state.",
+          "exZh": "信托机构负责人表示，他们的财务状况处于“岌岌可危”和“严重”的状态。"
+        },
+        {
+          "w": "shrink",
+          "ph": "/ʃrɪŋk/",
+          "pos": "v.",
+          "zh": "缩小；缩减",
+          "en": "to become smaller",
+          "ex": "Trusts are shrinking their workforces to save money.",
+          "exZh": "信托机构正在缩减员工队伍以节省开支。"
+        },
+        {
+          "w": "understaffing",
+          "ph": "/ˌʌndəˈstɑːfɪŋ/",
+          "pos": "n.",
+          "zh": "人手不足",
+          "en": "the situation of not having enough workers",
+          "ex": "Understaffing is widespread across the NHS.",
+          "exZh": "人手不足的现象在 NHS 普遍存在。"
+        }
+      ],
+      "paras": [
+        {
+          "en": [
+            "Dozens of hospitals are so short of money they may not be able to continue caring for patients and are being forced to make “unpalatable” cuts to services and staff, the Guardian can reveal.",
+            "Thirty-one health service trusts in England have issued stark warnings that NHS demands for them to make huge budget savings this year threaten their ability to function normally.",
+            "All have declared that as a threat in the register of risks they have to maintain and publish."
+          ],
+          "zh": [
+            "数十家医院资金极度短缺，可能无法继续照护病人，被迫对服务和人员做出“难以接受”的削减，《卫报》独家披露。",
+            "英格兰 31 家医疗服务信托机构已发出严厉警告：NHS 要求它们今年大幅削减预算，威胁到它们正常运转的能力。",
+            "它们都已把这一问题列入必须维护和公布的风险登记册。"
+          ]
+        },
+        {
+          "en": [
+            "Twenty-seven of those trusts are in such dire financial straits that they have rated lack of money as the biggest threat they face.",
+            "Six have given that danger a rating of 25 – the highest possible score – in their risk register.",
+            "A much-larger number of trusts have launched cost-cutting programmes to save as much as £106m each this year by limiting the services they provide and shrinking their workforces, despite understaffing being widespread across the NHS."
+          ],
+          "zh": [
+            "其中 27 家信托机构的财务状况如此糟糕，以至于把缺钱列为面临的最大威胁。",
+            "其中 6 家给这一风险打了 25 分——风险登记册中的最高分。",
+            "更多的信托机构已启动削减成本计划，通过限制服务和缩减员工队伍，今年各自最多节省 1.06 亿英镑，尽管 NHS 人手不足的现象普遍存在。"
+          ]
+        },
+        {
+          "en": [
+            "Trust bosses say their finances are in a “precarious” and “severe” state.",
+            "They blame rising drug prices, strikes and the cost of covering pay rises, the extra demand caused by this summer’s heatwaves, and the introduction of electronic health records.",
+            "Privately they accuse NHS England of forcing them to adopt unreasonable savings targets in order to help the health service as a whole balance its books, because hospitals have been told to stop overspending."
+          ],
+          "zh": [
+            "信托机构负责人表示，他们的财务状况处于“岌岌可危”和“严重”的状态。",
+            "他们把原因归咎于药价上涨、罢工、支付加薪的成本、今年夏天热浪带来的额外需求，以及电子健康档案的引入。",
+            "他们私下指责 NHS 英格兰机构迫使它们采纳不合理的节约目标，以帮助整个医疗服务系统实现收支平衡，因为医院已被告知要停止超支。"
+          ]
+        }
+      ],
+      "phrases": [
+        {
+          "p": "short of",
+          "surf": [
+            "short of"
+          ],
+          "zh": "缺乏；不足",
+          "en": "not having enough of something; lacking",
+          "ex": "Dozens of hospitals are so short of money they may not be able to continue caring for patients.",
+          "exZh": "数十家医院资金极度短缺，可能无法继续照护病人。"
+        },
+        {
+          "p": "be able to",
+          "surf": [
+            "be able to"
+          ],
+          "zh": "能够",
+          "en": "Can, to have the ability to.",
+          "ex": "I am able to swim.",
+          "exZh": "我会游泳。"
         },
         {
           "p": "have to do",
           "surf": [
-            "have to agree"
+            "have to maintain"
           ],
           "zh": "不得不做某事",
           "en": "must; to be obliged to do something",
@@ -645,141 +823,24 @@
           "exZh": "我现在必须做作业。"
         },
         {
-          "p": "result in",
+          "p": "in order to",
           "surf": [
-            "resulted in"
+            "in order to"
           ],
-          "zh": "导致",
-          "en": "To bring about; to lead to.",
-          "ex": "The protests resulted in widespread unrest.",
-          "exZh": "抗议导致了广泛的动乱。"
-        }
-      ]
-    },
-    {
-      "cat": "新闻",
-      "desc": "威尔士王妃在 BBC 纪录片中坦言癌症诊断带来的改变，并完成三峰挑战。",
-      "id": "news-20261122-princess-heal",
-      "level": "B2",
-      "minutes": 4,
-      "paras": [
-        {
-          "en": [
-            "The Princess of Wales has spoken candidly about the impact of her cancer diagnosis in a BBC documentary to be aired later this month.",
-            "“Cancer does change you,” Catherine, 44, says in the trailer for the 30-minute programme.",
-            "“It changes your body. It changes you physically, but there's a much, much deeper part to what a cancer diagnosis shifts in you.”"
-          ],
-          "zh": [
-            "威尔士王妃在一部将于本月晚些时候播出的 BBC 纪录片中，坦率地谈到了癌症诊断对她的影响。",
-            "44 岁的凯瑟琳在这部 30 分钟节目的预告片中说：“癌症确实会改变你。”",
-            "“它改变你的身体，改变你的生理，但癌症诊断在你身上改变的，还有更深、更深的部分。”"
-          ]
+          "zh": "为了",
+          "en": "As a means of achieving something; to.",
+          "ex": "In order to be fit, you've gotta train hard every day.",
+          "exZh": "为了保持健康，你必须每天刻苦训练。"
         },
         {
-          "en": [
-            "The film records Catherine taking on the Three Peaks challenge, climbing the three highest mountains in England, Scotland and Wales in 24 hours, and meeting with other people undergoing cancer treatment.",
-            "Described by the BBC as a “highly personal film”, the documentary, titled Heal, will be shown on BBC One on 29 November.",
-            "Catherine was diagnosed with an undisclosed form of cancer in early 2024, for which she received chemotherapy, and by January 2025 announced she was in remission."
-          ],
-          "zh": [
-            "这部影片记录了凯瑟琳挑战三峰——在 24 小时内登上英格兰、苏格兰和威尔士的最高峰——并与正在接受癌症治疗的其他人见面。",
-            "BBC 称这部名为《Heal》的纪录片是一部“高度个人化的影片”，将于 11 月 29 日在 BBC One 播出。",
-            "凯瑟琳于 2024 年初被诊断出患有一种未公开的癌症，接受了化疗，并于 2025 年 1 月宣布病情缓解。"
-          ]
-        },
-        {
-          "en": [
-            "She was treated at the Royal Marsden hospital in London, a world-leading oncology centre, with funds from the distribution of the documentary going to the Royal Marsden cancer charity.",
-            "When she completed the challenge in June, 18 months after announcing that the cancer was in remission, she became the first royal to have achieved the feat, climbing Ben Nevis, Scafell Pike and Yr Wyddfa in less than 24 hours, having started on a Saturday evening.",
-            "In the programme, which will be introduced by the presenter Kirsty Young, Catherine talks about how she has learned through her recovery to find “a sense of hope and joy alongside uncertainty”."
-          ],
-          "zh": [
-            "她在伦敦皇家马斯登医院接受治疗，这是一家世界领先的肿瘤中心，纪录片发行所得将捐给皇家马斯登癌症慈善机构。",
-            "今年 6 月完成挑战时——距她宣布癌症缓解已有 18 个月——她成为首位完成这一壮举的王室成员，在不到 24 小时内登上本尼维斯峰、斯卡费尔峰和伊尔·维法峰，周六傍晚出发。",
-            "在这档由主持人克斯蒂·杨引言的节目中，凯瑟琳谈到，她在康复过程中学会了如何在不确定中“找到希望与喜悦”。"
-          ]
-        }
-      ],
-      "published": "2026-11-22",
-      "source": "The Guardian",
-      "sourceUrl": "https://www.theguardian.com/uk-news/2026/nov/21/princess-of-wales-impact-cancer-diagnosis-bbc-film-heal",
-      "title": "Princess of Wales speaks about impact of cancer diagnosis in BBC film Heal",
-      "vocab": [
-        {
-          "en": "in an honest and direct way",
-          "ex": "The Princess of Wales has spoken candidly about the impact of her cancer diagnosis.",
-          "exZh": "威尔士王妃坦率地谈到了癌症诊断对她的影响。",
-          "ph": "/ˈkændɪdli/",
-          "pos": "adv.",
-          "w": "candidly",
-          "zh": "坦率地；直言不讳地"
-        },
-        {
-          "en": "the act of discovering what illness a person has",
-          "ex": "There is a much deeper part to what a cancer diagnosis shifts in you.",
-          "exZh": "癌症诊断在你身上改变的还有更深的部分。",
-          "ph": "/ˌdaɪəɡˈnəʊsɪs/",
-          "pos": "n.",
-          "w": "diagnosis",
-          "zh": "诊断"
-        },
-        {
-          "en": "treatment of cancer with drugs",
-          "ex": "She received chemotherapy after being diagnosed in early 2024.",
-          "exZh": "她在 2024 年初确诊后接受了化疗。",
-          "ph": "/ˌkiːməʊˈθerəpi/",
-          "pos": "n.",
-          "w": "chemotherapy",
-          "zh": "化疗"
-        },
-        {
-          "en": "a period when the symptoms of a disease become less severe",
-          "ex": "By January 2025 she announced she was in remission.",
-          "exZh": "到 2025 年 1 月，她宣布病情已缓解。",
-          "ph": "/rɪˈmɪʃn/",
-          "pos": "n.",
-          "w": "remission",
-          "zh": "缓解；减轻"
-        },
-        {
-          "en": "the branch of medicine that deals with cancer",
-          "ex": "The Royal Marsden is a world-leading oncology centre.",
-          "exZh": "皇家马斯登医院是一家世界领先的肿瘤中心。",
-          "ph": "/ɒŋˈkɒlədʒi/",
-          "pos": "n.",
-          "w": "oncology",
-          "zh": "肿瘤学"
-        },
-        {
-          "en": "the process of getting better after an illness",
-          "ex": "She has learned through her recovery to find hope alongside uncertainty.",
-          "exZh": "她在康复过程中学会了在不确定中找到希望。",
-          "ph": "/rɪˈkʌvəri/",
-          "pos": "n.",
-          "w": "recovery",
-          "zh": "康复；恢复"
-        }
-      ],
-      "phrases": [
-        {
-          "p": "meet with",
+          "p": "stop doing",
           "surf": [
-            "meeting with"
+            "stop overspending"
           ],
-          "zh": "与……会面；会见",
-          "en": "to have a meeting with someone",
-          "ex": "Culkin met with Disney executives earlier this year.",
-          "exZh": "卡尔金今年早些时候与迪士尼高管见了面。"
-        },
-        {
-          "p": "talk about",
-          "surf": [
-            "talks about"
-          ],
-          "zh": "谈论",
-          "en": "to speak about something; to discuss",
-          "ex": "Let's talk about your plan.",
-          "exZh": "我们来谈谈你的计划。"
+          "zh": "停止做某事",
+          "en": "to no longer do something",
+          "ex": "Please stop talking.",
+          "exZh": "请不要再说话了。"
         }
       ]
     }
