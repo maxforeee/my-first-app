@@ -1,0 +1,767 @@
+{
+  "date": "2026-11-24",
+  "items": [
+    {
+      "cat": "新闻",
+      "desc": "美国拟将涉嫌向中国输送英伟达芯片的新加坡 AI 公司 Megaspeed 列入黑名单。",
+      "id": "news-20261124-megaspeed-blacklist",
+      "level": "B2",
+      "minutes": 4,
+      "paras": [
+        {
+          "en": [
+            "The US has said it intends to ban a Singaporean artificial intelligence (AI) company allegedly tied to the Nvidia scandal from doing business in America.",
+            "The US Department of Commerce announced on Monday that it planned to add Megaspeed Ltd to a list of entities that are blacklisted from buying or selling goods in the US.",
+            "The company is mainly a developer of data centres, but in recent weeks, a former executive of Megaspeed was accused of working as spy for China while having a romantic relationship with Nvidia head Jensen Huang."
+          ],
+          "zh": [
+            "美国表示，计划禁止一家据称与英伟达丑闻有关的新加坡人工智能公司在美国开展业务。",
+            "美国商务部周一宣布，计划把 Megaspeed 公司列入一份黑名单，禁止其在美国买卖商品。",
+            "该公司主要从事数据中心开发，但最近几周，其一名前高管被指一边为中国从事间谍活动，一边与英伟达掌门人黄仁勋保持恋爱关系。"
+          ]
+        },
+        {
+          "en": [
+            "The relationship led to additional scrutiny by US officials and heightened concern that Megaspeed was funneling Nvidia's advanced AI computer chips to China.",
+            "When exactly the ban against Megaspeed will go into effect was not specified in the Commerce announcement.",
+            "Megaspeed was not well known within the US until last month, when media reports emerged that a former Megaspeed executive, Alice Huang, had carried on an affair with Jensen Huang."
+          ],
+          "zh": [
+            "这段关系引发美国官员的进一步审查，也加剧了人们的担忧：Megaspeed 可能正在把英伟达先进的人工智能芯片输送到中国。",
+            "商务部的公告没有说明针对 Megaspeed 的禁令具体何时生效。",
+            "直到上个月媒体报道称，Megaspeed 前高管 Alice Huang 与黄仁勋有染，美国公众才开始了解这家公司。"
+          ]
+        },
+        {
+          "en": [
+            "Alice Huang was thought by the US intelligence apparatus to be working as an asset for Beijing, creating national security concerns within the US.",
+            "China has denied that she is a spy and warned the US not to use the scandal as a \"pretext for imposing a technological blockade\" on AI technology.",
+            "The Commerce Department has said it had been investigating Megaspeed for almost two years prior to the affair incident."
+          ],
+          "zh": [
+            "美国情报部门认为 Alice Huang 在为北京工作，这在美国国内引发了国家安全方面的担忧。",
+            "中国否认她是间谍，并警告美国不要借这起丑闻为由，对人工智能技术实施“技术封锁”。",
+            "商务部表示，在这起绯闻曝光之前，它对 Megaspeed 的调查已经进行了近两年。"
+          ]
+        }
+      ],
+      "published": "2026-11-24",
+      "source": "BBC News",
+      "sourceUrl": "https://www.bbc.co.uk/news/articles/cv98xpg5dg5zo",
+      "title": "US to blacklist Asian AI firm Megaspeed after Nvidia scandal",
+      "vocab": [
+        {
+          "en": "to forbid something officially",
+          "ex": "The US intends to ban the company from doing business in America.",
+          "exZh": "美国打算禁止这家公司在美国开展业务。",
+          "ph": "/bæn/",
+          "pos": "v.",
+          "w": "ban",
+          "zh": "禁止；取缔"
+        },
+        {
+          "en": "a situation that shocks people because it involves wrong or immoral behaviour",
+          "ex": "The company was tied to the Nvidia scandal.",
+          "exZh": "这家公司与英伟达丑闻有关。",
+          "ph": "/ˈskændl/",
+          "pos": "n.",
+          "w": "scandal",
+          "zh": "丑闻"
+        },
+        {
+          "en": "careful examination of something",
+          "ex": "The relationship led to additional scrutiny by US officials.",
+          "exZh": "这段关系引发了美国官员的进一步审查。",
+          "ph": "/ˈskruːtəni/",
+          "pos": "n.",
+          "w": "scrutiny",
+          "zh": "仔细审查；监督"
+        },
+        {
+          "en": "a feeling of worry about something",
+          "ex": "There is heightened concern that the firm was sending chips to China.",
+          "exZh": "人们越来越担忧这家公司在向中国输送芯片。",
+          "ph": "/kənˈsɜːn/",
+          "pos": "n.",
+          "w": "concern",
+          "zh": "担忧；关切"
+        },
+        {
+          "en": "a secret sexual relationship between two people",
+          "ex": "Media reports said a former executive had carried on an affair with Jensen Huang.",
+          "exZh": "媒体报道称，一名前高管与黄仁勋有染。",
+          "ph": "/əˈfeər/",
+          "pos": "n.",
+          "w": "affair",
+          "zh": "绯闻；风流韵事"
+        },
+        {
+          "en": "a person with a senior job in a company",
+          "ex": "A former executive of Megaspeed was accused of working as a spy.",
+          "exZh": "Megaspeed 的一名前高管被指从事间谍活动。",
+          "ph": "/ɪɡˈzekjətɪv/",
+          "pos": "n.",
+          "w": "executive",
+          "zh": "高管；主管"
+        }
+      ],
+      "phrases": [
+        {
+          "p": "plan to do",
+          "surf": [
+            "planned to add"
+          ],
+          "zh": "计划做某事",
+          "en": "to intend to do something",
+          "ex": "We plan to visit Beijing next year.",
+          "exZh": "我们计划明年去北京。"
+        }
+      ]
+    },
+    {
+      "cat": "新闻",
+      "desc": "英国在国际法院裁定缅甸实施种族灭绝后，制裁多名缅甸高级军方领导人。",
+      "id": "news-20261124-myanmar-sanctions",
+      "level": "B2",
+      "minutes": 4,
+      "paras": [
+        {
+          "en": [
+            "A military crackdown in 2017 killed thousands of Rohingya and forced more than 700,000 to flee Buddhist-majority Myanmar, formerly known as Burma.",
+            "Foreign Secretary Ed Miliband said: \"Our response to a crime as profoundly shocking as genocide must reflect our values and must be matched by clear action.\"",
+            "The senior military leaders facing sanctions are Myo Htut Hlaing, Myo Min Tun, Myat Thet Oo, Kyaw Soe and Kyaw Swar Oo."
+          ],
+          "zh": [
+            "2017 年的一次军事镇压导致数千名罗兴亚人丧生，并迫使 70 多万人逃离以佛教徒为主的缅甸（旧称 Burma）。",
+            "外交大臣 Ed Miliband 说：“面对种族灭绝这样令人深感震惊的罪行，我们的回应必须体现我们的价值观，也必须有明确的行动与之相配。”",
+            "面临制裁的高级军方领导人包括 Myo Htut Hlaing、Myo Min Tun、Myat Thet Oo、Kyaw Soe 和 Kyaw Swar Oo。"
+          ]
+        },
+        {
+          "en": [
+            "Miliband added that Myanmar's President Min Aung Hlaing, who was sanctioned by the UK in 2021, is \"directly responsible for many of the atrocities that have happened\" as he was head of the military at the time of the genocide in 2017.",
+            "He said: \"Myanmar must stop ongoing violations, investigate, prosecute and punish perpetrators, and prevent such an atrocity from ever happening again.\"",
+            "Miliband also called for an \"immediate pause in hostilities to enable humanitarian aid to get through, a stop to air strikes on civilians, and the release of political prisoners, as well as dialogue towards an inclusive political settlement\"."
+          ],
+          "zh": [
+            "Miliband 还说，缅甸总统 Min Aung Hlaing 在 2017 年种族灭绝发生时是军方首脑，对“发生的许多暴行负有直接责任”，他已于 2021 年受到英国制裁。",
+            "他说：“缅甸必须停止正在发生的侵权行为，调查、起诉并惩处肇事者，防止这样的暴行再次发生。”",
+            "Miliband 还呼吁“立即暂停敌对行动，以便人道主义援助能够送达，停止对平民的空袭，释放政治犯，并通过对话达成包容性的政治解决方案”。"
+          ]
+        },
+        {
+          "en": [
+            "The foreign secretary confirmed that new legislation would be passed to stop the supply of aviation fuel to the country, which was known as Burma until 1989.",
+            "Last week, he expelled Myanmar's defence attaché after the ICJ ruled the country had committed genocide during the brutal military campaign in 2017.",
+            "He told MPs on Monday the UK would raise the issue at the UN Security Council this week, and there would be a dedicated meeting in a fortnight."
+          ],
+          "zh": [
+            "外交大臣确认，将通过新立法，停止向这个直到 1989 年还被称为 Burma 的国家供应航空燃油。",
+            "上周，在国际法院裁定缅甸在 2017 年残酷的军事行动中实施了种族灭绝后，他驱逐了缅甸的国防武官。",
+            "他周一告诉议员，英国本周将在联合国安理会提出这一问题，两周后还将举行一次专门会议。"
+          ]
+        }
+      ],
+      "published": "2026-11-24",
+      "source": "BBC News",
+      "sourceUrl": "https://www.bbc.co.uk/news/articles/c6wy4ng1rznxo",
+      "title": "UK sanctions top Myanmar military leaders after Rohingya genocide ruling",
+      "vocab": [
+        {
+          "en": "strong action taken to stop something bad",
+          "ex": "A military crackdown in 2017 killed thousands of Rohingya.",
+          "exZh": "2017 年的一次军事镇压导致数千名罗兴亚人丧生。",
+          "ph": "/ˈkrækdaʊn/",
+          "pos": "n.",
+          "w": "crackdown",
+          "zh": "镇压；严厉打击"
+        },
+        {
+          "en": "an official order that limits trade or contact with a country",
+          "ex": "The UK imposed sanctions on senior military leaders.",
+          "exZh": "英国对高级军方领导人实施了制裁。",
+          "ph": "/ˈsæŋkʃn/",
+          "pos": "n.",
+          "w": "sanction",
+          "zh": "制裁"
+        },
+        {
+          "en": "the deliberate killing of a large group of people from one nation or ethnic group",
+          "ex": "The court ruled that the country had committed genocide.",
+          "exZh": "法院裁定该国实施了种族灭绝。",
+          "ph": "/ˈdʒenəsaɪd/",
+          "pos": "n.",
+          "w": "genocide",
+          "zh": "种族灭绝"
+        },
+        {
+          "en": "an action that breaks a law or agreement",
+          "ex": "Myanmar must stop ongoing violations and punish perpetrators.",
+          "exZh": "缅甸必须停止正在发生的侵权行为并惩处肇事者。",
+          "ph": "/ˌvaɪəˈleɪʃn/",
+          "pos": "n.",
+          "w": "violation",
+          "zh": "违反；侵权行为"
+        },
+        {
+          "en": "a law or set of laws",
+          "ex": "New legislation would be passed to stop the supply of aviation fuel.",
+          "exZh": "将通过新立法，停止航空燃油的供应。",
+          "ph": "/ˌledʒɪsˈleɪʃn/",
+          "pos": "n.",
+          "w": "legislation",
+          "zh": "立法；法律"
+        },
+        {
+          "en": "a person who is kept in prison",
+          "ex": "He called for the release of political prisoners.",
+          "exZh": "他呼吁释放政治犯。",
+          "ph": "/ˈprɪzənər/",
+          "pos": "n.",
+          "w": "prisoner",
+          "zh": "囚犯；犯人"
+        }
+      ],
+      "phrases": [
+        {
+          "p": "at the time",
+          "surf": [
+            "at the time"
+          ],
+          "zh": "在当时；那时候",
+          "en": "at the particular moment being discussed",
+          "ex": "He was head of the military at the time of the genocide in 2017.",
+          "exZh": "在 2017 年种族灭绝发生时，他是军方首脑。"
+        },
+        {
+          "p": "stop doing",
+          "surf": [
+            "stop ongoing"
+          ],
+          "zh": "停止做某事",
+          "en": "to no longer do something",
+          "ex": "Please stop talking.",
+          "exZh": "请不要再说话了。"
+        },
+        {
+          "p": "stop to do",
+          "surf": [
+            "stop to air"
+          ],
+          "zh": "停下来去做某事",
+          "en": "to stop what you are doing in order to do something else",
+          "ex": "He stopped to talk with an old friend.",
+          "exZh": "他停下来和一位老朋友聊了几句。"
+        }
+      ]
+    },
+    {
+      "cat": "新闻",
+      "desc": "研究显示，澳大利亚人改吃植物性午餐，每年可减排 1540 万吨，还能省钱。",
+      "id": "news-20261124-plant-based-lunches",
+      "level": "B2",
+      "minutes": 4,
+      "paras": [
+        {
+          "en": [
+            "Australians could collectively cut climate pollution by more than 15m tonnes – more than grounding every domestic flight – simply by changing what they eat for lunch.",
+            "A nationwide shift to plant-based lunches could reduce food-related emissions by 29% – 15.4m tonnes per year – while saving the average household about $611 annually, according to a report by Bryant Research and not-for-profit ProVeg.",
+            "Nadia Schilling, the executive director of ProVeg Australia, said the findings highlighted the “huge difference” that relatively modest changes, such as a meat-free Monday or a plant-based lunch, could make."
+          ],
+          "zh": [
+            "澳大利亚人只需改变午餐吃什么，就能一共削减超过 1500 万吨气候污染——比停飞所有国内航班减排还多。",
+            "据 Bryant Research 与非营利组织 ProVeg 的一份报告，全国改吃植物性午餐可使与食物相关的排放减少 29%，即每年 1540 万吨，同时平均每个家庭每年可节省约 611 美元。",
+            "ProVeg 澳大利亚分部执行董事 Nadia Schilling 说，这些发现凸显了相对温和的改变——比如无肉星期一或一顿植物性午餐——能带来“巨大差别”。"
+          ]
+        },
+        {
+          "en": [
+            "That might mean opting for a black bean burrito, a poké bowl with tofu, or a lunchbox with hummus and fresh vegetables – instead of a cheese and ham wrap – she said.",
+            "“We realise that Australians aren’t going to change their diets overnight,” Schilling said.",
+            "“This is a really practical change where everyone wins. Lunch is a huge missed opportunity.”"
+          ],
+          "zh": [
+            "她说，这可能意味着选择黑豆卷饼、豆腐 poke 碗，或装有鹰嘴豆泥和新鲜蔬菜的饭盒——而不是奶酪火腿卷。",
+            "Schilling 说：“我们知道澳大利亚人不会一夜之间改变饮食习惯。”",
+            "“这是一个真正切实可行的改变，人人都能受益。午餐是一个巨大的、被错过的机会。”"
+          ]
+        },
+        {
+          "en": [
+            "Australia has the highest per capita food-related emissions in the world, the report found.",
+            "It modelled the environmental, health and economic impacts for a range of Australia-wide dietary changes, finding the shift to 100% plant-based meals would cut dietary emissions by two-thirds, while just switching lunches would cut nearly one-third.",
+            "Emissions from domestic aviation are about 10m tonnes a year, according to government data."
+          ],
+          "zh": [
+            "报告发现，澳大利亚的人均食物相关排放量居世界之首。",
+            "报告模拟了一系列全国饮食变化对环境、健康和经济的影响，发现改吃 100% 植物性膳食可使饮食排放减少三分之二，而仅仅换掉午餐就能减少近三分之一。",
+            "据政府数据，国内航空的排放量约为每年 1000 万吨。"
+          ]
+        }
+      ],
+      "published": "2026-11-24",
+      "source": "The Guardian",
+      "sourceUrl": "https://www.theguardian.com/environment/2026/nov/23/plant-based-lunches-could-cut-australia-emissions-by-15m-tonnes-new-research-shows",
+      "title": "Plant-based lunches could cut Australia’s emissions by 15m tonnes, new research shows",
+      "vocab": [
+        {
+          "en": "damage to air, water or land caused by harmful substances",
+          "ex": "Changing what they eat for lunch could cut climate pollution.",
+          "exZh": "改变午餐吃什么，可以削减气候污染。",
+          "ph": "/pəˈluːʃn/",
+          "pos": "n.",
+          "w": "pollution",
+          "zh": "污染"
+        },
+        {
+          "en": "gas or other substances sent out into the air",
+          "ex": "Plant-based lunches could reduce food-related emissions by 29%.",
+          "exZh": "植物性午餐可使与食物相关的排放减少 29%。",
+          "ph": "/ɪˈmɪʃn/",
+          "pos": "n.",
+          "w": "emission",
+          "zh": "排放（物）"
+        },
+        {
+          "en": "not very large or ambitious",
+          "ex": "Relatively modest changes, such as a meat-free Monday, could make a huge difference.",
+          "exZh": "相对温和的改变，比如无肉星期一，能带来巨大差别。",
+          "ph": "/ˈmɒdɪst/",
+          "pos": "adj.",
+          "w": "modest",
+          "zh": "适度的；不大的"
+        },
+        {
+          "en": "likely to succeed in a real situation",
+          "ex": "This is a really practical change where everyone wins.",
+          "exZh": "这是一个真正切实可行的改变，人人都能受益。",
+          "ph": "/ˈpræktɪkl/",
+          "pos": "adj.",
+          "w": "practical",
+          "zh": "切实可行的；实际的"
+        },
+        {
+          "en": "relating to the food that a person eats",
+          "ex": "The shift to plant-based meals would cut dietary emissions by two-thirds.",
+          "exZh": "改吃植物性膳食可使饮食排放减少三分之二。",
+          "ph": "/ˈdaɪətri/",
+          "pos": "adj.",
+          "w": "dietary",
+          "zh": "饮食的"
+        },
+        {
+          "en": "the activity of flying aircraft",
+          "ex": "Emissions from domestic aviation are about 10m tonnes a year.",
+          "exZh": "国内航空的排放量约为每年 1000 万吨。",
+          "ph": "/ˌeɪviˈeɪʃn/",
+          "pos": "n.",
+          "w": "aviation",
+          "zh": "航空；航空业"
+        }
+      ],
+      "phrases": [
+        {
+          "p": "instead of",
+          "surf": [
+            "instead of"
+          ],
+          "zh": "而不是",
+          "en": "In place of; rather than.",
+          "ex": "He walked to school instead of taking the car.",
+          "exZh": "他走路去上学，而不是坐车。"
+        }
+      ]
+    },
+    {
+      "cat": "新闻",
+      "desc": "Poundland 濒临破产托管：生意其实在好转，问题出在所有者手握资金不放。",
+      "id": "news-20261124-poundland-collapse",
+      "level": "B2",
+      "minutes": 4,
+      "paras": [
+        {
+          "en": [
+            "The future of Poundland hangs in the balance as it faces a possible collapse into administration.",
+            "Its owner, US investment firm Gordon Brothers, put it up for sale in September, but then rejected offers to keep the business afloat.",
+            "Poundland has a major presence on the High Street, with 600 stores in the UK and Ireland, where it trades under the Dealz brand."
+          ],
+          "zh": [
+            "Poundland 的未来悬而未决，它可能面临破产托管。",
+            "其所有者、美国投资公司 Gordon Brothers 于 9 月将其挂牌出售，但随后拒绝了能让这家企业维持下去的报价。",
+            "Poundland 在英国商业街上占有重要地位，在英国和爱尔兰拥有 600 家门店，在爱尔兰以 Dealz 品牌经营。"
+          ]
+        },
+        {
+          "en": [
+            "If it were to collapse, the jobs of its 11,000 employees would be at risk, as well as potentially thousands of others at firms that supply the retailer.",
+            "People have not stopped shopping at Poundland - quite the opposite.",
+            "Although the chain was struggling when it was sold by Pepco last year for £1, the business turned a corner over the year to September, going from a £68m loss to an £18.1m profit before interest, tax and certain accounting charges."
+          ],
+          "zh": [
+            "如果它倒闭，其 1.1 万名员工的工作将面临风险，供应商企业中可能还有数千人的工作受到牵连。",
+            "人们并没有停止在 Poundland 购物——恰恰相反。",
+            "尽管这家连锁店去年被 Pepco 以 1 英镑出售时举步维艰，但在截至 9 月的一年里，企业扭亏为盈，从亏损 6800 万英镑变为盈利 1810 万英镑（未计利息、税项和某些会计费用）。"
+          ]
+        },
+        {
+          "en": [
+            "Going into the vital Christmas period, first-quarter like-for-like sales were up 7% and operational profits of £1.9m were up £1.2m on last year.",
+            "Halloween sales were 11.4% higher than last year - this is usually a good indicator of how a retailer will do at Christmas, says retail analyst Catherine Shuttleworth of Savvy Marketing.",
+            "According to Julie Palmer, managing partner at insolvency specialist Begbies Traynor: \"This isn't a story about shoppers abandoning Poundland. The tills are busier than they were a year ago.\""
+          ],
+          "zh": [
+            "进入至关重要的圣诞季，第一季度同店销售额增长 7%，运营利润 190 万英镑，比去年多 120 万英镑。",
+            "万圣节销售额比去年高 11.4%——零售分析师 Catherine Shuttleworth（Savvy Marketing）说，这通常是判断一家零售商圣诞季表现的好指标。",
+            "破产重组专家 Begbies Traynor 的管理合伙人 Julie Palmer 说：“这不是一个顾客抛弃 Poundland 的故事。收银台比一年前更忙了。”"
+          ]
+        }
+      ],
+      "published": "2026-11-24",
+      "source": "BBC News",
+      "sourceUrl": "https://www.bbc.co.uk/news/articles/cm4g10p2r0g9o",
+      "title": "Poundland is facing collapse - what's gone wrong?",
+      "vocab": [
+        {
+          "en": "a sudden failure of a business or system",
+          "ex": "Poundland is facing a possible collapse into administration.",
+          "exZh": "Poundland 可能面临破产托管。",
+          "ph": "/kəˈlæps/",
+          "pos": "n.",
+          "w": "collapse",
+          "zh": "倒闭；崩溃"
+        },
+        {
+          "en": "the process of managing a company that cannot pay its debts",
+          "ex": "The chain faces a possible collapse into administration.",
+          "exZh": "这家连锁店可能面临破产托管。",
+          "ph": "/ədˌmɪnɪˈstreɪʃn/",
+          "pos": "n.",
+          "w": "administration",
+          "zh": "破产托管"
+        },
+        {
+          "en": "a person or business that sells goods to the public",
+          "ex": "A value retailer that can't get stock on its shelves is in serious trouble.",
+          "exZh": "一家平价零售商如果在圣诞季上不了货，就会陷入严重麻烦。",
+          "ph": "/ˈriːteɪlər/",
+          "pos": "n.",
+          "w": "retailer",
+          "zh": "零售商"
+        },
+        {
+          "en": "money earned after costs have been paid",
+          "ex": "The business went from a £68m loss to an £18.1m profit.",
+          "exZh": "这家企业从亏损 6800 万英镑变为盈利 1810 万英镑。",
+          "ph": "/ˈprɒfɪt/",
+          "pos": "n.",
+          "w": "profit",
+          "zh": "利润；盈利"
+        },
+        {
+          "en": "something that shows what a situation is like",
+          "ex": "Halloween sales are usually a good indicator of how a retailer will do at Christmas.",
+          "exZh": "万圣节销售额通常是判断零售商圣诞季表现的好指标。",
+          "ph": "/ˈɪndɪkeɪtər/",
+          "pos": "n.",
+          "w": "indicator",
+          "zh": "指标；迹象"
+        },
+        {
+          "en": "the fact of being in a place, or being important there",
+          "ex": "Poundland has a major presence on the High Street.",
+          "exZh": "Poundland 在英国商业街上占有重要地位。",
+          "ph": "/ˈprezns/",
+          "pos": "n.",
+          "w": "presence",
+          "zh": "存在；地位"
+        }
+      ],
+      "phrases": [
+        {
+          "p": "in the balance",
+          "surf": [
+            "in the balance"
+          ],
+          "zh": "悬而未决；前途未卜",
+          "en": "in an uncertain situation, with the outcome not yet decided",
+          "ex": "The future of Poundland hangs in the balance as it faces a possible collapse.",
+          "exZh": "Poundland 面临可能的破产，未来悬而未决。"
+        },
+        {
+          "p": "stop doing",
+          "surf": [
+            "stopped shopping"
+          ],
+          "zh": "停止做某事",
+          "en": "to no longer do something",
+          "ex": "Please stop talking.",
+          "exZh": "请不要再说话了。"
+        },
+        {
+          "p": "quite the opposite",
+          "surf": [
+            "quite the opposite"
+          ],
+          "zh": "恰恰相反；正相反",
+          "en": "exactly the reverse of what was just said",
+          "ex": "People have not stopped shopping at Poundland - quite the opposite.",
+          "exZh": "人们并没有停止在 Poundland 购物——恰恰相反。"
+        },
+        {
+          "p": "turn a corner",
+          "surf": [
+            "turned a corner"
+          ],
+          "zh": "好转；渡过难关",
+          "en": "to start to improve after a difficult period",
+          "ex": "The business turned a corner, going from a £68m loss to an £18.1m profit.",
+          "exZh": "这家企业扭亏为盈，从亏损 6800 万英镑变为盈利 1810 万英镑。"
+        }
+      ]
+    },
+    {
+      "cat": "新闻",
+      "desc": "六匹马吃草的荒地背后，是英国几十年来建房不足的缩影。",
+      "id": "news-20261124-housing-horses",
+      "level": "B2",
+      "minutes": 4,
+      "paras": [
+        {
+          "en": [
+            "About a five-minute walk from the train station in Middlesbrough, six horses are grazing lazily on a derelict patch of land.",
+            "Tethered and friendly, the animals do not attract much attention from residents, despite being so close to the town centre.",
+            "But their presence on the land, by the banks of the River Tees, is a symbol of the UK's decades-long failure to build enough houses."
+          ],
+          "zh": [
+            "从米德尔斯堡火车站步行约五分钟，六匹马正懒洋洋地在一块荒地上吃草。",
+            "这些马被拴着、性情温顺，尽管离市中心这么近，却不太引人注意。",
+            "但它们出现在这片位于 Tees 河畔的土地上，是英国几十年来建房不足的一个象征。"
+          ]
+        },
+        {
+          "en": [
+            "In 2004, the local council announced plans to build 2,400 homes on the grass the horses are eating.",
+            "But 22 years later, just 216 homes have been built.",
+            "The money initially outlined for the project has never been found."
+          ],
+          "zh": [
+            "2004 年，当地议会宣布计划在这些马正在吃草的草地上建造 2400 套住房。",
+            "但 22 年过去了，只建成了 216 套。",
+            "项目最初规划的资金至今从未落实。"
+          ]
+        },
+        {
+          "en": [
+            "The UK is in a housing crisis with demand for homes continuing to outstrip supply.",
+            "To understand why successive governments have failed to build enough houses, BBC News went to this Middlesbrough scheme, and planned developments in York and the Isle of Sheppey, in Kent.",
+            "Each has its own story, with finances, infrastructure planning and developers' appetites all playing a major role - issues mirrored at other sites across the country."
+          ],
+          "zh": [
+            "英国正处于住房危机之中，住房需求持续超过供应。",
+            "为了弄清历届政府为什么没能建够房子，BBC 新闻走访了米德尔斯堡的这个项目，以及约克和肯特郡 Sheppey 岛上规划中的开发项目。",
+            "每个项目都有自己的故事，资金、基础设施规划和开发商的胃口都起了重要作用——这些问题在全国其他工地上也同样存在。"
+          ]
+        }
+      ],
+      "published": "2026-11-24",
+      "source": "BBC News",
+      "sourceUrl": "https://www.bbc.co.uk/news/articles/cmd71x05q77zo",
+      "title": "What six grazing horses tell us about England's housing crisis",
+      "vocab": [
+        {
+          "en": "a person who lives in a particular place",
+          "ex": "The animals do not attract much attention from residents.",
+          "exZh": "这些动物不太引当地居民注意。",
+          "ph": "/ˈrezɪdənt/",
+          "pos": "n.",
+          "w": "resident",
+          "zh": "居民"
+        },
+        {
+          "en": "in a very bad condition because it has not been used or cared for",
+          "ex": "Six horses are grazing on a derelict patch of land.",
+          "exZh": "六匹马正在一块荒地上吃草。",
+          "ph": "/ˈderəlɪkt/",
+          "pos": "adj.",
+          "w": "derelict",
+          "zh": "荒废的；被遗弃的"
+        },
+        {
+          "en": "something that represents an idea",
+          "ex": "Their presence is a symbol of the UK's failure to build enough houses.",
+          "exZh": "它们的出现是英国建房不足的一个象征。",
+          "ph": "/ˈsɪmbl/",
+          "pos": "n.",
+          "w": "symbol",
+          "zh": "象征；标志"
+        },
+        {
+          "en": "a time of great difficulty or danger",
+          "ex": "The UK is in a housing crisis.",
+          "exZh": "英国正处于住房危机之中。",
+          "ph": "/ˈkraɪsɪs/",
+          "pos": "n.",
+          "w": "crisis",
+          "zh": "危机"
+        },
+        {
+          "en": "to be greater than something",
+          "ex": "Demand for homes continues to outstrip supply.",
+          "exZh": "住房需求持续超过供应。",
+          "ph": "/aʊtˈstrɪp/",
+          "pos": "v.",
+          "w": "outstrip",
+          "zh": "超过；胜过"
+        },
+        {
+          "en": "the basic systems and services of a country, such as roads and water supply",
+          "ex": "Finances and infrastructure planning all played a major role in the delays.",
+          "exZh": "资金和基础设施规划都在延误中起了重要作用。",
+          "ph": "/ˈɪnfrəstrʌktʃər/",
+          "pos": "n.",
+          "w": "infrastructure",
+          "zh": "基础设施"
+        }
+      ],
+      "phrases": [
+        {
+          "p": "plan to do",
+          "surf": [
+            "plans to build"
+          ],
+          "zh": "计划做某事",
+          "en": "to intend to do something",
+          "ex": "We plan to visit Beijing next year.",
+          "exZh": "我们计划明年去北京。"
+        },
+        {
+          "p": "fail to do",
+          "surf": [
+            "failed to build"
+          ],
+          "zh": "未能做某事",
+          "en": "to not succeed in doing something",
+          "ex": "He failed to pass the exam.",
+          "exZh": "他考试没通过。"
+        }
+      ]
+    },
+    {
+      "cat": "新闻",
+      "desc": "曾泄露《GTA 6》的 21 岁黑客在判刑当天获释，法官警告他别再犯。",
+      "id": "news-20261124-gta-hacker",
+      "level": "B2",
+      "minutes": 4,
+      "paras": [
+        {
+          "en": [
+            "A cyber criminal who hacked the maker of Grand Theft Auto has been released on licence on the same day as being sentenced to 7 years in prison.",
+            "Multiple offender Arion Kurtaj, from Oxford, was released from custody with the judge warning him: \"Don't let this happen again.\"",
+            "The now 21-year-old hacked several companies and individuals, including GTA 6-maker Rockstar Games, whom he tried to extort after stealing clips of the unfinished game in 2022."
+          ],
+          "zh": [
+            "一名黑客入侵了《侠盗猎车手》制作商的电脑系统，他在被判处 7 年监禁的同一天附条件获释。",
+            "来自牛津的惯犯 Arion Kurtaj 获释时，法官警告他：“别再让这种事发生。”",
+            "现年 21 岁的 Kurtaj 入侵了多家公司和个人，包括《GTA 6》制作商 Rockstar Games，2022 年他在窃取了这款未完成游戏的片段后，试图勒索该公司。"
+          ]
+        },
+        {
+          "en": [
+            "Kurtaj had pleaded guilty last Monday at Woolwich Crown Court to the Rockstar hack and a handful of others which he carried out when he was 16 and 17 years old with the hacking gang Lapsus$.",
+            "Kurtaj was originally sentenced to an indefinite stay in a secure hospital due to the severity of his autism.",
+            "But, in an unusual move, he was subsequently deemed fit to stand trial and released to a normal prison in January."
+          ],
+          "zh": [
+            "Kurtaj 上周一在 Woolwich 刑事法院承认了 Rockstar 黑客案以及其他几起黑客行为，这些都是他 16、17 岁时与黑客团伙 Lapsus$ 一起实施的。",
+            "Kurtaj 最初因自闭症严重，被判无限期住进有安全保障的医院。",
+            "但不同寻常的是，他随后被认定适合受审，并于今年 1 月被转入普通监狱。"
+          ]
+        },
+        {
+          "en": [
+            "Now, he has been sentenced and released on the same day as the judge considered his hospital stay and remand in prison long enough.",
+            "He has been given a Serious Crime Prevention Order which will last five years.",
+            "It restricts his activity online including barring him from using Telegram and Discord."
+          ],
+          "zh": [
+            "现在，法官认为他在医院和监狱羁押的时间已经够长，于是在同一天对他判刑并释放了他。",
+            "他被处以一项为期五年的《严重犯罪预防令》。",
+            "该命令限制了他的网上活动，包括禁止他使用 Telegram 和 Discord。"
+          ]
+        }
+      ],
+      "published": "2026-11-24",
+      "source": "BBC News",
+      "sourceUrl": "https://www.bbc.co.uk/news/articles/cqpv9kr7pxmro",
+      "title": "GTA 6 hacker released on licence with warning 'don't let this happen again'",
+      "vocab": [
+        {
+          "en": "relating to computers and the internet",
+          "ex": "A cyber criminal hacked the maker of Grand Theft Auto.",
+          "exZh": "一名网络罪犯入侵了《侠盗猎车手》制作商的系统。",
+          "ph": "/ˈsaɪbər/",
+          "pos": "adj.",
+          "w": "cyber",
+          "zh": "网络的；电脑的"
+        },
+        {
+          "en": "official permission to do something; release from prison under conditions",
+          "ex": "He has been released on licence on the same day as being sentenced.",
+          "exZh": "他在被判刑的同一天附条件获释。",
+          "ph": "/ˈlaɪsəns/",
+          "pos": "n.",
+          "w": "licence",
+          "zh": "许可；假释"
+        },
+        {
+          "en": "to get money from someone by threatening them",
+          "ex": "He tried to extort Rockstar Games after stealing clips of the unfinished game.",
+          "exZh": "他在窃取未完成游戏的片段后，试图勒索 Rockstar Games。",
+          "ph": "/ɪkˈstɔːt/",
+          "pos": "v.",
+          "w": "extort",
+          "zh": "勒索；敲诈"
+        },
+        {
+          "en": "the state of being kept in prison by the police",
+          "ex": "He was released from custody with the judge warning him.",
+          "exZh": "他获释时，法官对他提出了警告。",
+          "ph": "/ˈkʌstədi/",
+          "pos": "n.",
+          "w": "custody",
+          "zh": "羁押；拘留"
+        },
+        {
+          "en": "to limit something",
+          "ex": "The order restricts his activity online.",
+          "exZh": "该命令限制了他的网上活动。",
+          "ph": "/rɪˈstrɪkt/",
+          "pos": "v.",
+          "w": "restrict",
+          "zh": "限制"
+        },
+        {
+          "en": "a person who has committed a crime",
+          "ex": "Multiple offender Arion Kurtaj was released from custody.",
+          "exZh": "惯犯 Arion Kurtaj 获释。",
+          "ph": "/əˈfendər/",
+          "pos": "n.",
+          "w": "offender",
+          "zh": "罪犯；违法者"
+        }
+      ],
+      "phrases": [
+        {
+          "p": "try to do",
+          "surf": [
+            "tried to extort"
+          ],
+          "zh": "设法做某事；努力做某事",
+          "en": "to attempt to do something",
+          "ex": "Try to arrive on time.",
+          "exZh": "尽量准时到。"
+        }
+      ]
+    }
+  ]
+}

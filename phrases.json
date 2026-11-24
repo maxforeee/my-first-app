@@ -2565,6 +2565,65 @@
    "en": "to arrive or appear, especially unexpectedly",
    "ex": "Students were told to turn up with pencils only.",
    "exZh": "学生们被告知只能带铅笔进场。"
+  },
+  {
+   "p": "at the time",
+   "pat": [
+    "at",
+    "the",
+    "time"
+   ],
+   "forms": {},
+   "zh": "在当时；那时候",
+   "en": "at the particular moment being discussed",
+   "ex": "He was head of the military at the time of the genocide in 2017.",
+   "exZh": "在 2017 年种族灭绝发生时，他是军方首脑。"
+  },
+  {
+   "p": "in the balance",
+   "pat": [
+    "in",
+    "the",
+    "balance"
+   ],
+   "forms": {},
+   "zh": "悬而未决；前途未卜",
+   "en": "in an uncertain situation, with the outcome not yet decided",
+   "ex": "The future of Poundland hangs in the balance as it faces a possible collapse.",
+   "exZh": "Poundland 面临可能的破产，未来悬而未决。"
+  },
+  {
+   "p": "quite the opposite",
+   "pat": [
+    "quite",
+    "the",
+    "opposite"
+   ],
+   "forms": {},
+   "zh": "恰恰相反；正相反",
+   "en": "exactly the reverse of what was just said",
+   "ex": "People have not stopped shopping at Poundland - quite the opposite.",
+   "exZh": "人们并没有停止在 Poundland 购物——恰恰相反。"
+  },
+  {
+   "p": "turn a corner",
+   "pat": [
+    "turn",
+    "a",
+    "corner"
+   ],
+   "forms": {
+    "turn": [
+     "turn",
+     "turns",
+     "turned",
+     "turning"
+    ]
+   },
+   "zh": "好转；渡过难关",
+   "en": "to start to improve after a difficult period",
+   "ex": "The business turned a corner, going from a £68m loss to an £18.1m profit.",
+   "exZh": "这家企业扭亏为盈，从亏损 6800 万英镑变为盈利 1810 万英镑。"
   }
  ]
 }
